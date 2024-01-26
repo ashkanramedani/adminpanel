@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ErrorComponent } from './shared/error/error.component';
 
 const routes: Routes = [
   {
@@ -8,6 +9,11 @@ const routes: Routes = [
       import('./pages/dashboard/dashboard.module').then(
         (m) => m.DashboardModule
       ),
+  },
+  {
+    path: 'signin',
+    loadChildren: () =>
+      import('./pages/signin/signin.module').then((m) => m.SigninModule),
   },
   {
     path: 'podcasts',
@@ -23,6 +29,10 @@ const routes: Routes = [
     path: 'blogs',
     loadChildren: () =>
       import('./pages/blogs/blogs.module').then((x) => x.BlogsModule),
+  },
+  {
+    path: 'notFound',
+    component: ErrorComponent,
   },
   { path: '**', redirectTo: 'notFound' },
 ];

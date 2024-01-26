@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
@@ -8,4 +9,5 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 })
 export class BlogsAddComponent {
   public Editor = ClassicEditor;
+  dateValue = new FormControl();
 }

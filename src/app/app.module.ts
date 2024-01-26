@@ -5,17 +5,20 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PreloaderComponent } from './shared/preloader/preloader.component';
 import { RouterLink } from '@angular/router';
+import { SharedModule } from './shared/shared.module';
+import { HeaderComponent } from './shared/header/header.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     PreloaderComponent,
-    RouterLink
+    RouterLink,
+    SharedModule
   ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent]
