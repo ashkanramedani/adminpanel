@@ -35,8 +35,9 @@ export class HttpService {
       catchError(this.errorHandler));
   }
 
-  put (url:string, id: any, data: any): Observable<any> {
-    return this.http.put(`${url}/${id}`, data);
+  put (url:string, data?: any,headers?:any): Observable<any> {
+    return this.http.put<any>(url, data,{headers:headers},).pipe(
+      catchError(this.errorHandler));
   }
 
   delete(url:string, id?: any,headers?:any): Observable<any> {
