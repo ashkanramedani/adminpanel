@@ -58,7 +58,18 @@
   {
     width: max-content !important;
   }
-
+  .alertify .ajs-header
+  {
+    font-family: 'iran';
+    font-weight: 800;
+  }
+  .alertify .ajs-body{
+    font-family: 'iran' !important;
+  }
+  .alertify.ajs-closable .ajs-commands button.ajs-close
+  {
+    display: none !important
+  }
 
   body {
     @apply relative z-1 bg-whiten font-iran text-base font-normal text-body;

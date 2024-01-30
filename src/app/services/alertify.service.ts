@@ -6,10 +6,10 @@ declare let alertify:any;
 export class AlertifyService {
 
   constructor() { }
-  confirm(message:string,okCallBack:()=>any){
-    alertify.confirm(message,function(e:any){
-      if(e){okCallBack()}else{}
-    });
+  
+  confirm(title: string, message: string, okCallback: () => any, cancelCallback: () => any) {
+    alertify.confirm(title, message, () => { okCallback(); }
+                , () => { cancelCallback(); });
   }
 
   success(message :string){
