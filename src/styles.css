@@ -50,6 +50,7 @@
       url("/assets/fonts/iran2.woff") format("woff"),
       url("/assets/fonts/iran2.ttf") format("truetype");
   }
+  .input-invalid {@apply border  border-meta-1 focus:!ring-0 }
   .alertify-notifier
   {
     font-family: 'iran';

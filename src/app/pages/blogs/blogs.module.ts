@@ -8,12 +8,14 @@ import { BlogsComponent } from './blogs.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FilterPipe } from './blogs-add/filter.pipe';
 
 
 @NgModule({
   declarations: [
     BlogsAddComponent,
-    BlogsComponent
+    BlogsComponent,
+    FilterPipe
   ],
   imports: [
     ReactiveFormsModule,

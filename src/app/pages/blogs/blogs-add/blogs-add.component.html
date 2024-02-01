@@ -17,7 +17,9 @@
             <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
               عنوان
             </label>
-            <input type="text" formControlName="post_title"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+            <input type="text" formControlName="post_title"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+            [ngClass]="{'input-invalid': (this.postForm.controls.post_title.invalid) &&(this.postForm.controls.post_title.dirty ||this.postForm.controls.post_title.touched)}"
+            >
           </div>
           <div class="lg:w-2/12">
             <label class="text-sm mb-5 block font-semibold  text-black dark:text-white">
@@ -36,7 +38,9 @@
       <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
         خلاصه 
       </label>
-      <input type="text" formControlName="post_summary"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+      <input type="text" formControlName="post_summary"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+      [ngClass]="{'input-invalid': (this.postForm.controls.post_summary.invalid) &&(this.postForm.controls.post_summary.dirty ||this.postForm.controls.post_summary.touched)}"
+      >
     </div>
 
     <div>
@@ -83,17 +87,16 @@
     <div  class="lg:col-span-2">
       <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
         برچسب
-         <span class="text-form-input font-medium">
+          <span class="text-form-input font-medium">
           (Press Enter to add )
-        </span>
+        </span> 
       </label>
-      <input (keyup)=onkeyupTagInput($event) type="text" formControlName="tag" (keyup.enter)="AddTagInput()"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-      <div class="search-tag mt-2 bg-white border border-gray-300 rounded-lg shadow-md max-h-34 overflow-y-auto">
-        <div *ngFor="let item of tag_list" class="px-4 py-2 cursor-pointer hover:bg-stroke text-black dark:text-white" id="{{item.tag_pk_id}}">{{item.tag_name}}</div>
+      <input  type="text" formControlName="tag" (click)="OpenSearchTag()" (keyup.enter)="AddTagInputManually()"   class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+
+      <div *ngIf="isOpenSearchTag" class="search-tag mt-2 bg-white dark:bg-form-input dark:text-bodydark1 text-black  border border-gray-300 rounded-lg shadow-md max-h-34 overflow-y-auto">
+        <div (click)="AddTagInput(item.tag_pk_id,item.tag_name)" *ngFor="let item of tag_list | filter: this.postForm.controls.tag.value" class="px-4 py-2 cursor-pointer hover:bg-stroke dark:hover:bg-black text-black dark:text-white">{{item.tag_name}}</div>
       </div>
-
-
-      <div class="w-full flex items-center gap-x-2 mt-4 mx-2">
+      <div *ngIf="tagsInputArray.length>0" class="w-full flex items-center gap-2 mt-4 p-2 flex-wrap max-h-34 overflow-y-auto border-[1.5px] border-stroke dark:border-form-strokedark rounded-md">
         <div *ngFor="let item of tagsInputArray;let i = index" class=" flex text-center justify-between text-black dark:text-white rounded-sm px-3 py-1 bg-bodydark1 dark:bg-black ">
           <button >
             <svg (click)="RemoveTagInput(i)" class="w-8  pl-2 fill-body hover:fill-black dark:fill-bodydark dark:hover:fill-bodydark1 mx-auto cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.78 14.36a1 1 0 0 1-1.42 1.42l-2.82-2.83-2.83 2.83a1 1 0 1 1-1.42-1.42l2.83-2.82L7.3 8.7a1 1 0 0 1 1.42-1.42l2.83 2.83 2.82-2.83a1 1 0 0 1 1.42 1.42l-2.83 2.83 2.83 2.82z"></path></svg>
@@ -155,10 +158,10 @@
     </div>
     <div class="lg:col-span-2" >
       <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
-        تصویر پست
+        تصویر پست (500 * 500)
       </label>
       <div *ngIf="imageUrl" class="border p-5 relative  rounded-md border-dashed border-bodydark1   dark:border-strokedark   ">
-        <img   [src]="imageUrl" class="w-full">
+        <img   [src]="imageUrl" class="max-w-[500px] max-h-[500px] mx-auto">
         <button (click)="RemoveImage()"  class="absolute bg-black rounded-full top-0 left-0">
           <svg class="w-12" viewBox="0 0 54 54" fill="white" xmlns="http://www.w3.org/2000/svg">      <path d="M26.2929 20.2929L19.2071 13.2071C18.8166 12.8166 18.1834 12.8166 17.7929 13.2071L13.2071 17.7929C12.8166 18.1834 12.8166 18.8166 13.2071 19.2071L20.2929 26.2929C20.6834 26.6834 20.6834 27.3166 20.2929 27.7071L13.2071 34.7929C12.8166 35.1834 12.8166 35.8166 13.2071 36.2071L17.7929 40.7929C18.1834 41.1834 18.8166 41.1834 19.2071 40.7929L26.2929 33.7071C26.6834 33.3166 27.3166 33.3166 27.7071 33.7071L34.7929 40.7929C35.1834 41.1834 35.8166 41.1834 36.2071 40.7929L40.7929 36.2071C41.1834 35.8166 41.1834 35.1834 40.7929 34.7929L33.7071 27.7071C33.3166 27.3166 33.3166 26.6834 33.7071 26.2929L40.7929 19.2071C41.1834 18.8166 41.1834 18.1834 40.7929 17.7929L36.2071 13.2071C35.8166 12.8166 35.1834 12.8166 34.7929 13.2071L27.7071 20.2929C27.3166 20.6834 26.6834 20.6834 26.2929 20.2929Z"></path>    </svg>
         </button>
@@ -254,7 +257,7 @@
     </div>
   </form>
   <div class="flex justify-end p-6.5 items-center gap-x-2">
-    <button  (click)="onSubmit()" class="flex justify-center rounded bg-primary py-2 px-5 font-medium text-gray">افزودن</button>
+    <button [disabled]="this.postForm.invalid"  (click)="onSubmit()" class="flex disabled:bg-secondary justify-center rounded bg-primary py-2 px-5 font-medium text-gray">افزودن</button>
     <a [routerLink]="['/blogs']" class="flex justify-center rounded bg-bodydark py-2 px-5 font-medium text-black-2">بازگشت</a>
   </div>
 </div>
