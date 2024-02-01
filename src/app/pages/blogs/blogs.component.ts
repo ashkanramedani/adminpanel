@@ -30,7 +30,9 @@ export class BlogsComponent implements OnInit {
         this.http.delete(Domain.DeletePost+"/blog/delete",id).subscribe((response)=>
         {
           console.log(response);
-        })
+        });
+        this.GetBlogsData();
+        this.alert.success("آیتم با موفقیت حذف شد");
       },
       () => {}
     );

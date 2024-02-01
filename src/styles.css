@@ -54,6 +54,10 @@
   {
     font-family: 'iran';
   }
+  .dp-btn
+  {
+    font-size: .9rem;
+  }
   .ajs-message
   {
     width: max-content !important;

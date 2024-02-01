@@ -10,84 +10,89 @@
 </div>
 <div class="rounded-md border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
 
-    <form [formGroup]="postForm" class="grid lg:grid-cols-2 grid-cols-1 gap-5.5 p-6.5">
+    <form [formGroup]="postForm" class="grid lg:grid-cols-2 grid-cols-1 gap-6.5 p-6.5">
       <div class="lg:col-span-2">
-        <div class="flex items-center gap-x-6">
-          <div class="w-full">
+        <div class="flex items-center gap-x-6 w-full">
+          <div class="lg:w-10/12">
             <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
-              title
+              عنوان
             </label>
             <input type="text" formControlName="post_title"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
           </div>
-          <div >
+          <div class="lg:w-2/12">
             <label class="text-sm mb-5 block font-semibold  text-black dark:text-white">
-              visible
+              وضعیت نمایش
             </label>
             <label class="relative inline-flex cursor-pointer items-center">
               <input id="switch" formControlName="priority" checked type="checkbox" class="peer sr-only" />
               <label for="switch" class="hidden"></label>
               <div class="peer h-6 w-11 rounded-full border border-whiter bg-stroke dark:bg-body after:absolute after:left-[2px] after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-primary peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-green-300"></div>
             </label>
-
           </div>
         </div>
       </div>
 
     <div>
       <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
-        summary
+        خلاصه 
       </label>
       <input type="text" formControlName="post_summary"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
     </div>
 
     <div>
       <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
-        type
+        نوع پست
       </label>
-      <input type="text" formControlName="post_type"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+      <select formControlName="post_type" class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+        <option *ngFor="let item of post_topic_list " [value]="item.topic_name" >{{item.label_name}}</option>
+      </select>
     </div>
     <div>
       <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
-        direction
+        چینش صفحه
       </label>
       <select formControlName="post_direction" class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-        <option value="rtl" selected>rtl</option>
-        <option value="ltr">ltr</option>
+        <option value="RTL" >RTL</option>
+        <option value="LTR">LTR</option>
       </select>
 
     </div>
     <div>
       <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
-        priority
+        اولویت
       </label>
       <input type="number" formControlName="post_priority"   class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
     </div>
     <div>
       <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
-        expier date
+        تاریخ انقضا پست
       </label>
-      <ng-persian-datepicker>
-      <input type="text" [formControl]="dateValue" formControlName="expier_date"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+      <ng-persian-datepicker [dateInitValue]="false">
+      <input type="text"  formControlName="expier_date"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
     </ng-persian-datepicker>
     </div>
 
     <div>
       <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
-        category
+         دسته
       </label>
       <select  formControlName="categoty"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-        <option value="rtl" selected>test1</option>
-        <option value="rtl" selected>test2</option>
+        <option *ngFor="let item of post_category_list " [value]="item.category_pk_id" >{{item.category_name}}</option>
       </select>
     </div>
     <div  class="lg:col-span-2">
       <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
-         tag
+        برچسب
          <span class="text-form-input font-medium">
           (Press Enter to add )
         </span>
       </label>
-      <input type="text" formControlName="tag" (keyup.enter)="AddTagInput()"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+      <input (keyup)=onkeyupTagInput($event) type="text" formControlName="tag" (keyup.enter)="AddTagInput()"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+      <div class="search-tag mt-2 bg-white border border-gray-300 rounded-lg shadow-md max-h-34 overflow-y-auto">
+        <div *ngFor="let item of tag_list" class="px-4 py-2 cursor-pointer hover:bg-stroke text-black dark:text-white" id="{{item.tag_pk_id}}">{{item.tag_name}}</div>
+      </div>
+
+
       <div class="w-full flex items-center gap-x-2 mt-4 mx-2">
         <div *ngFor="let item of tagsInputArray;let i = index" class=" flex text-center justify-between text-black dark:text-white rounded-sm px-3 py-1 bg-bodydark1 dark:bg-black ">
           <button >
@@ -99,7 +104,7 @@
     </div>
     <div  class="lg:col-span-2">
       <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
-        users post actor
+        بازیگران
          <span class="text-form-input font-medium">
           (Press Enter to add )
         </span>
@@ -116,7 +121,7 @@
     </div>
     <div  class="lg:col-span-2">
       <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
-        users post speaker
+        گویندگان
          <span class="text-form-input font-medium">
           (Press Enter to add )
         </span>
@@ -133,7 +138,7 @@
     </div>
     <div  class="lg:col-span-2">
       <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
-        users post writer
+        نویسندگان
          <span class="text-form-input font-medium">
           (Press Enter to add )
         </span>
@@ -150,7 +155,7 @@
     </div>
     <div class="lg:col-span-2" >
       <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
-        image
+        تصویر پست
       </label>
       <div *ngIf="imageUrl" class="border p-5 relative  rounded-md border-dashed border-bodydark1   dark:border-strokedark   ">
         <img   [src]="imageUrl" class="w-full">
@@ -159,7 +164,7 @@
         </button>
       </div>
       <div *ngIf="!imageUrl" class="min-h-[150px] border p-5 relative  cursor-pointer items-center justify-center  rounded-md border-dashed border-bodydark1 bg-gray hover:border-primary dark:border-strokedark dark:bg-graydark dark:hover:border-primary dz-clickable">
-        <input type="file" (change)="UploadImage($event)" formControlName="image" class="cursor-pointer relative block opacity-0 w-full h-full p-20 z-50">
+        <input type="file" (change)="UploadImage($event)" accept=".jpg,.svg,.png,.jpeg" formControlName="image" class="cursor-pointer relative block opacity-0 w-full h-full p-20 z-50">
         <div class="text-center text-black dark:text-whiter p-10 absolute top-0 right-0 left-0 m-auto">
             <div  class="flex flex-col gap-y-6 items-center justify-center" >
               <div class="flex h-15 w-15 items-center justify-center rounded-full bg-white text-black shadow-10 dark:bg-black dark:text-white">
@@ -191,57 +196,57 @@
     <div *ngIf="isOpenShowMore" class="show-more grid lg:grid-cols-2 grid-cols-1 gap-5.5 mt-3 col-span-2">
       <div>
         <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
-          audio file link
+          لینک فایل صوتی
         </label>
         <input type="text" formControlName="audio_file_link"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
       </div>
       <div>
         <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
-          audio file path
+          مسیر فایل صوتی
         </label>
         <input type="text" formControlName="audio_file_path"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
       </div>
       <div>
         <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
-          aparat video id
+          Id ویدیو آپارات
         </label>
         <input type="text" formControlName="aparat_video_id" class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
       </div>
       <div>
         <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
-          aparat video code
+          کد ویدیو آپارات
         </label>
         <input type="text" formControlName="aparat_video_code"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
       </div>
       <div>
         <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
-          video file link
+          لینک فایل ویدئویی
         </label>
         <input type="text" formControlName="video_file_link"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
       </div>
       <div>
         <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
-          video file path
+          مسیر فایل ویدئویی
         </label>
         <input type="text" formControlName="video_file_path"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
       </div>
       <div>
         <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
-          data file link
+          لینک فایل دیتا
         </label>
         <input type="text" formControlName="data_file_link"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
       </div>
       <div>
         <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
-          data file path
+          مسر فایل دیتا
         </label>
         <input type="text" formControlName="data_file_path"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
       </div>
     </div>
     <div class="lg:col-span-2">
       <div (click)="OpenShowMore()" class="lg:w-1/2 w-full hover:bg-gray cursor-pointer flex gap-x-3 items-center justify-center border border-body dark:border-whiten  text-black-2 dark:text-white font-medium text-lg mx-auto rounded-md py-2">
-        <span *ngIf="!isOpenShowMore"> show more</span>
-        <span *ngIf="isOpenShowMore==true"> show less</span>
+        <span *ngIf="!isOpenShowMore"> تنظیمات بیشتر</span>
+        <span *ngIf="isOpenShowMore==true">  تنظیمات کمتر</span>
         <svg  [ngClass]="{ '!rotate-180 ': isOpenShowMore==true}" class="w-3 fill-black dark:fill-white" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M0.410765 0.910734C0.736202 0.585297 1.26384 0.585297 1.58928 0.910734L6.00002 5.32148L10.4108 0.910734C10.7362 0.585297 11.2638 0.585297 11.5893 0.910734C11.9147 1.23617 11.9147 1.76381 11.5893 2.08924L6.58928 7.08924C6.26384 7.41468 5.7362 7.41468 5.41077 7.08924L0.410765 2.08924C0.0853277 1.76381 0.0853277 1.23617 0.410765 0.910734Z" fill=""></path>
         </svg>

@@ -29,7 +29,9 @@ export class NewsComponent implements OnInit {
         this.http.delete(Domain.DeletePost+"/posts/delete",id).subscribe((response)=>
         {
           console.log(response);
-        })
+        });
+        this.GetNewsData();
+        this.alert.success("آیتم با موفقیت حذف شد");
       },
       () => {}
     );

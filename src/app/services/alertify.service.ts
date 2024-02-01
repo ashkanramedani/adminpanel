@@ -1,36 +1,37 @@
 import { Injectable } from '@angular/core';
-declare let alertify:any;
+declare let alertify: any;
 @Injectable({
   providedIn: 'root'
 })
 export class AlertifyService {
 
   constructor() { }
-  
+
   confirm(title: string, message: string, okCallback: () => any, cancelCallback: () => any) {
     alertify.confirm(title, message, () => { okCallback(); }
-                , () => { cancelCallback(); });
+      , () => { cancelCallback(); })
+      .set('labels', { ok: 'بله', cancel: 'خیر' });
   }
 
-  success(message :string){
-    alertify.set('notifier','delay', 5);
-    alertify.set('notifier','position', 'top-center');
+  success(message: string) {
+    alertify.set('notifier', 'delay', 5);
+    alertify.set('notifier', 'position', 'top-center');
     alertify.success(message);
   }
 
-  error(message :string){
-    alertify.set('notifier','delay', 5);
-    alertify.set('notifier','position', 'top-center');
+  error(message: string) {
+    alertify.set('notifier', 'delay', 5);
+    alertify.set('notifier', 'position', 'top-center');
     alertify.error(message);
   }
-  warning(message :string){
-    alertify.set('notifier','delay', 5);
-    alertify.set('notifier','position', 'top-center');
+  warning(message: string) {
+    alertify.set('notifier', 'delay', 5);
+    alertify.set('notifier', 'position', 'top-center');
     alertify.warning(message);
   }
-  message(message :string){
-    alertify.set('notifier','delay', 5);
-    alertify.set('notifier','position', 'top-center');
+  message(message: string) {
+    alertify.set('notifier', 'delay', 5);
+    alertify.set('notifier', 'position', 'top-center');
     alertify.message(message);
   }
 }
