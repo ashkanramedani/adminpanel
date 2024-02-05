@@ -7,6 +7,9 @@ export const Domain=
     "GetPostCategory": `${environment.apiUrl}category/all`,
     "GetTagList": `${environment.apiUrl}tag/all`,
     "DeletePost": `${environment.apiUrl}post`,
+    "GetSinglePost": `${environment.apiUrl}`,
+    "GetEmployees": `${environment.apiUrl}user/employees`,
+    "GroupDeletePost": `${environment.apiUrl}post`,
     "RoomPageData":`${environment.apiUrl}Room/Room`,
     "RoomsPageData":`${environment.apiUrl}Room/Rooms`,
 

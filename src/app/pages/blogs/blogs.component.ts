@@ -10,6 +10,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class BlogsComponent implements OnInit {
   BlogsData: any;
+  isCheckedStatus:boolean=false;
   isLoading: boolean = true;
   constructor(private http: HttpService, private alert: AlertifyService) {}
   ngOnInit(): void {
@@ -19,20 +20,42 @@ export class BlogsComponent implements OnInit {
     this.http.getAll(Domain.GetPost + '/blog/read').subscribe((response) => {
       this.isLoading = false;
       this.BlogsData = response;
-
     });
   }
-  RemoveItem(id:number) {
+  ChangeStatusCheckbox()
+  {
+    this.isCheckedStatus=!this.isCheckedStatus;
+  }
+  RemoveItem(id: number) {
     this.alert.confirm(
       'حذف آیتم',
       'آیا از حذف این آیتم اطمینان دارید؟',
       () => {
-        this.http.delete(Domain.DeletePost+"/blog/delete",id).subscribe((response)=>
-        {
-          console.log(response);
-        });
+        this.http
+          .delete(Domain.DeletePost + '/blog/delete', id)
+          .subscribe((response) => {
+            console.log(response);
+          });
         this.GetBlogsData();
-        this.alert.success("آیتم با موفقیت حذف شد");
+        this.alert.success('آیتم با موفقیت حذف شد');
+      },
+      () => {}
+    );
+  }
+
+
+  RemoveMultiItem() {
+    this.alert.confirm(
+      ' حذف آیتم ها',
+      'آیا از حذف این آیتم ها اطمینان دارید؟',
+      () => {
+        this.http
+          .delete(Domain.GroupDeletePost + '/blog/group-delete')
+          .subscribe((response) => {
+            console.log(response);
+          });
+        this.GetBlogsData();
+        this.alert.success('آیتم ها با موفقیت حذف شدند');
       },
       () => {}
     );

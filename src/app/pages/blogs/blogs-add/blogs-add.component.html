@@ -4,7 +4,7 @@
       <li>
         <span class="font-medium">محتوای آموزشی /</span>
       </li>
-      <li class="font-medium text-primary">افزودن بلاگ </li>
+      <li class="font-medium text-primary">{{page_title}}  </li>
     </ol>
   </nav>
 </div>
@@ -16,7 +16,9 @@
           <div class="lg:w-10/12">
             <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
               عنوان
+              <span class="text-meta-1">*</span>
             </label>
+
             <input type="text" formControlName="post_title"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
             [ngClass]="{'input-invalid': (this.postForm.controls.post_title.invalid) &&(this.postForm.controls.post_title.dirty ||this.postForm.controls.post_title.touched)}"
             >
@@ -26,7 +28,7 @@
               وضعیت نمایش
             </label>
             <label class="relative inline-flex cursor-pointer items-center">
-              <input id="switch" formControlName="priority" checked type="checkbox" class="peer sr-only" />
+              <input id="switch"  checked type="checkbox" class="peer sr-only" />
               <label for="switch" class="hidden"></label>
               <div class="peer h-6 w-11 rounded-full border border-whiter bg-stroke dark:bg-body after:absolute after:left-[2px] after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-primary peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-green-300"></div>
             </label>
@@ -37,6 +39,7 @@
     <div>
       <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
         خلاصه 
+        <span class="text-meta-1">*</span>
       </label>
       <input type="text" formControlName="post_summary"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
       [ngClass]="{'input-invalid': (this.postForm.controls.post_summary.invalid) &&(this.postForm.controls.post_summary.dirty ||this.postForm.controls.post_summary.touched)}"
@@ -92,7 +95,6 @@
         </span> 
       </label>
       <input  type="text" formControlName="tag" (click)="OpenSearchTag()" (keyup.enter)="AddTagInputManually()"   class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-
       <div *ngIf="isOpenSearchTag" class="search-tag mt-2 bg-white dark:bg-form-input dark:text-bodydark1 text-black  border border-gray-300 rounded-lg shadow-md max-h-34 overflow-y-auto">
         <div (click)="AddTagInput(item.tag_pk_id,item.tag_name)" *ngFor="let item of tag_list | filter: this.postForm.controls.tag.value" class="px-4 py-2 cursor-pointer hover:bg-stroke dark:hover:bg-black text-black dark:text-white">{{item.tag_name}}</div>
       </div>
@@ -145,12 +147,19 @@
          <span class="text-form-input font-medium">
           (Press Enter to add )
         </span>
+        <span class="text-meta-1">*</span>
       </label>
-      <input type="text" formControlName="users_post_writer" (keyup.enter)="AddUsersPostWriter()"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-      <div class="w-full flex items-center gap-x-2 mt-4 mx-2">
+      <input type="text" (click)="OpenPostWriter()" formControlName="users_post_writer" (keyup.enter)="AddUsersPostWriter()"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+        <div *ngIf="is_open_post_writer" class="search-tag mt-2 bg-white dark:bg-form-input dark:text-bodydark1 text-black  border border-gray-300 rounded-lg shadow-md max-h-59 overflow-y-auto">
+        <div (click)="AddPostWriterTag(item.user_pk_id,item.fname,item.lname)" *ngFor="let item of post_writer_list | filter: this.postForm.controls.users_post_writer.value" class="px-4 py-2 cursor-pointer hover:bg-stroke flex items-center gap-x-2 dark:hover:bg-black text-black dark:text-white">
+          <img src="https://ieltsdaily.ir/static/img/users/{{item.image}}" class="w-10 rounded-full border border-graydark" alt="">  
+          <span class="text-sm font-semibold">{{item.fname}} {{item.lname}}</span>
+        </div>
+      </div>
+      <div *ngIf="usersPostWriterArray.length>0" class="w-full flex items-center gap-2 mt-4 p-2 flex-wrap max-h-34 overflow-y-auto border-[1.5px] border-stroke dark:border-form-strokedark rounded-md">
         <div *ngFor="let item of usersPostWriterArray;let i = index" class=" flex text-center justify-between text-black dark:text-white rounded-sm px-3 py-1 bg-bodydark1 dark:bg-black ">
           <button >
-            <svg (click)="RemoveUsersPostWriter(i)" class="w-8  pl-2 fill-body hover:fill-black dark:fill-bodydark dark:hover:fill-bodydark1 mx-auto cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.78 14.36a1 1 0 0 1-1.42 1.42l-2.82-2.83-2.83 2.83a1 1 0 1 1-1.42-1.42l2.83-2.82L7.3 8.7a1 1 0 0 1 1.42-1.42l2.83 2.83 2.82-2.83a1 1 0 0 1 1.42 1.42l-2.83 2.83 2.83 2.82z"></path></svg>
+            <svg (click)="RemovePostWriterTag(i)" class="w-8  pl-2 fill-body hover:fill-black dark:fill-bodydark dark:hover:fill-bodydark1 mx-auto cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.78 14.36a1 1 0 0 1-1.42 1.42l-2.82-2.83-2.83 2.83a1 1 0 1 1-1.42-1.42l2.83-2.82L7.3 8.7a1 1 0 0 1 1.42-1.42l2.83 2.83 2.82-2.83a1 1 0 0 1 1.42 1.42l-2.83 2.83 2.83 2.82z"></path></svg>
           </button>
           <span>{{item}}</span>
           </div>
@@ -159,6 +168,7 @@
     <div class="lg:col-span-2" >
       <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
         تصویر پست (500 * 500)
+        <span class="text-meta-1">*</span>
       </label>
       <div *ngIf="imageUrl" class="border p-5 relative  rounded-md border-dashed border-bodydark1   dark:border-strokedark   ">
         <img   [src]="imageUrl" class="max-w-[500px] max-h-[500px] mx-auto">
@@ -167,7 +177,7 @@
         </button>
       </div>
       <div *ngIf="!imageUrl" class="min-h-[150px] border p-5 relative  cursor-pointer items-center justify-center  rounded-md border-dashed border-bodydark1 bg-gray hover:border-primary dark:border-strokedark dark:bg-graydark dark:hover:border-primary dz-clickable">
-        <input type="file" (change)="UploadImage($event)" accept=".jpg,.svg,.png,.jpeg" formControlName="image" class="cursor-pointer relative block opacity-0 w-full h-full p-20 z-50">
+        <input type="file" (change)="UploadImage($event)" accept=".jpg,.svg,.png,.jpeg" formControlName="post_image" class="cursor-pointer relative block opacity-0 w-full h-full p-20 z-50">
         <div class="text-center text-black dark:text-whiter p-10 absolute top-0 right-0 left-0 m-auto">
             <div  class="flex flex-col gap-y-6 items-center justify-center" >
               <div class="flex h-15 w-15 items-center justify-center rounded-full bg-white text-black shadow-10 dark:bg-black dark:text-white">
@@ -194,7 +204,7 @@
       <label class="mb-3 block text-sm font-semibold  text-black dark:text-white">
         متن
       </label>
-      <ckeditor [editor]="Editor" ></ckeditor>
+      <ckeditor [editor]="Editor" formControlName="post_discribtion" ></ckeditor>
     </div>
     <div *ngIf="isOpenShowMore" class="show-more grid lg:grid-cols-2 grid-cols-1 gap-5.5 mt-3 col-span-2">
       <div>
@@ -257,7 +267,7 @@
     </div>
   </form>
   <div class="flex justify-end p-6.5 items-center gap-x-2">
-    <button [disabled]="this.postForm.invalid"  (click)="onSubmit()" class="flex disabled:bg-secondary justify-center rounded bg-primary py-2 px-5 font-medium text-gray">افزودن</button>
+    <button [disabled]="this.postForm.invalid "  (click)="onSubmit()" class="flex disabled:bg-secondary justify-center rounded bg-primary py-2 px-5 font-medium text-gray">افزودن</button>
     <a [routerLink]="['/blogs']" class="flex justify-center rounded bg-bodydark py-2 px-5 font-medium text-black-2">بازگشت</a>
   </div>
 </div>
