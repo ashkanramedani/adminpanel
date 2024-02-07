@@ -1,29 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { BlogsRoutingModule } from './blogs-routing.module';
-import { BlogsAddComponent } from './blogs-add/blogs-add.component';
+import { ContentsRoutingModule } from './contents-routing.module';
+import { ContentsComponent } from './contents.component';
+import { ContentAddComponent } from './content-add/content-add.component';
 import { RouterLink } from '@angular/router';
-import { BlogsComponent } from './blogs.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FilterPipe } from './blogs-add/filter.pipe';
-
+import { FilterPipe } from '../../utilities/filter.pipe';
 
 @NgModule({
-  declarations: [
-    BlogsAddComponent,
-    BlogsComponent,
-    FilterPipe
-  ],
+  declarations: [ContentsComponent,ContentAddComponent, FilterPipe],
   imports: [
+    CommonModule,
+    ContentsRoutingModule,
     ReactiveFormsModule,
     NgPersianDatepickerModule,
     CommonModule,
-    BlogsRoutingModule,
     RouterLink,
     CKEditorModule
   ]
 })
-export class BlogsModule { }
+export class ContentsModule { }

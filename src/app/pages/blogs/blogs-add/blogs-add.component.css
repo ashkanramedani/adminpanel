@@ -1,6 +1,0 @@
-:host ::ng-deep .ck-editor__editable_inline {
-  min-height: 280px;
-  direction: rtl !important;
-  text-align: right !important;
-  color: black;
-}

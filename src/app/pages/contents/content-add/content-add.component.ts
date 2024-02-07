@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -7,19 +8,19 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { first, single } from 'rxjs';
 import { Domain } from 'src/app/domain/doamin';
+import { IPost } from 'src/app/interfaces/IPost';
 import { IPostWriter } from 'src/app/interfaces/IPostWriter';
 import { ITagValue } from 'src/app/interfaces/ITagValue';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
-  selector: 'app-blogs-add',
-  templateUrl: './blogs-add.component.html',
-  styleUrl: './blogs-add.component.css',
+  selector: 'app-content-add',
+  templateUrl: './content-add.component.html',
+  styleUrl: './content-add.component.css'
 })
-export class BlogsAddComponent implements OnInit {
+export class ContentAddComponent implements OnInit {
   page_title: string = 'افزودن';
   postForm: FormGroup;
   id: number = 0;
@@ -28,6 +29,7 @@ export class BlogsAddComponent implements OnInit {
   post_topic_list: any;
   post_category_list: any;
   imageUrl: any;
+  photoUploaded:string
   imageUploadedSize: any;
   isOpenSearchTag: boolean = false;
   tag_list: ITagValue[] = [];
@@ -37,7 +39,7 @@ export class BlogsAddComponent implements OnInit {
   usersPostSpeakerArray: string[] = [];
   usersPostWriterArray: string[] = [];
   usersPostActorArray: string[] = [];
-
+  post:IPost;
   isOpenShowMore: boolean = false;
   constructor(
     private http: HttpService,
@@ -86,15 +88,22 @@ export class BlogsAddComponent implements OnInit {
   get_single_post() {
     //TODO
     this.http
-      .getAll(
-        'https://admin.api.ieltsdaily.ir/api/v1/post/news/read?start_id=60&page_number=1&limit=1'
-      )
+      .get(Domain.GetSinglePost,this.id)
        .subscribe((response) => {
-        console.log(response[0]);
-        this.postForm.patchValue(
-           response[0]
-        );
+        this.post=response;
+        this.FillFormData()
+       
       });
+  }
+  FillFormData()
+  {
+    this.postForm.controls["post_title"].patchValue(this.post.post_title);
+    this.postForm.controls["post_discribtion"].patchValue(this.post.post_discribtion);
+    this.postForm.controls["post_summary"].patchValue(this.post.post_summary);
+    this.postForm.controls["post_content"].patchValue(this.post.post_content);
+    this.postForm.controls["post_status"].patchValue(this.post.post_status);
+    this.postForm.controls["post_direction"].patchValue(this.post.post_direction);
+    this.photoUploaded="https://ieltsdaily.ir/static/img/blogs/"+this.post.post_image;
   }
   get_user_post_writer_list() {
     this.http.getAll(Domain.GetEmployees).subscribe((response) => {

@@ -79,17 +79,17 @@
             <div *ngIf="menuItem == 2" class="overflow-hidden">
               <ul class="mt-4 mb-5.5 flex flex-col gap-3 pr-6">
                 <li>
-                  <a [routerLink]="['/blogs']"
+                  <a [routerLink]="['/contents']" [queryParams]="{type: 'blog'}"
                     class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:text-meta-5 dark:hover:text-meta-5">بلاگ
                   </a>
                 </li>
                 <li>
-                  <a [routerLink]="['/podcasts']"
+                  <a [routerLink]="['/contents']" [queryParams]="{type: 'podcast'}"
                     class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:text-meta-5 dark:hover:text-meta-5">پادکست
                   </a>
                 </li>
                 <li>
-                  <a [routerLink]="['/news']"
+                  <a [routerLink]="['/contents']" [queryParams]="{type: 'news'}"
                     class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:text-meta-5 dark:hover:text-meta-5">اخبار
                   </a>
                 </li>

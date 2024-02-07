@@ -43,6 +43,10 @@ export class HttpService {
   delete(url:string, id?: any,headers?:any): Observable<any> {
     return this.http.delete(`${url}/${id}`,{headers});
   }
+  deleteWithBody(url:string, data?: any,headers?:any): Observable<any> {
+    return this.http.delete<any>(url,{body:data,headers:headers}).pipe(
+      catchError(this.errorHandler));
+  }
   errorHandler(error:any) {
     let errorMessage = '';
     if(error.error instanceof ErrorEvent) {

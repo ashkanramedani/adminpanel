@@ -4,6 +4,13 @@ import { ErrorComponent } from './shared/error/error.component';
 
 const routes: Routes = [
   {
+    path: 'contents',
+    loadChildren: () =>
+      import('./pages/contents/contents.module').then(
+        (m) => m.ContentsModule
+      ),
+  },
+  {
     path: '',
     loadChildren: () =>
       import('./pages/dashboard/dashboard.module').then(
@@ -14,21 +21,6 @@ const routes: Routes = [
     path: 'signin',
     loadChildren: () =>
       import('./pages/signin/signin.module').then((m) => m.SigninModule),
-  },
-  {
-    path: 'podcasts',
-    loadChildren: () =>
-      import('./pages/podcasts/podcasts.module').then((x) => x.PodcastsModule),
-  },
-  {
-    path: 'news',
-    loadChildren: () =>
-      import('./pages/news/news.module').then((x) => x.NewsModule),
-  },
-  {
-    path: 'blogs',
-    loadChildren: () =>
-      import('./pages/blogs/blogs.module').then((x) => x.BlogsModule),
   },
   {
     path: 'notFound',
