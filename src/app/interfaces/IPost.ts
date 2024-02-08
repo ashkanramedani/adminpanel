@@ -1,18 +1,18 @@
 export interface IPost {
   post_title: string;
   post_summary: string;
-  post_discribtion: string;
+  post_discribtion?: string;
   post_content: string;
   post_image: string;
   priority: number;
   post_status: number;
   post_direction: string;
-  post_pk_id: number;
-  visible: boolean;
+  post_pk_id?: number;
+  visible?: boolean;
   post_type: string;
   expier_date: string;
-  category: [];
-  tag: [];
+  category?: [];
+  tag: string[] ;
   post_audio_file_link: string;
   post_audio_file_path: string;
   post_aparat_video_id: string;
@@ -21,8 +21,8 @@ export interface IPost {
   post_video_file_path: string;
   post_data_file_link: string;
   post_data_file_path: string;
-  users_post_speaker: [];
-  users_post_writer: [];
-  users_post_actor: [];
-  user_creator_fk_id: number;
+  users_post_speaker:  string[];
+  users_post_writer:  string[];
+  users_post_actor:  string[];
+  user_creator_fk_id?: number;
 }

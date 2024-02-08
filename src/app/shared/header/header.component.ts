@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html'
+  templateUrl: './header.component.html',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  ngOnInit(): void {
+    if (localStorage.getItem('theme') === null) this.Theme = 'light';
+    else
+      this.Theme = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+  }
   Theme: any;
   isOpenDorpdownProfile: boolean = false;
 

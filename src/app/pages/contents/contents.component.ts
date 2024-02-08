@@ -56,7 +56,7 @@ export class ContentsComponent implements OnInit {
   ChangeStatusCheckbox(event: any) {
     this.isCheckedStatus = event.target.value;
   }
-  RemoveItem(id: number) {
+  RemoveItem(id?: number) {
     this.alertServices.confirm(
       'حذف آیتم',
       'آیا از حذف این آیتم اطمینان دارید؟',
@@ -99,12 +99,12 @@ export class ContentsComponent implements OnInit {
       );
     } else this.alertServices.warning('آیتمی برای حذف انتخاب نشده است');
   }
-  checkToDeletedCheckBox(id: number, event: any) {
-    if (event?.target.checked) {
-      this.deleting_content_id.push(id);
-    } else {
-      let index = this.deleting_content_id.indexOf(id);
-      this.deleting_content_id.splice(index, 1);
-    }
+  checkToDeletedCheckBox(event: any,id?: number ) {
+    // if (event?.target.checked) {
+    //   this.deleting_content_id.push(id);
+    // } else {
+    //   let index = this.deleting_content_id.indexOf(id);
+    //   this.deleting_content_id.splice(index, 1);
+    // }
   }
 }

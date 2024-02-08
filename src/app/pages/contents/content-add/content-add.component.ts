@@ -29,7 +29,7 @@ export class ContentAddComponent implements OnInit {
   post_topic_list: any;
   post_category_list: any;
   imageUrl: any;
-  photoUploaded:string
+  photoUploaded: string
   imageUploadedSize: any;
   isOpenSearchTag: boolean = false;
   tag_list: ITagValue[] = [];
@@ -39,14 +39,14 @@ export class ContentAddComponent implements OnInit {
   usersPostSpeakerArray: string[] = [];
   usersPostWriterArray: string[] = [];
   usersPostActorArray: string[] = [];
-  post:IPost;
+  post: IPost;
   isOpenShowMore: boolean = false;
   constructor(
     private http: HttpService,
     private alert: AlertifyService,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.id = Number(this.route.snapshot?.paramMap.get('id'));
 
@@ -88,22 +88,37 @@ export class ContentAddComponent implements OnInit {
   get_single_post() {
     //TODO
     this.http
-      .get(Domain.GetSinglePost,this.id)
-       .subscribe((response) => {
-        this.post=response;
+      .get(Domain.GetSinglePost, this.id)
+      .subscribe((response) => {
+        console.log(response)
+        this.post = response;
         this.FillFormData()
-       
+
       });
   }
-  FillFormData()
-  {
+  FillFormData() {
     this.postForm.controls["post_title"].patchValue(this.post.post_title);
+    this.postForm.controls['post_type'].patchValue(this.post.post_type);
+    this.postForm.controls['post_direction'].patchValue(this.post.post_direction)
+    this.postForm.controls['post_priority'].patchValue(this.post.priority)
+    this.postForm.controls['expier_date'].patchValue(this.post.expier_date);
+    this.post.tag.forEach(val => this.tagsInputArray.push(Object.assign({}, val)));
+    this.post.users_post_actor.forEach(val => this.usersPostActorArray.push(Object.assign({}, val)))
+    this.post.users_post_speaker.forEach(val => this.usersPostSpeakerArray.push(Object.assign({}, val)))
+    this.post.users_post_writer.forEach(val => this.usersPostWriterArray.push(Object.assign({}, val)))
+    this.postForm.controls['audio_file_link'].patchValue(this.post.post_audio_file_link)
     this.postForm.controls["post_discribtion"].patchValue(this.post.post_discribtion);
+    this.postForm.controls['audio_file_path'].patchValue(this.post.post_audio_file_path)
+    this.postForm.controls['aparat_video_id'].patchValue(this.post.post_aparat_video_id)
+    this.postForm.controls['aparat_video_code'].patchValue(this.post.post_aparat_video_code)
+    this.postForm.controls['video_file_link'].patchValue(this.post.post_video_file_link)
+    this.postForm.controls['video_file_path'].patchValue(this.post.post_video_file_path)
+    this.postForm.controls['data_file_link'].patchValue(this.post.post_data_file_link)
+    this.postForm.controls['data_file_path'].patchValue(this.post.post_data_file_path)
     this.postForm.controls["post_summary"].patchValue(this.post.post_summary);
     this.postForm.controls["post_content"].patchValue(this.post.post_content);
     this.postForm.controls["post_status"].patchValue(this.post.post_status);
-    this.postForm.controls["post_direction"].patchValue(this.post.post_direction);
-    this.photoUploaded="https://ieltsdaily.ir/static/img/blogs/"+this.post.post_image;
+    this.photoUploaded = "https://ieltsdaily.ir/static/img/blogs/" + this.post.post_image;
   }
   get_user_post_writer_list() {
     this.http.getAll(Domain.GetEmployees).subscribe((response) => {
@@ -213,5 +228,41 @@ export class ContentAddComponent implements OnInit {
   OpenShowMore() {
     this.isOpenShowMore = !this.isOpenShowMore;
   }
-  onSubmit() {}
+
+  onSubmit() {
+    if (this.postForm.invalid) {
+      this.postForm.markAllAsTouched();
+      return;
+    }
+    let postFormValue: IPost = {
+      post_title: this.postForm.controls.post_title.value,
+      post_summary: this.postForm.controls.post_summary.value,
+      // post_discribtion: this.postForm.controls.post_de.value,
+      post_content: this.postForm.controls.post_content.value,
+      post_image: this.postForm.controls.post_image.value,
+      priority: this.postForm.controls.post_priority.value,
+      post_status: this.postForm.controls.post_status.value,
+      post_direction: this.postForm.controls.post_direction.value,
+      post_type: this.postForm.controls.post_type.value,
+      expier_date: this.postForm.controls.expier_date.value,
+      //category: [];
+      tag: this.tagsInputArray,
+      post_audio_file_link: this.postForm.controls.audio_file_link.value,
+      post_audio_file_path: this.postForm.controls.audio_file_path.value,
+      post_aparat_video_id: this.postForm.controls.aparat_video_id.value,
+      post_aparat_video_code: this.postForm.controls.aparat_video_code.value,
+      post_video_file_link: this.postForm.controls.video_file_link.value,
+      post_video_file_path: this.postForm.controls.video_file_path.value,
+      post_data_file_link: this.postForm.controls.data_file_link.value,
+      post_data_file_path: this.postForm.controls.data_file_path.value,
+      users_post_speaker: this.usersPostSpeakerArray,
+      users_post_writer: this.usersPostWriterArray,
+      users_post_actor: this.usersPostActorArray
+      //user_creator_fk_id: number;
+    }
+    this.http.create(Domain.CreatePost, postFormValue, null).subscribe((response) => {
+      console.log(response)
+    }
+    )
+  }
 }
