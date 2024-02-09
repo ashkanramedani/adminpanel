@@ -1,18 +1,27 @@
-<div class="header flex justify-between items-center py-3">
-    <nav>
-      <ol class="flex items-center gap-1 text-sm">
+<div class="header flex justify-between items-center py-3 gap-x-2">
+  <div class="flex items-center gap-x-2">
+    <nav >
+      <ol class="flex items-center gap-1 text-sm w-max">
         <li>
           <span class="font-medium">محتوای آموزشی /</span>
         </li>
         <li class="font-medium text-primary">{{title}} </li>
       </ol>
     </nav>
+    <input type="text" placeholder="جستجو" [(ngModel)]="SearchValue"   class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+  </div>
     <div class="flex items-center gap-x-2">
       <a [routerLink]="['/contents/add']" class="flex justify-center rounded px-5 bg-primary py-2 font-medium text-gray">
         افزودن</a>
-      <button (click)="RemoveMultiItem()" *ngIf="deleting_content_id.length>1"
-        class="flex text-meta-1 justify-center rounded px-5 border-meta-1 border py-2 font-medium hover:bg-meta-1 hover:text-white">حذف
+      <button (click)="RemoveMultiItem()" *ngIf="selected_content_ids.length>1"
+        class="flex w-full text-meta-1 justify-center rounded px-5 border-meta-1 border py-2 font-medium hover:bg-meta-1 hover:text-white">حذف
         آیتم ها</button>
+        <select *ngIf="selected_content_ids.length>1" (change)="ChangeStatusMultiItem($event)"    class="w-auto dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+          <option selected disabled value="-1"> انتخاب وضعیت</option>
+          <option value="0">غیر فعال</option>
+          <option value="1"> تایید نشده</option>
+          <option value="2"> فعال</option>
+        </select>
     </div>
   </div>
   <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -51,7 +60,21 @@
             </tr>
           </thead>
           <tbody class="font-normal text-black dark:text-white">
-            <tr *ngFor="let item of ContentsData">
+            <tr *ngIf="(ContentsData|filter:this.SearchValue).length<1">
+              <td colspan="4">
+                <div class="flex w-full items-center gap-x-2 my-4 border-r-6 border-warning bg-warning bg-opacity-[15%] px-2 py-2 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30">
+                  <div class="mr-5 flex h-9 w-9 items-center justify-center rounded-lg bg-warning bg-opacity-30">
+                    <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1.50493 16H17.5023C18.6204 16 19.3413 14.9018 18.8354 13.9735L10.8367 0.770573C10.2852 -0.256858 8.70677 -0.256858 8.15528 0.770573L0.156617 13.9735C-0.334072 14.8998 0.386764 16 1.50493 16ZM10.7585 12.9298C10.7585 13.6155 10.2223 14.1433 9.45583 14.1433C8.6894 14.1433 8.15311 13.6155 8.15311 12.9298V12.9015C8.15311 12.2159 8.6894 11.688 9.45583 11.688C10.2223 11.688 10.7585 12.2159 10.7585 12.9015V12.9298ZM8.75236 4.01062H10.2548C10.6674 4.01062 10.9127 4.33826 10.8671 4.75288L10.2071 10.1186C10.1615 10.5049 9.88572 10.7455 9.50142 10.7455C9.11929 10.7455 8.84138 10.5028 8.79579 10.1186L8.13574 4.75288C8.09449 4.33826 8.33984 4.01062 8.75236 4.01062Z" fill="#FBBF24"></path>
+                    </svg>
+                  
+                  </div>
+                  <p class="text-lg font-normal text-[#9D5425]">هیچ آیتمی یافت نشد</p>
+                </div>
+              </td>
+
+            </tr>
+            <tr *ngFor="let item of ContentsData | filter: this.SearchValue">
               <td class="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                 <div class="flex items-center gap-x-2">
                   <input type="checkbox" class="w-4 h-4"  (change)="checkToDeletedCheckBox($event,item.post_pk_id)">
@@ -63,7 +86,7 @@
                 <span>{{item.expier_date|date: "YYYY/MM/dd" }}</span>
               </td>
               <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                <span>{{item.post_status }}</span>
+                <span [ngClass]="ShowTitleStatus(item.post_status).classStatus" >{{ShowTitleStatus(item.post_status).title  }}</span>
               </td>
               <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                 <div class="flex items-center gap-x-2">
@@ -77,6 +100,16 @@
                       <path
                         d="M9 11.3906C7.67812 11.3906 6.60938 10.3219 6.60938 9C6.60938 7.67813 7.67812 6.60938 9 6.60938C10.3219 6.60938 11.3906 7.67813 11.3906 9C11.3906 10.3219 10.3219 11.3906 9 11.3906ZM9 7.875C8.38125 7.875 7.875 8.38125 7.875 9C7.875 9.61875 8.38125 10.125 9 10.125C9.61875 10.125 10.125 9.61875 10.125 9C10.125 8.38125 9.61875 7.875 9 7.875Z"
                         fill=""></path>
+                    </svg>
+                  </a>
+                  <a [routerLink]="['/contents/edit/',item.post_pk_id]" title="ویرایش" class="hover:text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-current" viewBox="0 0 16 16">
+                      <path
+                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z">
+                      </path>
+                      <path fill-rule="evenodd"
+                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z">
+                      </path>
                     </svg>
                   </a>
                   <button title="حذف" (click)="RemoveItem(item.post_pk_id)" class="hover:text-primary">
@@ -95,17 +128,8 @@
                         fill=""></path>
                     </svg>
                   </button>
-                  <a [routerLink]="['/contents/edit/',item.post_pk_id]" title="ویرایش" class="hover:text-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-current" viewBox="0 0 16 16">
-                      <path
-                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z">
-                      </path>
-                      <path fill-rule="evenodd"
-                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z">
-                      </path>
-                    </svg>
-                  </a>
-                  <label title="تغییر وضعیت" for="checkboxLabel_{{item.post_pk_id}}"
+
+                  <label *ngIf="false" title="تغییر وضعیت" for="checkboxLabel_{{item.post_pk_id}}"
                     class="flex cursor-pointer select-none items-center text-sm font-medium">
                     <div class="relative">
                       <input [checked]="isCheckedStatus==item.post_pk_id" [value]="item.post_pk_id" type="checkbox" id="checkboxLabel_{{item.post_pk_id}}" class="sr-only"
@@ -127,6 +151,30 @@
             </tr>
           </tbody>
         </table>
+      </div>
+      
+      <div class="paging flex items-center justify-center my-3" dir="ltr">
+        <nav>
+          <ul class="flex flex-wrap items-center">
+            <li>
+              <a class="flex h-9 w-9 items-center justify-center rounded-l-md border border-stroke hover:border-primary hover:bg-gray hover:text-primary dark:border-strokedark dark:hover:border-primary dark:hover:bg-graydark" href="#">
+                <svg class="fill-current" width="8" height="16" viewBox="0 0 8 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.17578 15.1156C7.00703 15.1156 6.83828 15.0593 6.72578 14.9187L0.369531 8.44995C0.116406 8.19683 0.116406 7.80308 0.369531 7.54995L6.72578 1.0812C6.97891 0.828076 7.37266 0.828076 7.62578 1.0812C7.87891 1.33433 7.87891 1.72808 7.62578 1.9812L1.71953 7.99995L7.65391 14.0187C7.90703 14.2718 7.90703 14.6656 7.65391 14.9187C7.48516 15.0312 7.34453 15.1156 7.17578 15.1156Z" fill=""></path>
+                </svg>
+              </a>
+            </li>
+            <li *ngFor="let item of  ContentsDataLenght ;let i = index">
+              <a class="flex items-center justify-center border border-stroke border-l-transparent px-4 py-[5px] font-medium hover:border-primary hover:bg-gray hover:text-primary dark:border-strokedark dark:hover:border-primary dark:hover:bg-graydark" href="#">{{i+1}}</a>
+            </li>
+            <li>
+              <a class="flex h-9 w-9 items-center justify-center rounded-r-md border border-stroke border-l-transparent hover:border-primary hover:bg-gray hover:text-primary dark:border-strokedark dark:hover:border-primary dark:hover:bg-graydark" href="#">
+                <svg class="fill-current" width="8" height="16" viewBox="0 0 8 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0.819531 15.1156C0.650781 15.1156 0.510156 15.0593 0.369531 14.9468C0.116406 14.6937 0.116406 14.3 0.369531 14.0468L6.27578 7.99995L0.369531 1.9812C0.116406 1.72808 0.116406 1.33433 0.369531 1.0812C0.622656 0.828076 1.01641 0.828076 1.26953 1.0812L7.62578 7.54995C7.87891 7.80308 7.87891 8.19683 7.62578 8.44995L1.26953 14.9187C1.15703 15.0312 0.988281 15.1156 0.819531 15.1156Z" fill=""></path>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   </div>

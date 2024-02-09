@@ -34,6 +34,10 @@ export class HttpService {
     return this.http.post<any>(url, data,{headers:headers},).pipe(
       catchError(this.errorHandler));
   }
+  patch(url:string, data?: any,headers?:any): Observable<any> {
+    return this.http.patch<any>(url, data,{headers:headers},).pipe(
+      catchError(this.errorHandler));
+  }
 
   put (url:string, data?: any,headers?:any): Observable<any> {
     return this.http.put<any>(url, data,{headers:headers},).pipe(
@@ -54,6 +58,7 @@ export class HttpService {
     } else {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
+    alert("متاسفانه خطایی رخ داده است!")
     return throwError(errorMessage);
  }
 }

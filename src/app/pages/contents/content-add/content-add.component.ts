@@ -21,6 +21,7 @@ import { HttpService } from 'src/app/services/http.service';
   styleUrl: './content-add.component.css'
 })
 export class ContentAddComponent implements OnInit {
+  filterMetadata = { count: 0 };
   page_title: string = 'افزودن';
   postForm: FormGroup;
   id: number = 0;
@@ -234,35 +235,46 @@ export class ContentAddComponent implements OnInit {
       this.postForm.markAllAsTouched();
       return;
     }
-    let postFormValue: IPost = {
-      post_title: this.postForm.controls.post_title.value,
-      post_summary: this.postForm.controls.post_summary.value,
-      // post_discribtion: this.postForm.controls.post_de.value,
-      post_content: this.postForm.controls.post_content.value,
-      post_image: this.postForm.controls.post_image.value,
-      priority: this.postForm.controls.post_priority.value,
-      post_status: this.postForm.controls.post_status.value,
-      post_direction: this.postForm.controls.post_direction.value,
-      post_type: this.postForm.controls.post_type.value,
-      expier_date: this.postForm.controls.expier_date.value,
-      //category: [];
-      tag: this.tagsInputArray,
-      post_audio_file_link: this.postForm.controls.audio_file_link.value,
-      post_audio_file_path: this.postForm.controls.audio_file_path.value,
-      post_aparat_video_id: this.postForm.controls.aparat_video_id.value,
-      post_aparat_video_code: this.postForm.controls.aparat_video_code.value,
-      post_video_file_link: this.postForm.controls.video_file_link.value,
-      post_video_file_path: this.postForm.controls.video_file_path.value,
-      post_data_file_link: this.postForm.controls.data_file_link.value,
-      post_data_file_path: this.postForm.controls.data_file_path.value,
-      users_post_speaker: this.usersPostSpeakerArray,
-      users_post_writer: this.usersPostWriterArray,
-      users_post_actor: this.usersPostActorArray
-      //user_creator_fk_id: number;
+
+      let postFormValue: IPost = {
+        post_title: this.postForm.controls.post_title.value,
+        post_summary: this.postForm.controls.post_summary.value,
+        // post_discribtion: this.postForm.controls.post_de.value,
+        post_content: this.postForm.controls.post_content.value,
+        post_image: this.postForm.controls.post_image.value,
+        priority: this.postForm.controls.post_priority.value,
+        post_status: this.postForm.controls.post_status.value,
+        post_direction: this.postForm.controls.post_direction.value,
+        post_type: this.postForm.controls.post_type.value,
+        expier_date: this.postForm.controls.expier_date.value,
+        //category: [];
+        tag: this.tagsInputArray,
+        post_audio_file_link: this.postForm.controls.audio_file_link.value,
+        post_audio_file_path: this.postForm.controls.audio_file_path.value,
+        post_aparat_video_id: this.postForm.controls.aparat_video_id.value,
+        post_aparat_video_code: this.postForm.controls.aparat_video_code.value,
+        post_video_file_link: this.postForm.controls.video_file_link.value,
+        post_video_file_path: this.postForm.controls.video_file_path.value,
+        post_data_file_link: this.postForm.controls.data_file_link.value,
+        post_data_file_path: this.postForm.controls.data_file_path.value,
+        users_post_speaker: this.usersPostSpeakerArray,
+        users_post_writer: this.usersPostWriterArray,
+        users_post_actor: this.usersPostActorArray
+        //user_creator_fk_id: number;
+      }
+      if(this.id>0)
+      {
+        this.http.patch(Domain.PatchPost, postFormValue, null).subscribe((response) => {
+          console.log(response)
+        }
+        )
+      }
+      else{
+        this.http.create(Domain.CreatePost, postFormValue, null).subscribe((response) => {
+          console.log(response)
+        }
+        )
+      }
+     
     }
-    this.http.create(Domain.CreatePost, postFormValue, null).subscribe((response) => {
-      console.log(response)
-    }
-    )
-  }
 }

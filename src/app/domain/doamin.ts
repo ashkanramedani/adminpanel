@@ -8,6 +8,7 @@ export const Domain=
     "GetTagList": `${environment.apiUrl}tag/all`,
     "DeletePost": `${environment.apiUrl}post`,
     "CreatePost": `${environment.apiUrl}post`,
+    "PatchPost": `${environment.apiUrl}post`,
     "GetSinglePost": `${environment.apiUrl}post/{topic}`,
     "GetEmployees": `${environment.apiUrl}user/employees`,
     "GroupDeletePost": `${environment.apiUrl}post`,

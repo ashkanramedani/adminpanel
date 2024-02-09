@@ -6,13 +6,14 @@ import { ContentAddComponent } from './content-add/content-add.component';
 import { RouterLink } from '@angular/router';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from '../../utilities/filter.pipe';
 
 @NgModule({
   declarations: [ContentsComponent,ContentAddComponent, FilterPipe],
   imports: [
     CommonModule,
+    FormsModule,
     ContentsRoutingModule,
     ReactiveFormsModule,
     NgPersianDatepickerModule,
