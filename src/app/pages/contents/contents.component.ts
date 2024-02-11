@@ -11,8 +11,8 @@ import { HttpService } from 'src/app/services/http.service';
   styleUrl: './contents.component.css',
 })
 export class ContentsComponent implements OnInit {
-  SearchValue:string
-  ContentsDataLenght:number[];
+  SearchValue: string
+  ContentsDataLenght: number[];
   filteredCount = { count: 0 };
   content_type: string;
   ContentsData: IPost[] = [];
@@ -27,7 +27,7 @@ export class ContentsComponent implements OnInit {
   ) { }
   ngOnInit(): void {
     this.router.queryParams.subscribe((res) => {
-      this.isLoading=true
+      this.isLoading = true
       this.content_type = res.type;
       this.GetContentsData();
       this.GetTitle();
@@ -55,7 +55,7 @@ export class ContentsComponent implements OnInit {
       .subscribe((response) => {
         this.isLoading = false;
         this.ContentsData = response;
-        this.ContentsDataLenght=new Array(Math.ceil(response.length/15))
+        this.ContentsDataLenght = new Array(Math.ceil(response.length / 15))
       });
   }
   ChangeStatusCheckbox(event: any) {
@@ -114,51 +114,57 @@ export class ContentsComponent implements OnInit {
   }
   ShowTitleStatus(status: Number) {
     var title = "";
-    var classStatus="";
+    var classStatus = "";
     switch (status) {
       case 0:
         title = "غیر فعال"
-        classStatus="inline-flex rounded-full bg-[#637381] px-3 py-1 text-sm font-medium text-white hover:bg-opacity-90"
+        classStatus = "inline-flex rounded-full bg-[#637381] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90"
         break;
       case 1:
         title = "تایید نشده "
-        classStatus="inline-flex rounded-full bg-[#3BA2B8] px-3 py-1 text-sm font-medium text-white hover:bg-opacity-90"
+        classStatus = "inline-flex rounded-full bg-[#3BA2B8] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90"
         break;
       case 2:
         title = " فعال "
-        classStatus="inline-flex rounded-full bg-[#3CA745] px-3 py-1 text-sm font-medium text-white hover:bg-opacity-90"
+        classStatus = "inline-flex rounded-full bg-[#3CA745] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90"
         break;
       default:
         title = "نامشخص"
         break;
     }
-    return {title: title, classStatus: classStatus}
+    return { title: title, classStatus: classStatus }
   }
-  ChangeStatusMultiItem(event:any)
-  {
+  ChangeStatusMultiItem(event: any) {
     if (this.selected_content_ids.length > 0) {
+      let items_to_changed_status: { post_pk_id: Number, post_status: Number }[]=[];
+      for (let index = 0; index < this.selected_content_ids.length; index++) {
+        items_to_changed_status.push({
+          post_pk_id: this.selected_content_ids[index],
+          post_status: event.target.value
+        })
+      }
       this.alertServices.confirm(
         ' تغییر وضعیت آیتم ها',
         'آیا از تغییر وضعیت این آیتم ها اطمینان دارید؟',
         () => {
           //TODO
-          // this.http
-          //   .deleteWithBody(
-          //     `${Domain.GroupDeletePost}/${this.content_type}/group-delete`,
-          //     this.selected_content_ids,
-          //     null
-          //   )
-          //   .subscribe((response) => {
-          //     console.log(response);
-          //     if (response != null) {
-          //       this.GetContentsData();
-          //       this.alertServices.success('آیتم ها با موفقیت حذف شدند');
-          //       this.selected_content_ids = []
-          //     }
-          //   });
+          this.http
+            .patch(
+              `${Domain.ChangeGroupStatus}`,
+              items_to_changed_status,
+              null
+            )
+            .subscribe((response) => {
+              console.log(response);
+              if (response != null) {
+                this.GetContentsData();
+                this.alertServices.success('آیتم ها با موفقیت تغییر وضعیت داده شدند');
+                this.selected_content_ids = []
+              }
+            });
         },
         () => { }
       );
-    } else this.alertServices.warning('آیتمی برای حذف انتخاب نشده است');
+    } else this.alertServices.warning('آیتمی برای تغییر وضعیت انتخاب نشده است');
   }
 }

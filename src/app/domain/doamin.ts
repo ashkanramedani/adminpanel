@@ -9,6 +9,7 @@ export const Domain=
     "DeletePost": `${environment.apiUrl}post`,
     "CreatePost": `${environment.apiUrl}post`,
     "PatchPost": `${environment.apiUrl}post`,
+    "ChangeGroupStatus": `${environment.apiUrl}post/group-status-modifications-in-group-post`,
     "GetSinglePost": `${environment.apiUrl}post/{topic}`,
     "GetEmployees": `${environment.apiUrl}user/employees`,
     "GroupDeletePost": `${environment.apiUrl}post`,
