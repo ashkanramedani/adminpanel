@@ -25,7 +25,6 @@ export class ContentAddComponent implements OnInit {
   page_title: string = 'افزودن';
   postForm: FormGroup;
   id: number = 0;
-  is_open_post_writer: boolean = false;
   fileToUpload: any;
   post_topic_list: any;
   post_category_list: any;
@@ -59,7 +58,7 @@ export class ContentAddComponent implements OnInit {
       post_image: new FormControl('', [Validators.required]),
       post_type: new FormControl(''),
       post_priority: new FormControl('5'),
-      post_status: new FormControl(true),
+      post_status: new FormControl(),
       post_direction: new FormControl('RTL'),
       visible: new FormControl(true),
       expier_date: new FormControl(''),
@@ -73,7 +72,7 @@ export class ContentAddComponent implements OnInit {
       data_file_link: new FormControl(''),
       data_file_path: new FormControl(''),
       users_post_speaker: new FormControl(''),
-      users_post_writer: new FormControl('', [Validators.required]),
+      users_post_writer: new FormControl(''),
       users_post_actor: new FormControl(''),
       tag: new FormControl(''),
     });
@@ -155,10 +154,6 @@ export class ContentAddComponent implements OnInit {
       this.usersPostWriterArray.push(fname + ' ' + lname);
     }
   }
-  RemovePostWriterTag(index: number) {
-    this.usersPostWriterArray.splice(index, 1);
-  }
-
   RemoveTagInput(index: number) {
     this.tagsInputArray.splice(index, 1);
   }
@@ -175,9 +170,6 @@ export class ContentAddComponent implements OnInit {
       this.postForm.controls.users_post_speaker.setValue('');
     }
   }
-  RemoveUsersPostSpeaker(index: number) {
-    this.usersPostSpeakerArray.splice(index, 1);
-  }
   AddUsersPostWriter() {
     if (this.postForm.controls.users_post_writer.value.length > 0) {
       this.usersPostWriterArray.push(
@@ -186,26 +178,13 @@ export class ContentAddComponent implements OnInit {
       this.postForm.controls.users_post_writer.setValue('');
     }
   }
-  OpenPostWriter() {
-    this.is_open_post_writer = !this.is_open_post_writer;
-  }
   AddTagInputManually() {
     if (this.postForm.controls.tag.value.length > 0) {
       this.tagsInputArray.push(this.postForm.controls.tag.value);
       this.postForm.controls.tag.setValue('');
     }
   }
-  AddUsersPostActor() {
-    if (this.postForm.controls.users_post_actor.value.length > 0) {
-      this.usersPostActorArray.push(
-        this.postForm.controls.users_post_actor.value
-      );
-      this.postForm.controls.users_post_actor.setValue('');
-    }
-  }
-  RemoveUsersPostActor(index: number) {
-    this.usersPostActorArray.splice(index, 1);
-  }
+
   UploadImage(event: any) {
     if (event && event.target && event.target.files) {
       let image: any = event.target.files[0];
@@ -236,45 +215,57 @@ export class ContentAddComponent implements OnInit {
       return;
     }
 
-      let postFormValue: IPost = {
-        post_title: this.postForm.controls.post_title.value,
-        post_summary: this.postForm.controls.post_summary.value,
-        // post_discribtion: this.postForm.controls.post_de.value,
-        post_content: this.postForm.controls.post_content.value,
-        post_image: this.postForm.controls.post_image.value,
-        priority: this.postForm.controls.post_priority.value,
-        post_status: this.postForm.controls.post_status.value,
-        post_direction: this.postForm.controls.post_direction.value,
-        post_type: this.postForm.controls.post_type.value,
-        expier_date: this.postForm.controls.expier_date.value,
-        //category: [];
-        tag: this.tagsInputArray,
-        post_audio_file_link: this.postForm.controls.audio_file_link.value,
-        post_audio_file_path: this.postForm.controls.audio_file_path.value,
-        post_aparat_video_id: this.postForm.controls.aparat_video_id.value,
-        post_aparat_video_code: this.postForm.controls.aparat_video_code.value,
-        post_video_file_link: this.postForm.controls.video_file_link.value,
-        post_video_file_path: this.postForm.controls.video_file_path.value,
-        post_data_file_link: this.postForm.controls.data_file_link.value,
-        post_data_file_path: this.postForm.controls.data_file_path.value,
-        users_post_speaker: this.usersPostSpeakerArray,
-        users_post_writer: this.usersPostWriterArray,
-        users_post_actor: this.usersPostActorArray
-        //user_creator_fk_id: number;
-      }
-      if(this.id>0)
-      {
-        this.http.patch(Domain.PatchPost, postFormValue, null).subscribe((response) => {
-          console.log(response)
-        }
-        )
-      }
-      else{
-        this.http.create(Domain.CreatePost, postFormValue, null).subscribe((response) => {
-          console.log(response)
-        }
-        )
-      }
-     
+    let postFormValue: IPost = {
+      post_title: this.postForm.controls.post_title.value,
+      post_summary: this.postForm.controls.post_summary.value,
+      // post_discribtion: this.postForm.controls.post_de.value,
+      post_content: this.postForm.controls.post_content.value,
+      post_image: this.postForm.controls.post_image.value,
+      priority: this.postForm.controls.post_priority.value,
+      post_status: this.postForm.controls.post_status.value,
+      post_direction: this.postForm.controls.post_direction.value,
+      post_type: this.postForm.controls.post_type.value,
+      expier_date: this.postForm.controls.expier_date.value,
+      //category: [];
+      tag: this.tagsInputArray,
+      post_audio_file_link: this.postForm.controls.audio_file_link.value,
+      post_audio_file_path: this.postForm.controls.audio_file_path.value,
+      post_aparat_video_id: this.postForm.controls.aparat_video_id.value,
+      post_aparat_video_code: this.postForm.controls.aparat_video_code.value,
+      post_video_file_link: this.postForm.controls.video_file_link.value,
+      post_video_file_path: this.postForm.controls.video_file_path.value,
+      post_data_file_link: this.postForm.controls.data_file_link.value,
+      post_data_file_path: this.postForm.controls.data_file_path.value,
+      users_post_speaker: this.usersPostSpeakerArray,
+      users_post_writer: this.usersPostWriterArray,
+      users_post_actor: this.usersPostActorArray
+      //user_creator_fk_id: number;
     }
+    if (this.id > 0) {
+      this.http.patch(`${Domain.PatchPost}/${this.id}?topic=${this.postForm.controls.post_type.value}` , postFormValue, null).subscribe((response) => {
+        console.log(response)
+      }
+      )
+    }
+    else {
+      this.http.create(Domain.CreatePost, postFormValue, null).subscribe((response) => {
+        console.log(response)
+        if(response.post_pk_id!=null)
+          {
+            this.alert.success(" محتوای آموزشی با موفقیت اضافه شد");
+            this.postForm.reset();
+          }
+      }
+      )
+    }
+  }
+  add_users_post_actor(value: string[]) {
+    this.usersPostActorArray = value;
+  }
+  add_users_post_speaker(value: string[]) {
+    this.usersPostSpeakerArray = value;
+  }
+  add_users_post_writer(value: string[]) {
+    this.usersPostWriterArray = value
+  }
 }

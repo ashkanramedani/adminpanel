@@ -8,9 +8,10 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from '../../utilities/filter.pipe';
+import { EmployeesUsersComponent } from './employees-users/employees-users.component';
 
 @NgModule({
-  declarations: [ContentsComponent,ContentAddComponent, FilterPipe],
+  declarations: [ContentsComponent,ContentAddComponent, FilterPipe,EmployeesUsersComponent],
   imports: [
     CommonModule,
     FormsModule,

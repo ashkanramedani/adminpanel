@@ -63,7 +63,7 @@
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
           تاریخ انقضا پست
         </label>
-        <ng-persian-datepicker [dateInitValue]="false">
+        <ng-persian-datepicker [dateFormat]="'YYYY-MM-DD'" [dateInitValue]="false">
         <input type="text"  formControlName="expier_date"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
       </ng-persian-datepicker>
       </div>
@@ -113,15 +113,7 @@
             (Press Enter to add )
           </span>
         </label>
-        <input type="text" formControlName="users_post_actor" (keyup.enter)="AddUsersPostActor()"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-        <div class="w-full flex items-center gap-x-2 mt-4 mx-2">
-          <div *ngFor="let item of usersPostActorArray;let i = index" class=" flex text-center justify-between text-black dark:text-white rounded-sm px-3 py-1 bg-bodydark1 dark:bg-black ">
-            <button >
-              <svg (click)="RemoveUsersPostActor(i)" class="w-8  pl-2 fill-body hover:fill-black dark:fill-bodydark dark:hover:fill-bodydark1 mx-auto cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.78 14.36a1 1 0 0 1-1.42 1.42l-2.82-2.83-2.83 2.83a1 1 0 1 1-1.42-1.42l2.83-2.82L7.3 8.7a1 1 0 0 1 1.42-1.42l2.83 2.83 2.82-2.83a1 1 0 0 1 1.42 1.42l-2.83 2.83 2.83 2.82z"></path></svg>
-            </button>
-            <span>{{item}}</span>
-            </div>
-        </div>
+        <app-employees-users (employees_array_output)="add_users_post_actor($event)"></app-employees-users>
       </div>
       <div  class="lg:col-span-2">
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
@@ -130,15 +122,7 @@
             (Press Enter to add )
           </span>
         </label>
-        <input type="text" formControlName="users_post_speaker" (keyup.enter)="AddUsersPostSpeaker()"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-        <div class="w-full flex items-center gap-x-2 mt-4 mx-2">
-          <div *ngFor="let item of usersPostSpeakerArray;let i = index" class=" flex text-center justify-between text-black dark:text-white rounded-sm px-3 py-1 bg-bodydark1 dark:bg-black ">
-            <button >
-              <svg (click)="RemoveUsersPostSpeaker(i)" class="w-8  pl-2 fill-body hover:fill-black dark:fill-bodydark dark:hover:fill-bodydark1 mx-auto cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.78 14.36a1 1 0 0 1-1.42 1.42l-2.82-2.83-2.83 2.83a1 1 0 1 1-1.42-1.42l2.83-2.82L7.3 8.7a1 1 0 0 1 1.42-1.42l2.83 2.83 2.82-2.83a1 1 0 0 1 1.42 1.42l-2.83 2.83 2.83 2.82z"></path></svg>
-            </button>
-            <span>{{item}}</span>
-            </div>
-        </div>
+        <app-employees-users (employees_array_output)="add_users_post_speaker($event)"></app-employees-users>
       </div>
       <div  class="lg:col-span-2">
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
@@ -148,21 +132,7 @@
           </span>
           <span class="text-meta-1">*</span>
         </label>
-        <input type="text" (click)="OpenPostWriter()" formControlName="users_post_writer" (keyup.enter)="AddUsersPostWriter()"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-          <div *ngIf="is_open_post_writer" class="search-tag mt-2 bg-white dark:bg-form-input dark:text-bodydark1 text-black  border border-gray-300 rounded-lg shadow-md max-h-59 overflow-y-auto">
-          <div (click)="AddPostWriterTag(item.user_pk_id,item.fname,item.lname)" *ngFor="let item of post_writer_list | filter: this.postForm.controls.users_post_writer.value" class="px-4 py-2 cursor-pointer hover:bg-stroke flex items-center gap-x-2 dark:hover:bg-black text-black dark:text-white">
-            <img src="https://ieltsdaily.ir/static/img/users/{{item.image}}" class="w-10 rounded-full border border-graydark" alt="">  
-            <span class="text-sm font-semibold">{{item.fname}} {{item.lname}}</span>
-          </div>
-        </div>
-        <div *ngIf="usersPostWriterArray.length>0" class="w-full flex items-center gap-2 mt-4 p-2 flex-wrap max-h-34 overflow-y-auto border-[1.5px] border-stroke dark:border-form-strokedark rounded-md">
-          <div *ngFor="let item of usersPostWriterArray;let i = index" class=" flex text-center justify-between text-black dark:text-white rounded-sm px-3 py-1 bg-bodydark1 dark:bg-black ">
-            <button >
-              <svg (click)="RemovePostWriterTag(i)" class="w-8  pl-2 fill-body hover:fill-black dark:fill-bodydark dark:hover:fill-bodydark1 mx-auto cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.78 14.36a1 1 0 0 1-1.42 1.42l-2.82-2.83-2.83 2.83a1 1 0 1 1-1.42-1.42l2.83-2.82L7.3 8.7a1 1 0 0 1 1.42-1.42l2.83 2.83 2.82-2.83a1 1 0 0 1 1.42 1.42l-2.83 2.83 2.83 2.82z"></path></svg>
-            </button>
-            <span>{{item}}</span>
-            </div>
-        </div>
+        <app-employees-users (employees_array_output)="add_users_post_writer($event)"></app-employees-users>
       </div>
       <div class="lg:col-span-2" >
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
@@ -280,6 +250,7 @@
       </div>
     </form>
     <div class="flex justify-end p-6.5 items-center gap-x-2">
+
       <button [disabled]="this.postForm.invalid "  (click)="onSubmit()" class="flex disabled:bg-secondary justify-center rounded bg-primary py-2 px-5 font-medium text-gray">افزودن</button>
       <a [routerLink]="['/blogs']" class="flex justify-center rounded bg-bodydark py-2 px-5 font-medium text-black-2">بازگشت</a>
     </div>
