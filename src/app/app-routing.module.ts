@@ -23,6 +23,11 @@ const routes: Routes = [
       import('./pages/signin/signin.module').then((m) => m.SigninModule),
   },
   {
+    path:'AuditReports',
+    loadChildren:()=>
+    import('./pages/audit-reports/audit-reports.module').then((m)=>m.AuditReportsModule)
+  },
+  {
     path: 'notFound',
     component: ErrorComponent,
   },
