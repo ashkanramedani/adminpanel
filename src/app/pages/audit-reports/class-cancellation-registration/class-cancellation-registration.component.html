@@ -11,10 +11,9 @@
 <div class="rounded-md border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
 
     <form [formGroup]="reportForm" class="grid lg:grid-cols-2 grid-cols-1 gap-6.5 p-6.5">
-
         <div>
             <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
-                چینش صفحه
+                ثبت کننده
             </label>
             <select formControlName="post_direction"
                 class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
@@ -25,7 +24,70 @@
         </div>
         <div>
             <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
-                اولویت
+                نام کلاس
+            </label>
+            <input type="number" formControlName="post_priority"
+                class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+        </div>
+        <div>
+            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+                نام استاد
+            </label>
+            <input type="number" formControlName="post_priority"
+                class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+        </div>
+        <div>
+            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+               تاریخ کنسلی
+            </label>
+            <input type="number" formControlName="post_priority"
+                class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+        </div>
+        <div>
+            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+                مدت زمان کلاس
+            </label>
+            <input type="number" formControlName="post_priority"
+                class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+        </div>
+        <div>
+            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+               تاریخ ثبت
+            </label>
+            <input type="number" formControlName="post_priority"
+                class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+        </div>
+        <div>
+            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+                 تاریخ جلسه جایگزین
+            </label>
+            <input type="number" formControlName="post_priority"
+                class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+        </div>
+        <div>
+            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+                 محل برگزاری
+            </label>
+            <input type="number" formControlName="post_priority"
+                class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+        </div>
+        <div>
+            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+                کلاس برگزاری
+            </label>
+            <input type="number" formControlName="post_priority"
+                class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+        </div>
+        <div>
+            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+                توضیحات
+            </label>
+            <input type="number" formControlName="post_priority"
+                class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+        </div>
+        <div>
+            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+                فایل پیوست
             </label>
             <input type="number" formControlName="post_priority"
                 class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
@@ -35,7 +97,7 @@
 
         <button [disabled]="this.reportForm.invalid " (click)="onSubmit()"
             class="flex disabled:bg-secondary justify-center rounded bg-primary py-2 px-5 font-medium text-gray">افزودن</button>
-        <a [routerLink]="['/']"
+        <a [routerLink]="['/AuditReports']"
             class="flex justify-center rounded bg-bodydark py-2 px-5 font-medium text-black-2">بازگشت</a>
     </div>
 </div>
