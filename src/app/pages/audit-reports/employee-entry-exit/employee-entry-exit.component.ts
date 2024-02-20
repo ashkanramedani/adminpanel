@@ -8,7 +8,6 @@ import { FormGroup } from '@angular/forms';
 })
 export class EmployeeEntryExitComponent {
 
-  reportForm:FormGroup
 
   onSubmit()
   {  

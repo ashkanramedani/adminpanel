@@ -8,7 +8,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class SubstituteTeacherRegistrationComponent {
 
-  reportForm:FormGroup
+
 
   onSubmit()
   {  

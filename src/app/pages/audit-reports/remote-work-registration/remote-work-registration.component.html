@@ -10,13 +10,13 @@
 </div>
 <div class="rounded-md border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
 
-    <form [formGroup]="reportForm" class="grid lg:grid-cols-2 grid-cols-1 gap-6.5 p-6.5">
+    <form  class="grid lg:grid-cols-2 grid-cols-1 gap-6.5 p-6.5">
 
         <div>
             <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
                تاریخ ثبت
             </label>
-            <select formControlName="post_direction"
+            <select 
                 class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
                 <option value="RTL">RTL</option>
                 <option value="LTR">LTR</option>
@@ -27,42 +27,42 @@
             <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
                 تاریخ دورکاری
             </label>
-            <input type="number" formControlName="post_priority"
+            <input type="number" 
                 class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
         </div>
         <div>
             <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
                از ساعت
             </label>
-            <input type="number" formControlName="post_priority"
+            <input type="number" 
                 class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
         </div>
         <div>
             <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
                 تا ساعت
             </label>
-            <input type="number" formControlName="post_priority"
+            <input type="number" 
                 class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
         </div>
         <div>
             <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
                محل دورکاری
             </label>
-            <input type="number" formControlName="post_priority"
+            <input type="number" 
                 class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
         </div>
         <div>
             <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
                توضیحات
             </label>
-            <input type="number" formControlName="post_priority"
+            <input type="number" 
                 class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
         </div>
        
     </form>
     <div class="flex justify-end p-6.5 items-center gap-x-2">
 
-        <button [disabled]="this.reportForm.invalid " (click)="onSubmit()"
+        <button  (click)="onSubmit()"
             class="flex disabled:bg-secondary justify-center rounded bg-primary py-2 px-5 font-medium text-gray">افزودن</button>
         <a [routerLink]="['/']"
             class="flex justify-center rounded bg-bodydark py-2 px-5 font-medium text-black-2">بازگشت</a>

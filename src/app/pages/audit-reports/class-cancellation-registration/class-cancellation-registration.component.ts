@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
   styleUrl: './class-cancellation-registration.component.css'
 })
 export class ClassCancellationRegistrationComponent {
-  reportForm:FormGroup
+
 
   onSubmit()
   {  
