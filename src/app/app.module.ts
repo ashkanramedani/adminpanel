@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { PreloaderComponent } from './shared/preloader/preloader.component';
 import { RouterLink } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
-import { HeaderComponent } from './shared/header/header.component';
 
 @NgModule({
   declarations: [

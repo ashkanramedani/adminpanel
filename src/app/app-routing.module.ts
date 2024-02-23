@@ -11,6 +11,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'libraries',
+    loadChildren: () =>
+      import('./pages/libraries/libraries.module').then(
+        (m) => m.LibrariesModule
+      ),
+  },
+  {
     path: '',
     loadChildren: () =>
       import('./pages/dashboard/dashboard.module').then(

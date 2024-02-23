@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser';
+import { FilterPipe } from '../utilities/filter.pipe';
 @NgModule({
-  declarations: [HeaderComponent,SidebarComponent],
+  declarations: [HeaderComponent,SidebarComponent,FilterPipe],
   imports: [
     CommonModule,
-    RouterModule,BrowserModule
+    RouterModule
   ],
-  exports:[HeaderComponent,SidebarComponent]
+  exports:[HeaderComponent,SidebarComponent,FilterPipe]
 })
 export class SharedModule { }

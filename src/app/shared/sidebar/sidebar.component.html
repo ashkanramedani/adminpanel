@@ -131,17 +131,17 @@
             <div *ngIf="menuItem == 3" class="overflow-hidden">
               <ul class="mt-4 mb-5.5 flex flex-col gap-3 pr-6">
                 <li>
-                  <a [routerLink]="['/blogs']"
+                  <a [routerLink]="['/libraries']" [queryParams]="{type: 'story'}"
                     class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5">داستانی
                   </a>
                 </li>
                 <li>
-                  <a [routerLink]="['/podcasts']"
+                  <a [routerLink]="['/libraries']" [queryParams]="{type: 'magazine'}"
                     class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5">مجلات
                   </a>
                 </li>
                 <li>
-                  <a [routerLink]="['/news']"
+                  <a [routerLink]="['/libraries']" [queryParams]="{type: 'educational'}"
                     class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5">آموزشی
                   </a>
                 </li>

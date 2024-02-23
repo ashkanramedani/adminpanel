@@ -14,15 +14,21 @@ import { RemoteWorkRegistrationComponent } from './remote-work-registration/remo
 import { SubstituteTeacherRegistrationComponent } from './substitute-teacher-registration/substitute-teacher-registration.component';
 import { SurveyComponent } from './survey/survey.component';
 import { TeachersDelayComponent } from './teachers-delay/teachers-delay.component';
-
+import { SharedModule } from 'src/app/shared/shared.module';
+import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [AuditReportsComponent, ClassCancellationRegistrationComponent, EmployeeEntryExitComponent, LeaveRegistrationComponent, MissionRegistrationComponent, ProfessorsReportsComponent, RemoteWorkRegistrationComponent, SubstituteTeacherRegistrationComponent, SurveyComponent, TeachersDelayComponent],
   imports: [
+    NgPersianDatepickerModule,
+    CKEditorModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AuditReportsRoutingModule, RouterLink
+    AuditReportsRoutingModule,
+     RouterLink,
+    SharedModule
   ]
 })
 export class AuditReportsModule { }

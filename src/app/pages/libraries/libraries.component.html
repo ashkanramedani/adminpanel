@@ -2,10 +2,10 @@
     <div class="flex items-center gap-x-2">
       <nav >
         <ol class="flex items-center gap-1 text-sm w-max">
-            <li>
-                <span class="font-medium"> گزارشات حسابرسی /</span>
-            </li>
-            <li class="font-medium text-primary">فرم ثبت  کنسلی کلاس</li>
+          <li>
+            <span class="font-medium"> کتابخانه /</span>
+          </li>
+          <li class="font-medium text-primary">{{title}} </li>
         </ol>
       </nav>
       <input type="text" placeholder="جستجو" [(ngModel)]="SearchValue"   class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
@@ -13,10 +13,10 @@
       <div class="flex items-center gap-x-2">
         <a [routerLink]="['/contents/add']" class="flex justify-center rounded px-5 bg-primary py-2 font-medium text-gray">
           افزودن</a>
-        <!-- <button (click)="RemoveMultiItem()" *ngIf="selected_response_ids.length>1"
+        <button (click)="RemoveMultiItem()" *ngIf="selected_content_ids.length>1"
           class="flex w-full text-meta-1 justify-center rounded px-5 border-meta-1 border py-2 font-medium hover:bg-meta-1 hover:text-white">حذف
-          آیتم ها</button> -->
-          <select *ngIf="selected_response_ids.length>1" (change)="ChangeStatusMultiItem($event)"    class="w-auto dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+          آیتم ها</button>
+          <select *ngIf="selected_content_ids.length>1" (change)="ChangeStatusMultiItem($event)"    class="w-auto dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
             <option selected disabled value="-1"> انتخاب وضعیت</option>
             <option value="0">غیر فعال</option>
             <option value="1"> تایید نشده</option>
@@ -60,9 +60,8 @@
               </tr>
             </thead>
             <tbody class="font-normal text-black dark:text-white">
-              <tr *ngIf="(ResponseDataList|filter:this.SearchValue).length<1">
+              <tr *ngIf="(librariessData|filter:this.SearchValue).length<1">
                 <td colspan="4">
-
                   <div class="flex w-full items-center gap-x-2 my-4 border-r-6 border-warning bg-warning bg-opacity-[15%] px-2 py-2 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30">
                     <div class="mr-5 flex h-9 w-9 items-center justify-center rounded-lg bg-warning bg-opacity-30">
                       <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -75,7 +74,7 @@
                 </td>
   
               </tr>
-              <tr *ngFor="let item of ResponseDataList | filter: this.SearchValue">
+              <tr *ngFor="let item of librariessData | filter: this.SearchValue">
                 <td class="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                   <div class="flex items-center gap-x-2">
                     <input type="checkbox" class="w-4 h-4"  (change)="checkToDeletedCheckBox($event,item.post_pk_id)">
@@ -153,6 +152,7 @@
             </tbody>
           </table>
         </div>
+        
         <div class="paging flex items-center justify-center my-3" dir="ltr">
           <nav>
             <ul class="flex flex-wrap items-center">
@@ -163,7 +163,7 @@
                   </svg>
                 </a>
               </li>
-              <li *ngFor="let item of  ResponseDataLenght ;let i = index">
+              <li *ngFor="let item of  ContentsDataLenght ;let i = index">
                 <a class="flex items-center justify-center border border-stroke border-l-transparent px-4 py-[5px] font-medium hover:border-primary hover:bg-gray hover:text-primary dark:border-strokedark dark:hover:border-primary dark:hover:bg-graydark" href="#">{{i+1}}</a>
               </li>
               <li>
@@ -178,6 +178,3 @@
         </div>
       </div>
     </div>
-
-
-

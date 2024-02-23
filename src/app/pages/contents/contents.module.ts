@@ -7,11 +7,11 @@ import { RouterLink } from '@angular/router';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FilterPipe } from '../../utilities/filter.pipe';
 import { EmployeesUsersComponent } from './employees-users/employees-users.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
-  declarations: [ContentsComponent,ContentAddComponent, FilterPipe,EmployeesUsersComponent],
+  declarations: [ContentsComponent,ContentAddComponent,EmployeesUsersComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -20,7 +20,8 @@ import { EmployeesUsersComponent } from './employees-users/employees-users.compo
     NgPersianDatepickerModule,
     CommonModule,
     RouterLink,
-    CKEditorModule
+    CKEditorModule,
+    SharedModule
   ]
 })
 export class ContentsModule { }

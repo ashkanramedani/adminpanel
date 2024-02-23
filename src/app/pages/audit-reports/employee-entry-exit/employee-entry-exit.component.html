@@ -1,41 +1,183 @@
-<div class="header flex justify-between items-center p-3">
-    <nav>
-        <ol class="flex items-center gap-1 text-sm">
+<div class="header flex justify-between items-center py-3 gap-x-2">
+    <div class="flex items-center gap-x-2">
+      <nav >
+        <ol class="flex items-center gap-1 text-sm w-max">
             <li>
                 <span class="font-medium"> گزارشات حسابرسی /</span>
             </li>
-            <li class="font-medium text-primary">فرم اطلاعات ورود و خروج کارکنان</li>
+            <li class="font-medium text-primary">فرم ثبت ورود / خروج کارکنان</li>
         </ol>
-    </nav>
-</div>
-<div class="rounded-md border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-
-    <form  class="grid lg:grid-cols-2 grid-cols-1 gap-6.5 p-6.5">
-
-        <div>
-            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
-                چینش صفحه
-            </label>
-            <select 
-                class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-                <option value="RTL">RTL</option>
-                <option value="LTR">LTR</option>
-            </select>
-
-        </div>
-        <div>
-            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
-                اولویت
-            </label>
-            <input type="number"
-                class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-        </div>
-    </form>
-    <div class="flex justify-end p-6.5 items-center gap-x-2">
-
-        <button  (click)="onSubmit()"
-            class="flex disabled:bg-secondary justify-center rounded bg-primary py-2 px-5 font-medium text-gray">افزودن</button>
-        <a [routerLink]="['/']"
-            class="flex justify-center rounded bg-bodydark py-2 px-5 font-medium text-black-2">بازگشت</a>
+      </nav>
+      <input type="text" placeholder="جستجو" [(ngModel)]="SearchValue"   class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
     </div>
-</div>
+      <div class="flex items-center gap-x-2">
+        <a [routerLink]="['/contents/add']" class="flex justify-center rounded px-5 bg-primary py-2 font-medium text-gray">
+          افزودن</a>
+        <!-- <button (click)="RemoveMultiItem()" *ngIf="selected_response_ids.length>1"
+          class="flex w-full text-meta-1 justify-center rounded px-5 border-meta-1 border py-2 font-medium hover:bg-meta-1 hover:text-white">حذف
+          آیتم ها</button> -->
+          <select *ngIf="selected_response_ids.length>1" (change)="ChangeStatusMultiItem($event)"    class="w-auto dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+            <option selected disabled value="-1"> انتخاب وضعیت</option>
+            <option value="0">غیر فعال</option>
+            <option value="1"> تایید نشده</option>
+            <option value="2"> فعال</option>
+          </select>
+      </div>
+    </div>
+    <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+      <div
+        class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5  dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+        <div class="max-w-full">
+          <div class="loading flex justify-center my-10" *ngIf="isLoading">
+            <div class="animate-spin">
+              <svg width="49" height="50" viewBox="0 0 49 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <mask id="path-1-inside-1_1881_16179" fill="white">
+                  <path
+                    d="M18.5503 49.3989C23.2997 50.4597 28.2554 50.1113 32.8097 48.3965C37.364 46.6816 41.3187 43.6748 44.1889 39.7449C47.0591 35.815 48.7199 31.1328 48.9676 26.2727C49.2153 21.4125 48.0392 16.5858 45.5834 12.3844C43.1277 8.18304 39.4991 4.78974 35.1428 2.62071C30.7865 0.451685 25.8918 -0.398759 21.0592 0.173693C16.2265 0.746144 11.666 2.7166 7.93703 5.84338C4.20803 8.97015 1.47267 13.1173 0.0664691 17.7761L5.29059 19.353C6.38986 15.711 8.52815 12.4691 11.4432 10.0248C14.3582 7.58057 17.9233 6.04021 21.7011 5.59272C25.4789 5.14522 29.3052 5.81003 32.7106 7.50561C36.116 9.20119 38.9526 11.8538 40.8723 15.1381C42.792 18.4224 43.7114 22.1956 43.5178 25.9949C43.3241 29.7942 42.0258 33.4543 39.7822 36.5264C37.5385 39.5986 34.4469 41.949 30.8868 43.2896C27.3266 44.6302 23.4525 44.9025 19.7398 44.0732L18.5503 49.3989Z">
+                  </path>
+                </mask>
+                <path
+                  d="M18.5503 49.3989C23.2997 50.4597 28.2554 50.1113 32.8097 48.3965C37.364 46.6816 41.3187 43.6748 44.1889 39.7449C47.0591 35.815 48.7199 31.1328 48.9676 26.2727C49.2153 21.4125 48.0392 16.5858 45.5834 12.3844C43.1277 8.18304 39.4991 4.78974 35.1428 2.62071C30.7865 0.451685 25.8918 -0.398759 21.0592 0.173693C16.2265 0.746144 11.666 2.7166 7.93703 5.84338C4.20803 8.97015 1.47267 13.1173 0.0664691 17.7761L5.29059 19.353C6.38986 15.711 8.52815 12.4691 11.4432 10.0248C14.3582 7.58057 17.9233 6.04021 21.7011 5.59272C25.4789 5.14522 29.3052 5.81003 32.7106 7.50561C36.116 9.20119 38.9526 11.8538 40.8723 15.1381C42.792 18.4224 43.7114 22.1956 43.5178 25.9949C43.3241 29.7942 42.0258 33.4543 39.7822 36.5264C37.5385 39.5986 34.4469 41.949 30.8868 43.2896C27.3266 44.6302 23.4525 44.9025 19.7398 44.0732L18.5503 49.3989Z"
+                  stroke="#3C50E0" stroke-width="14" mask="url(#path-1-inside-1_1881_16179)"></path>
+              </svg>
+            </div>
+          </div>
+          <table class="w-full table-auto text-center" *ngIf="!isLoading">
+            <thead>
+              <tr class="bg-gray-2 text-left dark:bg-meta-4">
+                <th class="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11 text-center">
+                  عنوان
+                </th>
+                <th class="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white text-center">
+                  تاریخ
+                </th>
+                <th class="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white text-center">
+                  وضعیت
+                </th>
+                <th class="py-4 px-4 font-medium text-black dark:text-white text-center">
+                  عملیات
+                </th>
+              </tr>
+            </thead>
+            <tbody class="font-normal text-black dark:text-white">
+              <tr *ngIf="(ResponseDataList|filter:this.SearchValue).length<1">
+                <td colspan="4">
+
+                  <div class="flex w-full items-center gap-x-2 my-4 border-r-6 border-warning bg-warning bg-opacity-[15%] px-2 py-2 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30">
+                    <div class="mr-5 flex h-9 w-9 items-center justify-center rounded-lg bg-warning bg-opacity-30">
+                      <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.50493 16H17.5023C18.6204 16 19.3413 14.9018 18.8354 13.9735L10.8367 0.770573C10.2852 -0.256858 8.70677 -0.256858 8.15528 0.770573L0.156617 13.9735C-0.334072 14.8998 0.386764 16 1.50493 16ZM10.7585 12.9298C10.7585 13.6155 10.2223 14.1433 9.45583 14.1433C8.6894 14.1433 8.15311 13.6155 8.15311 12.9298V12.9015C8.15311 12.2159 8.6894 11.688 9.45583 11.688C10.2223 11.688 10.7585 12.2159 10.7585 12.9015V12.9298ZM8.75236 4.01062H10.2548C10.6674 4.01062 10.9127 4.33826 10.8671 4.75288L10.2071 10.1186C10.1615 10.5049 9.88572 10.7455 9.50142 10.7455C9.11929 10.7455 8.84138 10.5028 8.79579 10.1186L8.13574 4.75288C8.09449 4.33826 8.33984 4.01062 8.75236 4.01062Z" fill="#FBBF24"></path>
+                      </svg>
+                    
+                    </div>
+                    <p class="text-lg font-normal text-[#9D5425]">هیچ آیتمی یافت نشد</p>
+                  </div>
+                </td>
+  
+              </tr>
+              <tr *ngFor="let item of ResponseDataList | filter: this.SearchValue">
+                <td class="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
+                  <div class="flex items-center gap-x-2">
+                    <input type="checkbox" class="w-4 h-4"  (change)="checkToDeletedCheckBox($event,item.post_pk_id)">
+                    <img class="w-10" src="https://ieltsdaily.ir/static/img/blogs/{{item.post_image}}" alt="">
+                    <span>{{item.post_title}}</span>
+                  </div>
+                </td>
+                <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                  <span>{{item.expier_date|date: "YYYY/MM/dd" }}</span>
+                </td>
+                <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                  <span [ngClass]="ShowTitleStatus(item.post_status).classStatus" >{{ShowTitleStatus(item.post_status).title  }}</span>
+                </td>
+                <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                  <div class="flex items-center gap-x-2">
+                    <a title="نمایش" target="_blank"
+                      href="https://ieltsdaily.ir/blogs/{{item.post_pk_id}}/{{item.post_title.replace(' ','-')}}"
+                      class="hover:text-primary">
+                      <svg class="w-5 fill-current" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M8.99981 14.8219C3.43106 14.8219 0.674805 9.50624 0.562305 9.28124C0.47793 9.11249 0.47793 8.88749 0.562305 8.71874C0.674805 8.49374 3.43106 3.20624 8.99981 3.20624C14.5686 3.20624 17.3248 8.49374 17.4373 8.71874C17.5217 8.88749 17.5217 9.11249 17.4373 9.28124C17.3248 9.50624 14.5686 14.8219 8.99981 14.8219ZM1.85605 8.99999C2.4748 10.0406 4.89356 13.5562 8.99981 13.5562C13.1061 13.5562 15.5248 10.0406 16.1436 8.99999C15.5248 7.95936 13.1061 4.44374 8.99981 4.44374C4.89356 4.44374 2.4748 7.95936 1.85605 8.99999Z"
+                          fill=""></path>
+                        <path
+                          d="M9 11.3906C7.67812 11.3906 6.60938 10.3219 6.60938 9C6.60938 7.67813 7.67812 6.60938 9 6.60938C10.3219 6.60938 11.3906 7.67813 11.3906 9C11.3906 10.3219 10.3219 11.3906 9 11.3906ZM9 7.875C8.38125 7.875 7.875 8.38125 7.875 9C7.875 9.61875 8.38125 10.125 9 10.125C9.61875 10.125 10.125 9.61875 10.125 9C10.125 8.38125 9.61875 7.875 9 7.875Z"
+                          fill=""></path>
+                      </svg>
+                    </a>
+                    <a [routerLink]="['/contents/edit/',item.post_pk_id]" title="ویرایش" class="hover:text-primary">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-current" viewBox="0 0 16 16">
+                        <path
+                          d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z">
+                        </path>
+                        <path fill-rule="evenodd"
+                          d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z">
+                        </path>
+                      </svg>
+                    </a>
+                    <button title="حذف" (click)="RemoveItem(item.post_pk_id)" class="hover:text-primary">
+                      <svg class="w-5 fill-current" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M13.7535 2.47502H11.5879V1.9969C11.5879 1.15315 10.9129 0.478149 10.0691 0.478149H7.90352C7.05977 0.478149 6.38477 1.15315 6.38477 1.9969V2.47502H4.21914C3.40352 2.47502 2.72852 3.15002 2.72852 3.96565V4.8094C2.72852 5.42815 3.09414 5.9344 3.62852 6.1594L4.07852 15.4688C4.13477 16.6219 5.09102 17.5219 6.24414 17.5219H11.7004C12.8535 17.5219 13.8098 16.6219 13.866 15.4688L14.3441 6.13127C14.8785 5.90627 15.2441 5.3719 15.2441 4.78127V3.93752C15.2441 3.15002 14.5691 2.47502 13.7535 2.47502ZM7.67852 1.9969C7.67852 1.85627 7.79102 1.74377 7.93164 1.74377H10.0973C10.2379 1.74377 10.3504 1.85627 10.3504 1.9969V2.47502H7.70664V1.9969H7.67852ZM4.02227 3.96565C4.02227 3.85315 4.10664 3.74065 4.24727 3.74065H13.7535C13.866 3.74065 13.9785 3.82502 13.9785 3.96565V4.8094C13.9785 4.9219 13.8941 5.0344 13.7535 5.0344H4.24727C4.13477 5.0344 4.02227 4.95002 4.02227 4.8094V3.96565ZM11.7285 16.2563H6.27227C5.79414 16.2563 5.40039 15.8906 5.37227 15.3844L4.95039 6.2719H13.0785L12.6566 15.3844C12.6004 15.8625 12.2066 16.2563 11.7285 16.2563Z"
+                          fill=""></path>
+                        <path
+                          d="M9.00039 9.11255C8.66289 9.11255 8.35352 9.3938 8.35352 9.75942V13.3313C8.35352 13.6688 8.63477 13.9782 9.00039 13.9782C9.33789 13.9782 9.64727 13.6969 9.64727 13.3313V9.75942C9.64727 9.3938 9.33789 9.11255 9.00039 9.11255Z"
+                          fill=""></path>
+                        <path
+                          d="M11.2502 9.67504C10.8846 9.64692 10.6033 9.90004 10.5752 10.2657L10.4064 12.7407C10.3783 13.0782 10.6314 13.3875 10.9971 13.4157C11.0252 13.4157 11.0252 13.4157 11.0533 13.4157C11.3908 13.4157 11.6721 13.1625 11.6721 12.825L11.8408 10.35C11.8408 9.98442 11.5877 9.70317 11.2502 9.67504Z"
+                          fill=""></path>
+                        <path
+                          d="M6.72245 9.67504C6.38495 9.70317 6.1037 10.0125 6.13182 10.35L6.3287 12.825C6.35683 13.1625 6.63808 13.4157 6.94745 13.4157C6.97558 13.4157 6.97558 13.4157 7.0037 13.4157C7.3412 13.3875 7.62245 13.0782 7.59433 12.7407L7.39745 10.2657C7.39745 9.90004 7.08808 9.64692 6.72245 9.67504Z"
+                          fill=""></path>
+                      </svg>
+                    </button>
+  
+                    <label *ngIf="false" title="تغییر وضعیت" for="checkboxLabel_{{item.post_pk_id}}"
+                      class="flex cursor-pointer select-none items-center text-sm font-medium">
+                      <div class="relative">
+                        <input [checked]="isCheckedStatus==item.post_pk_id" [value]="item.post_pk_id" type="checkbox" id="checkboxLabel_{{item.post_pk_id}}" class="sr-only"
+                          (change)="ChangeStatusCheckbox($event) ">
+                        <div [ngClass]="{'border-primary bg-gray dark:bg-transparent': (isCheckedStatus==item.post_pk_id) }"
+                          class="flex h-5 w-5 items-center justify-center rounded border border-primary bg-gray dark:bg-transparent">
+                          <span [ngClass]="{'!opacity-100': (isCheckedStatus==item.post_pk_id) }" class="opacity-0">
+                            <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M10.0915 0.951972L10.0867 0.946075L10.0813 0.940568C9.90076 0.753564 9.61034 0.753146 9.42927 0.939309L4.16201 6.22962L1.58507 3.63469C1.40401 3.44841 1.11351 3.44879 0.932892 3.63584C0.755703 3.81933 0.755703 4.10875 0.932892 4.29224L0.932878 4.29225L0.934851 4.29424L3.58046 6.95832C3.73676 7.11955 3.94983 7.2 4.1473 7.2C4.36196 7.2 4.55963 7.11773 4.71406 6.9584L10.0468 1.60234C10.2436 1.4199 10.2421 1.1339 10.0915 0.951972ZM4.2327 6.30081L4.2317 6.2998C4.23206 6.30015 4.23237 6.30049 4.23269 6.30082L4.2327 6.30081Z"
+                                fill="#3056D3" stroke="#3056D3" stroke-width="0.4"></path>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="paging flex items-center justify-center my-3" dir="ltr">
+          <nav>
+            <ul class="flex flex-wrap items-center">
+              <li>
+                <a class="flex h-9 w-9 items-center justify-center rounded-l-md border border-stroke hover:border-primary hover:bg-gray hover:text-primary dark:border-strokedark dark:hover:border-primary dark:hover:bg-graydark" href="#">
+                  <svg class="fill-current" width="8" height="16" viewBox="0 0 8 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.17578 15.1156C7.00703 15.1156 6.83828 15.0593 6.72578 14.9187L0.369531 8.44995C0.116406 8.19683 0.116406 7.80308 0.369531 7.54995L6.72578 1.0812C6.97891 0.828076 7.37266 0.828076 7.62578 1.0812C7.87891 1.33433 7.87891 1.72808 7.62578 1.9812L1.71953 7.99995L7.65391 14.0187C7.90703 14.2718 7.90703 14.6656 7.65391 14.9187C7.48516 15.0312 7.34453 15.1156 7.17578 15.1156Z" fill=""></path>
+                  </svg>
+                </a>
+              </li>
+              <li *ngFor="let item of  ResponseDataLenght ;let i = index">
+                <a class="flex items-center justify-center border border-stroke border-l-transparent px-4 py-[5px] font-medium hover:border-primary hover:bg-gray hover:text-primary dark:border-strokedark dark:hover:border-primary dark:hover:bg-graydark" href="#">{{i+1}}</a>
+              </li>
+              <li>
+                <a class="flex h-9 w-9 items-center justify-center rounded-r-md border border-stroke border-l-transparent hover:border-primary hover:bg-gray hover:text-primary dark:border-strokedark dark:hover:border-primary dark:hover:bg-graydark" href="#">
+                  <svg class="fill-current" width="8" height="16" viewBox="0 0 8 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.819531 15.1156C0.650781 15.1156 0.510156 15.0593 0.369531 14.9468C0.116406 14.6937 0.116406 14.3 0.369531 14.0468L6.27578 7.99995L0.369531 1.9812C0.116406 1.72808 0.116406 1.33433 0.369531 1.0812C0.622656 0.828076 1.01641 0.828076 1.26953 1.0812L7.62578 7.54995C7.87891 7.80308 7.87891 8.19683 7.62578 8.44995L1.26953 14.9187C1.15703 15.0312 0.988281 15.1156 0.819531 15.1156Z" fill=""></path>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+
+
