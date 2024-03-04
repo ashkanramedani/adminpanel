@@ -1,10 +1,11 @@
+import { IUser } from "./IUser"
+
 export interface IRemoteRequestForm
 {
-    remote_request_pk_id :string
-    employee_fk_id :string
-    create_date :Date
-    start_date :Date
-    end_date :Date
-    working_location :string
-    description :string
+    remote_request_pk_id: string
+    start_date: string
+    end_date: string
+    description: string
+    created: IUser
+    employee:IUser
 }

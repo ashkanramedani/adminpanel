@@ -1,9 +1,8 @@
 import { Time } from "@angular/common"
 
-export interface IClassForm
+export interface IClass
 {
-    class_pk_id :string
-    starting_time : Time
-    duration :number
-    class_date :Date
+    name:string
+    class_time:string
+    duration: number
 }

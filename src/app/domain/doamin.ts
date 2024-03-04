@@ -1,4 +1,3 @@
-import { env } from '@ckeditor/ckeditor5-utils';
 import { environment } from '../../environments/environment';
 export const Domain =
 {
@@ -14,15 +13,19 @@ export const Domain =
     "GetSinglePost": `${environment.apiUrl}post/{topic}`,
     "GetEmployees": `${environment.apiUrl}user/employees`,
     "GroupDeletePost": `${environment.apiUrl}post`,
-    "GetTeachersDelay": `${environment.AccountingApiUrl}tardy_request/search`,
-    "GetClassCancellation": `${environment.AccountingApiUrl}class_cancellation/search`,
-    "GetTeachersDelaySingle": `${environment.AccountingApiUrl}tardy_request/search`,
-    "GetEmployeeEntryExit": `${environment.AccountingApiUrl}fingerprint_scanner/search`,
-    "GetLeaveRegistration": `${environment.AccountingApiUrl}leave_request/search`,
-    "GetMissionRegistration": `${environment.AccountingApiUrl}business_trip/search`,
-    "GetProfessorsReports": `${environment.AccountingApiUrl}`,
-    "GetRemoteWorkRegistration": `${environment.AccountingApiUrl}remote_request/search`,
-    "GetSubstituteTeacher": `${environment.AccountingApiUrl}teacher_replacement/search`,
-    "GetSurvey": `${environment.AccountingApiUrl}survey/search`,
+    "GetTeachersDelay": `${environment.apiUrl}form/tardy_request/search`,
+    "GetClassCancellation": `${environment.apiUrl}form/class_cancellation/search`,
+    "GetTeachersDelaySingle": `${environment.apiUrl}form/tardy_request/search`,
+    "GetEmployeeEntryExit": `${environment.apiUrl}form/fingerprint_scanner/search`,
+    "GetLeaveRegistration": `${environment.apiUrl}form/leave_request/search`,
+    "DeleteLeaveRegistration": `${environment.apiUrl}form/leave_request/delete`,
+    "GetMissionRegistration": `${environment.apiUrl}form/business_trip/search`,
+    "DeleteMissionRegistration": `${environment.apiUrl}form/business_trip/delete`,
+    "GetProfessorsReports": `${environment.apiUrl}`,
+    "GetRemoteWorkRegistration": `${environment.apiUrl}form/remote_request/search`,
+    "DeleteRemoteWorkRegistration": `${environment.apiUrl}form/remote_request/delete`,
+    "GetSubstituteTeacher": `${environment.apiUrl}form/teacher_replacement/search`,
+    "DeleteSubstituteTeacher": `${environment.apiUrl}form/teacher_replacement/delete`,
+    "GetSurvey": `${environment.apiUrl}form/survey/search`,
 
 }

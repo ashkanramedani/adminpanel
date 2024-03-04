@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
+import { ISubstituteTeacherForm } from 'src/app/interfaces/ISubstituteTeacherForm';
 import { ITeacherDelayForm } from 'src/app/interfaces/ITeacherDelayForm';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
@@ -12,7 +13,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class SubstituteTeacherRegistrationComponent implements OnInit {
 
-  ResponseDataList: ITeacherDelayForm[] = []
+  ResponseDataList: ISubstituteTeacherForm[] = []
   ResponseDataLenght: number[];
   SearchValue: string
   isCheckedStatus: number;
@@ -25,7 +26,10 @@ export class SubstituteTeacherRegistrationComponent implements OnInit {
   GetResponseData() {
     this.http.getAll(Domain.GetSubstituteTeacher).subscribe((response) => {
       console.log(response)
+      this.ResponseDataList=response;
+      this.isLoading=false;
     })
+    
   }
   ChangeStatusCheckbox(event: any) {
     this.isCheckedStatus = event.target.value;
@@ -36,7 +40,7 @@ export class SubstituteTeacherRegistrationComponent implements OnInit {
       'آیا از حذف این آیتم اطمینان دارید؟',
       () => {
         this.http
-          .delete(Domain.DeletePost + '/blog/delete', id)
+          .deleteWithQuery(`${Domain.DeleteSubstituteTeacher}?form_id=${id}`)
           .subscribe((response) => {
             console.log(response);
           });
