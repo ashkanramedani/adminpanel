@@ -17,18 +17,23 @@ import { TeachersDelayComponent } from './teachers-delay/teachers-delay.componen
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { LeaveRegistrationAddComponent } from './leave-registration/leave-registration-add/leave-registration-add.component';
+import { MissionRegistrationAddComponent } from './mission-registration/mission-registration-add/mission-registration-add.component';
+import { RemoteWorkRegistrationAddComponent } from './remote-work-registration/remote-work-registration-add/remote-work-registration-add.component';
+import { SubstituteTeacherAddComponent } from './substitute-teacher-registration/substitute-teacher-add/substitute-teacher-add.component';
+import { ClassCancellationAddComponent } from './class-cancellation-registration/class-cancellation-add/class-cancellation-add.component';
 
 @NgModule({
-  declarations: [AuditReportsComponent, ClassCancellationRegistrationComponent, EmployeeEntryExitComponent, LeaveRegistrationComponent, MissionRegistrationComponent, ProfessorsReportsComponent, RemoteWorkRegistrationComponent, SubstituteTeacherRegistrationComponent, SurveyComponent, TeachersDelayComponent],
-  imports: [
-    NgPersianDatepickerModule,
-    CKEditorModule,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AuditReportsRoutingModule,
-     RouterLink,
-    SharedModule
-  ]
+    declarations: [ClassCancellationAddComponent,SubstituteTeacherAddComponent,RemoteWorkRegistrationAddComponent,LeaveRegistrationAddComponent, AuditReportsComponent, ClassCancellationRegistrationComponent, EmployeeEntryExitComponent, LeaveRegistrationComponent, MissionRegistrationComponent, ProfessorsReportsComponent, RemoteWorkRegistrationComponent, SubstituteTeacherRegistrationComponent, SurveyComponent, TeachersDelayComponent,MissionRegistrationAddComponent],
+    imports: [
+        NgPersianDatepickerModule,
+        CKEditorModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AuditReportsRoutingModule,
+        RouterLink,
+        SharedModule,
+    ]
 })
 export class AuditReportsModule { }

@@ -15,6 +15,8 @@ export const Domain =
     "GroupDeletePost": `${environment.apiUrl}post`,
     "GetTeachersDelay": `${environment.apiUrl}form/tardy_request/search`,
     "GetClassCancellation": `${environment.apiUrl}form/class_cancellation/search`,
+    "DeleteClassCancellation": `${environment.apiUrl}form/class_cancellation/delete`,
+    "CreateClassCancellation": `${environment.apiUrl}form/class_cancellation/add`,
     "GetTeachersDelaySingle": `${environment.apiUrl}form/tardy_request/search`,
     "GetEmployeeEntryExit": `${environment.apiUrl}form/fingerprint_scanner/search`,
     "GetLeaveRegistration": `${environment.apiUrl}form/leave_request/search`,
@@ -23,9 +25,17 @@ export const Domain =
     "DeleteMissionRegistration": `${environment.apiUrl}form/business_trip/delete`,
     "GetProfessorsReports": `${environment.apiUrl}`,
     "GetRemoteWorkRegistration": `${environment.apiUrl}form/remote_request/search`,
+    "CreateRemoteWorkRegistration": `${environment.apiUrl}form/remote_request/add`,
     "DeleteRemoteWorkRegistration": `${environment.apiUrl}form/remote_request/delete`,
     "GetSubstituteTeacher": `${environment.apiUrl}form/teacher_replacement/search`,
+    "CreateSubstituteTeacher": `${environment.apiUrl}form/teacher_replacement/add`,
     "DeleteSubstituteTeacher": `${environment.apiUrl}form/teacher_replacement/delete`,
     "GetSurvey": `${environment.apiUrl}form/survey/search`,
+    "GetAuditEmplooyies" :`${environment.apiUrl}employee/search`,
+    "CreateLeaveRequest":`${environment.apiUrl}form/leave_request/add`,
+    "CreateMissionRegistration":`${environment.apiUrl}form/business_trip/add`,
+    "GetAuditClass":`${environment.apiUrl}form/class/search`,
+
+    
 
 }

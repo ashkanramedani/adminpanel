@@ -10,18 +10,30 @@ import { RemoteWorkRegistrationComponent } from './remote-work-registration/remo
 import { SubstituteTeacherRegistrationComponent } from './substitute-teacher-registration/substitute-teacher-registration.component';
 import { SurveyComponent } from './survey/survey.component';
 import { TeachersDelayComponent } from './teachers-delay/teachers-delay.component';
+import { LeaveRegistrationAddComponent } from './leave-registration/leave-registration-add/leave-registration-add.component';
+import { MissionRegistrationAddComponent } from './mission-registration/mission-registration-add/mission-registration-add.component';
+import { RemoteWorkRegistrationAddComponent } from './remote-work-registration/remote-work-registration-add/remote-work-registration-add.component';
+import { SubstituteTeacherAddComponent } from './substitute-teacher-registration/substitute-teacher-add/substitute-teacher-add.component';
+import { ClassCancellationAddComponent } from './class-cancellation-registration/class-cancellation-add/class-cancellation-add.component';
 
 const routes: Routes = [
-  {path:'',component:AuditReportsComponent},
-  {path:'ClassCancellationRegistration',component:ClassCancellationRegistrationComponent},
-  {path:'EmployeeEntryExit',component:EmployeeEntryExitComponent},
-  {path:'LeaveRegistration',component:LeaveRegistrationComponent },
-  {path:'MissionRegistration',component: MissionRegistrationComponent},
-  {path:'ProfessorsReports',component: ProfessorsReportsComponent},
-  {path:'RemoteWorkRegistration',component:RemoteWorkRegistrationComponent },
-  {path:'SubstituteTeacherRegistration',component:SubstituteTeacherRegistrationComponent },
-  {path:'Survey',component:SurveyComponent },
-  {path:'TeachersDelay',component:TeachersDelayComponent }
+  { path: '', component: AuditReportsComponent },
+  { path: 'ClassCancellationRegistration', component: ClassCancellationRegistrationComponent },
+  { path: 'ClassCancellation/Add', component: ClassCancellationAddComponent },
+
+  { path: 'EmployeeEntryExit', component: EmployeeEntryExitComponent },
+  { path: 'LeaveRegistration', component: LeaveRegistrationComponent },
+  { path: 'LeaveRegistration/Add', component: LeaveRegistrationAddComponent },
+  { path: 'MissionRegistration/Add', component: MissionRegistrationAddComponent },
+
+  { path: 'MissionRegistration', component: MissionRegistrationComponent },
+  { path: 'ProfessorsReports', component: ProfessorsReportsComponent },
+  { path: 'RemoteWorkRegistration', component: RemoteWorkRegistrationComponent },
+  { path: 'RemoteWorkRegistration/Add', component: RemoteWorkRegistrationAddComponent },
+  { path: 'SubstituteTeacherRegistration', component: SubstituteTeacherRegistrationComponent },
+  { path: 'SubstituteTeacherRegistration/Add', component: SubstituteTeacherAddComponent },
+  { path: 'Survey', component: SurveyComponent },
+  { path: 'TeachersDelay', component: TeachersDelayComponent }
 ];
 
 @NgModule({

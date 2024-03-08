@@ -11,7 +11,7 @@
       <input type="text" placeholder="جستجو" [(ngModel)]="SearchValue"   class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
     </div>
       <div class="flex items-center gap-x-2">
-        <a  class="flex justify-center rounded px-5 bg-primary py-2 font-medium text-gray">
+        <a [routerLink]="['/AuditReports/SubstituteTeacherRegistration/Add']"  class="flex justify-center rounded px-5 bg-primary py-2 font-medium text-gray">
           افزودن</a>
       </div>
     </div>

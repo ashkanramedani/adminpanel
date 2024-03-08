@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { IMissionForm } from 'src/app/interfaces/IMissionForm';
+import { IMissionRegisteration } from 'src/app/interfaces/IMissionRegisteration';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -11,7 +11,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class MissionRegistrationComponent implements OnInit {
 
-  ResponseDataList: IMissionForm[] = []
+  ResponseDataList: IMissionRegisteration[] = []
   ResponseDataLenght: number[];
   SearchValue: string
   isCheckedStatus: number;

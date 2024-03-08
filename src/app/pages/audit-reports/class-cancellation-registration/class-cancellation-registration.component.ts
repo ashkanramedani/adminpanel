@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { IClassCancellationForm } from 'src/app/interfaces/IClassCancellationForm';
+import { IClassCancellation } from 'src/app/interfaces/IClassCancellation';
 import { ITeacherDelayForm } from 'src/app/interfaces/ITeacherDelayForm';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
@@ -13,7 +13,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class ClassCancellationRegistrationComponent implements OnInit {
 
-  ResponseDataList: IClassCancellationForm[] = []
+  ResponseDataList: IClassCancellation[] = []
   ResponseDataLenght: number[];
   SearchValue: string
   isCheckedStatus: number;
@@ -25,6 +25,8 @@ export class ClassCancellationRegistrationComponent implements OnInit {
   }
   GetResponseData() {
     this.http.getAll(Domain.GetClassCancellation).subscribe((response) => {
+      this.ResponseDataList=response;
+      this.isLoading=false;
       console.log(response)
     })
   }
@@ -37,7 +39,7 @@ export class ClassCancellationRegistrationComponent implements OnInit {
       'آیا از حذف این آیتم اطمینان دارید؟',
       () => {
         this.http
-        .deleteWithQuery(`${Domain.DeleteRemoteWorkRegistration}?form_id=${id}`)
+        .deleteWithQuery(`${Domain.DeleteClassCancellation}?form_id=${id}`)
           .subscribe((response) => {
             console.log(response);
           });

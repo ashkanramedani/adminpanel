@@ -1,0 +1,84 @@
+<div class="header flex justify-between items-center p-3">
+    <nav>
+      <ol class="flex items-center gap-1 text-sm w-max">
+        <li>
+          <span class="font-medium"> گزارشات حسابرسی /</span>
+        </li>
+        <li class="font-medium text-primary">فرم ثبت  کنسلی کلاس/</li>
+        <li class="font-medium text-primary"> افزودن</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="rounded-md border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+  
+    <form [formGroup]="ReportForm" class="grid lg:grid-cols-2 grid-cols-1 gap-6.5 p-6.5">
+  
+      <div>
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          ثبت کننده
+          <span class="text-meta-1">*</span>
+        </label>
+        <select formControlName="created_fk_by"  [ngClass]="{'input-invalid': (this.ReportForm.controls.created_fk_by.invalid) &&(this.ReportForm.controls.created_fk_by.dirty ||this.ReportForm.controls.created_fk_by.touched)}"   class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+          <option *ngFor="let emp of EmployiesData " [value]="emp.employees_pk_id" >{{emp.name + " "+emp.last_name}}</option>
+        </select>
+      </div>
+      <div>
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+         وضعیت
+          <span class="text-meta-1">*</span>
+        </label>
+        <select formControlName="status"  [ngClass]="{'input-invalid': (this.ReportForm.controls.status.invalid) &&(this.ReportForm.controls.status.dirty ||this.ReportForm.controls.status.touched)}"   class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+            <option value="1">فعال</option>
+            <option value="0">غیر فعال</option>
+          </select>
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+         کلاس
+        </label>
+        <select formControlName="class_fk_id"  [ngClass]="{'input-invalid': (this.ReportForm.controls.class_fk_id.invalid) &&(this.ReportForm.controls.class_fk_id.dirty ||this.ReportForm.controls.class_fk_id.touched)}"   class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+          <option *ngFor="let item of ClassData" [value]="item.class_pk_id"> {{item.name}}</option>
+        </select>
+      </div>
+      <div>
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          نام استاد
+          <span class="text-meta-1">*</span>
+        </label>
+        <select formControlName="teacher_fk_id"  [ngClass]="{'input-invalid': (this.ReportForm.controls.teacher_fk_id.invalid) &&(this.ReportForm.controls.teacher_fk_id.dirty ||this.ReportForm.controls.teacher_fk_id.touched)}"   class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+          <option *ngFor="let emp of EmployiesData " [value]="emp.employees_pk_id" >{{emp.name + " "+emp.last_name}}</option>
+        </select>
+      </div>
+      <div>
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          تاریخ جابجایی
+        </label>
+        <input type="text" formControlName="replacement_date" class="form-control">
+      </div>
+      <div>
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          مدت کلاس
+        </label>
+        <input type="text" formControlName="class_duration" class="form-control">
+      </div>
+      <div>
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          مکان کلاس
+        </label>
+        <input type="text" formControlName="class_location" class="form-control">
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          توضیحات
+        </label>
+        <input type="text" formControlName="description" class="form-control">
+      </div>
+    </form>
+    <div class="flex justify-end p-6.5 items-center gap-x-2">
+    {{ReportForm.errors }}
+      <button  (click)="onSubmit()"
+        class="flex disabled:bg-secondary justify-center rounded bg-primary py-2 px-5 font-medium text-gray">افزودن</button>
+      <a [routerLink]="['/AuditReports/ClassCancellation']"
+        class="flex justify-center rounded bg-bodydark py-2 px-5 font-medium text-black-2">بازگشت</a>
+    </div>
+  </div>

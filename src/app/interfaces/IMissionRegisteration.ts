@@ -1,6 +1,6 @@
 import { IUser } from "./IUser"
 
-export interface IMissionForm
+export interface IMissionRegisteration
 {
     business_trip_pk_id: string
     destination: string

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { ILeaveRequestForm } from 'src/app/interfaces/ILeaveRequestForm';
+import { ILeaveRequest } from 'src/app/interfaces/ILeaveRequest';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -11,7 +11,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class LeaveRegistrationComponent implements OnInit {
 
-  ResponseDataList: ILeaveRequestForm[] = []
+  ResponseDataList: ILeaveRequest[] = []
   ResponseDataLenght: number[];
   SearchValue: string
    mydate = new Date(2024,2,21);

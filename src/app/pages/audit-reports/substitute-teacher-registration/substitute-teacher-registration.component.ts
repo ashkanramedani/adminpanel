@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { ISubstituteTeacherForm } from 'src/app/interfaces/ISubstituteTeacherForm';
+import { ISubstituteTeacher } from 'src/app/interfaces/ISubstituteTeacher';
 import { ITeacherDelayForm } from 'src/app/interfaces/ITeacherDelayForm';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
@@ -13,7 +13,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class SubstituteTeacherRegistrationComponent implements OnInit {
 
-  ResponseDataList: ISubstituteTeacherForm[] = []
+  ResponseDataList: ISubstituteTeacher[] = []
   ResponseDataLenght: number[];
   SearchValue: string
   isCheckedStatus: number;

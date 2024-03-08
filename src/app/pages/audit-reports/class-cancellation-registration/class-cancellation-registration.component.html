@@ -11,17 +11,8 @@
       <input type="text" placeholder="جستجو" [(ngModel)]="SearchValue"   class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
     </div>
       <div class="flex items-center gap-x-2">
-        <a [routerLink]="['/contents/add']" class="flex justify-center rounded px-5 bg-primary py-2 font-medium text-gray">
+        <a [routerLink]="['/AuditReports/ClassCancellation/Add']" class="flex justify-center rounded px-5 bg-primary py-2 font-medium text-gray">
           افزودن</a>
-        <!-- <button (click)="RemoveMultiItem()" *ngIf="selected_response_ids.length>1"
-          class="flex w-full text-meta-1 justify-center rounded px-5 border-meta-1 border py-2 font-medium hover:bg-meta-1 hover:text-white">حذف
-          آیتم ها</button> -->
-          <select *ngIf="selected_response_ids.length>1" (change)="ChangeStatusMultiItem($event)"    class="w-auto dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-            <option selected disabled value="-1"> انتخاب وضعیت</option>
-            <option value="0">غیر فعال</option>
-            <option value="1"> تایید نشده</option>
-            <option value="2"> فعال</option>
-          </select>
       </div>
     </div>
     <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -45,14 +36,23 @@
           <table class="w-full table-auto text-center" *ngIf="!isLoading">
             <thead>
               <tr class="bg-gray-2 text-left dark:bg-meta-4">
-                <th class="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11 text-center">
-                  عنوان
+                <th class="  py-4 px-4 font-medium text-black dark:text-white xl:pl-11 text-center">
+                  تاریخ جابجایی
                 </th>
-                <th class="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white text-center">
-                  تاریخ
+                <th class="  py-4 px-4 font-medium text-black dark:text-white text-center">
+                  مدت کلاس
                 </th>
-                <th class="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white text-center">
-                  وضعیت
+                <th class="  py-4 px-4 font-medium text-black dark:text-white text-center">
+                  مکان کلاس
+                </th>
+                <th class="  py-4 px-4 font-medium text-black dark:text-white text-center">
+                  ایجاد کننده
+                </th>
+                <th class="  py-4 px-4 font-medium text-black dark:text-white text-center">
+                  استاد
+                </th>
+                <th class="  py-4 px-4 font-medium text-black dark:text-white text-center">
+                  کلاس
                 </th>
                 <th class="py-4 px-4 font-medium text-black dark:text-white text-center">
                   عملیات
@@ -78,32 +78,27 @@
               <tr *ngFor="let item of ResponseDataList | filter: this.SearchValue">
                 <td class="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                   <div class="flex items-center gap-x-2">
-                    <input type="checkbox" class="w-4 h-4"  (change)="checkToDeletedCheckBox($event,item.post_pk_id)">
-                    <img class="w-10" src="https://ieltsdaily.ir/static/img/blogs/{{item.post_image}}" alt="">
-                    <span>{{item.post_title}}</span>
+                    <span>{{item.replacement_date|date: "YYYY/MM/dd"}}</span>
                   </div>
                 </td>
                 <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <span>{{item.expier_date|date: "YYYY/MM/dd" }}</span>
+                  <span>{{item.class_duration}}</span>
                 </td>
                 <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <span [ngClass]="ShowTitleStatus(item.post_status).classStatus" >{{ShowTitleStatus(item.post_status).title  }}</span>
+                  <span>{{item.class_location}}</span>
+                </td>
+                <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                  <span>{{item.created.name + ""+ item.created.last_name }}</span>
+                </td>
+                <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                  <span>{{item.teacher.name + ""+ item.teacher.last_name }}</span>
+                </td>
+                <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                  <span>{{item.classes.name }}</span>
                 </td>
                 <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <div class="flex items-center gap-x-2">
-                    <a title="نمایش" target="_blank"
-                      href="https://ieltsdaily.ir/blogs/{{item.post_pk_id}}/{{item.post_title.replace(' ','-')}}"
-                      class="hover:text-primary">
-                      <svg class="w-5 fill-current" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M8.99981 14.8219C3.43106 14.8219 0.674805 9.50624 0.562305 9.28124C0.47793 9.11249 0.47793 8.88749 0.562305 8.71874C0.674805 8.49374 3.43106 3.20624 8.99981 3.20624C14.5686 3.20624 17.3248 8.49374 17.4373 8.71874C17.5217 8.88749 17.5217 9.11249 17.4373 9.28124C17.3248 9.50624 14.5686 14.8219 8.99981 14.8219ZM1.85605 8.99999C2.4748 10.0406 4.89356 13.5562 8.99981 13.5562C13.1061 13.5562 15.5248 10.0406 16.1436 8.99999C15.5248 7.95936 13.1061 4.44374 8.99981 4.44374C4.89356 4.44374 2.4748 7.95936 1.85605 8.99999Z"
-                          fill=""></path>
-                        <path
-                          d="M9 11.3906C7.67812 11.3906 6.60938 10.3219 6.60938 9C6.60938 7.67813 7.67812 6.60938 9 6.60938C10.3219 6.60938 11.3906 7.67813 11.3906 9C11.3906 10.3219 10.3219 11.3906 9 11.3906ZM9 7.875C8.38125 7.875 7.875 8.38125 7.875 9C7.875 9.61875 8.38125 10.125 9 10.125C9.61875 10.125 10.125 9.61875 10.125 9C10.125 8.38125 9.61875 7.875 9 7.875Z"
-                          fill=""></path>
-                      </svg>
-                    </a>
-                    <a [routerLink]="['/contents/edit/',item.post_pk_id]" title="ویرایش" class="hover:text-primary">
+                    <a [routerLink]="['/']" title="ویرایش" class="hover:text-primary">
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-current" viewBox="0 0 16 16">
                         <path
                           d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z">
@@ -113,7 +108,7 @@
                         </path>
                       </svg>
                     </a>
-                    <button title="حذف" (click)="RemoveItem(item.post_pk_id)" class="hover:text-primary">
+                    <button title="حذف" (click)="RemoveItem(item.class_cancellation_pk_id)" class="hover:text-primary">
                       <svg class="w-5 fill-current" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                           d="M13.7535 2.47502H11.5879V1.9969C11.5879 1.15315 10.9129 0.478149 10.0691 0.478149H7.90352C7.05977 0.478149 6.38477 1.15315 6.38477 1.9969V2.47502H4.21914C3.40352 2.47502 2.72852 3.15002 2.72852 3.96565V4.8094C2.72852 5.42815 3.09414 5.9344 3.62852 6.1594L4.07852 15.4688C4.13477 16.6219 5.09102 17.5219 6.24414 17.5219H11.7004C12.8535 17.5219 13.8098 16.6219 13.866 15.4688L14.3441 6.13127C14.8785 5.90627 15.2441 5.3719 15.2441 4.78127V3.93752C15.2441 3.15002 14.5691 2.47502 13.7535 2.47502ZM7.67852 1.9969C7.67852 1.85627 7.79102 1.74377 7.93164 1.74377H10.0973C10.2379 1.74377 10.3504 1.85627 10.3504 1.9969V2.47502H7.70664V1.9969H7.67852ZM4.02227 3.96565C4.02227 3.85315 4.10664 3.74065 4.24727 3.74065H13.7535C13.866 3.74065 13.9785 3.82502 13.9785 3.96565V4.8094C13.9785 4.9219 13.8941 5.0344 13.7535 5.0344H4.24727C4.13477 5.0344 4.02227 4.95002 4.02227 4.8094V3.96565ZM11.7285 16.2563H6.27227C5.79414 16.2563 5.40039 15.8906 5.37227 15.3844L4.95039 6.2719H13.0785L12.6566 15.3844C12.6004 15.8625 12.2066 16.2563 11.7285 16.2563Z"
@@ -129,24 +124,6 @@
                           fill=""></path>
                       </svg>
                     </button>
-  
-                    <label *ngIf="false" title="تغییر وضعیت" for="checkboxLabel_{{item.post_pk_id}}"
-                      class="flex cursor-pointer select-none items-center text-sm font-medium">
-                      <div class="relative">
-                        <input [checked]="isCheckedStatus==item.post_pk_id" [value]="item.post_pk_id" type="checkbox" id="checkboxLabel_{{item.post_pk_id}}" class="sr-only"
-                          (change)="ChangeStatusCheckbox($event) ">
-                        <div [ngClass]="{'border-primary bg-gray dark:bg-transparent': (isCheckedStatus==item.post_pk_id) }"
-                          class="flex h-5 w-5 items-center justify-center rounded border border-primary bg-gray dark:bg-transparent">
-                          <span [ngClass]="{'!opacity-100': (isCheckedStatus==item.post_pk_id) }" class="opacity-0">
-                            <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path
-                                d="M10.0915 0.951972L10.0867 0.946075L10.0813 0.940568C9.90076 0.753564 9.61034 0.753146 9.42927 0.939309L4.16201 6.22962L1.58507 3.63469C1.40401 3.44841 1.11351 3.44879 0.932892 3.63584C0.755703 3.81933 0.755703 4.10875 0.932892 4.29224L0.932878 4.29225L0.934851 4.29424L3.58046 6.95832C3.73676 7.11955 3.94983 7.2 4.1473 7.2C4.36196 7.2 4.55963 7.11773 4.71406 6.9584L10.0468 1.60234C10.2436 1.4199 10.2421 1.1339 10.0915 0.951972ZM4.2327 6.30081L4.2317 6.2998C4.23206 6.30015 4.23237 6.30049 4.23269 6.30082L4.2327 6.30081Z"
-                                fill="#3056D3" stroke="#3056D3" stroke-width="0.4"></path>
-                            </svg>
-                          </span>
-                        </div>
-                      </div>
-                    </label>
                   </div>
                 </td>
               </tr>
