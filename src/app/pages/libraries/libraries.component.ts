@@ -12,7 +12,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class LibrariesComponent implements OnInit {
   SearchValue: string
-  ContentsDataLenght: number[];
+  LibrariessDataLenght: number[];
   filteredCount = { count: 0 };
   content_type: string;
   librariessData: IPost[] = [];
@@ -34,7 +34,13 @@ export class LibrariesComponent implements OnInit {
   }
   GetLibrariesData()
   {
-
+    this.http
+    .getAll(`${Domain.GetLibrary}/${this.content_type}/read`)
+    .subscribe((response) => {
+      this.isLoading = false;
+      this.librariessData = response;
+      this.LibrariessDataLenght = new Array(Math.ceil(response.length / 15))
+    });
   }
   GetTitle() {
     switch (this.content_type) {
@@ -59,7 +65,7 @@ export class LibrariesComponent implements OnInit {
       .subscribe((response) => {
         this.isLoading = false;
         this.librariessData = response;
-        this.ContentsDataLenght = new Array(Math.ceil(response.length / 15))
+        this.LibrariessDataLenght = new Array(Math.ceil(response.length / 15))
       });
   }
   ChangeStatusCheckbox(event: any) {
