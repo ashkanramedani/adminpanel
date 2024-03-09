@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
 import { IRemoteRequest } from 'src/app/interfaces/IRemoteRequest';
-import { ITeacherDelayForm } from 'src/app/interfaces/ITeacherDelayForm';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 

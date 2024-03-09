@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { ITeacherDelayForm } from 'src/app/interfaces/ITeacherDelayForm';
+import { ITeacherDelay } from 'src/app/interfaces/ITeacherDelay';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -11,7 +11,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class TeachersDelayComponent implements OnInit {
 
-  ResponseDataList: ITeacherDelayForm[] = []
+  ResponseDataList: ITeacherDelay[] = []
   ResponseDataLenght: number[];
   SearchValue: string
   isCheckedStatus: number;
@@ -23,7 +23,9 @@ export class TeachersDelayComponent implements OnInit {
   }
   GetResponseData() {
     this.http.getAll(Domain.GetTeachersDelay).subscribe((response) => {
+      this.ResponseDataList=response;
       console.log(response)
+      this.isLoading=false
     })
   }
   ChangeStatusCheckbox(event: any) {
@@ -35,7 +37,7 @@ export class TeachersDelayComponent implements OnInit {
       'آیا از حذف این آیتم اطمینان دارید؟',
       () => {
         this.http
-          .delete(Domain.DeletePost + '/blog/delete', id)
+        .deleteWithQuery(`${Domain.DeleteTeachersDelay}?form_id=${id}`)
           .subscribe((response) => {
             console.log(response);
           });
@@ -45,33 +47,6 @@ export class TeachersDelayComponent implements OnInit {
       () => { }
     );
   }
-
-  // RemoveMultiItem() {
-  //   if (this.selected_response_ids.length > 0) {
-  //     console.log(this.selected_response_ids);
-  //     this.alertServices.confirm(
-  //       ' حذف آیتم ها',
-  //       'آیا از حذف این آیتم ها اطمینان دارید؟',
-  //       () => {
-  //         this.http
-  //           .deleteWithBody(
-  //             `${Domain.GroupDeletePost}/${this.content_type}/group-delete`,
-  //             this.selected_response_ids,
-  //             null
-  //           )
-  //           .subscribe((response) => {
-  //             console.log(response);
-  //             if (response != null) {
-  //               this.GetResponseData();
-  //               this.alertServices.success('آیتم ها با موفقیت حذف شدند');
-  //               this.selected_response_ids = []
-  //             }
-  //           });
-  //       },
-  //       () => { }
-  //     );
-  //   } else this.alertServices.warning('آیتمی برای حذف انتخاب نشده است');
-  // }
   checkToDeletedCheckBox(event: any, id: number) {
     if (event?.target.checked) {
       this.selected_response_ids.push(id);

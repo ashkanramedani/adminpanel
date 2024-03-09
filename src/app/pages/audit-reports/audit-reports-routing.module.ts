@@ -15,6 +15,7 @@ import { MissionRegistrationAddComponent } from './mission-registration/mission-
 import { RemoteWorkRegistrationAddComponent } from './remote-work-registration/remote-work-registration-add/remote-work-registration-add.component';
 import { SubstituteTeacherAddComponent } from './substitute-teacher-registration/substitute-teacher-add/substitute-teacher-add.component';
 import { ClassCancellationAddComponent } from './class-cancellation-registration/class-cancellation-add/class-cancellation-add.component';
+import { TeachersDelayAddComponent } from './teachers-delay/teachers-delay-add/teachers-delay-add.component';
 
 const routes: Routes = [
   { path: '', component: AuditReportsComponent },
@@ -33,7 +34,9 @@ const routes: Routes = [
   { path: 'SubstituteTeacherRegistration', component: SubstituteTeacherRegistrationComponent },
   { path: 'SubstituteTeacherRegistration/Add', component: SubstituteTeacherAddComponent },
   { path: 'Survey', component: SurveyComponent },
-  { path: 'TeachersDelay', component: TeachersDelayComponent }
+  { path: 'TeachersDelay', component: TeachersDelayComponent },
+  { path: 'TeachersDelay/Add', component: TeachersDelayAddComponent }
+
 ];
 
 @NgModule({

@@ -25,6 +25,8 @@ export const Domain =
     "GetEmployees": `${environment.apiUrl}user/employees`,
     "GroupDeletePost": `${environment.apiUrl}post`,
     "GetTeachersDelay": `${environment.apiUrl}form/tardy_request/search`,
+    "DeleteTeachersDelay": `${environment.apiUrl}form/tardy_request/delete`,
+    "CreateTeachersDelay": `${environment.apiUrl}form/tardy_request/add`,
     "GetClassCancellation": `${environment.apiUrl}form/class_cancellation/search`,
     "DeleteClassCancellation": `${environment.apiUrl}form/class_cancellation/delete`,
     "CreateClassCancellation": `${environment.apiUrl}form/class_cancellation/add`,

@@ -22,9 +22,10 @@ import { MissionRegistrationAddComponent } from './mission-registration/mission-
 import { RemoteWorkRegistrationAddComponent } from './remote-work-registration/remote-work-registration-add/remote-work-registration-add.component';
 import { SubstituteTeacherAddComponent } from './substitute-teacher-registration/substitute-teacher-add/substitute-teacher-add.component';
 import { ClassCancellationAddComponent } from './class-cancellation-registration/class-cancellation-add/class-cancellation-add.component';
+import { TeachersDelayAddComponent } from './teachers-delay/teachers-delay-add/teachers-delay-add.component';
 
 @NgModule({
-    declarations: [ClassCancellationAddComponent,SubstituteTeacherAddComponent,RemoteWorkRegistrationAddComponent,LeaveRegistrationAddComponent, AuditReportsComponent, ClassCancellationRegistrationComponent, EmployeeEntryExitComponent, LeaveRegistrationComponent, MissionRegistrationComponent, ProfessorsReportsComponent, RemoteWorkRegistrationComponent, SubstituteTeacherRegistrationComponent, SurveyComponent, TeachersDelayComponent,MissionRegistrationAddComponent],
+    declarations: [TeachersDelayAddComponent,ClassCancellationAddComponent,SubstituteTeacherAddComponent,RemoteWorkRegistrationAddComponent,LeaveRegistrationAddComponent, AuditReportsComponent, ClassCancellationRegistrationComponent, EmployeeEntryExitComponent, LeaveRegistrationComponent, MissionRegistrationComponent, ProfessorsReportsComponent, RemoteWorkRegistrationComponent, SubstituteTeacherRegistrationComponent, SurveyComponent, TeachersDelayComponent,MissionRegistrationAddComponent],
     imports: [
         NgPersianDatepickerModule,
         CKEditorModule,

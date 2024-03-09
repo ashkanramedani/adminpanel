@@ -26,7 +26,7 @@
           نام پرسنل
           <span class="text-meta-1">*</span>
         </label>
-        <select formControlName="employee_fk_id"  [ngClass]="{'input-invalid': (this.ReportForm.controls.created_fk_by.invalid) &&(this.ReportForm.controls.created_fk_by.dirty ||this.ReportForm.controls.created_fk_by.touched)}"   class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+        <select formControlName="employee_fk_id"  [ngClass]="{'input-invalid': (this.ReportForm.controls.employee_fk_id.invalid) &&(this.ReportForm.controls.employee_fk_id.dirty ||this.ReportForm.controls.employee_fk_id.touched)}"   class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
           <option *ngFor="let emp of EmployiesData " [value]="emp.employees_pk_id" >{{emp.name + " "+emp.last_name}}</option>
         </select>
       </div>
@@ -49,8 +49,9 @@
       <div >
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
           مقصد
+          <span class="text-meta-1">*</span>
         </label>
-        <input type="text" formControlName="destination" class="form-control">
+        <input type="text" formControlName="destination" class="form-control"  [ngClass]="{'input-invalid': (this.ReportForm.controls.destination.invalid) &&(this.ReportForm.controls.destination.dirty ||this.ReportForm.controls.destination.touched)}">
       </div>
       <div>
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
@@ -60,8 +61,7 @@
       </div>
     </form>
     <div class="flex justify-end p-6.5 items-center gap-x-2">
-    {{ReportForm.errors }}
-      <button  (click)="onSubmit()"
+      <button  [disabled]="this.ReportForm.invalid "  (click)="onSubmit()"
         class="flex disabled:bg-secondary justify-center rounded bg-primary py-2 px-5 font-medium text-gray">افزودن</button>
       <a [routerLink]="['/AuditReports/MissionRegistration']"
         class="flex justify-center rounded bg-bodydark py-2 px-5 font-medium text-black-2">بازگشت</a>

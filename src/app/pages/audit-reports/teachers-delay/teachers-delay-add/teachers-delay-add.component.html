@@ -4,7 +4,7 @@
         <li>
           <span class="font-medium"> گزارشات حسابرسی /</span>
         </li>
-        <li class="font-medium text-primary">فرم ثبت  کنسلی کلاس/</li>
+        <li class="font-medium text-primary">فرم ثبت   تاخیر استاد/</li>
         <li class="font-medium text-primary"> افزودن</li>
       </ol>
     </nav>
@@ -52,36 +52,22 @@
       </div>
       <div>
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
-          تاریخ جابجایی
-          <span class="text-meta-1">*</span>
+        تاخیر
+        <span class="text-meta-1">*</span>
         </label>
-        <input type="text" formControlName="replacement_date" class="form-control" [ngClass]="{'input-invalid': (this.ReportForm.controls.replacement_date.invalid) &&(this.ReportForm.controls.replacement_date.dirty ||this.ReportForm.controls.replacement_date.touched)}" >
+        <input type="text" formControlName="delay" class="form-control" [ngClass]="{'input-invalid': (this.ReportForm.controls.delay.invalid) &&(this.ReportForm.controls.delay.dirty ||this.ReportForm.controls.delay.touched)}">
       </div>
       <div>
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
-          مدت کلاس
-          <span class="text-meta-1">*</span>
-        </label>
-        <input type="text" formControlName="class_duration" class="form-control" [ngClass]="{'input-invalid': (this.ReportForm.controls.class_duration.invalid) &&(this.ReportForm.controls.class_duration.dirty ||this.ReportForm.controls.class_duration.touched)}">
-      </div>
-      <div>
-        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white" >
-          مکان کلاس
-          <span class="text-meta-1">*</span>
-        </label>
-        <input type="text" formControlName="class_location" class="form-control" [ngClass]="{'input-invalid': (this.ReportForm.controls.class_location.invalid) &&(this.ReportForm.controls.class_location.dirty ||this.ReportForm.controls.class_location.touched)}">
-      </div>
-      <div >
-        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
-          توضیحات
+        توضیحات
         </label>
         <input type="text" formControlName="description" class="form-control">
       </div>
     </form>
     <div class="flex justify-end p-6.5 items-center gap-x-2">
-      <button   [disabled]="this.ReportForm.invalid"  (click)="onSubmit()"
+      <button [disabled]="this.ReportForm.invalid " (click)="onSubmit()"
         class="flex disabled:bg-secondary justify-center rounded bg-primary py-2 px-5 font-medium text-gray">افزودن</button>
-      <a [routerLink]="['/AuditReports/ClassCancellation']"
+      <a [routerLink]="['/AuditReports/TeachersDelay']"
         class="flex justify-center rounded bg-bodydark py-2 px-5 font-medium text-black-2">بازگشت</a>
     </div>
   </div>
