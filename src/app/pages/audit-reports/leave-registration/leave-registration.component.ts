@@ -23,7 +23,7 @@ export class LeaveRegistrationComponent implements OnInit {
     this.GetResponseData()
   }
   GetResponseData() {
-    this.http.getAll(Domain.GetLeaveRegistration).subscribe((response) => {
+    this.http.getAll(Domain.GetLeaveRegistration+"?page=1&limit=100").subscribe((response) => {
       this.ResponseDataList=response;
       this.isLoading=false;
     })

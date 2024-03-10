@@ -35,16 +35,18 @@
           تاریخ شروع
           <span class="text-meta-1">*</span>
         </label>
-        <input type="text" formControlName="start_date" class="form-control"
-          [ngClass]="{'input-invalid': (this.ReportForm.controls.start_date.invalid) &&(this.ReportForm.controls.start_date.dirty ||this.ReportForm.controls.start_date.touched)}">
+        <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'YYYY/MM/DD    HH:mm'" [uiTodayBtnEnable]="false" [timeEnable]="true"  [dateInitValue]="false">
+          <input type="text"  formControlName="start_date" dir="ltr"  class="w-full  dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+        </ng-persian-datepicker>
       </div>
       <div>
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
           تاریخ اتمام
           <span class="text-meta-1">*</span>
         </label>
-        <input type="text" formControlName="end_date" class="form-control"
-          [ngClass]="{'input-invalid': (this.ReportForm.controls.end_date.invalid) &&(this.ReportForm.controls.end_date.dirty ||this.ReportForm.controls.end_date.touched)}">
+        <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'YYYY/MM/DD    HH:mm'" [uiTodayBtnEnable]="false" [timeEnable]="true"  [dateInitValue]="false">
+          <input type="text"  formControlName="end_date" dir="ltr"  class="w-full  dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+        </ng-persian-datepicker>
       </div>
       <div >
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">

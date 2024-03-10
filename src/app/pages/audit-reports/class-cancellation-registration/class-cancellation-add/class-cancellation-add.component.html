@@ -55,14 +55,16 @@
           تاریخ جابجایی
           <span class="text-meta-1">*</span>
         </label>
-        <input type="text" formControlName="replacement_date" class="form-control" [ngClass]="{'input-invalid': (this.ReportForm.controls.replacement_date.invalid) &&(this.ReportForm.controls.replacement_date.dirty ||this.ReportForm.controls.replacement_date.touched)}" >
+        <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'YYYY/MM/DD    HH:mm'" [uiTodayBtnEnable]="false" [timeEnable]="true"  [dateInitValue]="false">
+          <input type="text"  formControlName="replacement_date" dir="ltr"  class="w-full  dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+        </ng-persian-datepicker>
       </div>
       <div>
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
           مدت کلاس
           <span class="text-meta-1">*</span>
         </label>
-        <input type="text" formControlName="class_duration" class="form-control" [ngClass]="{'input-invalid': (this.ReportForm.controls.class_duration.invalid) &&(this.ReportForm.controls.class_duration.dirty ||this.ReportForm.controls.class_duration.touched)}">
+        <input type="number" formControlName="class_duration" class="form-control" [ngClass]="{'input-invalid': (this.ReportForm.controls.class_duration.invalid) &&(this.ReportForm.controls.class_duration.dirty ||this.ReportForm.controls.class_duration.touched)}">
       </div>
       <div>
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white" >
@@ -81,7 +83,7 @@
     <div class="flex justify-end p-6.5 items-center gap-x-2">
       <button   [disabled]="this.ReportForm.invalid"  (click)="onSubmit()"
         class="flex disabled:bg-secondary justify-center rounded bg-primary py-2 px-5 font-medium text-gray">افزودن</button>
-      <a [routerLink]="['/AuditReports/ClassCancellation']"
+      <a [routerLink]="['/AuditReports/ClassCancellationRegistration']"
         class="flex justify-center rounded bg-bodydark py-2 px-5 font-medium text-black-2">بازگشت</a>
     </div>
   </div>
