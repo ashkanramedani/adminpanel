@@ -17,13 +17,22 @@ export class LeaveRegistrationComponent implements OnInit {
    mydate = new Date(2024,2,21);
   isCheckedStatus: number;
   isLoading: boolean = true
-  selected_response_ids: number[] = [];
+  currentPage:number=1
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
-    this.GetResponseData()
+    this.GetResponseData(1,10)
+    this.GetResponseDataLenght()
   }
-  GetResponseData() {
-    this.http.getAll(Domain.GetLeaveRegistration+"?page=1&limit=100").subscribe((response) => {
+  GetResponseDataLenght()
+  {
+    this.http.getAll(`${Domain.GetCount}?table=Leave Forms`).subscribe((response)=>
+    {
+      this.ResponseDataLenght = new Array(Math.ceil(response / 10))
+    })
+  }
+  GetResponseData(page:number,limit:number) {
+    this.isLoading=true
+    this.http.getAll(`${Domain.GetLeaveRegistration}?page=${page}&limit=${limit}&order=desc`).subscribe((response) => {
       this.ResponseDataList=response;
       this.isLoading=false;
     })
@@ -41,18 +50,10 @@ export class LeaveRegistrationComponent implements OnInit {
           .subscribe((response) => {
             console.log(response);
           });
-        this.GetResponseData();
+        this.GetResponseData(1,10);
         this.alertServices.success('آیتم با موفقیت حذف شد');
       },
       () => { }
     );
-  }
-  checkToDeletedCheckBox(event: any, id: number) {
-    if (event?.target.checked) {
-      this.selected_response_ids.push(id);
-    } else {
-      let index = this.selected_response_ids.indexOf(id);
-      this.selected_response_ids.splice(index, 1);
-    }
   }
 }

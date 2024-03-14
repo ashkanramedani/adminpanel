@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { response } from 'express';
 import { Domain } from 'src/app/domain/doamin';
 import { ITeacherDelay } from 'src/app/interfaces/ITeacherDelay';
 import { AlertifyService } from 'src/app/services/alertify.service';
@@ -13,18 +14,31 @@ export class TeachersDelayComponent implements OnInit {
 
   ResponseDataList: ITeacherDelay[] = []
   ResponseDataLenght: number[];
+  totalCount:number=0
   SearchValue: string
   isCheckedStatus: number;
   isLoading: boolean = true
-  selected_response_ids: number[] = [];
+  // page:number=1
+  // limit:number=10
+  currentPage:number=1
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
-    this.GetResponseData()
+    this.GetResponseData(1,10)
+    this.GetResponseDataLenght()
   }
-  GetResponseData() {
-    this.http.getAll(Domain.GetTeachersDelay).subscribe((response) => {
+  GetResponseDataLenght()
+  {
+    this.http.getAll(`${Domain.GetCount}?table=Tardy Request`).subscribe((response)=>
+    {
+      this.totalCount=response
+      this.ResponseDataLenght = new Array(Math.ceil(response / 10))
+    })
+  }
+  GetResponseData(page:number,limit:number) {
+    this.isLoading=true;
+    this.currentPage=page;
+    this.http.getAll(`${Domain.GetTeachersDelay}?page=${page}&limit=${limit}&order=desc`).subscribe((response) => {
       this.ResponseDataList=response;
-      console.log(response)
       this.isLoading=false
     })
   }
@@ -41,20 +55,13 @@ export class TeachersDelayComponent implements OnInit {
           .subscribe((response) => {
             console.log(response);
           });
-        this.GetResponseData();
+        this.GetResponseData(1,10);
         this.alertServices.success('آیتم با موفقیت حذف شد');
       },
       () => { }
     );
   }
-  checkToDeletedCheckBox(event: any, id: number) {
-    if (event?.target.checked) {
-      this.selected_response_ids.push(id);
-    } else {
-      let index = this.selected_response_ids.indexOf(id);
-      this.selected_response_ids.splice(index, 1);
-    }
-  }
+
   ShowTitleStatus(status: Number) {
     var title = "";
     var classStatus = "";
@@ -76,38 +83,5 @@ export class TeachersDelayComponent implements OnInit {
         break;
     }
     return { title: title, classStatus: classStatus }
-  }
-  ChangeStatusMultiItem(event: any) {
-    if (this.selected_response_ids.length > 0) {
-      let items_to_changed_status: { post_pk_id: Number, post_status: Number }[] = [];
-      for (let index = 0; index < this.selected_response_ids.length; index++) {
-        items_to_changed_status.push({
-          post_pk_id: this.selected_response_ids[index],
-          post_status: event.target.value
-        })
-      }
-      this.alertServices.confirm(
-        ' تغییر وضعیت آیتم ها',
-        'آیا از تغییر وضعیت این آیتم ها اطمینان دارید؟',
-        () => {
-          //TODO
-          this.http
-            .patch(
-              `${Domain.ChangeGroupStatus}`,
-              items_to_changed_status,
-              null
-            )
-            .subscribe((response) => {
-              console.log(response);
-              if (response != null) {
-                this.GetResponseData();
-                this.alertServices.success('آیتم ها با موفقیت تغییر وضعیت داده شدند');
-                this.selected_response_ids = []
-              }
-            });
-        },
-        () => { }
-      );
-    } else this.alertServices.warning('آیتمی برای تغییر وضعیت انتخاب نشده است');
   }
 }

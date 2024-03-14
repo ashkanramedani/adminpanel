@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
+import { ISurvey } from 'src/app/interfaces/ISurvey';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -10,19 +11,30 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class SurveyComponent implements OnInit {
 
-  ResponseDataList: any[] = []
+  ResponseDataList: ISurvey[] = []
   ResponseDataLenght: number[];
   SearchValue: string
   isCheckedStatus: number;
   isLoading: boolean = true
-  selected_response_ids: number[] = [];
+  currentPage:number=1
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
-    this.GetResponseData()
+    this.GetResponseData(1,10)
+    this.GetResponseDataLenght()
   }
-  GetResponseData() {
-    this.http.getAll(Domain.GetSurvey).subscribe((response) => {
+  GetResponseDataLenght()
+  {
+    this.http.getAll(`${Domain.GetCount}?table=survey`).subscribe((response)=>
+    {
+      this.ResponseDataLenght = new Array(Math.ceil(response / 10))
+    })
+  }
+  GetResponseData(page:number,limit:number) {
+    this.isLoading=true
+    this.http.getAll(`${Domain.GetSurvey}?page=${page}&limit=${limit}&order=desc`).subscribe((response) => {
+      this.ResponseDataList=response
       console.log(response)
+      this.isLoading=false
     })
   }
   ChangeStatusCheckbox(event: any) {
@@ -34,51 +46,17 @@ export class SurveyComponent implements OnInit {
       'آیا از حذف این آیتم اطمینان دارید؟',
       () => {
         this.http
-          .delete(Domain.DeletePost + '/blog/delete', id)
+        .deleteWithQuery(`${Domain.DeleteRemoteWorkRegistration}?form_id=${id}`)
           .subscribe((response) => {
             console.log(response);
           });
-        this.GetResponseData();
+        this.GetResponseData(1,10);
         this.alertServices.success('آیتم با موفقیت حذف شد');
       },
       () => { }
     );
   }
 
-  // RemoveMultiItem() {
-  //   if (this.selected_response_ids.length > 0) {
-  //     console.log(this.selected_response_ids);
-  //     this.alertServices.confirm(
-  //       ' حذف آیتم ها',
-  //       'آیا از حذف این آیتم ها اطمینان دارید؟',
-  //       () => {
-  //         this.http
-  //           .deleteWithBody(
-  //             `${Domain.GroupDeletePost}/${this.content_type}/group-delete`,
-  //             this.selected_response_ids,
-  //             null
-  //           )
-  //           .subscribe((response) => {
-  //             console.log(response);
-  //             if (response != null) {
-  //               this.GetResponseData();
-  //               this.alertServices.success('آیتم ها با موفقیت حذف شدند');
-  //               this.selected_response_ids = []
-  //             }
-  //           });
-  //       },
-  //       () => { }
-  //     );
-  //   } else this.alertServices.warning('آیتمی برای حذف انتخاب نشده است');
-  // }
-  checkToDeletedCheckBox(event: any, id: number) {
-    if (event?.target.checked) {
-      this.selected_response_ids.push(id);
-    } else {
-      let index = this.selected_response_ids.indexOf(id);
-      this.selected_response_ids.splice(index, 1);
-    }
-  }
   ShowTitleStatus(status: Number) {
     var title = "";
     var classStatus = "";
@@ -100,39 +78,6 @@ export class SurveyComponent implements OnInit {
         break;
     }
     return { title: title, classStatus: classStatus }
-  }
-  ChangeStatusMultiItem(event: any) {
-    if (this.selected_response_ids.length > 0) {
-      let items_to_changed_status: { post_pk_id: Number, post_status: Number }[] = [];
-      for (let index = 0; index < this.selected_response_ids.length; index++) {
-        items_to_changed_status.push({
-          post_pk_id: this.selected_response_ids[index],
-          post_status: event.target.value
-        })
-      }
-      this.alertServices.confirm(
-        ' تغییر وضعیت آیتم ها',
-        'آیا از تغییر وضعیت این آیتم ها اطمینان دارید؟',
-        () => {
-          //TODO
-          this.http
-            .patch(
-              `${Domain.ChangeGroupStatus}`,
-              items_to_changed_status,
-              null
-            )
-            .subscribe((response) => {
-              console.log(response);
-              if (response != null) {
-                this.GetResponseData();
-                this.alertServices.success('آیتم ها با موفقیت تغییر وضعیت داده شدند');
-                this.selected_response_ids = []
-              }
-            });
-        },
-        () => { }
-      );
-    } else this.alertServices.warning('آیتمی برای تغییر وضعیت انتخاب نشده است');
   }
 }
 

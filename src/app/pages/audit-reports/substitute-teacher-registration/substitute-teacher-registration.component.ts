@@ -17,13 +17,22 @@ export class SubstituteTeacherRegistrationComponent implements OnInit {
   SearchValue: string
   isCheckedStatus: number;
   isLoading: boolean = true
+  currentPage:number=1
   selected_response_ids: number[] = [];
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
-    this.GetResponseData()
+    this.GetResponseData(1,10)
+    this.GetResponseDataLenght()
   }
-  GetResponseData() {
-    this.http.getAll(Domain.GetSubstituteTeacher).subscribe((response) => {
+  GetResponseDataLenght()
+  {
+    this.http.getAll(`${Domain.GetCount}?table=Teacher Replacement`).subscribe((response)=>
+    {
+      this.ResponseDataLenght = new Array(Math.ceil(response / 10))
+    })
+  }
+  GetResponseData(page:number,limit:number) {
+    this.http.getAll(`${Domain.GetSubstituteTeacher}?page=${page}&limit=${limit}&order=desc`).subscribe((response) => {
       console.log(response)
       this.ResponseDataList=response;
       this.isLoading=false;
@@ -43,39 +52,13 @@ export class SubstituteTeacherRegistrationComponent implements OnInit {
           .subscribe((response) => {
             console.log(response);
           });
-        this.GetResponseData();
+        this.GetResponseData(1,10);
         this.alertServices.success('آیتم با موفقیت حذف شد');
       },
       () => { }
     );
   }
 
-  // RemoveMultiItem() {
-  //   if (this.selected_response_ids.length > 0) {
-  //     console.log(this.selected_response_ids);
-  //     this.alertServices.confirm(
-  //       ' حذف آیتم ها',
-  //       'آیا از حذف این آیتم ها اطمینان دارید؟',
-  //       () => {
-  //         this.http
-  //           .deleteWithBody(
-  //             `${Domain.GroupDeletePost}/${this.content_type}/group-delete`,
-  //             this.selected_response_ids,
-  //             null
-  //           )
-  //           .subscribe((response) => {
-  //             console.log(response);
-  //             if (response != null) {
-  //               this.GetResponseData();
-  //               this.alertServices.success('آیتم ها با موفقیت حذف شدند');
-  //               this.selected_response_ids = []
-  //             }
-  //           });
-  //       },
-  //       () => { }
-  //     );
-  //   } else this.alertServices.warning('آیتمی برای حذف انتخاب نشده است');
-  // }
   checkToDeletedCheckBox(event: any, id: number) {
     if (event?.target.checked) {
       this.selected_response_ids.push(id);
@@ -129,7 +112,7 @@ export class SubstituteTeacherRegistrationComponent implements OnInit {
             .subscribe((response) => {
               console.log(response);
               if (response != null) {
-                this.GetResponseData();
+                this.GetResponseData(1,10);
                 this.alertServices.success('آیتم ها با موفقیت تغییر وضعیت داده شدند');
                 this.selected_response_ids = []
               }

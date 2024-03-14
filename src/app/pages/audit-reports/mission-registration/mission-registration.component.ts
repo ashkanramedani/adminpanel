@@ -16,14 +16,23 @@ export class MissionRegistrationComponent implements OnInit {
   SearchValue: string
   isCheckedStatus: number;
   isLoading: boolean = true
+  currentPage:number=1
   selected_response_ids: number[] = [];
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
-    this.GetResponseData()
+    this.GetResponseData(1,10)
+    this.GetResponseDataLenght()
   }
-  GetResponseData() {
+  GetResponseDataLenght()
+  {
+    this.http.getAll(`${Domain.GetCount}?table=Business Trip`).subscribe((response)=>
+    {
+      this.ResponseDataLenght = new Array(Math.ceil(response / 10))
+    })
+  }
+  GetResponseData(page:number,limit:number) {
     this.isLoading=true
-    this.http.getAll(Domain.GetMissionRegistration).subscribe((response) => {
+    this.http.getAll(`${Domain.GetMissionRegistration}?page=${page}&limit=${limit}&order=desc`).subscribe((response) => {
       this.ResponseDataList=response
       console.log(response)
       this.isLoading=false
@@ -43,7 +52,7 @@ export class MissionRegistrationComponent implements OnInit {
             console.log(response);
           });
         this.alertServices.success('آیتم با موفقیت حذف شد');
-        this.GetResponseData();
+        this.GetResponseData(1,10);
       },
       () => { }
     );

@@ -16,15 +16,23 @@ export class RemoteWorkRegistrationComponent implements OnInit {
   ResponseDataLenght: number[];
   SearchValue: string
   isCheckedStatus: number;
+  currentPage:number=1
   isLoading: boolean = true
-  selected_response_ids: number[] = [];
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
-    this.GetResponseData()
+    this.GetResponseData(1,10)
+    this.GetResponseDataLenght()
   }
-  GetResponseData() {
+  GetResponseDataLenght()
+  {
+    this.http.getAll(`${Domain.GetCount}?table=Remote Request`).subscribe((response)=>
+    {
+      this.ResponseDataLenght = new Array(Math.ceil(response / 10))
+    })
+  }
+  GetResponseData(page:number,limit:number) {
     this.isLoading=true
-    this.http.getAll(Domain.GetRemoteWorkRegistration).subscribe((response) => {
+    this.http.getAll(`${Domain.GetRemoteWorkRegistration}?page=${page}&limit=${limit}&order=desc`).subscribe((response) => {
       console.log(response)
       this.ResponseDataList=response;
       this.isLoading=false
@@ -43,7 +51,7 @@ export class RemoteWorkRegistrationComponent implements OnInit {
           .subscribe((response) => {
             console.log(response);
           });
-        this.GetResponseData();
+        this.GetResponseData(1,10);
         this.alertServices.success('آیتم با موفقیت حذف شد');
       },
       () => { }
