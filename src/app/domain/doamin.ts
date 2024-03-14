@@ -44,7 +44,7 @@ export const Domain =
     "DeleteSubstituteTeacher": `${environment.apiUrl}/api/v1/form/teacher_replacement/delete`,
     "GetSurvey": `${environment.apiUrl}/api/v1/form/survey/search`,
     "DeleteSurvey": `${environment.apiUrl}/api/v1/form/survey/delete`,
-    "GetAuditEmplooyies" :`${environment.apiUrl}/api/v1/form/employee/search`,
+    "GetAuditEmplooyies" :`${environment.apiUrl}/api/v1/employee/search`,
     "CreateLeaveRequest":`${environment.apiUrl}/api/v1/form/leave_request/add`,
     "CreateMissionRegistration":`${environment.apiUrl}/api/v1/form/business_trip/add`,
     "GetAuditClass":`${environment.apiUrl}/api/v1/form/class/search`,
