@@ -61,7 +61,7 @@
             </thead>
             <tbody class="font-normal text-black dark:text-white">
               <tr *ngIf="(ResponseDataList|filter:this.SearchValue).length<1">
-                <td colspan="4">
+                <td colspan="7">
 
                   <div class="flex w-full items-center gap-x-2 my-4 border-r-6 border-warning bg-warning bg-opacity-[15%] px-2 py-2 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30">
                     <div class="mr-5 flex h-9 w-9 items-center justify-center rounded-lg bg-warning bg-opacity-30">
@@ -88,7 +88,7 @@
                   <span>{{item.class_location}}</span>
                 </td>
                 <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <span>{{item.created.name + ""+ item.created.last_name }}</span>
+                   <span>{{item.created.name + ""+ item.created.last_name }}</span>  
                 </td>
                 <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <span>{{item.teacher.name + ""+ item.teacher.last_name }}</span>
@@ -98,7 +98,7 @@
                 </td>
                 <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <div class="flex items-center gap-x-2">
-                    <a [routerLink]="['/']" title="ویرایش" class="hover:text-primary">
+                    <a [routerLink]="['/AuditReports/ClassCancellation/edit',item.class_cancellation_pk_id]" title="ویرایش" class="hover:text-primary">
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-current" viewBox="0 0 16 16">
                         <path
                           d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z">

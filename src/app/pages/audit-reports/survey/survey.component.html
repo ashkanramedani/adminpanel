@@ -11,7 +11,7 @@
       <input type="text" placeholder="جستجو" [(ngModel)]="SearchValue"   class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
     </div>
       <div class="flex items-center gap-x-2">
-        <a [routerLink]="['/contents/add']" class="flex justify-center rounded px-5 bg-primary py-2 font-medium text-gray">
+        <a [routerLink]="['']" class="flex justify-center rounded px-5 bg-primary py-2 font-medium text-gray">
           افزودن</a>
       </div>
     </div>
@@ -78,7 +78,7 @@
                 </td>
                 <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <div class="flex items-center gap-x-2">
-                    <a [routerLink]="['/' ]" title="ویرایش" class="hover:text-primary">
+                    <!-- <a [routerLink]="['/' ]" title="ویرایش" class="hover:text-primary">
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-current" viewBox="0 0 16 16">
                         <path
                           d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z">
@@ -87,7 +87,7 @@
                           d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z">
                         </path>
                       </svg>
-                    </a>
+                    </a> -->
                     <button title="حذف" (click)="RemoveItem(item.teacher_tardy_reports_pk_id)" class="hover:text-primary">
                       <svg class="w-5 fill-current" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path

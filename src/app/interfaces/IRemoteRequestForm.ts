@@ -6,4 +6,6 @@ export interface IRemoteRequestForm
   start_date: string
   end_date:string
   working_location: string
+  status:boolean
+  remote_request_pk_id:string
 }

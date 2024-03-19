@@ -34,6 +34,7 @@ export class ClassCancellationRegistrationComponent implements OnInit {
     this.isLoading=true;
     this.http.getAll(`${Domain.GetClassCancellation}?page=${page}&limit=${limit}&order=desc`).subscribe((response) => {
       this.ResponseDataList=response;
+      console.log(response)
       this.isLoading=false;
     })
   }

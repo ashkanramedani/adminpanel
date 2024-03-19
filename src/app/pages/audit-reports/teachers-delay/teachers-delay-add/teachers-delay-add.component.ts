@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
-import { IClassCancellationForm } from 'src/app/interfaces/IClassCancellationForm';
 import { IClassDetails } from 'src/app/interfaces/IClassDetails';
 import { IEmployees } from 'src/app/interfaces/IEmployees';
 import { ITeacherDelayForm } from 'src/app/interfaces/ITeacherDelayForm';
@@ -18,12 +17,15 @@ export class TeachersDelayAddComponent implements OnInit {
   ReportForm: FormGroup;
   EmployiesData: IEmployees[] = []
   ClassData: IClassDetails[] = []
-  id: number = 0;
+  page_title: string = 'افزودن';
+  id: any ;
+  AuditForm:ITeacherDelayForm
+  btnLoading:boolean=false
   constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService) {
 
   }
   ngOnInit(): void {
-    this.id = Number(this.route.snapshot?.paramMap.get('id'));
+    this.id =this.route.snapshot?.paramMap.get('id');
     this.GetEmployeeData()
     this.GetClassData()
     this.ReportForm = this.formBuilder.group(
@@ -36,6 +38,30 @@ export class TeachersDelayAddComponent implements OnInit {
         delay: new FormControl('', [Validators.required]),
       }
     )
+    if (this.id!=null ) {
+      this.page_title = 'ویرایش';
+      this.get_single_Data();
+    }
+  }
+  get_single_Data() {
+    //TODO
+    this.http
+      .get(Domain.GetSingleTeacherDelay, this.id)
+      .subscribe((response) => {
+        console.log(response)
+        this.AuditForm = response;
+        this.FillFormData()
+
+      });
+  }
+  FillFormData()
+  {
+    this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
+    this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
+    this.ReportForm.controls["status"].patchValue(this.AuditForm.status);
+    this.ReportForm.controls["class_fk_id"].patchValue(this.AuditForm.class_fk_id);
+    this.ReportForm.controls["teacher_fk_id"].patchValue(this.AuditForm.teacher_fk_id);
+    this.ReportForm.controls["delay"].patchValue(this.AuditForm.delay)
   }
   onSubmit() {
     if (this.ReportForm.invalid) {
@@ -50,19 +76,25 @@ export class TeachersDelayAddComponent implements OnInit {
       class_fk_id: this.ReportForm.controls.class_fk_id.value,
       teacher_fk_id: this.ReportForm.controls.teacher_fk_id.value,
       delay: this.ReportForm.controls.delay.value,
+      teacher_tardy_reports_pk_id:this.id
     }
-    if (this.id > 0) {
-      // this.http.patch(`${Domain.PatchPost}/${this.id}?topic=${this.postForm.controls.post_type.value}` , postFormValue, null).subscribe((response) => {
-      //   console.log(response)
-      // }
-      //)
+    if (this.id!=null) {
+      this.btnLoading=true
+      this.http.put(Domain.PutTeacherDelay,ReportFormValue,null).subscribe((response) => {
+        console.log(response)
+        this.alertServices.success("با موفقیت ویرایش شد");
+        this.btnLoading=false
+      }
+      )
     }
     else {
+      this.btnLoading=true
       this.http.create(Domain.CreateTeachersDelay, ReportFormValue, null).subscribe((response) => {
         console.log(response)
         if (response == 'Record has been Added') {
           this.alertServices.success("با موفقیت اضافه شد");
           this.ReportForm.reset();
+          this.btnLoading=false
         }
       }
       )

@@ -8,4 +8,5 @@ export interface IClassCancellationForm
     replacement_date: string
     class_duration: number
     class_location: string
+    class_cancellation_pk_id:string
 }

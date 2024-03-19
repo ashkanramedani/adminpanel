@@ -5,7 +5,7 @@
         <span class="font-medium"> گزارشات حسابرسی /</span>
       </li>
       <li class="font-medium text-primary">فرم ثبت مرخصی/</li>
-      <li class="font-medium text-primary"> افزودن</li>
+      <li class="font-medium text-primary"> {{page_title}}</li>
     </ol>
   </nav>
 </div>
@@ -31,6 +31,7 @@
         <option *ngFor="let emp of EmployiesData " [value]="emp.employees_pk_id" >{{emp.name + " "+emp.last_name}}</option>
       </select>
     </div>
+
     <div>
       <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
         تاریخ شروع
@@ -49,6 +50,16 @@
         <input type="text" dir="ltr"  formControlName="end_date"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
       </ng-persian-datepicker>
     </div>
+    <div>
+      <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+        وضعیت 
+        <span class="text-meta-1">*</span>
+      </label>
+      <select formControlName="status"  [ngClass]="{'input-invalid': (this.ReportForm.controls.status.invalid) &&(this.ReportForm.controls.status.dirty ||this.ReportForm.controls.status.touched)}"   class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+        <option value="1">فعال</option>
+        <option value="0">غیر فعال</option>
+      </select>
+    </div>
     <div class="col-span-2">
       <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
         توضیحات
@@ -57,8 +68,8 @@
     </div>
   </form>
   <div class="flex justify-end p-6.5 items-center gap-x-2">
-    <button [disabled]="this.ReportForm.invalid"  (click)="onSubmit()"
-      class="flex disabled:bg-secondary justify-center rounded bg-primary py-2 px-5 font-medium text-gray">افزودن</button>
+    <button [disabled]="this.ReportForm.invalid || btnLoading"  (click)="onSubmit()"
+      class="flex disabled:bg-secondary justify-center rounded bg-primary py-2 px-5 font-medium text-gray">{{page_title}}</button>
     <a [routerLink]="['/AuditReports/LeaveRegistration']"
       class="flex justify-center rounded bg-bodydark py-2 px-5 font-medium text-black-2">بازگشت</a>
   </div>

@@ -19,24 +19,36 @@ import { TeachersDelayAddComponent } from './teachers-delay/teachers-delay-add/t
 
 const routes: Routes = [
   { path: '', component: AuditReportsComponent },
+
   { path: 'ClassCancellationRegistration', component: ClassCancellationRegistrationComponent },
   { path: 'ClassCancellation/Add', component: ClassCancellationAddComponent },
+  { path: 'ClassCancellation/edit/:id', component: ClassCancellationAddComponent },
 
   { path: 'EmployeeEntryExit', component: EmployeeEntryExitComponent },
+
   { path: 'LeaveRegistration', component: LeaveRegistrationComponent },
   { path: 'LeaveRegistration/Add', component: LeaveRegistrationAddComponent },
-  { path: 'MissionRegistration/Add', component: MissionRegistrationAddComponent },
+  { path: 'LeaveRegistration/edit/:id', component: LeaveRegistrationAddComponent },
 
+  { path: 'MissionRegistration/Add', component: MissionRegistrationAddComponent },
+  { path: 'MissionRegistration/edit/:id', component: MissionRegistrationAddComponent },
   { path: 'MissionRegistration', component: MissionRegistrationComponent },
+
   { path: 'ProfessorsReports', component: ProfessorsReportsComponent },
+
   { path: 'RemoteWorkRegistration', component: RemoteWorkRegistrationComponent },
   { path: 'RemoteWorkRegistration/Add', component: RemoteWorkRegistrationAddComponent },
+  { path: 'RemoteWorkRegistration/edit/:id', component: RemoteWorkRegistrationAddComponent },
+
   { path: 'SubstituteTeacherRegistration', component: SubstituteTeacherRegistrationComponent },
   { path: 'SubstituteTeacherRegistration/Add', component: SubstituteTeacherAddComponent },
-  { path: 'Survey', component: SurveyComponent },
-  { path: 'TeachersDelay', component: TeachersDelayComponent },
-  { path: 'TeachersDelay/Add', component: TeachersDelayAddComponent }
+  { path: 'SubstituteTeacherRegistration/edit/:id', component: SubstituteTeacherAddComponent },
 
+  { path: 'Survey', component: SurveyComponent },
+  
+  { path: 'TeachersDelay', component: TeachersDelayComponent },
+  { path: 'TeachersDelay/Add', component: TeachersDelayAddComponent },
+  { path: 'TeachersDelay/edit/:id', component: TeachersDelayAddComponent },
 ];
 
 @NgModule({

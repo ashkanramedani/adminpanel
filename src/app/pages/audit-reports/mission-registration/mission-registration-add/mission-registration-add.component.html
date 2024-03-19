@@ -5,7 +5,7 @@
           <span class="font-medium"> گزارشات حسابرسی /</span>
         </li>
         <li class="font-medium text-primary">فرم ثبت ماموریت/</li>
-        <li class="font-medium text-primary"> افزودن</li>
+        <li class="font-medium text-primary"> {{page_title}}</li>
       </ol>
     </nav>
   </div>
@@ -63,8 +63,8 @@
       </div>
     </form>
     <div class="flex justify-end p-6.5 items-center gap-x-2">
-      <button  [disabled]="this.ReportForm.invalid "  (click)="onSubmit()"
-        class="flex disabled:bg-secondary justify-center rounded bg-primary py-2 px-5 font-medium text-gray">افزودن</button>
+      <button  [disabled]="this.ReportForm.invalid  ||btnLoading"  (click)="onSubmit()"
+        class="flex disabled:bg-secondary justify-center rounded bg-primary py-2 px-5 font-medium text-gray">{{page_title}}</button>
       <a [routerLink]="['/AuditReports/MissionRegistration']"
         class="flex justify-center rounded bg-bodydark py-2 px-5 font-medium text-black-2">بازگشت</a>
     </div>
