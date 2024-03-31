@@ -56,11 +56,14 @@ export class ClassCancellationRegistrationComponent implements OnInit {
       () => {
         this.http
         .deleteWithQuery(`${Domain.DeleteClassCancellation}?form_id=${id}`)
-          .subscribe((response) => {
-            console.log(response);
-          });
-        this.GetResponseData(1,10,this.order);
-        this.alertServices.success('آیتم با موفقیت حذف شد');
+        .subscribe((response) => {
+          console.log(response);
+          if (response == "Deleted") {
+            this.GetResponseData(1, 10, this.order);
+            this.alertServices.success('آیتم با موفقیت حذف شد');
+          }
+          else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
+        });
       },
       () => { }
     );

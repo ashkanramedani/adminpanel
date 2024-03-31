@@ -45,10 +45,12 @@ export class HttpService {
   }
 
   delete(url:string, id?: any,headers?:any): Observable<any> {
-    return this.http.delete(`${url}/${id}`,{headers});
+    return this.http.delete(`${url}/${id}`,{headers}).pipe(
+      catchError(this.errorHandler));;
   }
   deleteWithQuery(url:string, id?: any,headers?:any): Observable<any> {
-    return this.http.delete(`${url}`,{headers});
+    return this.http.delete(`${url}`,{headers}).pipe(
+      catchError(this.errorHandler));;
   }
 
   deleteWithBody(url:string, data?: any,headers?:any): Observable<any> {

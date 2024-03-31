@@ -57,11 +57,14 @@ export class MissionRegistrationComponent implements OnInit {
       () => {
         this.http
         .deleteWithQuery(`${Domain.DeleteMissionRegistration}?form_id=${id}`)
-          .subscribe((response) => {
-            console.log(response);
-          });
-        this.alertServices.success('آیتم با موفقیت حذف شد');
-        this.GetResponseData(1,10,this.order);
+        .subscribe((response) => {
+          console.log(response);
+          if (response == "Deleted") {
+            this.GetResponseData(1, 10, this.order);
+            this.alertServices.success('آیتم با موفقیت حذف شد');
+          }
+          else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
+        });
       },
       () => { }
     );

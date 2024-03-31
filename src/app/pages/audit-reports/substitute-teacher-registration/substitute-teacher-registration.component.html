@@ -55,6 +55,9 @@
                 <th class="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white text-center">
                   نام کلاس
                 </th>
+                 <th class="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white text-center">
+                  وضعیت
+                </th>
                 <th class="py-4 px-4 font-medium text-black dark:text-white text-center">
                   عملیات
                 </th>
@@ -89,6 +92,10 @@
                 </td>
                 <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <span>{{item.classes.name + " "+ item.classes.last_name}}</span>
+                </td>
+                <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                  <span *ngIf="item.status==0" class="inline-flex rounded-full bg-[#777777] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید نشده </span>
+                  <span *ngIf="item.status==1" class="inline-flex rounded-full bg-[#199173] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید شده </span>
                 </td>
                 <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <div class="flex items-center gap-x-2">

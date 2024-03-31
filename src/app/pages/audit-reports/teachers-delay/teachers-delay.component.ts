@@ -62,9 +62,12 @@ export class TeachersDelayComponent implements OnInit {
           .deleteWithQuery(`${Domain.DeleteTeachersDelay}?form_id=${id}`)
           .subscribe((response) => {
             console.log(response);
+            if (response == "Deleted") {
+              this.GetResponseData(1, 10, this.order);
+              this.alertServices.success('آیتم با موفقیت حذف شد');
+            }
+            else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
           });
-        this.GetResponseData(1, 10, this.order);
-        this.alertServices.success('آیتم با موفقیت حذف شد');
       },
       () => { }
     );

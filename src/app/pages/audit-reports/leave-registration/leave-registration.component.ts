@@ -20,7 +20,7 @@ export class LeaveRegistrationComponent implements OnInit {
   isLoading: boolean = true
   currentPage:number=1
   order:string="desc"
-  SingleData:ILeaveRequestForm
+  SingleData:ILeaveRequest
   IsShowenModal: boolean = false
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
@@ -56,11 +56,14 @@ export class LeaveRegistrationComponent implements OnInit {
       () => {
         this.http
         .deleteWithQuery(`${Domain.DeleteLeaveRegistration}?form_id=${id}`)
-          .subscribe((response) => {
-            console.log(response);
-          });
-        this.GetResponseData(1,10,this.order);
-        this.alertServices.success('آیتم با موفقیت حذف شد');
+        .subscribe((response) => {
+          console.log(response);
+          if (response == "Deleted") {
+            this.GetResponseData(1, 10, this.order);
+            this.alertServices.success('آیتم با موفقیت حذف شد');
+          }
+          else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
+        });
       },
       () => { }
     );
