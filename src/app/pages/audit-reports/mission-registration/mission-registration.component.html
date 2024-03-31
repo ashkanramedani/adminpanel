@@ -9,6 +9,10 @@
         </ol>
       </nav>
       <input type="text" placeholder="جستجو" [(ngModel)]="SearchValue"   class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+      <select (change)="ChangeSort($event)" class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+        <option selected value="desc"> نزولی</option>
+        <option value="asc">صعودی</option>
+      </select>
     </div>
       <div class="flex items-center gap-x-2">
         <a [routerLink]="['/AuditReports/MissionRegistration/Add']" class="flex justify-center rounded px-5 bg-primary py-2 font-medium text-gray">
@@ -36,7 +40,10 @@
           <table class="w-full table-auto text-center" *ngIf="!isLoading">
             <thead>
               <tr class="bg-gray-2 text-left dark:bg-meta-4">
-                <th class="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11 text-center">
+                <th class=" py-4 px-4 font-medium text-black dark:text-white xl:pl-11 text-center">
+                   ردیف
+                </th>
+                <th class=" py-4 px-4 font-medium text-black dark:text-white xl:pl-11 text-center">
                   ایجاد کننده
                 </th>
                 <th class="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white text-center">
@@ -68,7 +75,10 @@
                 </td>
   
               </tr>
-              <tr *ngFor="let item of ResponseDataList | filter: this.SearchValue">
+              <tr *ngFor="let item of ResponseDataList | filter: this.SearchValue; let i=index">
+                <td class="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
+                  <span>{{i+1}}</span>
+              </td>
                 <td class="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                     <span>{{item.created.name + " " +item.created.last_name}}</span>
                 </td>
@@ -83,6 +93,12 @@
                 </td>
                 <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <div class="flex items-center gap-x-2">
+                    <button (click)="OpenModal(item.business_trip_pk_id)" class="hover:text-primary">
+                      <svg class="fill-current" class="w-5 fill-current"  viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.99981 14.8219C3.43106 14.8219 0.674805 9.50624 0.562305 9.28124C0.47793 9.11249 0.47793 8.88749 0.562305 8.71874C0.674805 8.49374 3.43106 3.20624 8.99981 3.20624C14.5686 3.20624 17.3248 8.49374 17.4373 8.71874C17.5217 8.88749 17.5217 9.11249 17.4373 9.28124C17.3248 9.50624 14.5686 14.8219 8.99981 14.8219ZM1.85605 8.99999C2.4748 10.0406 4.89356 13.5562 8.99981 13.5562C13.1061 13.5562 15.5248 10.0406 16.1436 8.99999C15.5248 7.95936 13.1061 4.44374 8.99981 4.44374C4.89356 4.44374 2.4748 7.95936 1.85605 8.99999Z" fill=""></path>
+                        <path d="M9 11.3906C7.67812 11.3906 6.60938 10.3219 6.60938 9C6.60938 7.67813 7.67812 6.60938 9 6.60938C10.3219 6.60938 11.3906 7.67813 11.3906 9C11.3906 10.3219 10.3219 11.3906 9 11.3906ZM9 7.875C8.38125 7.875 7.875 8.38125 7.875 9C7.875 9.61875 8.38125 10.125 9 10.125C9.61875 10.125 10.125 9.61875 10.125 9C10.125 8.38125 9.61875 7.875 9 7.875Z" fill=""></path>
+                      </svg>
+                    </button>
                     <a [routerLink]="['/AuditReports/MissionRegistration/edit',item.business_trip_pk_id]" title="ویرایش" class="hover:text-primary">
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-current" viewBox="0 0 16 16">
                         <path
@@ -137,7 +153,7 @@
           <nav>
             <ul class="flex flex-wrap items-center">
               <li *ngFor="let item of  ResponseDataLenght ;let i = index">
-                <a (click)="GetResponseData(i+1,10)" [ngClass]="{'!bg-bodydark1 text-black-2': (currentPage==i+1) }"   class="cursor-pointer flex items-center justify-center border border-stroke border-l-transparent px-4 py-[5px] font-medium hover:border-primary hover:bg-gray hover:text-primary dark:border-strokedark dark:hover:border-primary dark:hover:bg-graydark">{{i+1}}</a>
+                <a (click)="GetResponseData(i+1,10,order)" [ngClass]="{'!bg-bodydark1 text-black-2': (currentPage==i+1) }"   class="cursor-pointer flex items-center justify-center border border-stroke border-l-transparent px-4 py-[5px] font-medium hover:border-primary hover:bg-gray hover:text-primary dark:border-strokedark dark:hover:border-primary dark:hover:bg-graydark">{{i+1}}</a>
               </li>
             </ul>
           </nav>
@@ -145,5 +161,66 @@
       </div>
     </div>
 
+    <div *ngIf="IsShowenModal==true"  x-transition="" class="fixed left-0 top-0 z-999999 flex h-full min-h-screen w-full items-center justify-center bg-black/90 px-4 py-5">
+      <div class="flex flex-col w-full mx-12  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark ">
+        <div class="footer flex  justify-start border-b py-3 border-[#b1b1b1]">
+          <h3 class="text-black-2 font-semibold text-lg"> نمایش رکورد <span>ثبت ماموریت </span></h3>
+        </div>
+        <div class="grid lg:grid-cols-2 grid-cols-1 gap-6.5 p-6.5 text-graydark text-base">
+          <div>
+            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+              ثبت کننده
+            </label>
+              <span>{{SingleData.created_fk_by}}</span>
+          </div>
+          <div>
+            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+             وضعیت
+            </label>
+            <span *ngIf="SingleData.status==0" class="inline-flex rounded-full bg-[#777777] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید نشده </span>
+            <span *ngIf="SingleData.status==1" class="inline-flex rounded-full bg-[#199173] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید شده </span>
 
+          </div>
+          <div >
+            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+             نام پرسنل
+            
+            </label>
+            <span>{{SingleData.employee_fk_id}} </span>
+          </div>
+          <div >
+            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+              تاریخ شروع
+            
+            </label>
+            <span>{{SingleData.start_date|date: "HH:mm - YYYY/MM/dd"}} </span>
+          </div>
+          <div >
+            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+             تاریخ اتمام 
+            
+            </label>
+            <span>{{SingleData.end_date|date: "HH:mm - YYYY/MM/dd"}} </span>
+          </div>
+          <div >
+            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+              مقصد
+            
+            </label>
+            <span>{{SingleData.destination}} </span>
+          </div>
+          <div>
+            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+            توضیحات
+            </label>
+            <span>{{SingleData.description}} </span>
+          </div>
+        </div>
 
+        <div class="footer flex items-end justify-end border-t py-3 border-[#b1b1b1]">
+          <button (click)="CloseModal()" class="block  rounded border border-stroke bg-stroke hover:bg-bodydark1 font-semibold px-6 py-3 text-center  text-black-2 transition   dark:border-strokedark dark:bg-meta-4 dark:text-white">
+            بستن
+          </button>
+        </div>
+      </div>
+    </div>

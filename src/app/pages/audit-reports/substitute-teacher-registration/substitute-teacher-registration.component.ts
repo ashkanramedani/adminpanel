@@ -18,10 +18,13 @@ export class SubstituteTeacherRegistrationComponent implements OnInit {
   isCheckedStatus: number;
   isLoading: boolean = true
   currentPage:number=1
+  IsShowenModal: boolean = false
+  SingleData:ISubstituteTeacher
+  order:string="desc"
   selected_response_ids: number[] = [];
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
-    this.GetResponseData(1,10)
+    this.GetResponseData(1,10.,this.order)
     this.GetResponseDataLenght()
   }
   GetResponseDataLenght()
@@ -31,16 +34,20 @@ export class SubstituteTeacherRegistrationComponent implements OnInit {
       this.ResponseDataLenght = new Array(Math.ceil(response / 10))
     })
   }
-  GetResponseData(page:number,limit:number) {
-    this.http.getAll(`${Domain.GetSubstituteTeacher}?page=${page}&limit=${limit}&order=desc`).subscribe((response) => {
+  GetResponseData(page:number,limit:number,order:string) {
+    this.http.getAll(`${Domain.GetSubstituteTeacher}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       console.log(response)
       this.ResponseDataList=response;
       this.isLoading=false;
     })
-    
   }
   ChangeStatusCheckbox(event: any) {
     this.isCheckedStatus = event.target.value;
+  }
+  ChangeSort(value:any)
+  {
+    this.order=value.target.value
+    this.GetResponseData(1,10,this.order);
   }
   RemoveItem(id?: number) {
     this.alertServices.confirm(
@@ -52,7 +59,7 @@ export class SubstituteTeacherRegistrationComponent implements OnInit {
           .subscribe((response) => {
             console.log(response);
           });
-        this.GetResponseData(1,10);
+        this.GetResponseData(1,10,this.order);
         this.alertServices.success('آیتم با موفقیت حذف شد');
       },
       () => { }
@@ -112,7 +119,7 @@ export class SubstituteTeacherRegistrationComponent implements OnInit {
             .subscribe((response) => {
               console.log(response);
               if (response != null) {
-                this.GetResponseData(1,10);
+                this.GetResponseData(1,10,this.order);
                 this.alertServices.success('آیتم ها با موفقیت تغییر وضعیت داده شدند');
                 this.selected_response_ids = []
               }
@@ -121,6 +128,36 @@ export class SubstituteTeacherRegistrationComponent implements OnInit {
         () => { }
       );
     } else this.alertServices.warning('آیتمی برای تغییر وضعیت انتخاب نشده است');
+  }
+  OpenModal(id: string) {
+    if (id == null) {
+      alert("رکورد وجود ندارد")
+      return;
+    }
+    this.http
+      .get(Domain.GetSingleSubstituteTeacher, id)
+      .subscribe((response) => {
+        this.SingleData = response;
+        this.http.get(Domain.GetAuditEmplooyies, this.SingleData.created_fk_by).subscribe((emp)=>
+        {
+          this.SingleData.created_fk_by=emp.name + " "+emp.last_name
+        })
+        this.http.get(Domain.GetAuditEmplooyies, this.SingleData.teacher_fk_id).subscribe((teacher)=>
+        {
+          this.SingleData.teacher_fk_id=teacher.name + " "+teacher.last_name
+        })
+        this.http.get(Domain.GetAuditEmplooyies, this.SingleData.replacement_teacher_fk_id).subscribe((teacher)=>
+        {
+          this.SingleData.replacement_teacher_fk_id=teacher.name + " "+teacher.last_name
+        })
+        this.http.get(Domain.GetAuditClass,this.SingleData.class_fk_id).subscribe((cls) => {
+          this.SingleData.class_fk_id=cls.name
+        })
+        this.IsShowenModal = true
+      });
+  }
+  CloseModal() {
+    this.IsShowenModal = false
   }
 }
 

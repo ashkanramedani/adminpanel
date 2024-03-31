@@ -10,4 +10,9 @@ export interface IClassCancellation
     created: IUser
     teacher:IUser
     classes: IClass
+    status:number
+    created_fk_by:string
+    teacher_fk_id:String
+    class_fk_id:string
+    description:string
 }
