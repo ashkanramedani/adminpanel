@@ -8,7 +8,7 @@
       </ol>
     </nav>
   </div>
-  <div class="rounded-md border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+  <div class="rounded-md border border-[#c5c5c5] bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
       <form [formGroup]="postForm" class="grid lg:grid-cols-2 grid-cols-1 gap-6.5 p-6.5">
         <div class="lg:col-span-2">
           <div class="flex items-center gap-x-6 w-full">
@@ -37,7 +37,7 @@
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
           نوع پست
         </label>
-        <select formControlName="post_type" class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+        <select formControlName="post_type" class="form-control-select">
           <option *ngFor="let item of post_topic_list " [value]="item.topic_name" >{{item.label_name}}</option>
         </select>
       </div>
@@ -45,7 +45,7 @@
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
           چینش صفحه
         </label>
-        <select formControlName="post_direction" class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+        <select formControlName="post_direction" class="form-control-select">
           <option value="RTL" >RTL</option>
           <option value="LTR">LTR</option>
         </select>
@@ -70,7 +70,7 @@
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
            دسته
         </label>
-        <select  formControlName="categoty"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+        <select  formControlName="categoty"  class="form-control-select">
           <option *ngFor="let item of post_category_list " [value]="item.category_pk_id" >{{item.category_name}}</option>
         </select>
       </div>
@@ -78,7 +78,7 @@
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
            وضعیت پست
         </label>
-        <select  formControlName="post_status"  class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+        <select  formControlName="post_status"  class="form-control-select">
           <option value="0">غیر فعال</option>
           <option value="1"> تایید نشده</option>
           <option value="2"> فعال</option>

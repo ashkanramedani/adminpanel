@@ -50,7 +50,8 @@
       url("/assets/fonts/iran2.woff") format("woff"),
       url("/assets/fonts/iran2.ttf") format("truetype");
   }
-  .form-control{@apply w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary}
+  .form-control{@apply w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-[#c5c5c5] bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary}
+  .form-control-select {@apply w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-[#c5c5c5] bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary}
   .input-invalid {@apply border  border-meta-1 focus:!ring-0 }
   .alertify-notifier
   {

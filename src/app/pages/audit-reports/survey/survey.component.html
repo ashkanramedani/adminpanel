@@ -8,8 +8,8 @@
             <li class="font-medium text-primary">فرم  نظر سنجی</li>
         </ol>
       </nav>
-      <input type="text" placeholder="جستجو" [(ngModel)]="SearchValue"   class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-      <select (change)="ChangeSort($event)" class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-[0.69rem] px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+      <input type="text" placeholder="جستجو" [(ngModel)]="SearchValue"   class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px]  border-[#c5c5c5]  bg-transparent  py-[0.69rem]  px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+      <select (change)="ChangeSort($event)" class="form-control-select">
         <option selected value="desc"> نزولی</option>
         <option value="asc">صعودی</option>
       </select>
@@ -19,9 +19,8 @@
           افزودن</a>
       </div>
     </div>
-    <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
       <div
-        class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5  dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+        class="rounded-md border  border-[#c5c5c5]  bg-white px-5 pt-6 pb-2.5  dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
         <div class="max-w-full">
           <div class="loading flex justify-center my-10" *ngIf="isLoading">
             <div class="animate-spin">
@@ -143,7 +142,6 @@
           </nav>
         </div>
       </div>
-    </div>
 
 
 
