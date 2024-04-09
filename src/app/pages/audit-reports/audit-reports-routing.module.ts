@@ -16,16 +16,31 @@ import { RemoteWorkRegistrationAddComponent } from './remote-work-registration/r
 import { SubstituteTeacherAddComponent } from './substitute-teacher-registration/substitute-teacher-add/substitute-teacher-add.component';
 import { ClassCancellationAddComponent } from './class-cancellation-registration/class-cancellation-add/class-cancellation-add.component';
 import { TeachersDelayAddComponent } from './teachers-delay/teachers-delay-add/teachers-delay-add.component';
+import { EmployeeEntryExitAddComponent } from './employee-entry-exit/employee-entry-exit-add/employee-entry-exit-add.component';
+import { EmployeesComponent } from './employees/employees.component';
+import { EmployeesAddComponent } from './employees/employees-add/employees-add.component';
+import { RolesComponent } from './roles/roles.component';
+import { RoleAddComponent } from './roles/role-add/role-add.component';
 
 const routes: Routes = [
   { path: '', component: AuditReportsComponent },
+
+  { path: 'Employee', component: EmployeesComponent },
+  { path: 'Employee/Add', component: EmployeesAddComponent },
+  { path: 'Employee/edit/:id', component: EmployeesAddComponent },
+
+  { path: 'Roles', component: RolesComponent },
+  { path: 'Role/Add', component: RoleAddComponent },
+  { path: 'Role/edit/:id', component: RoleAddComponent },
 
   { path: 'ClassCancellationRegistration', component: ClassCancellationRegistrationComponent },
   { path: 'ClassCancellation/Add', component: ClassCancellationAddComponent },
   { path: 'ClassCancellation/edit/:id', component: ClassCancellationAddComponent },
 
   { path: 'EmployeeEntryExit', component: EmployeeEntryExitComponent },
-
+  { path: 'EmployeeEntryExit/Add', component: EmployeeEntryExitAddComponent },
+  { path: 'EmployeeEntryExit/edit/:id', component: EmployeeEntryExitAddComponent },
+  
   { path: 'LeaveRegistration', component: LeaveRegistrationComponent },
   { path: 'LeaveRegistration/Add', component: LeaveRegistrationAddComponent },
   { path: 'LeaveRegistration/edit/:id', component: LeaveRegistrationAddComponent },

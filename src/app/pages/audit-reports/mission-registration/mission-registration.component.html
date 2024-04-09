@@ -64,7 +64,7 @@
             </thead>
             <tbody class="font-normal text-black dark:text-white">
               <tr *ngIf="(ResponseDataList|filter:this.SearchValue).length<1">
-                <td colspan="4">
+                <td colspan="7">
                   <div class="flex w-full items-center gap-x-2 my-4 border-r-6 border-warning bg-warning bg-opacity-[15%] px-2 py-2 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30">
                     <div class="mr-5 flex h-9 w-9 items-center justify-center rounded-lg bg-warning bg-opacity-30">
                       <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -98,7 +98,7 @@
                   <span *ngIf="item.status==1" class="inline-flex rounded-full bg-[#199173] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید شده </span>
                 </td>
                 <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <div class="flex items-center gap-x-2">
+                  <div class="flex items-center gap-x-2 justify-center">
                     <button (click)="OpenModal(item.business_trip_pk_id)" class="hover:text-primary">
                       <svg class="fill-current" class="w-5 fill-current"  viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.99981 14.8219C3.43106 14.8219 0.674805 9.50624 0.562305 9.28124C0.47793 9.11249 0.47793 8.88749 0.562305 8.71874C0.674805 8.49374 3.43106 3.20624 8.99981 3.20624C14.5686 3.20624 17.3248 8.49374 17.4373 8.71874C17.5217 8.88749 17.5217 9.11249 17.4373 9.28124C17.3248 9.50624 14.5686 14.8219 8.99981 14.8219ZM1.85605 8.99999C2.4748 10.0406 4.89356 13.5562 8.99981 13.5562C13.1061 13.5562 15.5248 10.0406 16.1436 8.99999C15.5248 7.95936 13.1061 4.44374 8.99981 4.44374C4.89356 4.44374 2.4748 7.95936 1.85605 8.99999Z" fill=""></path>

@@ -5,6 +5,6 @@ export interface ISubstituteTeacherForm
     status: boolean
     teacher_fk_id: string
     replacement_teacher_fk_id: string
-    class_fk_id: string
+    course_fk_id: string
     teacher_replacement_pk_id:string
 }

@@ -26,7 +26,7 @@ export class SurveyComponent implements OnInit {
     this.GetResponseDataLenght()
   }
   GetResponseDataLenght() {
-    this.http.getAll(`${Domain.GetCount}?table=survey`).subscribe((response) => {
+    this.http.getAll(`${Domain.GetCount}?field=survey`).subscribe((response) => {
       this.ResponseDataLenght = new Array(Math.ceil(response / 10))
     })
   }

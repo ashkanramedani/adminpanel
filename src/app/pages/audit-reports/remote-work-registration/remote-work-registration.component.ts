@@ -28,7 +28,7 @@ export class RemoteWorkRegistrationComponent implements OnInit {
   }
   GetResponseDataLenght()
   {
-    this.http.getAll(`${Domain.GetCount}?table=Remote Request`).subscribe((response)=>
+    this.http.getAll(`${Domain.GetCount}?field=Remote Request`).subscribe((response)=>
     {
       this.ResponseDataLenght = new Array(Math.ceil(response / 10))
     })

@@ -34,11 +34,11 @@ export class ClassCancellationAddComponent implements OnInit {
         created_fk_by: new FormControl('', [Validators.required]),
         description: new FormControl(''),
         status: new FormControl('', [Validators.required]),
-        class_fk_id: new FormControl('', [Validators.required]),
+        course_fk_id: new FormControl('', [Validators.required]),
         teacher_fk_id: new FormControl('', [Validators.required]),
         replacement_date: new FormControl('', [Validators.required]),
-        class_duration: new FormControl('', [Validators.required]),
-        class_location: new FormControl('', [Validators.required]),
+        course_duration: new FormControl('', [Validators.required]),
+        course_location: new FormControl('', [Validators.required]),
 
       }
     )
@@ -64,9 +64,9 @@ export class ClassCancellationAddComponent implements OnInit {
     this.ReportForm.controls["status"].patchValue(this.AuditForm.status);
     this.ReportForm.controls["teacher_fk_id"].patchValue(this.AuditForm.teacher_fk_id);
     this.ReportForm.controls["replacement_date"].patchValue(formatDate(this.AuditForm.replacement_date,"YYYY/MM/dd   HH:mm",'en-IR'));
-    this.ReportForm.controls["class_fk_id"].patchValue(this.AuditForm.class_fk_id)
-    this.ReportForm.controls["class_duration"].patchValue(this.AuditForm.class_duration)
-    this.ReportForm.controls["class_location"].patchValue(this.AuditForm.class_location)
+    this.ReportForm.controls["course_fk_id"].patchValue(this.AuditForm.course_fk_id)
+    this.ReportForm.controls["course_duration"].patchValue(this.AuditForm.course_duration)
+    this.ReportForm.controls["course_location"].patchValue(this.AuditForm.course_location)
   }
   onSubmit() {
     if (this.ReportForm.invalid) {
@@ -78,12 +78,12 @@ export class ClassCancellationAddComponent implements OnInit {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
       status: this.ReportForm.controls.status.value,
-      class_fk_id: this.ReportForm.controls.class_fk_id.value,
+      course_fk_id: this.ReportForm.controls.course_fk_id.value,
       teacher_fk_id: this.ReportForm.controls.teacher_fk_id.value,
       replacement_date: this.ReportForm.controls.replacement_date.value,
-      class_duration: this.ReportForm.controls.class_duration.value,
-      class_location: this.ReportForm.controls.class_location.value,
-      class_cancellation_pk_id:this.id
+      course_duration: this.ReportForm.controls.course_duration.value,
+      course_location: this.ReportForm.controls.course_location.value,
+      course_cancellation_pk_id:this.id
     }
     if (this.id !=null) {
       this.btnLoading=true

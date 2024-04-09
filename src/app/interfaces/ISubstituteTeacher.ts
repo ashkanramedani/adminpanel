@@ -10,7 +10,7 @@ export interface ISubstituteTeacher {
     created_fk_by: string
     status: number
     teacher_fk_id: string
-    class_fk_id: string
+    course_fk_id: string
     description: string
     deleted: boolean,
     expire_date: string,

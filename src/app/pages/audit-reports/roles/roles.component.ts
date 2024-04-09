@@ -1,26 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { ILeaveRequest } from 'src/app/interfaces/ILeaveRequest';
-import { ILeaveRequestForm } from 'src/app/interfaces/ILeaveRequestForm';
+import { IEmployees } from 'src/app/interfaces/IEmployees';
+import { IRoles } from 'src/app/interfaces/IRoles';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
-  selector: 'app-leave-registration',
-  templateUrl: './leave-registration.component.html',
-  styleUrl: './leave-registration.component.css'
+  selector: 'app-roles',
+  templateUrl: './roles.component.html',
+  styleUrl: './roles.component.css'
 })
-export class LeaveRegistrationComponent implements OnInit {
 
-  ResponseDataList: ILeaveRequest[] = []
+export class RolesComponent implements OnInit {
+  ResponseDataList: IRoles[] = []
   ResponseDataLenght: number[];
   SearchValue: string
-   mydate = new Date(2024,2,21);
   isCheckedStatus: number;
   isLoading: boolean = true
   currentPage:number=1
   order:string="desc"
-  SingleData:ILeaveRequest
+  SingleData:IRoles
   IsShowenModal: boolean = false
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
@@ -29,7 +28,7 @@ export class LeaveRegistrationComponent implements OnInit {
   }
   GetResponseDataLenght()
   {
-    this.http.getAll(`${Domain.GetCount}?field=Leave Forms`).subscribe((response)=>
+    this.http.getAll(`${Domain.GetCount}?field=role`).subscribe((response)=>
     {
       this.ResponseDataLenght = new Array(Math.ceil(response / 10))
     })
@@ -37,7 +36,7 @@ export class LeaveRegistrationComponent implements OnInit {
  
   GetResponseData(page:number,limit:number,order:string) {
     this.isLoading=true
-    this.http.getAll(`${Domain.GetLeaveRegistration}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
+    this.http.getAll(`${Domain.GetRolesData}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       this.ResponseDataList=response;
       this.isLoading=false;
     })
@@ -56,7 +55,7 @@ export class LeaveRegistrationComponent implements OnInit {
       'آیا از حذف این آیتم اطمینان دارید؟',
       () => {
         this.http
-        .deleteWithQuery(`${Domain.DeleteLeaveRegistration}/${id}`)
+        .deleteWithQuery(`${Domain.DeleteRolesData}/${id}`)
         .subscribe((response) => {
           console.log(response);
           if (response == "Deleted") {
@@ -75,7 +74,7 @@ export class LeaveRegistrationComponent implements OnInit {
       return;
     }
     this.http
-      .get(Domain.GetLeaveRegistration, id)
+      .get(Domain.GetRolesData, id)
       .subscribe((response) => {
         this.SingleData = response;
         console.log(response)
@@ -84,10 +83,10 @@ export class LeaveRegistrationComponent implements OnInit {
           console.log("emp: "+emp)
           this.SingleData.created_fk_by=emp.name + " "+emp.last_name
         })
-        this.http.get(Domain.GetAuditEmplooyies, this.SingleData.employee_fk_id).subscribe((teacher)=>
-        {
-          this.SingleData.employee_fk_id=teacher.name + " "+teacher.last_name
-        })
+        // this.http.get(Domain.GetAuditEmplooyies, this.SingleData.employee_fk_id).subscribe((teacher)=>
+        // {
+        //   this.SingleData.employee_fk_id=teacher.name + " "+teacher.last_name
+        // })
         // this.http.get(Domain.GetAuditClass,this.SingleData.class_fk_id).subscribe((cls) => {
         //   this.SingleData.class_fk_id=cls.name
         // })
@@ -98,3 +97,4 @@ export class LeaveRegistrationComponent implements OnInit {
     this.IsShowenModal = false 
 }
 }
+

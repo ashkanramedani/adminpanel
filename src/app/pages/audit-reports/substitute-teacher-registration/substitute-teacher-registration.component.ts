@@ -29,7 +29,7 @@ export class SubstituteTeacherRegistrationComponent implements OnInit {
   }
   GetResponseDataLenght()
   {
-    this.http.getAll(`${Domain.GetCount}?table=Teacher Replacement`).subscribe((response)=>
+    this.http.getAll(`${Domain.GetCount}?field=Teacher Replacement`).subscribe((response)=>
     {
       this.ResponseDataLenght = new Array(Math.ceil(response / 10))
     })
@@ -153,8 +153,8 @@ export class SubstituteTeacherRegistrationComponent implements OnInit {
         {
           this.SingleData.replacement_teacher_fk_id=teacher.name + " "+teacher.last_name
         })
-        this.http.get(Domain.GetAuditClass,this.SingleData.class_fk_id).subscribe((cls) => {
-          this.SingleData.class_fk_id=cls.name
+        this.http.get(Domain.GetAuditClass,this.SingleData.course_fk_id).subscribe((cls) => {
+          this.SingleData.course_fk_id=cls.name
         })
         this.IsShowenModal = true
       });

@@ -4,13 +4,15 @@
         <li>
           <span class="font-medium"> گزارشات حسابرسی /</span>
         </li>
-        <li class="font-medium text-primary">فرم دورکاری /</li>
+        <li class="font-medium text-primary">فرم ثبت ورود  خروج کارکنان /</li>
         <li class="font-medium text-primary"> {{page_title}}</li>
       </ol>
     </nav>
   </div>
   <div class="rounded-md border border-[#c5c5c5] bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+  
     <form [formGroup]="ReportForm" class="grid lg:grid-cols-2 grid-cols-1 gap-6.5 p-6.5">
+  
       <div>
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
           ثبت کننده
@@ -22,49 +24,58 @@
       </div>
       <div>
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
-          نام پرسنل
+         وضعیت
           <span class="text-meta-1">*</span>
         </label>
-        <select formControlName="employee_fk_id"  [ngClass]="{'input-invalid': (this.ReportForm.controls.employee_fk_id.invalid) &&(this.ReportForm.controls.employee_fk_id.dirty ||this.ReportForm.controls.employee_fk_id.touched)}"   class="form-control-select">
+        <select formControlName="status"  [ngClass]="{'input-invalid': (this.ReportForm.controls.status.invalid) &&(this.ReportForm.controls.status.dirty ||this.ReportForm.controls.status.touched)}"   class="form-control-select">
+            <option value="1">فعال</option>
+            <option value="0">غیر فعال</option>
+          </select>
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+            شماره کاربر
+         <span class="text-meta-1">*</span>
+        </label>
+        <input type="number" formControlName="EnNo" class="form-control">
+      </div>
+      <div>
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+            Name
+          <span class="text-meta-1">*</span>
+        </label>
+        <select formControlName="Name"  [ngClass]="{'input-invalid': (this.ReportForm.controls.Name.invalid) &&(this.ReportForm.controls.Name.dirty ||this.ReportForm.controls.Name.touched)}"   class="form-control-select">
           <option *ngFor="let emp of EmployiesData " [value]="emp.employees_pk_id" >{{emp.name + " "+emp.last_name}}</option>
         </select>
       </div>
       <div>
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
-          تاریخ شروع
+            Date
           <span class="text-meta-1">*</span>
         </label>
-        <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'YYYY-MM-DD HH:mm:ss'" [uiTodayBtnEnable]="false" [timeEnable]="true"  [dateInitValue]="false">
-          <input type="text"  formControlName="start_date" dir="ltr"  class="form-control">
+        <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'YYYY/MM/DD'" [uiTodayBtnEnable]="false" [timeEnable]="false"  [dateInitValue]="false">
+          <input type="text"  formControlName="Date" dir="ltr"  class="form-control">
+        </ng-persian-datepicker>
+      </div>
+     <div>
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+            Enter
+          <span class="text-meta-1">*</span>
+        </label>
+        <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'YYYY/MM/DD    HH:mm'" [uiTodayBtnEnable]="false" [timeEnable]="true"  [dateInitValue]="false">
+          <input type="text"  formControlName="Enter" dir="ltr"  class="form-control">
         </ng-persian-datepicker>
       </div>
       <div>
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
-          تاریخ اتمام
+            Exit
           <span class="text-meta-1">*</span>
         </label>
-        <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'YYYY-MM-DD HH:mm:ss'" [uiTodayBtnEnable]="false" [timeEnable]="true"  [dateInitValue]="false">
-          <input type="text"  formControlName="end_date" dir="ltr"  class="form-control">
+        <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'YYYY/MM/DD    HH:mm'" [uiTodayBtnEnable]="false" [timeEnable]="true"  [dateInitValue]="false">
+          <input type="text"  formControlName="Exit" dir="ltr"  class="form-control">
         </ng-persian-datepicker>
       </div>
       <div >
-        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
-          مکان دورکاری
-          <span class="text-meta-1">*</span>
-        </label>
-        <input type="text" formControlName="working_location" class="form-control" [ngClass]="{'input-invalid': (this.ReportForm.controls.working_location.invalid) &&(this.ReportForm.controls.working_location.dirty ||this.ReportForm.controls.working_location.touched)}">
-      </div>
-      <div>
-        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
-          وضعیت
-          <span class="text-meta-1">*</span>
-        </label>
-        <select formControlName="status"  [ngClass]="{'input-invalid': (this.ReportForm.controls.status.invalid) &&(this.ReportForm.controls.status.dirty ||this.ReportForm.controls.status.touched)}"   class="form-control-select">
-          <option value="1">فعال</option>
-          <option value="0">غیر فعال</option>
-        </select>
-      </div>
-      <div class="col-span-2">
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
           توضیحات
         </label>
@@ -72,9 +83,9 @@
       </div>
     </form>
     <div class="flex justify-end p-6.5 items-center gap-x-2">
-      <button [disabled]="this.ReportForm.invalid ||btnLoading "  (click)="onSubmit()"
+      <button   [disabled]="this.ReportForm.invalid ||btnLoading"  (click)="onSubmit()"
         class="flex disabled:bg-secondary justify-center rounded bg-primary py-2 px-5 font-medium text-gray">{{page_title}}</button>
-      <a [routerLink]="['/AuditReports/RemoteWorkRegistration']"
+      <a [routerLink]="['/AuditReports/EmployeeEntryExit']"
         class="flex justify-center rounded bg-bodydark py-2 px-5 font-medium text-black-2">بازگشت</a>
     </div>
   </div>

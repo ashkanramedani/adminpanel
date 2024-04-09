@@ -37,7 +37,7 @@
         تاریخ شروع
         <span class="text-meta-1">*</span>
       </label>
-      <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'YYYY/MM/DD    HH:mm'" [uiTodayBtnEnable]="false" [timeEnable]="true"  [dateInitValue]="false">
+      <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'YYYY-MM-DD HH:mm:ss'" [uiTodayBtnEnable]="false" [timeEnable]="true"  [dateInitValue]="false">
         <input type="text"  formControlName="start_date" dir="ltr"  class="form-control">
       </ng-persian-datepicker>
     </div>
@@ -46,7 +46,7 @@
         تاریخ اتمام
         <span class="text-meta-1">*</span>
       </label>
-      <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'YYYY/MM/DD    HH:mm'" [uiTodayBtnEnable]="false" [timeEnable]="true"  [dateInitValue]="false">
+      <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'YYYY-MM-DD HH:mm:ss'" [uiTodayBtnEnable]="false" [timeEnable]="true"  [dateInitValue]="false">
         <input type="text" dir="ltr"  formControlName="end_date"  class="form-control">
       </ng-persian-datepicker>
     </div>
@@ -60,7 +60,7 @@
         <option value="0">غیر فعال</option>
       </select>
     </div>
-    <div class="col-span-2">
+    <div>
       <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
         توضیحات
       </label>

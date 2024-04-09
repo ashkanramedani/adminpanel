@@ -37,8 +37,8 @@
          کلاس
          <span class="text-meta-1">*</span>
         </label>
-        <select formControlName="class_fk_id"  [ngClass]="{'input-invalid': (this.ReportForm.controls.class_fk_id.invalid) &&(this.ReportForm.controls.class_fk_id.dirty ||this.ReportForm.controls.class_fk_id.touched)}"   class="form-control-select">
-          <option *ngFor="let item of ClassData" [value]="item.class_pk_id"> {{item.name}}</option>
+        <select formControlName="course_fk_id"  [ngClass]="{'input-invalid': (this.ReportForm.controls.course_fk_id.invalid) &&(this.ReportForm.controls.course_fk_id.dirty ||this.ReportForm.controls.course_fk_id.touched)}"   class="form-control-select">
+          <option *ngFor="let item of ClassData" [value]="item.course_pk_id"> {{item.name}}</option>
         </select>
       </div>
       <div>
@@ -55,7 +55,7 @@
           تاریخ جابجایی
           <span class="text-meta-1">*</span>
         </label>
-        <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'YYYY/MM/DD    HH:mm'" [uiTodayBtnEnable]="false" [timeEnable]="true"  [dateInitValue]="false">
+        <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'YYYY-MM-DD    HH:mm:ss'" [uiTodayBtnEnable]="false" [timeEnable]="true"  [dateInitValue]="false">
           <input type="text"  formControlName="replacement_date" dir="ltr"  class="form-control">
         </ng-persian-datepicker>
       </div>
@@ -64,14 +64,14 @@
           مدت کلاس
           <span class="text-meta-1">*</span>
         </label>
-        <input type="number" formControlName="class_duration" class="form-control" [ngClass]="{'input-invalid': (this.ReportForm.controls.class_duration.invalid) &&(this.ReportForm.controls.class_duration.dirty ||this.ReportForm.controls.class_duration.touched)}">
+        <input type="number" formControlName="course_duration" class="form-control" [ngClass]="{'input-invalid': (this.ReportForm.controls.course_duration.invalid) &&(this.ReportForm.controls.course_duration.dirty ||this.ReportForm.controls.course_duration.touched)}">
       </div>
       <div>
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white" >
           مکان کلاس
           <span class="text-meta-1">*</span>
         </label>
-        <input type="text" formControlName="class_location" class="form-control" [ngClass]="{'input-invalid': (this.ReportForm.controls.class_location.invalid) &&(this.ReportForm.controls.class_location.dirty ||this.ReportForm.controls.class_location.touched)}">
+        <input type="text" formControlName="course_location" class="form-control" [ngClass]="{'input-invalid': (this.ReportForm.controls.course_location.invalid) &&(this.ReportForm.controls.course_location.dirty ||this.ReportForm.controls.course_location.touched)}">
       </div>
       <div >
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">

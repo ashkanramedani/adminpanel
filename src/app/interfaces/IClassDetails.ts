@@ -11,7 +11,7 @@ export interface IClassDetails
     visible: true,
     create_date: string
     delete_date: string
-    class_pk_id: string
+    course_pk_id: string
     name: string
     duration: number
 }

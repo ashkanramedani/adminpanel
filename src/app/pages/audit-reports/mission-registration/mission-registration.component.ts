@@ -29,7 +29,7 @@ export class MissionRegistrationComponent implements OnInit {
   }
   GetResponseDataLenght()
   {
-    this.http.getAll(`${Domain.GetCount}?table=Business Trip`).subscribe((response)=>
+    this.http.getAll(`${Domain.GetCount}?field=Business Trip`).subscribe((response)=>
     {
       this.ResponseDataLenght = new Array(Math.ceil(response / 10))
     })

@@ -38,7 +38,7 @@
          <span class="text-meta-1">*</span>
         </label>
         <select formControlName="class_fk_id"  [ngClass]="{'input-invalid': (this.ReportForm.controls.class_fk_id.invalid) &&(this.ReportForm.controls.class_fk_id.dirty ||this.ReportForm.controls.class_fk_id.touched)}"   class="form-control-select">
-          <option *ngFor="let item of ClassData" [value]="item.class_pk_id"> {{item.name}}</option>
+          <option *ngFor="let item of ClassData" [value]="item.course_pk_id"> {{item.name}}</option>
         </select>
       </div>
       <div>

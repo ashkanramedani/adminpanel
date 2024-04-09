@@ -1,5 +1,8 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
+import { IClassCancellation } from 'src/app/interfaces/IClassCancellation';
+import { IEmployeeEntryExit } from 'src/app/interfaces/IEmployeeEntryExit';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -10,23 +13,42 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class EmployeeEntryExitComponent implements OnInit {
 
-  ResponseDataList: any[] = []
+  ResponseDataList: IEmployeeEntryExit[] = []
   ResponseDataLenght: number[];
   SearchValue: string
   isCheckedStatus: number;
   isLoading: boolean = true
-  selected_response_ids: number[] = [];
+  currentPage:number=1
+  IsShowenModal: boolean = false
+  SingleData:IEmployeeEntryExit
+  order:string="desc"
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
-    this.GetResponseData()
+    this.GetResponseData(1,10,this.order)
+    this.GetResponseDataLenght()
   }
-  GetResponseData() {
-    this.http.getAll(Domain.GetEmployeeEntryExit).subscribe((response) => {
+  GetResponseDataLenght()
+  {
+    this.http.getAll(`${Domain.GetCount}?field=fingerprint_scanner`).subscribe((response)=>
+    {
+      this.ResponseDataLenght = new Array(Math.ceil(response / 10))
+    })
+  }
+  GetResponseData(page:number,limit:number,order:string) {
+    this.isLoading=true;
+    this.http.getAll(`${Domain.GetEmployeeEntryExit}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
+      this.ResponseDataList=response;
       console.log(response)
+      this.isLoading=false;
     })
   }
   ChangeStatusCheckbox(event: any) {
     this.isCheckedStatus = event.target.value;
+  }
+  ChangeSort(value:any)
+  {
+    this.order=value.target.value
+    this.GetResponseData(1,10,this.order);
   }
   RemoveItem(id?: number) {
     this.alertServices.confirm(
@@ -34,51 +56,20 @@ export class EmployeeEntryExitComponent implements OnInit {
       'آیا از حذف این آیتم اطمینان دارید؟',
       () => {
         this.http
-          .delete(Domain.DeletePost + '/blog/delete', id)
-          .subscribe((response) => {
-            console.log(response);
-          });
-        this.GetResponseData();
-        this.alertServices.success('آیتم با موفقیت حذف شد');
+        .deleteWithQuery(`${Domain.DeleteEmployeeEntryExit}?form_id=${id}`)
+        .subscribe((response) => {
+          console.log(response);
+          if (response == "Deleted") {
+            this.GetResponseData(1, 10, this.order);
+            this.alertServices.success('آیتم با موفقیت حذف شد');
+          }
+          else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
+        });
       },
       () => { }
     );
   }
 
-  // RemoveMultiItem() {
-  //   if (this.selected_response_ids.length > 0) {
-  //     console.log(this.selected_response_ids);
-  //     this.alertServices.confirm(
-  //       ' حذف آیتم ها',
-  //       'آیا از حذف این آیتم ها اطمینان دارید؟',
-  //       () => {
-  //         this.http
-  //           .deleteWithBody(
-  //             `${Domain.GroupDeletePost}/${this.content_type}/group-delete`,
-  //             this.selected_response_ids,
-  //             null
-  //           )
-  //           .subscribe((response) => {
-  //             console.log(response);
-  //             if (response != null) {
-  //               this.GetResponseData();
-  //               this.alertServices.success('آیتم ها با موفقیت حذف شدند');
-  //               this.selected_response_ids = []
-  //             }
-  //           });
-  //       },
-  //       () => { }
-  //     );
-  //   } else this.alertServices.warning('آیتمی برای حذف انتخاب نشده است');
-  // }
-  checkToDeletedCheckBox(event: any, id: number) {
-    if (event?.target.checked) {
-      this.selected_response_ids.push(id);
-    } else {
-      let index = this.selected_response_ids.indexOf(id);
-      this.selected_response_ids.splice(index, 1);
-    }
-  }
   ShowTitleStatus(status: Number) {
     var title = "";
     var classStatus = "";
@@ -101,37 +92,23 @@ export class EmployeeEntryExitComponent implements OnInit {
     }
     return { title: title, classStatus: classStatus }
   }
-  ChangeStatusMultiItem(event: any) {
-    if (this.selected_response_ids.length > 0) {
-      let items_to_changed_status: { post_pk_id: Number, post_status: Number }[] = [];
-      for (let index = 0; index < this.selected_response_ids.length; index++) {
-        items_to_changed_status.push({
-          post_pk_id: this.selected_response_ids[index],
-          post_status: event.target.value
+  OpenModal(id: string) {
+    if (id == null) {
+      alert("رکورد وجود ندارد")
+      return;
+    }
+    this.http
+      .get(Domain.GetSingleClassCancellation, id)
+      .subscribe((response) => {
+        this.SingleData = response;
+        this.http.get(Domain.GetEmployeeEntryExit, this.SingleData.created_fk_by).subscribe((emp)=>
+        {
+          this.SingleData.created_fk_by=emp.name + " "+emp.last_name
         })
-      }
-      this.alertServices.confirm(
-        ' تغییر وضعیت آیتم ها',
-        'آیا از تغییر وضعیت این آیتم ها اطمینان دارید؟',
-        () => {
-          //TODO
-          this.http
-            .patch(
-              `${Domain.ChangeGroupStatus}`,
-              items_to_changed_status,
-              null
-            )
-            .subscribe((response) => {
-              console.log(response);
-              if (response != null) {
-                this.GetResponseData();
-                this.alertServices.success('آیتم ها با موفقیت تغییر وضعیت داده شدند');
-                this.selected_response_ids = []
-              }
-            });
-        },
-        () => { }
-      );
-    } else this.alertServices.warning('آیتمی برای تغییر وضعیت انتخاب نشده است');
+        this.IsShowenModal = true
+      });
+  }
+  CloseModal() {
+    this.IsShowenModal = false
   }
 }

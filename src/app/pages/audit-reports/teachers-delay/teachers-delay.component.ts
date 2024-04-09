@@ -37,7 +37,7 @@ export class TeachersDelayComponent implements OnInit {
   }
 
   GetResponseDataLenght() {
-    this.http.getAll(`${Domain.GetCount}?table=Tardy Request`).subscribe((response) => {
+    this.http.getAll(`${Domain.GetCount}?field=Tardy Request`).subscribe((response) => {
       this.totalCount = response
       this.ResponseDataLenght = new Array(Math.ceil(response / 10))
     })

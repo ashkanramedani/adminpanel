@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +19,11 @@ export class HttpService {
     }
     return headers;
   }
+
   getAll(url:string,headers?:any ):Observable<any>
   {
     return this.http.get<any>(url,{headers}).pipe(
+  
       catchError(this.errorHandler)
     );
   }
@@ -64,7 +66,8 @@ export class HttpService {
     } else {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    alert("متاسفانه خطایی رخ داده است!")
+    console.log(`Error Code: ${error.status}\nMessage: ${error.message}`)
+   alert("متاسفانه خطایی رخ داده است!!!")
     return throwError(errorMessage);
  }
 }

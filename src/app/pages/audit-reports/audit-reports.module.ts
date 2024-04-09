@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { AuditReportsRoutingModule } from './audit-reports-routing.module';
 import { RouterLink } from '@angular/router';
 import { AuditReportsComponent } from './audit-reports.component';
@@ -23,9 +22,18 @@ import { RemoteWorkRegistrationAddComponent } from './remote-work-registration/r
 import { SubstituteTeacherAddComponent } from './substitute-teacher-registration/substitute-teacher-add/substitute-teacher-add.component';
 import { ClassCancellationAddComponent } from './class-cancellation-registration/class-cancellation-add/class-cancellation-add.component';
 import { TeachersDelayAddComponent } from './teachers-delay/teachers-delay-add/teachers-delay-add.component';
+import { EmployeeEntryExitAddComponent } from './employee-entry-exit/employee-entry-exit-add/employee-entry-exit-add.component';
+import { EmployeesComponent } from './employees/employees.component';
+import { EmployeesAddComponent } from './employees/employees-add/employees-add.component';
+import { RoleAddComponent } from './roles/role-add/role-add.component';
+import { RolesComponent } from './roles/roles.component';
 
 @NgModule({
-    declarations: [TeachersDelayAddComponent,ClassCancellationAddComponent,SubstituteTeacherAddComponent,RemoteWorkRegistrationAddComponent,LeaveRegistrationAddComponent, AuditReportsComponent, ClassCancellationRegistrationComponent, EmployeeEntryExitComponent, LeaveRegistrationComponent, MissionRegistrationComponent, ProfessorsReportsComponent, RemoteWorkRegistrationComponent, SubstituteTeacherRegistrationComponent, SurveyComponent, TeachersDelayComponent,MissionRegistrationAddComponent],
+    declarations: [EmployeeEntryExitAddComponent, TeachersDelayAddComponent, ClassCancellationAddComponent, SubstituteTeacherAddComponent,
+        RemoteWorkRegistrationAddComponent, LeaveRegistrationAddComponent, AuditReportsComponent, ClassCancellationRegistrationComponent,
+        EmployeeEntryExitComponent, LeaveRegistrationComponent, MissionRegistrationComponent, ProfessorsReportsComponent,
+        RemoteWorkRegistrationComponent, SubstituteTeacherRegistrationComponent, SurveyComponent, TeachersDelayComponent,
+        MissionRegistrationAddComponent, EmployeesComponent, EmployeesAddComponent, RolesComponent, RoleAddComponent],
     imports: [
         NgPersianDatepickerModule,
         CKEditorModule,
