@@ -60,6 +60,21 @@ export const Domain =
     "GetSurvey": `${environment.apiUrl}/api/v1/form/survey/search`,
     "DeleteSurvey": `${environment.apiUrl}/api/v1/form/survey/delete`,
     
+    "GetStudentData" :`${environment.apiUrl}/api/v1/form/student/search`,
+    "DeleteStudentData" :`${environment.apiUrl}/api/v1/form/student/delete`,
+    "PutStudentData" :`${environment.apiUrl}/api/v1/form/student/update`,
+    "CreateStudentData" :`${environment.apiUrl}/api/v1/form/student/add`,
+
+    "GetcourseData" :`${environment.apiUrl}/api/v1/form/course/search`,
+    "DeletecourseData" :`${environment.apiUrl}/api/v1/form/course/delete`,
+    "PutcourseData" :`${environment.apiUrl}/api/v1/form/course/update`,
+    "CreatecourseData" :`${environment.apiUrl}/api/v1/form/course/add`,
+
+    "GetQuestionData" :`${environment.apiUrl}/api/v1/form/question/search`,
+    "DeleteQuestionData" :`${environment.apiUrl}/api/v1/form/question/delete`,
+    "PutQuestionData" :`${environment.apiUrl}/api/v1/form/question/update`,
+    "CreateQuestionData" :`${environment.apiUrl}/api/v1/form/question/add`,
+
     "GetRolesData" :`${environment.apiUrl}/api/v1/form/role/search`,
     "DeleteRolesData" :`${environment.apiUrl}/api/v1/form/role/delete`,
     "PutRolesData" :`${environment.apiUrl}/api/v1/form/role/update`,

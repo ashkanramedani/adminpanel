@@ -21,6 +21,14 @@ import { EmployeesComponent } from './employees/employees.component';
 import { EmployeesAddComponent } from './employees/employees-add/employees-add.component';
 import { RolesComponent } from './roles/roles.component';
 import { RoleAddComponent } from './roles/role-add/role-add.component';
+import { StudentsComponent } from './students/students.component';
+import { StudentAddComponent } from './students/student-add/student-add.component';
+import { CourseComponent } from './course/course.component';
+import { CourseAddComponent } from './course/course-add/course-add.component';
+import { QuestionComponent } from './question/question.component';
+import { QuestionAddComponent } from './question/question-add/question-add.component';
+import { SalaryPolicyComponent } from './salary-policy/salary-policy.component';
+import { SalaryPolicyAddComponent } from './salary-policy/salary-policy-add/salary-policy-add.component';
 
 const routes: Routes = [
   { path: '', component: AuditReportsComponent },
@@ -32,6 +40,22 @@ const routes: Routes = [
   { path: 'Roles', component: RolesComponent },
   { path: 'Role/Add', component: RoleAddComponent },
   { path: 'Role/edit/:id', component: RoleAddComponent },
+
+  { path: 'Question', component: QuestionComponent },
+  { path: 'Question/Add', component: QuestionAddComponent },
+  { path: 'Question/edit/:id', component: QuestionAddComponent },
+
+  { path: 'Course', component: CourseComponent },
+  { path: 'Course/Add', component: CourseAddComponent },
+  { path: 'Course/edit/:id', component: CourseAddComponent },
+
+  { path: 'Students', component: StudentsComponent },
+  { path: 'Student/Add', component: StudentAddComponent },
+  { path: 'Student/edit/:id', component: StudentAddComponent },
+  
+  { path: 'SalaryPolicy', component: SalaryPolicyComponent },
+  { path: 'SalaryPolicy/Add', component: SalaryPolicyAddComponent },
+  { path: 'SalaryPolicy/edit/:id', component: SalaryPolicyAddComponent },
 
   { path: 'ClassCancellationRegistration', component: ClassCancellationRegistrationComponent },
   { path: 'ClassCancellation/Add', component: ClassCancellationAddComponent },

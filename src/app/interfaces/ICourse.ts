@@ -1,20 +1,21 @@
 import { IEmployeesForm } from "./IEmployeesForm"
 
-export interface IQuestions {
-    question_pk_id: string
-    text: string
-    language: string
+export interface ICourse {
     created_fk_by: string
-    description: string
-    status: number,
-    created: IEmployeesForm
+    course_pk_id: string
+    name: string
+    course_time: string
+    duration: number,
+    teachers: IEmployeesForm[]
     priority: number,
     deleted: boolean,
     can_deleted: boolean,
-    update_date: boolean,
+    update_date: string,
     expire_date: string,
-    can_update: boolean,
+    status: number,
     visible: boolean,
+    can_update: boolean,
     create_date: string
     delete_date: string
+    description: string,
 }

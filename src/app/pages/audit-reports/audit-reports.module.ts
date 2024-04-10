@@ -27,13 +27,23 @@ import { EmployeesComponent } from './employees/employees.component';
 import { EmployeesAddComponent } from './employees/employees-add/employees-add.component';
 import { RoleAddComponent } from './roles/role-add/role-add.component';
 import { RolesComponent } from './roles/roles.component';
+import { StudentAddComponent } from './students/student-add/student-add.component';
+import { StudentsComponent } from './students/students.component';
+import { CourseComponent } from './course/course.component';
+import { CourseAddComponent } from './course/course-add/course-add.component';
+import { QuestionComponent } from './question/question.component';
+import { QuestionAddComponent } from './question/question-add/question-add.component';
+import { SalaryPolicyComponent } from './salary-policy/salary-policy.component';
+import { SalaryPolicyAddComponent } from './salary-policy/salary-policy-add/salary-policy-add.component';
 
 @NgModule({
     declarations: [EmployeeEntryExitAddComponent, TeachersDelayAddComponent, ClassCancellationAddComponent, SubstituteTeacherAddComponent,
         RemoteWorkRegistrationAddComponent, LeaveRegistrationAddComponent, AuditReportsComponent, ClassCancellationRegistrationComponent,
         EmployeeEntryExitComponent, LeaveRegistrationComponent, MissionRegistrationComponent, ProfessorsReportsComponent,
         RemoteWorkRegistrationComponent, SubstituteTeacherRegistrationComponent, SurveyComponent, TeachersDelayComponent,
-        MissionRegistrationAddComponent, EmployeesComponent, EmployeesAddComponent, RolesComponent, RoleAddComponent],
+        MissionRegistrationAddComponent, EmployeesComponent, EmployeesAddComponent, RolesComponent, RoleAddComponent,
+        StudentsComponent,StudentAddComponent,CourseComponent,CourseAddComponent,QuestionComponent,QuestionAddComponent,SalaryPolicyComponent,SalaryPolicyAddComponent
+        ],
     imports: [
         NgPersianDatepickerModule,
         CKEditorModule,
