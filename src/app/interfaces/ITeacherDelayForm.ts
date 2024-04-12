@@ -4,7 +4,7 @@ export interface ITeacherDelayForm
     description: string,
     status: number
     teacher_fk_id:string
-    class_fk_id: string
+    course_fk_id: string
     delay: number
     teacher_tardy_reports_pk_id:string
 }

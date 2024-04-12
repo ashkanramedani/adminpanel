@@ -38,6 +38,7 @@ export class StudentsComponent implements OnInit {
     this.isLoading=true
     this.http.getAll(`${Domain.GetStudentData}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       this.ResponseDataList=response;
+      this.currentPage=page
       this.isLoading=false;
     })
   }
@@ -58,7 +59,7 @@ export class StudentsComponent implements OnInit {
         .deleteWithQuery(`${Domain.DeleteStudentData}/${id}`)
         .subscribe((response) => {
           console.log(response);
-          if (response == "Deleted") {
+          if (response == "Student Deleted") {
             this.GetResponseData(1, 10, this.order);
             this.alertServices.success('آیتم با موفقیت حذف شد');
           }

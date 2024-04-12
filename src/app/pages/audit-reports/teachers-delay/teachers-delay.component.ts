@@ -47,6 +47,7 @@ export class TeachersDelayComponent implements OnInit {
     this.currentPage = page;
     this.http.getAll(`${Domain.GetTeachersDelay}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       this.ResponseDataList = response;
+      this.currentPage=page
       this.isLoading = false
     })
   }
@@ -116,8 +117,8 @@ export class TeachersDelayComponent implements OnInit {
         {
           this.SingleData.teacher_fk_id=teacher.name + " "+teacher.last_name
         })
-        this.http.get(Domain.GetAuditClass,this.SingleData.class_fk_id).subscribe((cls) => {
-          this.SingleData.class_fk_id=cls.name
+        this.http.get(Domain.GetAuditClass,this.SingleData.course_fk_id).subscribe((cls) => {
+          this.SingleData.course_fk_id=cls.name
         })
         this.IsShowenModal = true
       });

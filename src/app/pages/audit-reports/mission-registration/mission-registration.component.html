@@ -169,9 +169,9 @@
     <div *ngIf="IsShowenModal==true"  x-transition="" class="fixed left-0 top-0 z-999999 flex h-full min-h-screen w-full items-center justify-center bg-black/90 px-4 py-5">
       <div class="flex flex-col w-full mx-12  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark ">
         <div class="footer flex  justify-start border-b py-3 border-[#b1b1b1]">
-          <h3 class="text-black-2 font-semibold text-lg"> نمایش رکورد <span>ثبت ماموریت </span></h3>
+          <h3 class="text-black-2 font-semibold text-lg  dark:text-white "> نمایش رکورد <span>ثبت ماموریت </span></h3>
         </div>
-        <div class="grid lg:grid-cols-2 grid-cols-1 gap-6.5 p-6.5 text-graydark text-base">
+        <div class="grid lg:grid-cols-2 grid-cols-1 gap-6.5 p-6.5 text-graydark text-base  dark:text-white ">
           <div>
             <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
               ثبت کننده
@@ -195,6 +195,13 @@
           </div>
           <div >
             <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+              مقصد
+            
+            </label>
+            <span>{{SingleData.destination}} </span>
+          </div>
+          <div >
+            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
               تاریخ شروع
             
             </label>
@@ -207,13 +214,7 @@
             </label>
             <span>{{SingleData.end_date|date: "HH:mm - YYYY/MM/dd"}} </span>
           </div>
-          <div >
-            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
-              مقصد
-            
-            </label>
-            <span>{{SingleData.destination}} </span>
-          </div>
+          
           <div>
             <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
             توضیحات

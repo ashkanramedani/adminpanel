@@ -7,4 +7,5 @@ export interface IMissionRegisterationForm
     end_date: string
     destination:string
     business_trip_pk_id:string
+    status:number
 }

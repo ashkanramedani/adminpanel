@@ -90,7 +90,7 @@ export class LeaveRegistrationAddComponent implements OnInit {
       this.btnLoading=true
       this.http.create(Domain.CreateLeaveRequest, ReportFormValue, null).subscribe((response) => {
         console.log(response)
-        if (response == 'Record has been Added') {
+        if (response == 'Form Added') {
           this.alertServices.success("با موفقیت اضافه شد");
           this.ReportForm.reset();
           this.btnLoading=false

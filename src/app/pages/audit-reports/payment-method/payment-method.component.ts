@@ -1,25 +1,26 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { IEmployees } from 'src/app/interfaces/IEmployees';
 import { IRoles } from 'src/app/interfaces/IRoles';
+import { Ipayment_method } from 'src/app/interfaces/Ipayment_method';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
-  selector: 'app-roles',
-  templateUrl: './roles.component.html',
-  styleUrl: './roles.component.css'
+  selector: 'app-payment-method',
+  templateUrl: './payment-method.component.html',
+  styleUrl: './payment-method.component.css'
 })
 
-export class RolesComponent implements OnInit {
-  ResponseDataList: IRoles[] = []
+export class PaymentMethodComponent implements OnInit {
+  ResponseDataList: Ipayment_method[] = []
   ResponseDataLenght: number[];
   SearchValue: string
   isCheckedStatus: number;
   isLoading: boolean = true
   currentPage:number=1
   order:string="desc"
-  SingleData:IRoles
+  SingleData:Ipayment_method
   IsShowenModal: boolean = false
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
@@ -28,7 +29,7 @@ export class RolesComponent implements OnInit {
   }
   GetResponseDataLenght()
   {
-    this.http.getAll(`${Domain.GetCount}?field=role`).subscribe((response)=>
+    this.http.getAll(`${Domain.GetCount}?field=payment_method`).subscribe((response)=>
     {
       this.ResponseDataLenght = new Array(Math.ceil(response / 10))
     })
@@ -36,7 +37,7 @@ export class RolesComponent implements OnInit {
  
   GetResponseData(page:number,limit:number,order:string) {
     this.isLoading=true
-    this.http.getAll(`${Domain.GetRolesData}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
+    this.http.getAll(`${Domain.GetPaymentMethodData}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       this.ResponseDataList=response;
       this.currentPage=page
       this.isLoading=false;
@@ -56,7 +57,7 @@ export class RolesComponent implements OnInit {
       'آیا از حذف این آیتم اطمینان دارید؟',
       () => {
         this.http
-        .deleteWithQuery(`${Domain.DeleteRolesData}/${id}`)
+        .deleteWithQuery(`${Domain.DeletePaymentMethodData}/${id}`)
         .subscribe((response) => {
           console.log(response);
           if (response == "Deleted") {
@@ -75,7 +76,7 @@ export class RolesComponent implements OnInit {
       return;
     }
     this.http
-      .get(Domain.GetRolesData, id)
+      .get(Domain.GetPaymentMethodData, id)
       .subscribe((response) => {
         this.SingleData = response;
         console.log(response)
@@ -84,10 +85,10 @@ export class RolesComponent implements OnInit {
           console.log("emp: "+emp)
           this.SingleData.created_fk_by=emp.name + " "+emp.last_name
         })
-        // this.http.get(Domain.GetAuditEmplooyies, this.SingleData.employee_fk_id).subscribe((teacher)=>
-        // {
-        //   this.SingleData.employee_fk_id=teacher.name + " "+teacher.last_name
-        // })
+        this.http.get(Domain.GetAuditEmplooyies, this.SingleData.employee_fk_id).subscribe((teacher)=>
+        {
+          this.SingleData.employee_fk_id=teacher.name + " "+teacher.last_name
+        })
         // this.http.get(Domain.GetAuditClass,this.SingleData.class_fk_id).subscribe((cls) => {
         //   this.SingleData.class_fk_id=cls.name
         // })

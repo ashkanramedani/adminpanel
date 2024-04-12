@@ -39,6 +39,7 @@ export class LeaveRegistrationComponent implements OnInit {
     this.isLoading=true
     this.http.getAll(`${Domain.GetLeaveRegistration}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       this.ResponseDataList=response;
+      this.currentPage=page
       this.isLoading=false;
     })
   }

@@ -58,6 +58,16 @@
       </div>
       <div>
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          وضعیت
+          <span class="text-meta-1">*</span>
+        </label>
+        <select formControlName="status"  [ngClass]="{'input-invalid': (this.ReportForm.controls.status.invalid) &&(this.ReportForm.controls.status.dirty ||this.ReportForm.controls.status.touched)}"   class="form-control-select">
+          <option value="1">فعال</option>
+          <option value="0">غیر فعال</option>
+        </select>
+      </div>
+      <div class="col-span-2">
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
           توضیحات
         </label>
         <input type="text" formControlName="description" class="form-control">

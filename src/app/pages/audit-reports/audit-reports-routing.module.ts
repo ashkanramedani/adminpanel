@@ -29,6 +29,8 @@ import { QuestionComponent } from './question/question.component';
 import { QuestionAddComponent } from './question/question-add/question-add.component';
 import { SalaryPolicyComponent } from './salary-policy/salary-policy.component';
 import { SalaryPolicyAddComponent } from './salary-policy/salary-policy-add/salary-policy-add.component';
+import { PaymentMethodComponent } from './payment-method/payment-method.component';
+import { PaymentMethodAddComponent } from './payment-method/payment-method-add/payment-method-add.component';
 
 const routes: Routes = [
   { path: '', component: AuditReportsComponent },
@@ -52,6 +54,10 @@ const routes: Routes = [
   { path: 'Students', component: StudentsComponent },
   { path: 'Student/Add', component: StudentAddComponent },
   { path: 'Student/edit/:id', component: StudentAddComponent },
+  
+  { path: 'payment_method', component: PaymentMethodComponent },
+  { path: 'payment_method/Add', component: PaymentMethodAddComponent },
+  { path: 'payment_method/edit/:id', component: PaymentMethodAddComponent },
   
   { path: 'SalaryPolicy', component: SalaryPolicyComponent },
   { path: 'SalaryPolicy/Add', component: SalaryPolicyAddComponent },

@@ -60,6 +60,7 @@ export class RemoteWorkRegistrationAddComponent implements OnInit {
     this.ReportForm.controls["start_date"].patchValue(formatDate(this.AuditForm.start_date,"YYYY/MM/dd   HH:mm",'en-IR'));
     this.ReportForm.controls["end_date"].patchValue(formatDate(this.AuditForm.end_date,"YYYY/MM/dd   HH:mm",'en-IR') );
     this.ReportForm.controls["status"].patchValue(this.AuditForm.status)
+    this.ReportForm.controls["working_location"].patchValue(this.AuditForm.working_location)
   }
 
   onSubmit() {

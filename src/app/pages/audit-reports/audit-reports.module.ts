@@ -35,6 +35,8 @@ import { QuestionComponent } from './question/question.component';
 import { QuestionAddComponent } from './question/question-add/question-add.component';
 import { SalaryPolicyComponent } from './salary-policy/salary-policy.component';
 import { SalaryPolicyAddComponent } from './salary-policy/salary-policy-add/salary-policy-add.component';
+import { PaymentMethodAddComponent } from './payment-method/payment-method-add/payment-method-add.component';
+import { PaymentMethodComponent } from './payment-method/payment-method.component';
 
 @NgModule({
     declarations: [EmployeeEntryExitAddComponent, TeachersDelayAddComponent, ClassCancellationAddComponent, SubstituteTeacherAddComponent,
@@ -42,8 +44,9 @@ import { SalaryPolicyAddComponent } from './salary-policy/salary-policy-add/sala
         EmployeeEntryExitComponent, LeaveRegistrationComponent, MissionRegistrationComponent, ProfessorsReportsComponent,
         RemoteWorkRegistrationComponent, SubstituteTeacherRegistrationComponent, SurveyComponent, TeachersDelayComponent,
         MissionRegistrationAddComponent, EmployeesComponent, EmployeesAddComponent, RolesComponent, RoleAddComponent,
-        StudentsComponent,StudentAddComponent,CourseComponent,CourseAddComponent,QuestionComponent,QuestionAddComponent,SalaryPolicyComponent,SalaryPolicyAddComponent
-        ],
+        StudentsComponent, StudentAddComponent, CourseComponent, CourseAddComponent, QuestionComponent, QuestionAddComponent,
+         SalaryPolicyComponent, SalaryPolicyAddComponent, PaymentMethodAddComponent, PaymentMethodComponent
+    ],
     imports: [
         NgPersianDatepickerModule,
         CKEditorModule,

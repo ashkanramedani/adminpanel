@@ -42,6 +42,7 @@ export class RemoteWorkRegistrationComponent implements OnInit {
     this.isLoading=true
     this.http.getAll(`${Domain.GetRemoteWorkRegistration}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       console.log(response)
+      this.currentPage=page
       this.ResponseDataList=response;
       this.isLoading=false
     })
@@ -55,7 +56,7 @@ export class RemoteWorkRegistrationComponent implements OnInit {
       'آیا از حذف این آیتم اطمینان دارید؟',
       () => {
         this.http
-        .deleteWithQuery(`${Domain.DeleteRemoteWorkRegistration}?form_id=${id}`)
+        .deleteWithQuery(`${Domain.DeleteRemoteWorkRegistration}/${id}`)
         .subscribe((response) => {
           console.log(response);
           if (response == "Deleted") {

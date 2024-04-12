@@ -32,7 +32,8 @@ export class MissionRegistrationAddComponent implements OnInit {
         employee_fk_id: new FormControl('', [Validators.required]),
         start_date: new FormControl('', [Validators.required]),
         end_date: new FormControl('', [Validators.required]),
-        destination:new FormControl('',[Validators.required])
+        destination:new FormControl('',[Validators.required]),
+        status:new FormControl('',[Validators.required])
       }
     )
     if (this.id !=null) {
@@ -59,6 +60,7 @@ export class MissionRegistrationAddComponent implements OnInit {
     this.ReportForm.controls["start_date"].patchValue(formatDate(this.AuditForm.start_date,"YYYY/MM/dd   HH:mm",'en-IR'));
     this.ReportForm.controls["end_date"].patchValue(formatDate(this.AuditForm.end_date,"YYYY/MM/dd   HH:mm",'en-IR'));
     this.ReportForm.controls["destination"].patchValue(this.AuditForm.destination)
+    this.ReportForm.controls["status"].patchValue(this.AuditForm.status)
   }
 
   onSubmit() {
@@ -74,6 +76,7 @@ export class MissionRegistrationAddComponent implements OnInit {
       end_date: this.ReportForm.controls.end_date.value,
       start_date: this.ReportForm.controls.start_date.value,
       destination:this.ReportForm.controls.destination.value,
+      status:this.ReportForm.controls.status.value,
       business_trip_pk_id:this.id
     }
     if (this.id !=null) {

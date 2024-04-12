@@ -38,6 +38,7 @@ export class SubstituteTeacherRegistrationComponent implements OnInit {
     this.http.getAll(`${Domain.GetSubstituteTeacher}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       console.log(response)
       this.ResponseDataList=response;
+      this.currentPage=page
       this.isLoading=false;
     })
   }

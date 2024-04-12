@@ -43,6 +43,7 @@ export class MissionRegistrationComponent implements OnInit {
     this.isLoading=true
     this.http.getAll(`${Domain.GetMissionRegistration}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       this.ResponseDataList=response
+      this.currentPage=page
       console.log(response)
       this.isLoading=false
     })
@@ -56,7 +57,7 @@ export class MissionRegistrationComponent implements OnInit {
       'آیا از حذف این آیتم اطمینان دارید؟',
       () => {
         this.http
-        .deleteWithQuery(`${Domain.DeleteMissionRegistration}?form_id=${id}`)
+        .deleteWithQuery(`${Domain.DeleteMissionRegistration}/${id}`)
         .subscribe((response) => {
           console.log(response);
           if (response == "Deleted") {

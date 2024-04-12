@@ -37,6 +37,7 @@ export class QuestionComponent implements OnInit {
     this.isLoading=true
     this.http.getAll(`${Domain.GetQuestionData}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       this.ResponseDataList=response;
+      this.currentPage=page
       this.isLoading=false;
     })
   }
