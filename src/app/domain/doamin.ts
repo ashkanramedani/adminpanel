@@ -2,7 +2,7 @@ import { environment } from '../../environments/environment';
 export const Domain =
 {
     "WebsiteUrl": "",
-    "GetCount": `${environment.apiUrl}/count`,
+    "GetCount": `${environment.apiUrl}/api/v1/form/count`,
     "GetTagList": `${environment.apiUrl}/api/v1/tag/all`,
     "GetPost": `${environment.apiUrl}/api/v1/post`,
     "GetPostTopic": `${environment.apiUrl}/api/v1/post/get_post_topic`,

@@ -2,6 +2,7 @@ import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import * as moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
 import { IEmployees } from 'src/app/interfaces/IEmployees';
 import { IRemoteRequestForm } from 'src/app/interfaces/IRemoteRequestForm';
@@ -73,8 +74,12 @@ export class RemoteWorkRegistrationAddComponent implements OnInit {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
       employee_fk_id: this.ReportForm.controls.employee_fk_id.value,
-      end_date: this.ReportForm.controls.end_date.value,
-      start_date: this.ReportForm.controls.start_date.value,
+
+      end_date:moment.from(this.ReportForm.controls.end_date.value, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD'),
+      start_date:moment.from(this.ReportForm.controls.start_date.value, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD'),
+
+      //end_date: this.ReportForm.controls.end_date.value,
+      //start_date: this.ReportForm.controls.start_date.value,
       working_location:this.ReportForm.controls.working_location.value,
       status:this.ReportForm.controls.status.value,
       remote_request_pk_id:this.id

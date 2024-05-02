@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import * as moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
 import { ICourse } from 'src/app/interfaces/ICourse';
 import { ICourseForm } from 'src/app/interfaces/ICourseForm';
@@ -95,7 +96,9 @@ export class CourseAddComponent implements OnInit {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       name: this.ReportForm.controls.name.value,
       teachers: this.TeacherInputArray,
-      course_time: this.ReportForm.controls.course_time.value,
+      //course_time: this.ReportForm.controls.course_time.value,
+      course_time:moment.from(this.ReportForm.controls.course_time.value, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD'),
+
       duration: this.ReportForm.controls.duration.value,
     }
     if (this.id != null) {

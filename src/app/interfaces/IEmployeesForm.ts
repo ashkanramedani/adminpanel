@@ -6,7 +6,6 @@ export interface IEmployeesForm{
     day_of_birth: string
     email: string,
     mobile_number: string,
-    id_card_number: string,
     address: string,
     employees_pk_id: string
     priority: number,

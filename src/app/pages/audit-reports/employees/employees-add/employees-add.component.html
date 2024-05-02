@@ -31,7 +31,7 @@
                 تاریخ تولد
                 <span class="text-meta-1">*</span>
             </label>
-            <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'YYYY-MM-DD HH:mm:ss'"
+            <ng-persian-datepicker [uiHideAfterSelectDate]="false"  [dateFormat]="'YYYY-MM-DD HH:mm:ss'"
                 [uiTodayBtnEnable]="false" [timeEnable]="true" [dateInitValue]="false">
                 <input type="text" formControlName="day_of_birth" dir="ltr" class="form-control">
             </ng-persian-datepicker>
@@ -50,12 +50,7 @@
             </label>
             <input type="text" formControlName="mobile_number" class="form-control">
         </div>
-        <div>
-            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
-                شماره کارت
-            </label>
-            <input type="text" formControlName="id_card_number" class="form-control">
-        </div>
+       
         <div>
             <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
                 آدرس
@@ -77,7 +72,6 @@
         <div>
             <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
                 نقش
-                <span class="text-meta-1">*</span>
             </label>
             <select formControlName="roles"
                 [ngClass]="{'input-invalid': (this.ReportForm.controls.roles.invalid) &&(this.ReportForm.controls.roles.dirty ||this.ReportForm.controls.roles.touched)}"

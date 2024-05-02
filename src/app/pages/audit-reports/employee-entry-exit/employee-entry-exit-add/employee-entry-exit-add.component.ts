@@ -3,6 +3,7 @@ import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import * as moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
 import { IClassDetails } from 'src/app/interfaces/IClassDetails';
 import { IEmployeeEntryExitForm } from 'src/app/interfaces/IEmployeeEntryExitForm';
@@ -78,9 +79,13 @@ export class EmployeeEntryExitAddComponent implements OnInit {
       status: this.ReportForm.controls.status.value,
       EnNo: this.ReportForm.controls.EnNo.value,
       Name: this.ReportForm.controls.Name.value,
-      Date: this.ReportForm.controls.Date.value,
-      Enter: this.ReportForm.controls.Enter.value,
-      Exit: this.ReportForm.controls.Exit.value
+      Date:moment.from(this.ReportForm.controls.Date.value, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD'),
+      Enter:moment.from(this.ReportForm.controls.Enter.value, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD'),
+      Exit:moment.from(this.ReportForm.controls.Exit.value, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD'),
+      
+      // Date: this.ReportForm.controls.Date.value,
+      // Enter: this.ReportForm.controls.Enter.value,
+      // Exit: this.ReportForm.controls.Exit.value
     }
     if (this.id !=null) {
       this.btnLoading=true

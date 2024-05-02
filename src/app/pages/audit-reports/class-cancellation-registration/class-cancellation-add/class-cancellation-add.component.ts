@@ -2,6 +2,7 @@ import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import * as moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
 import { IClassCancellationForm } from 'src/app/interfaces/IClassCancellationForm';
 import { IClassDetails } from 'src/app/interfaces/IClassDetails';
@@ -80,7 +81,8 @@ export class ClassCancellationAddComponent implements OnInit {
       status: this.ReportForm.controls.status.value,
       course_fk_id: this.ReportForm.controls.course_fk_id.value,
       teacher_fk_id: this.ReportForm.controls.teacher_fk_id.value,
-      replacement_date: this.ReportForm.controls.replacement_date.value,
+      //replacement_date: this.ReportForm.controls.replacement_date.value,
+      replacement_date:moment.from(this.ReportForm.controls.replacement_date.value, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD'),
       course_duration: this.ReportForm.controls.course_duration.value,
       course_location: this.ReportForm.controls.course_location.value,
       course_cancellation_pk_id:this.id

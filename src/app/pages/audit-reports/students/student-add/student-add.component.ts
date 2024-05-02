@@ -2,6 +2,7 @@ import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import * as moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
 import { IEmployees } from 'src/app/interfaces/IEmployees';
 import { IRoles } from 'src/app/interfaces/IRoles';
@@ -79,7 +80,9 @@ export class StudentAddComponent implements OnInit {
       student_pk_id:this.id,
       name: this.ReportForm.controls.name.value,
       last_name: this.ReportForm.controls.last_name.value,
-      day_of_birth: this.ReportForm.controls.day_of_birth.value,
+      //day_of_birth: this.ReportForm.controls.day_of_birth.value,
+      day_of_birth:moment.from(this.ReportForm.controls.day_of_birth.value, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD'),
+
       email: this.ReportForm.controls.email.value,
       mobile_number: this.ReportForm.controls.mobile_number.value,
       id_card_number: this.ReportForm.controls.id_card_number.value,

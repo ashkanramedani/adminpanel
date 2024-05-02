@@ -3,6 +3,7 @@ import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import * as moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
 import { IEmployees } from 'src/app/interfaces/IEmployees';
 import { IEmployeesForm } from 'src/app/interfaces/IEmployeesForm';
@@ -36,11 +37,10 @@ export class EmployeesAddComponent implements OnInit {
         day_of_birth: new FormControl(''),
         email: new FormControl('',),
         mobile_number: new FormControl('', [Validators.required]),
-        id_card_number: new FormControl('', [Validators.required]),
         address: new FormControl(''),
         priority: new FormControl('', [Validators.required]),
         fingerprint_scanner_user_id: new FormControl('', [Validators.required]),
-        roles: new FormControl('', [Validators.required])
+        roles: new FormControl('', )
       }
     )
     if (this.id != null) {
@@ -59,12 +59,12 @@ export class EmployeesAddComponent implements OnInit {
       });
   }
   FillFormData() {
+    alert(this.AuditForm.day_of_birth)
     this.ReportForm.controls["name"].patchValue(this.AuditForm.name);
     this.ReportForm.controls["last_name"].patchValue(this.AuditForm.last_name);
     this.ReportForm.controls["day_of_birth"].patchValue(formatDate(this.AuditForm.day_of_birth, "YYYY/MM/dd HH:mm", 'en-IR'));
     this.ReportForm.controls["email"].patchValue(this.AuditForm.email);
     this.ReportForm.controls["mobile_number"].patchValue(this.AuditForm.mobile_number);
-    this.ReportForm.controls["id_card_number"].patchValue(this.AuditForm.id_card_number)
     this.ReportForm.controls["address"].patchValue(this.AuditForm.address)
     this.ReportForm.controls["priority"].patchValue(this.AuditForm.priority)
     this.ReportForm.controls["fingerprint_scanner_user_id"].patchValue(this.AuditForm.fingerprint_scanner_user_id)
@@ -80,10 +80,10 @@ export class EmployeesAddComponent implements OnInit {
       employees_pk_id:this.id,
       name: this.ReportForm.controls.name.value,
       last_name: this.ReportForm.controls.last_name.value,
-      day_of_birth: this.ReportForm.controls.day_of_birth.value,
+      //day_of_birth:  ( this.ReportForm.controls.day_of_birth.value),
+      day_of_birth:moment.from(this.ReportForm.controls.day_of_birth.value, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD'),
       email: this.ReportForm.controls.email.value,
       mobile_number: this.ReportForm.controls.mobile_number.value,
-      id_card_number: this.ReportForm.controls.id_card_number.value,
       address: this.ReportForm.controls.address.value,
       priority: this.ReportForm.controls.priority.value,
       fingerprint_scanner_user_id: this.ReportForm.controls.fingerprint_scanner_user_id.value,
