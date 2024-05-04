@@ -79,14 +79,12 @@ export class EmployeesAddComponent implements OnInit {
       employees_pk_id:this.id,
       name: this.ReportForm.controls.name.value,
       last_name: this.ReportForm.controls.last_name.value,
-      //day_of_birth:  ( this.ReportForm.controls.day_of_birth.value),
       day_of_birth:moment.from(this.ReportForm.controls.day_of_birth.value, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD'),
       email: this.ReportForm.controls.email.value,
       mobile_number: this.ReportForm.controls.mobile_number.value,
       address: this.ReportForm.controls.address.value,
       priority: this.ReportForm.controls.priority.value,
       fingerprint_scanner_user_id: this.ReportForm.controls.fingerprint_scanner_user_id.value,
-      //roles:new Array( this.ReportForm.controls.roles.value),
       roles: this.ReportForm.controls.roles.value=='' ? new Array( ) : new Array( this.ReportForm.controls.roles.value) ,
 
 

@@ -73,8 +73,8 @@ export class LeaveRegistrationAddComponent implements OnInit {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
       employee_fk_id: this.ReportForm.controls.employee_fk_id.value,
-      end_date:moment.from(this.ReportForm.controls.end_date.value, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD'),
-      start_date:moment.from(this.ReportForm.controls.start_date.value, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD'),
+      end_date:moment.from(this.ReportForm.controls.end_date.value, 'fa', 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'),
+      start_date:moment.from(this.ReportForm.controls.start_date.value, 'fa', 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'),
 
       //end_date: this.ReportForm.controls.end_date.value,
       //start_date: this.ReportForm.controls.start_date.value,

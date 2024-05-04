@@ -1,13 +1,13 @@
-import { IUser } from "./IUser"
+import { IEmployeesForm } from "./IEmployeesForm"
 
 export interface IEmployeeEntryExit {
-    created_fk_by: string
-    description: string
-    status: number
-    EnNo: number
-    Name: string
-    Date: string
-    Enter: string
-    Exit: string
-    fingerprint_scanner_pk_id: string
+        created: IEmployeesForm
+        description: string,
+        status: number,
+        FingerPrintScanner_pk_id: string
+        Date: string
+        Enter: string
+        Exit: string
+        EnNo: number
+        created_fk_by:string
 }

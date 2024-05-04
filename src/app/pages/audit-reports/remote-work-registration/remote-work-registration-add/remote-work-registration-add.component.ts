@@ -59,8 +59,8 @@ export class RemoteWorkRegistrationAddComponent implements OnInit {
     this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
     this.ReportForm.controls["employee_fk_id"].patchValue(this.AuditForm.employee_fk_id);
 
-    this.ReportForm.controls["start_date"].patchValue( moment(this.AuditForm.start_date, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
-    this.ReportForm.controls["end_date"].patchValue( moment(this.AuditForm.end_date, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
+    this.ReportForm.controls["start_date"].patchValue( moment(this.AuditForm.start_date, 'YYYY-MM-DD HH:mm:ss').locale('fa').format('YYYY-MM-DD HH:mm:ss'));
+    this.ReportForm.controls["end_date"].patchValue( moment(this.AuditForm.end_date, 'YYYY-MM-DD HH:mm:ss').locale('fa').format('YYYY-MM-DD HH:mm:ss'));
     this.ReportForm.controls["status"].patchValue(this.AuditForm.status)
     this.ReportForm.controls["working_location"].patchValue(this.AuditForm.working_location)
   }
@@ -76,8 +76,8 @@ export class RemoteWorkRegistrationAddComponent implements OnInit {
       description: this.ReportForm.controls.description.value,
       employee_fk_id: this.ReportForm.controls.employee_fk_id.value,
 
-      end_date:moment.from(this.ReportForm.controls.end_date.value, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD'),
-      start_date:moment.from(this.ReportForm.controls.start_date.value, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD'),
+      end_date:moment.from(this.ReportForm.controls.end_date.value, 'fa', 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'),
+      start_date:moment.from(this.ReportForm.controls.start_date.value, 'fa', 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'),
 
       //end_date: this.ReportForm.controls.end_date.value,
       //start_date: this.ReportForm.controls.start_date.value,

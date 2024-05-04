@@ -1,1 +1,217 @@
-<p>salary-policy-add works!</p>
+<div class="header flex justify-between items-center p-3">
+    <nav>
+      <ol class="flex items-center gap-1 text-sm w-max">
+        <li>
+          <span class="font-medium"> گزارشات حسابرسی /</span>
+        </li>
+        <li class="font-medium text-primary">فرم ضریب محاسبه حقوق /</li>
+        <li class="font-medium text-primary"> {{page_title}}</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="rounded-md border border-[#c5c5c5] bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+    <form [formGroup]="ReportForm" class="grid lg:grid-cols-2 grid-cols-1 gap-6.5 p-6.5">
+      <div>
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          ثبت کننده
+          
+        </label>
+        <select formControlName="created_fk_by"  [ngClass]="{'input-invalid': (this.ReportForm.controls.created_fk_by.invalid) &&(this.ReportForm.controls.created_fk_by.dirty ||this.ReportForm.controls.created_fk_by.touched)}"   class="form-control-select">
+          <option *ngFor="let emp of EmployiesData " [value]="emp.employees_pk_id" >{{emp.name + " "+emp.last_name}}</option>
+        </select>
+      </div>
+      <div>
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          نام پرسنل
+          
+        </label>
+        <select formControlName="employee_fk_id"  [ngClass]="{'input-invalid': (this.ReportForm.controls.employee_fk_id.invalid) &&(this.ReportForm.controls.employee_fk_id.dirty ||this.ReportForm.controls.employee_fk_id.touched)}"   class="form-control-select">
+          <option *ngFor="let emp of EmployiesData " [value]="emp.employees_pk_id" >{{emp.name + " "+emp.last_name}}</option>
+        </select>
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          ساعت شروع روز کاری
+          
+        </label>
+        <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'HH:mm:ss'" [uiTodayBtnEnable]="false" [timeEnable]="true"  [dateInitValue]="false">
+          <input type="text"  formControlName="day_starting_time" dir="ltr"  class="form-control">
+        </ng-persian-datepicker>
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          ساعت پایان روز کاری
+          
+        </label>
+        <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'HH:mm:ss'" [uiTodayBtnEnable]="false" [timeEnable]="true"  [dateInitValue]="false">
+          <input type="text"  formControlName="day_ending_time" dir="ltr"  class="form-control">
+        </ng-persian-datepicker>
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          ضریب ساعات عادی
+          
+        </label>
+        <input type="number" formControlName="Regular_hours_factor" class="form-control" >
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          حداکثر ساعات روز کاری
+          
+        </label>
+        <input type="number" formControlName="Regular_hours_cap" class="form-control" >
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          اجازه اضافه کار
+          
+        </label>
+        <select formControlName="overtime_permission"   class="form-control-select">
+          <option value="true">دارد</option>
+          <option value="false">ندارد </option>
+        </select>
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          ضریب اضافه کار
+          
+        </label>
+        <input type="number" formControlName="overtime_factor" class="form-control" >
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          حداکثر ساعات اضافه کار
+          
+        </label>
+        <input type="number" formControlName="overtime_cap" class="form-control" >
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          آستانه اضافه کار
+          
+        </label>
+        <input type="number" formControlName="overtime_threshold" class="form-control" >
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          ضریب کم کاری
+          
+        </label>
+        <input type="number" formControlName="undertime_factor" class="form-control" >
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          آستانه کم کاری
+          
+        </label>
+        <input type="number" formControlName="undertime_threshold" class="form-control" >
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          اجازه کاری روزهای تعطیل
+          
+        </label>
+        <select formControlName="off_day_permission"   class="form-control-select">
+          <option value="true">دارد</option>
+          <option value="false">ندارد </option>
+        </select>
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          ضریب کاری روزهای تعطیل
+          
+        </label>
+        <input type="number" formControlName="off_day_factor" class="form-control" >
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          حداکثر کار روزهای تعطیل
+          
+        </label>
+        <input type="number" formControlName="off_day_cap" class="form-control" >
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          اجازه ریموت
+          
+        </label>
+        <select formControlName="remote_permission"   class="form-control-select">
+          <option value="true">دارد</option>
+          <option value="false">ندارد </option>
+        </select>
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          ضریب ریموت
+          
+        </label>
+        <input type="number" formControlName="remote_factor" class="form-control" >
+      </div>
+
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          حداکثر ریموت
+          
+        </label>
+        <input type="number" formControlName="remote_cap" class="form-control" >
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          ضریب مرخصی استعلاجی
+          
+        </label>
+        <input type="number" formControlName="medical_leave_factor" class="form-control" >
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          حداکثر روزهای مرخصی استعلاجی
+          
+        </label>
+        <input type="number" formControlName="medical_leave_cap" class="form-control" >
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          ضریب مرخصی استحقاقی
+          
+        </label>
+        <input type="number" formControlName="vacation_leave_factor" class="form-control" >
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          حداکثر روزهای مرخصی استحقاقی
+          
+        </label>
+        <input type="number" formControlName="vacation_leave_cap" class="form-control" >
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          اجازه سفرهای کاری
+          
+        </label>
+        <select formControlName="business_trip_permission"   class="form-control-select">
+          <option value="true">دارد</option>
+          <option value="false">ندارد </option>
+        </select>
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          ضریب سفرهای کاری
+          
+        </label>
+        <input type="number" formControlName="business_trip_factor" class="form-control" >
+      </div>
+      <div >
+        <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
+          حداکثر روزهای  سفر کاری
+          
+        </label>
+        <input type="number" formControlName="business_trip_cap" class="form-control" >
+      </div>
+    </form>
+    <div class="flex justify-end p-6.5 items-center gap-x-2">
+      <button [disabled]="this.ReportForm.invalid ||btnLoading "  (click)="onSubmit()"
+        class="flex disabled:bg-secondary justify-center rounded bg-primary py-2 px-5 font-medium text-gray">{{page_title}}</button>
+      <a [routerLink]="['/AuditReports/SalaryPolicy']"
+        class="flex justify-center rounded bg-bodydark py-2 px-5 font-medium text-black-2">بازگشت</a>
+    </div>
+  </div>

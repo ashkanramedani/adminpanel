@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
 import { IRemoteRequest } from 'src/app/interfaces/IRemoteRequest';
 import { AlertifyService } from 'src/app/services/alertify.service';
@@ -78,6 +79,8 @@ export class RemoteWorkRegistrationComponent implements OnInit {
       .get(Domain.GetSingleRemoteWork, id)
       .subscribe((response) => {
         this.SingleData = response;
+        this.SingleData.start_date= moment(this.SingleData.start_date, 'YYYY-MM-DD HH:mm:ss').locale('fa').format('HH:mm:ss YYYY-MM-DD');
+        this.SingleData.end_date= moment(this.SingleData.end_date, 'YYYY-MM-DD HH:mm:ss').locale('fa').format('HH:mm:ss YYYY-MM-DD');
         this.http.get(Domain.GetAuditEmplooyies, this.SingleData.created_fk_by).subscribe((emp)=>
         {
           this.SingleData.created_fk_by=emp.name + " "+emp.last_name

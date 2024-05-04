@@ -1,7 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { IClassCancellation } from 'src/app/interfaces/IClassCancellation';
 import { IEmployeeEntryExit } from 'src/app/interfaces/IEmployeeEntryExit';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
@@ -9,7 +8,6 @@ import { HttpService } from 'src/app/services/http.service';
 @Component({
   selector: 'app-employee-entry-exit',
   templateUrl: './employee-entry-exit.component.html',
-  styleUrl: './employee-entry-exit.component.css'
 })
 export class EmployeeEntryExitComponent implements OnInit {
 
@@ -51,13 +49,13 @@ export class EmployeeEntryExitComponent implements OnInit {
     this.order=value.target.value
     this.GetResponseData(1,10,this.order);
   }
-  RemoveItem(id?: number) {
+  RemoveItem(id?: string) {
     this.alertServices.confirm(
       'حذف آیتم',
       'آیا از حذف این آیتم اطمینان دارید؟',
       () => {
         this.http
-        .deleteWithQuery(`${Domain.DeleteEmployeeEntryExit}?form_id=${id}`)
+        .deleteWithQuery(`${Domain.DeleteEmployeeEntryExit}/${id}`)
         .subscribe((response) => {
           console.log(response);
           if (response == "Deleted") {
@@ -71,38 +69,17 @@ export class EmployeeEntryExitComponent implements OnInit {
     );
   }
 
-  ShowTitleStatus(status: Number) {
-    var title = "";
-    var classStatus = "";
-    switch (status) {
-      case 0:
-        title = "غیر فعال"
-        classStatus = "inline-flex rounded-full bg-[#637381] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90"
-        break;
-      case 1:
-        title = "تایید نشده "
-        classStatus = "inline-flex rounded-full bg-[#3BA2B8] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90"
-        break;
-      case 2:
-        title = " فعال "
-        classStatus = "inline-flex rounded-full bg-[#3CA745] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90"
-        break;
-      default:
-        title = "نامشخص"
-        break;
-    }
-    return { title: title, classStatus: classStatus }
-  }
+
   OpenModal(id: string) {
     if (id == null) {
       alert("رکورد وجود ندارد")
       return;
     }
     this.http
-      .get(Domain.GetSingleClassCancellation, id)
+      .get(Domain.GetEmployeeEntryExit, id)
       .subscribe((response) => {
         this.SingleData = response;
-        this.http.get(Domain.GetEmployeeEntryExit, this.SingleData.created_fk_by).subscribe((emp)=>
+        this.http.get(Domain.GetAuditEmplooyies, this.SingleData.created_fk_by).subscribe((emp)=>
         {
           this.SingleData.created_fk_by=emp.name + " "+emp.last_name
         })

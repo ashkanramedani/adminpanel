@@ -31,6 +31,7 @@ import { SalaryPolicyComponent } from './salary-policy/salary-policy.component';
 import { SalaryPolicyAddComponent } from './salary-policy/salary-policy-add/salary-policy-add.component';
 import { PaymentMethodComponent } from './payment-method/payment-method.component';
 import { PaymentMethodAddComponent } from './payment-method/payment-method-add/payment-method-add.component';
+import { EmployeeEntryExitBulkAddComponent } from './employee-entry-exit/employee-entry-exit-bulk-add/employee-entry-exit-bulk-add.component';
 
 const routes: Routes = [
   { path: '', component: AuditReportsComponent },
@@ -69,6 +70,7 @@ const routes: Routes = [
 
   { path: 'EmployeeEntryExit', component: EmployeeEntryExitComponent },
   { path: 'EmployeeEntryExit/Add', component: EmployeeEntryExitAddComponent },
+  { path: 'EmployeeEntryExit/bulk', component: EmployeeEntryExitBulkAddComponent },
   { path: 'EmployeeEntryExit/edit/:id', component: EmployeeEntryExitAddComponent },
   
   { path: 'LeaveRegistration', component: LeaveRegistrationComponent },

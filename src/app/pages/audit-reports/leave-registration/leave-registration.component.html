@@ -181,13 +181,13 @@
             <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
               ثبت کننده
             </label>
-            <span>{{SingleData.created_fk_by}}</span>
+            <span>{{SingleData.created.name+" "+SingleData.created.last_name}}</span>
           </div>
           <div>
             <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
               نام پرسنل
             </label>
-            <span>{{SingleData.employee_fk_id}}</span>
+            <span>{{SingleData.employee.name+" "+SingleData.employee.last_name}}</span>
           </div>
       
           <div>

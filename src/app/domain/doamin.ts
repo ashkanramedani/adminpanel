@@ -34,10 +34,13 @@ export const Domain =
     "GetSingleClassCancellation": `${environment.apiUrl}/api/v1/form/course_cancellation/search`,
     "PutClassCancellation": `${environment.apiUrl}/api/v1/form/course_cancellation/update`,
     "GetTeachersDelaySingle": `${environment.apiUrl}/api/v1/form/tardy_request/search`,
+
     "GetEmployeeEntryExit": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/search`,
     "CreateEmployeeEntryExit": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/add`,
+    "CreateBulkEmployeeEntryExit": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/bulk_add`,
     "DeleteEmployeeEntryExit": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/delete`,
     "PutEmployeeEntryExit": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/update`,
+
     "GetLeaveRegistration": `${environment.apiUrl}/api/v1/form/leave_request/search`,
     "DeleteLeaveRegistration": `${environment.apiUrl}/api/v1/form/leave_request/delete`,
     "GetSingleLeaveRrgistration": `${environment.apiUrl}/api/v1/form/leave_request/search`,
@@ -74,6 +77,11 @@ export const Domain =
     "DeletecourseData" :`${environment.apiUrl}/api/v1/form/course/delete`,
     "PutcourseData" :`${environment.apiUrl}/api/v1/form/course/update`,
     "CreatecourseData" :`${environment.apiUrl}/api/v1/form/course/add`,
+
+    "GetSalaryPolicyData" :`${environment.apiUrl}/api/v1/form/SalaryPolicy/search`,
+    "DeleteSalaryPolicyData" :`${environment.apiUrl}/api/v1/form/SalaryPolicy/delete`,
+    "PutSalaryPolicyData" :`${environment.apiUrl}/api/v1/form/SalaryPolicy/update`,
+    "CreateSalaryPolicyData" :`${environment.apiUrl}/api/v1/form/SalaryPolicy/add`,
 
     "GetQuestionData" :`${environment.apiUrl}/api/v1/form/question/search`,
     "DeleteQuestionData" :`${environment.apiUrl}/api/v1/form/question/delete`,

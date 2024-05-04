@@ -41,34 +41,36 @@
       </div>
       <div>
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
-            Name
+            نام
           <span class="text-meta-1">*</span>
         </label>
-        <select formControlName="Name"  [ngClass]="{'input-invalid': (this.ReportForm.controls.Name.invalid) &&(this.ReportForm.controls.Name.dirty ||this.ReportForm.controls.Name.touched)}"   class="form-control-select">
+        <input type="text" formControlName="Name" class="form-control">
+        <!-- <select formControlName="Name"  [ngClass]="{'input-invalid': (this.ReportForm.controls.Name.invalid) &&(this.ReportForm.controls.Name.dirty ||this.ReportForm.controls.Name.touched)}"   class="form-control-select">
           <option *ngFor="let emp of EmployiesData " [value]="emp.employees_pk_id" >{{emp.name + " "+emp.last_name}}</option>
-        </select>
+        </select> -->
       </div>
       <div>
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
-            Date
+            تاریخ
           <span class="text-meta-1">*</span>
         </label>
-        <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'YYYY/MM/DD'" [uiTodayBtnEnable]="false" [timeEnable]="false"  [dateInitValue]="false">
+        <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'YYYY-MM-DD'" [uiTodayBtnEnable]="false" [timeEnable]="false"  [dateInitValue]="false">
           <input type="text"  formControlName="Date" dir="ltr"  class="form-control">
         </ng-persian-datepicker>
       </div>
      <div>
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
-            Enter
+            ساعت ورود
           <span class="text-meta-1">*</span>
         </label>
+
         <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'YYYY/MM/DD    HH:mm'" [uiTodayBtnEnable]="false" [timeEnable]="true"  [dateInitValue]="false">
           <input type="text"  formControlName="Enter" dir="ltr"  class="form-control">
         </ng-persian-datepicker>
       </div>
       <div>
         <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
-            Exit
+            ساعت خروج
           <span class="text-meta-1">*</span>
         </label>
         <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'YYYY/MM/DD    HH:mm'" [uiTodayBtnEnable]="false" [timeEnable]="true"  [dateInitValue]="false">

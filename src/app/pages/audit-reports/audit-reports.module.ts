@@ -37,6 +37,8 @@ import { SalaryPolicyComponent } from './salary-policy/salary-policy.component';
 import { SalaryPolicyAddComponent } from './salary-policy/salary-policy-add/salary-policy-add.component';
 import { PaymentMethodAddComponent } from './payment-method/payment-method-add/payment-method-add.component';
 import { PaymentMethodComponent } from './payment-method/payment-method.component';
+import { EmployeeEntryExitBulkAddComponent } from './employee-entry-exit/employee-entry-exit-bulk-add/employee-entry-exit-bulk-add.component';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @NgModule({
     declarations: [EmployeeEntryExitAddComponent, TeachersDelayAddComponent, ClassCancellationAddComponent, SubstituteTeacherAddComponent,
@@ -45,7 +47,7 @@ import { PaymentMethodComponent } from './payment-method/payment-method.componen
         RemoteWorkRegistrationComponent, SubstituteTeacherRegistrationComponent, SurveyComponent, TeachersDelayComponent,
         MissionRegistrationAddComponent, EmployeesComponent, EmployeesAddComponent, RolesComponent, RoleAddComponent,
         StudentsComponent, StudentAddComponent, CourseComponent, CourseAddComponent, QuestionComponent, QuestionAddComponent,
-         SalaryPolicyComponent, SalaryPolicyAddComponent, PaymentMethodAddComponent, PaymentMethodComponent
+         SalaryPolicyComponent, SalaryPolicyAddComponent, PaymentMethodAddComponent, PaymentMethodComponent,EmployeeEntryExitBulkAddComponent
     ],
     imports: [
         NgPersianDatepickerModule,

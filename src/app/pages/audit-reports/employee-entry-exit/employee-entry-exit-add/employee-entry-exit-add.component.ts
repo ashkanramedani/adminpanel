@@ -64,8 +64,8 @@ export class EmployeeEntryExitAddComponent implements OnInit {
     this.ReportForm.controls["EnNo"].patchValue(this.AuditForm.EnNo);
     this.ReportForm.controls["Name"].patchValue(this.AuditForm.Name);
     this.ReportForm.controls["Date"].patchValue( moment(this.AuditForm.Date, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
-    this.ReportForm.controls["Enter"].patchValue( moment(this.AuditForm.Enter, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
-    this.ReportForm.controls["Exit"].patchValue( moment(this.AuditForm.Exit, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
+    this.ReportForm.controls["Enter"].patchValue( this.AuditForm.Enter);
+    this.ReportForm.controls["Exit"].patchValue(this.AuditForm.Exit);
   }
   onSubmit() {
     if (this.ReportForm.invalid) {
@@ -79,13 +79,10 @@ export class EmployeeEntryExitAddComponent implements OnInit {
       status: this.ReportForm.controls.status.value,
       EnNo: this.ReportForm.controls.EnNo.value,
       Name: this.ReportForm.controls.Name.value,
-      Date:moment.from(this.ReportForm.controls.Date.value, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD'),
-      Enter:moment.from(this.ReportForm.controls.Enter.value, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD'),
-      Exit:moment.from(this.ReportForm.controls.Exit.value, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD'),
-      
-      // Date: this.ReportForm.controls.Date.value,
-      // Enter: this.ReportForm.controls.Enter.value,
-      // Exit: this.ReportForm.controls.Exit.value
+      Date:moment.from(this.ReportForm.controls.Date.value, 'fa', 'YYYY-MM-DD').format('YYYY-MM-DD'),
+      Enter:this.ReportForm.controls.Enter.value,
+      Exit:this.ReportForm.controls.Exit.value,
+      FingerPrintScanner_pk_id:this.id
     }
     if (this.id !=null) {
       this.btnLoading=true
