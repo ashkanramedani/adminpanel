@@ -58,8 +58,9 @@ export class LeaveRegistrationAddComponent implements OnInit {
     this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
     this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
     this.ReportForm.controls["employee_fk_id"].patchValue(this.AuditForm.employee_fk_id);
-    this.ReportForm.controls["start_date"].patchValue(formatDate(this.AuditForm.start_date,"YYYY/MM/dd   HH:mm",'en-IR'));
-    this.ReportForm.controls["end_date"].patchValue(formatDate(this.AuditForm.end_date,"YYYY/MM/dd   HH:mm",'en-IR'));
+
+    this.ReportForm.controls["start_date"].patchValue( moment(this.AuditForm.start_date, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
+    this.ReportForm.controls["end_date"].patchValue( moment(this.AuditForm.end_date, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
     this.ReportForm.controls["status"].patchValue(this.AuditForm.status)
   }
   onSubmit() {

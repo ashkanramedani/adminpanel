@@ -82,7 +82,7 @@ export class CourseAddComponent implements OnInit {
     this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
     this.ReportForm.controls["name"].patchValue(this.AuditForm.name);
     //this.AuditForm.teachers .forEach(val => this.TeacherInputArray.push(Object.assign({}, val)));
-    this.ReportForm.controls["course_time"].patchValue(this.AuditForm.course_time);
+    this.ReportForm.controls["course_time"].patchValue( moment(this.AuditForm.course_time, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
     this.ReportForm.controls["duration"].patchValue(this.AuditForm.duration)
   }
   onSubmit() {

@@ -68,7 +68,7 @@ export class StudentAddComponent implements OnInit {
     this.ReportForm.controls["address"].patchValue(this.AuditForm.address);
     this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
     this.ReportForm.controls["level"].patchValue(this.AuditForm.level);
-    this.ReportForm.controls["day_of_birth"].patchValue(formatDate(this.AuditForm.day_of_birth,"YYYY-MM-dd HH:mm:ss",'en-IR'))
+    this.ReportForm.controls["day_of_birth"].patchValue( moment(this.AuditForm.day_of_birth, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
   }
   onSubmit() {
     if (this.ReportForm.invalid) {

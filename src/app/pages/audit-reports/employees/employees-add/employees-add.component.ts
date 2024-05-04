@@ -59,16 +59,15 @@ export class EmployeesAddComponent implements OnInit {
       });
   }
   FillFormData() {
-    alert(this.AuditForm.day_of_birth)
     this.ReportForm.controls["name"].patchValue(this.AuditForm.name);
     this.ReportForm.controls["last_name"].patchValue(this.AuditForm.last_name);
-    this.ReportForm.controls["day_of_birth"].patchValue(formatDate(this.AuditForm.day_of_birth, "YYYY/MM/dd HH:mm", 'en-IR'));
+    this.ReportForm.controls["day_of_birth"].patchValue( moment(this.AuditForm.day_of_birth, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
     this.ReportForm.controls["email"].patchValue(this.AuditForm.email);
     this.ReportForm.controls["mobile_number"].patchValue(this.AuditForm.mobile_number);
     this.ReportForm.controls["address"].patchValue(this.AuditForm.address)
     this.ReportForm.controls["priority"].patchValue(this.AuditForm.priority)
     this.ReportForm.controls["fingerprint_scanner_user_id"].patchValue(this.AuditForm.fingerprint_scanner_user_id)
-    this.ReportForm.controls["roles"].patchValue(this.AuditForm.roles)
+    this.ReportForm.controls["roles"].patchValue(this.AuditForm.roles[0])
   }
   onSubmit() {
     if (this.ReportForm.invalid) {
@@ -87,7 +86,8 @@ export class EmployeesAddComponent implements OnInit {
       address: this.ReportForm.controls.address.value,
       priority: this.ReportForm.controls.priority.value,
       fingerprint_scanner_user_id: this.ReportForm.controls.fingerprint_scanner_user_id.value,
-      roles: new Array( this.ReportForm.controls.roles.value),
+      //roles:new Array( this.ReportForm.controls.roles.value),
+      roles: this.ReportForm.controls.roles.value=='' ? new Array( ) : new Array( this.ReportForm.controls.roles.value) ,
 
 
     }
@@ -114,7 +114,6 @@ export class EmployeesAddComponent implements OnInit {
   GetRolesData() {
     this.http.getAll(Domain.GetRolesData).subscribe((response) => {
       this.RolesData = response;
-      console.log(response)
     })
   }
 }

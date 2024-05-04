@@ -64,7 +64,7 @@ export class ClassCancellationAddComponent implements OnInit {
     this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
     this.ReportForm.controls["status"].patchValue(this.AuditForm.status);
     this.ReportForm.controls["teacher_fk_id"].patchValue(this.AuditForm.teacher_fk_id);
-    this.ReportForm.controls["replacement_date"].patchValue(formatDate(this.AuditForm.replacement_date,"YYYY/MM/dd   HH:mm",'en-IR'));
+    this.ReportForm.controls["replacement_date"].patchValue( moment(this.AuditForm.replacement_date, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
     this.ReportForm.controls["course_fk_id"].patchValue(this.AuditForm.course_fk_id)
     this.ReportForm.controls["course_duration"].patchValue(this.AuditForm.course_duration)
     this.ReportForm.controls["course_location"].patchValue(this.AuditForm.course_location)

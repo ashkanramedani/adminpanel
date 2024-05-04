@@ -75,7 +75,8 @@
                     <span>{{ item.name + " "+ item.last_name}}</span>
                 </td>
                 <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <span>{{item.roles[0].name }}</span>
+                  <span *ngIf="item.roles.length>0;else other_content" >{{item.roles[0].name }}</span>
+                  <ng-template #other_content> <span>----</span> </ng-template>
                 </td>
                 <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <div class="flex items-center gap-x-2 justify-center">

@@ -63,9 +63,9 @@ export class EmployeeEntryExitAddComponent implements OnInit {
     this.ReportForm.controls["status"].patchValue(this.AuditForm.status);
     this.ReportForm.controls["EnNo"].patchValue(this.AuditForm.EnNo);
     this.ReportForm.controls["Name"].patchValue(this.AuditForm.Name);
-    this.ReportForm.controls["Date"].patchValue(formatDate(this.AuditForm.Date,"YYYY/MM/dd   HH:mm",'en-IR'))
-    this.ReportForm.controls["Enter"].patchValue(formatDate(this.AuditForm.Enter,"YYYY/MM/dd   HH:mm",'en-IR'))
-    this.ReportForm.controls["Exit"].patchValue(formatDate(this.AuditForm.Exit,"YYYY/MM/dd   HH:mm",'en-IR'))
+    this.ReportForm.controls["Date"].patchValue( moment(this.AuditForm.Date, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
+    this.ReportForm.controls["Enter"].patchValue( moment(this.AuditForm.Enter, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
+    this.ReportForm.controls["Exit"].patchValue( moment(this.AuditForm.Exit, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
   }
   onSubmit() {
     if (this.ReportForm.invalid) {
