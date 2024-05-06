@@ -90,10 +90,10 @@
                   <span>{{item.end_date }}</span>
                 </td>
                 <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <span>{{item.employee.name + " " +item.employee.last_name  }}</span>
+                  <span>{{item.employee.name + '&nbsp; &nbsp;' +item.employee.last_name  }}</span>
                 </td>
                 <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <span>{{item.created.name + " " +item.created.last_name  }}</span>
+                  <span>{{item.created.name + '&nbsp; &nbsp;' +item.created.last_name  }}</span>
                 </td>
                 <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <span>{{item.description  }}</span>
@@ -181,13 +181,13 @@
             <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
               ثبت کننده
             </label>
-            <span>{{SingleData.created.name+" "+SingleData.created.last_name}}</span>
+            <span>{{SingleData.created.name+'&nbsp; &nbsp;'+SingleData.created.last_name}}</span>
           </div>
           <div>
             <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
               نام پرسنل
             </label>
-            <span>{{SingleData.employee.name+" "+SingleData.employee.last_name}}</span>
+            <span>{{SingleData.employee.name+'&nbsp; &nbsp;'+SingleData.employee.last_name}}</span>
           </div>
       
           <div>

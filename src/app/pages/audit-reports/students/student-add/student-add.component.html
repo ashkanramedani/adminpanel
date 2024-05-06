@@ -65,7 +65,7 @@
               <span class="text-meta-1">*</span>
             </label>
             <select formControlName="created_fk_by"  [ngClass]="{'input-invalid': (this.ReportForm.controls.created_fk_by.invalid) &&(this.ReportForm.controls.created_fk_by.dirty ||this.ReportForm.controls.created_fk_by.touched)}"   class="form-control-select">
-              <option *ngFor="let emp of EmployiesData " [value]="emp.employees_pk_id" >{{emp.name + " "+emp.last_name}}</option>
+              <option *ngFor="let emp of EmployiesData " [value]="emp.employees_pk_id" >{{emp.name + '&nbsp; &nbsp;' +emp.last_name}}</option>
             </select>
           </div>
         <div >

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
@@ -97,7 +97,6 @@ export class PaymentMethodAddComponent implements OnInit {
       )
     }
   }
-
   GetEmployeeData() {
     this.http.getAll(Domain.GetAuditEmplooyies).subscribe((response) => {
       this.EmployiesData = response;

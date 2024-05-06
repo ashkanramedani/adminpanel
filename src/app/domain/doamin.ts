@@ -49,7 +49,7 @@ export const Domain =
     "DeleteMissionRegistration": `${environment.apiUrl}/api/v1/form/business_trip/delete`,
     "GetSingleMissionRegistration":`${environment.apiUrl}/api/v1/form/business_trip/search`,
     "PutMissionRegisteration":`${environment.apiUrl}/api/v1/form/business_trip/update`,
-    "GetProfessorsReports": `${environment.apiUrl}/api/v1/form/`,
+    "GetProfessorsReports": `${environment.apiUrl}/api/v1/form/salary/employee`,
     "GetRemoteWorkRegistration": `${environment.apiUrl}/api/v1/form/remote_request/search`,
     "CreateRemoteWorkRegistration": `${environment.apiUrl}/api/v1/form/remote_request/add`,
     "PutRemoteWork":`${environment.apiUrl}/api/v1/form/remote_request/update`,

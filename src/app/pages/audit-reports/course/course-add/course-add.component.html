@@ -17,7 +17,7 @@
               <span class="text-meta-1">*</span>
             </label>
             <select formControlName="created_fk_by"  [ngClass]="{'input-invalid': (this.ReportForm.controls.created_fk_by.invalid) &&(this.ReportForm.controls.created_fk_by.dirty ||this.ReportForm.controls.created_fk_by.touched)}"   class="form-control-select">
-              <option *ngFor="let emp of EmployiesData " [value]="emp.employees_pk_id" >{{emp.name + " "+emp.last_name}}</option>
+              <option *ngFor="let emp of EmployiesData " [value]="emp.employees_pk_id" >{{emp.name + '&nbsp; &nbsp;' +emp.last_name}}</option>
             </select>
           </div>
         <div>
@@ -54,7 +54,7 @@
           </label>
           <input  type="text" formControlName="teachers" (click)="OpenSearchTeacher()"   class="w-full  dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
           <div *ngIf="isOpenSearchTeacher" class="search-tag mt-2 bg-white dark:bg-form-input dark:text-bodydark1 text-black  border border-gray-300 rounded-lg shadow-md max-h-60 overflow-y-auto">
-            <div (click)="AddTeacherInput(item.employees_pk_id,item.name,item.last_name)" *ngFor="let item of EmployiesData | filter: this.ReportForm.controls.teachers.value" class="px-4 py-2 cursor-pointer hover:bg-stroke dark:hover:bg-black text-black dark:text-white">{{item.name+" "+item.last_name}}</div>
+            <div (click)="AddTeacherInput(item.employees_pk_id,item.name,item.last_name)" *ngFor="let item of EmployiesData | filter: this.ReportForm.controls.teachers.value" class="px-4 py-2 cursor-pointer hover:bg-stroke dark:hover:bg-black text-black dark:text-white">{{item.name+'&nbsp; &nbsp;'+item.last_name}}</div>
           </div>
           <div *ngIf="TeacherInputArray.length>0" class="w-full flex items-center gap-2 mt-4 p-2 flex-wrap max-h-34 overflow-y-auto border-[1.5px] border-stroke dark:border-form-strokedark rounded-md">
             <div *ngFor="let item of TeacherInputTitleArray;let i = index" class=" flex text-center justify-between text-black dark:text-white rounded-sm px-3 py-1 bg-bodydark1 dark:bg-black ">

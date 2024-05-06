@@ -72,7 +72,7 @@
                   <span>{{ i+1}}</span>
               </td>
                 <td class="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                    <span>{{ item.name + " "+ item.last_name}}</span>
+                    <span>{{ item.name + '&nbsp; &nbsp;'+ item.last_name}}</span>
                 </td>
                 <td class="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <span *ngIf="item.roles.length>0;else other_content" >{{item.roles[0].name }}</span>

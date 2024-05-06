@@ -38,7 +38,6 @@ import { SalaryPolicyAddComponent } from './salary-policy/salary-policy-add/sala
 import { PaymentMethodAddComponent } from './payment-method/payment-method-add/payment-method-add.component';
 import { PaymentMethodComponent } from './payment-method/payment-method.component';
 import { EmployeeEntryExitBulkAddComponent } from './employee-entry-exit/employee-entry-exit-bulk-add/employee-entry-exit-bulk-add.component';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @NgModule({
     declarations: [EmployeeEntryExitAddComponent, TeachersDelayAddComponent, ClassCancellationAddComponent, SubstituteTeacherAddComponent,
