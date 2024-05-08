@@ -189,17 +189,16 @@
 
             </div>
             <div>
-                <label class="mb-3 block text-base font-semibold">
-                    تاریخ ایجاد
+                <label class="mb-3 block text-base font-semibold ">
+                    توضیحات
                 </label>
-                <span>{{SingleData.create_date |date: "HH:mm - YYYY/MM/dd" }}</span>
+                <span>{{SingleData.description}}</span>
             </div>
-           
             <div>
                 <label class="mb-3 block text-base font-semibold ">
                     شماره شبا
                 </label>
-                <span>{{SingleData.shaba}}</span>
+                <span>IR&nbsp;{{SingleData.shaba}}</span>
             </div>
             <div>
                 <label class="mb-3 block text-base font-semibold ">
@@ -207,12 +206,7 @@
                 </label>
                 <span>{{SingleData.card_number}}</span>
             </div>
-            <div>
-                <label class="mb-3 block text-base font-semibold ">
-                    توضیحات
-                </label>
-                <span>{{SingleData.description}}</span>
-            </div>
+           
         </div>
 
         <div class="footer flex items-end justify-end border-t py-3 border-[#b1b1b1]">

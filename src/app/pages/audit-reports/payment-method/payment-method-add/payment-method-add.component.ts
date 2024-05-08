@@ -22,6 +22,7 @@ export class PaymentMethodAddComponent implements OnInit {
   page_title: string = "افزودن"
   btnLoading: boolean = false
   AuditForm: Ipayment_methodForm
+  EmployeName:string
   constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService) {
 
   }
@@ -34,8 +35,8 @@ export class PaymentMethodAddComponent implements OnInit {
         description: new FormControl(''),
         status: new FormControl('',[Validators.required]),
         user_fk_id: new FormControl('',[Validators.required]),
-        shaba: new FormControl(''),
-        card_number: new FormControl('')
+        shaba: new FormControl('',[Validators.required,Validators.minLength(24)]),
+        card_number: new FormControl('',[Validators.required,Validators.minLength(16)])
       }
     )
     if (this.id != null) {
@@ -60,6 +61,7 @@ export class PaymentMethodAddComponent implements OnInit {
     this.ReportForm.controls["user_fk_id"].patchValue(this.AuditForm.user_fk_id);
     this.ReportForm.controls["shaba"].patchValue(this.AuditForm.shaba);
     this.ReportForm.controls["card_number"].patchValue(this.AuditForm.card_number);
+    this.GetEmployetitle(this.AuditForm.user_fk_id)
   }
   onSubmit() {
     if (this.ReportForm.invalid) {
@@ -93,6 +95,7 @@ export class PaymentMethodAddComponent implements OnInit {
           this.alertServices.success("با موفقیت اضافه شد");
           this.ReportForm.reset();
           this.btnLoading = false
+          this.EmployeName=''
       }
       )
     }
@@ -101,6 +104,18 @@ export class PaymentMethodAddComponent implements OnInit {
     this.http.getAll(Domain.GetAuditEmplooyies).subscribe((response) => {
       this.EmployiesData = response;
       console.log(response)
+    })
+  }
+  GetEmployetitle(id:any){
+
+    this.http.get(Domain.GetAuditEmplooyies,id).subscribe((response) => {
+      this.EmployeName = response.name +' '+ response.last_name;
+    })
+  }
+  GetEmployeName(value:any){
+
+    this.http.get(Domain.GetAuditEmplooyies,value.target.value).subscribe((response) => {
+      this.EmployeName = response.name +' '+ response.last_name;
     })
   }
 }

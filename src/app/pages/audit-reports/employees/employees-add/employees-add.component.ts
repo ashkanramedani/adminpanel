@@ -1,13 +1,9 @@
-
-import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
-import { IEmployees } from 'src/app/interfaces/IEmployees';
 import { IEmployeesForm } from 'src/app/interfaces/IEmployeesForm';
-import { ILeaveRequestForm } from 'src/app/interfaces/ILeaveRequestForm';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
@@ -23,6 +19,9 @@ export class EmployeesAddComponent implements OnInit {
   id: any;
   page_title: string = "افزودن"
   btnLoading: boolean = false
+  isOpenSearchRole:boolean=false
+  RolesInputArray:string[]=[]
+  RolesInputTitleArray:string[]=[]
   AuditForm: IEmployeesForm
   constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService) {
 
@@ -38,7 +37,7 @@ export class EmployeesAddComponent implements OnInit {
         email: new FormControl('',),
         mobile_number: new FormControl('', [Validators.required]),
         address: new FormControl(''),
-        priority: new FormControl('', [Validators.required]),
+        priority: new FormControl('',),
         fingerprint_scanner_user_id: new FormControl('', [Validators.required]),
         roles: new FormControl('', )
       }
@@ -53,7 +52,7 @@ export class EmployeesAddComponent implements OnInit {
     this.http
       .get(Domain.GetAuditEmplooyies, this.id)
       .subscribe((response) => {
-        console.log(response)
+        console.log(response.roles)
         this.AuditForm = response;
         this.FillFormData()
       });
@@ -67,7 +66,12 @@ export class EmployeesAddComponent implements OnInit {
     this.ReportForm.controls["address"].patchValue(this.AuditForm.address)
     this.ReportForm.controls["priority"].patchValue(this.AuditForm.priority)
     this.ReportForm.controls["fingerprint_scanner_user_id"].patchValue(this.AuditForm.fingerprint_scanner_user_id)
-    this.ReportForm.controls["roles"].patchValue(this.AuditForm.roles[0])
+    this.AuditForm.roles.forEach((item,index)=> {
+      this.RolesInputTitleArray.push(item.name)
+    })
+    this.AuditForm.roles.forEach((item,index)=> {
+      this.RolesInputArray.push(item.role_pk_id)
+    })
   }
   onSubmit() {
     if (this.ReportForm.invalid) {
@@ -85,8 +89,7 @@ export class EmployeesAddComponent implements OnInit {
       address: this.ReportForm.controls.address.value,
       priority: this.ReportForm.controls.priority.value,
       fingerprint_scanner_user_id: this.ReportForm.controls.fingerprint_scanner_user_id.value,
-      roles: this.ReportForm.controls.roles.value=='' ? new Array( ) : new Array( this.ReportForm.controls.roles.value) ,
-
+      roles: this.RolesInputArray.length<=0 ? new Array( ) : this.RolesInputArray ,
 
     }
     if (this.id != null) {
@@ -110,8 +113,22 @@ export class EmployeesAddComponent implements OnInit {
     }
   }
   GetRolesData() {
-    this.http.getAll(Domain.GetRolesData).subscribe((response) => {
+    this.http.getAll(`${Domain.GetRolesData}?page=1&limit=1000&order=desc`).subscribe((response) => {
       this.RolesData = response;
     })
+  }
+
+  OpenSearchRole() {
+    this.isOpenSearchRole = !this.isOpenSearchRole;
+  }
+  AddRoleInput(id: string, name: string) {
+    if (id != '') {
+      this.RolesInputArray.push(id);
+      this.RolesInputTitleArray.push(name)
+    }
+  }
+  RemoveRoleInput(index: number) {
+    this.RolesInputArray.splice(index, 1);
+    this.RolesInputTitleArray.splice(index, 1);
   }
 }

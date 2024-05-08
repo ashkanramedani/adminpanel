@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-   //apiUrl: "https://sand.admin.api.ieltsdaily.ir",
-   apiUrl: "http://localhost:6600",
+   apiUrl: "https://sand.admin.api.ieltsdaily.ir",
+   //apiUrl: "http://localhost:6600",
 
   };

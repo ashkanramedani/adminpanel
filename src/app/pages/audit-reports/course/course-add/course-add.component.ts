@@ -55,8 +55,6 @@ export class CourseAddComponent implements OnInit {
   RemoveTeacherInput(index: number) {
     this.TeacherInputArray.splice(index, 1);
     this.TeacherInputTitleArray.splice(index, 1);
-    console.log("TeacherInputArray"+ this.TeacherInputArray)
-    console.log("TeacherInputTitleArray"+ this.TeacherInputTitleArray)
 
   }
   OpenSearchTeacher() {

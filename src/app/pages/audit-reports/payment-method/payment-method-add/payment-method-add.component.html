@@ -41,7 +41,7 @@
                 نام پرسنل
                 <span class="text-meta-1">*</span>
             </label>
-            <select  formControlName="user_fk_id"
+            <select  formControlName="user_fk_id" (change)="GetEmployeName($event)"
                 [ngClass]="{'input-invalid': (this.ReportForm.controls.user_fk_id.invalid) &&(this.ReportForm.controls.user_fk_id.dirty ||this.ReportForm.controls.user_fk_id.touched)}"
                 class="form-control-select">
                 <option *ngFor="let emp of EmployiesData"   [value]="emp.user_pk_id">{{emp.name + '&nbsp; &nbsp;' +emp.last_name}}</option>
@@ -56,6 +56,7 @@
         <div>
             <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
                 شماره شبا
+                <span class="text-meta-1">*</span>
             </label>
             <div class="flex items-center justify-between border-[1.5px] border-[#c5c5c5] rounded-lg ">
                 <input dir="ltr" type="text" maxlength="24" formControlName="shaba"
@@ -66,6 +67,7 @@
         <div>
             <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
                 شماره کارت
+                <span class="text-meta-1">*</span>
             </label>
             <div class="flex items-center justify-between border-[1.5px] border-[#c5c5c5] rounded-lg ">
                 <input dir="ltr" type="text" maxlength="16" formControlName="card_number"
@@ -103,9 +105,8 @@
                         {{this.ReportForm.controls.card_number.value}}</span>
                 </div>
                     <div class="flex justify-start w-full" >
-                        <span class="font-semibold text-xl">{{this.ReportForm.controls.user_fk_id.value}}</span>
+                        <span class="font-semibold text-xl">{{EmployeName}}</span>
                     </div>
-
                 <div class="flex justify-start flex-col w-full border-t border-[#96b9d1]  pt-3">
                     <span class="font-normal text-sm">استفاده از این کارت صرفا مخصوص دارنده آن می باشد</span>
                 </div>
