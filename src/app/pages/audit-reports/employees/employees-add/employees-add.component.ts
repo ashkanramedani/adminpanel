@@ -76,7 +76,7 @@ export class EmployeesAddComponent implements OnInit {
     }
     let ReportFormValue: IEmployeesForm =
     {
-      employees_pk_id:this.id,
+      user_pk_id:this.id,
       name: this.ReportForm.controls.name.value,
       last_name: this.ReportForm.controls.last_name.value,
       day_of_birth:moment.from(this.ReportForm.controls.day_of_birth.value, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD'),

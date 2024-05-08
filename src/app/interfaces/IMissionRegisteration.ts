@@ -14,7 +14,7 @@ export interface IMissionRegisteration {
     status: number
     priority: number
     can_update: boolean
-    employee_fk_id: string
+    user_fk_id: string
     can_deleted: boolean
     created_fk_by: string
     create_date: string

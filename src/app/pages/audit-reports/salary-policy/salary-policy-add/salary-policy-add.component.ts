@@ -27,7 +27,7 @@ export class SalaryPolicyAddComponent implements OnInit {
     this.ReportForm = this.formBuilder.group(
       {
         created_fk_by: new FormControl('', [Validators.required]),
-        employee_fk_id: new FormControl('', [Validators.required]),
+        user_fk_id: new FormControl('', [Validators.required]),
         day_starting_time: new FormControl('', [Validators.required]),
         day_ending_time: new FormControl('', [Validators.required]),
         Regular_hours_factor: new FormControl(''),
@@ -71,7 +71,7 @@ export class SalaryPolicyAddComponent implements OnInit {
   }
   FillFormData() {
     this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
-    this.ReportForm.controls["employee_fk_id"].patchValue(this.AuditForm.employee_fk_id);
+    this.ReportForm.controls["user_fk_id"].patchValue(this.AuditForm.user_fk_id);
     this.ReportForm.controls["day_starting_time"].patchValue(this.AuditForm.day_starting_time);
     this.ReportForm.controls["day_ending_time"].patchValue(this.AuditForm.day_ending_time);
     this.ReportForm.controls["Regular_hours_factor"].patchValue(this.AuditForm.Regular_hours_factor);
@@ -108,7 +108,7 @@ export class SalaryPolicyAddComponent implements OnInit {
     let ReportFormValue: ISalaryPolicyForms =
     {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
-      employee_fk_id: this.ReportForm.controls.employee_fk_id.value,
+      user_fk_id: this.ReportForm.controls.user_fk_id.value,
       day_starting_time: this.ReportForm.controls.day_starting_time.value,
       day_ending_time: this.ReportForm.controls.day_ending_time.value,
       Regular_hours_factor: this.ReportForm.controls.Regular_hours_factor.value,

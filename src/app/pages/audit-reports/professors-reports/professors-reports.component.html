@@ -27,7 +27,7 @@
         <select formControlName="employee_id"
           [ngClass]="{'input-invalid': (this.ReportForm.controls.employee_id.invalid) &&(this.ReportForm.controls.employee_id.dirty ||this.ReportForm.controls.employee_id.touched)}"
           class="form-control-select">
-          <option *ngFor="let emp of EmployiesData" [value]="emp.employees_pk_id">{{emp.name + '&nbsp; &nbsp;'
+          <option *ngFor="let emp of EmployiesData" [value]="emp.user_pk_id">{{emp.name + '&nbsp; &nbsp;'
             +emp.last_name}}</option>
         </select>
       </div>

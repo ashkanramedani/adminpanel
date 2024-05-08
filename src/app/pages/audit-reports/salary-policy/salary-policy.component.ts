@@ -82,9 +82,9 @@ export class SalaryPolicyComponent implements OnInit {
         {
           this.SingleData.created_fk_by=emp.name + " "+emp.last_name
         })
-        this.http.get(Domain.GetAuditEmplooyies, this.SingleData.employee_fk_id).subscribe((teacher)=>
+        this.http.get(Domain.GetAuditEmplooyies, this.SingleData.user_fk_id).subscribe((teacher)=>
         {
-          this.SingleData.employee_fk_id=teacher.name + " "+teacher.last_name
+          this.SingleData.user_fk_id=teacher.name + " "+teacher.last_name
         })
         // this.http.get(Domain.GetAuditClass,this.SingleData.class_fk_id).subscribe((cls) => {
         //   this.SingleData.class_fk_id=cls.name

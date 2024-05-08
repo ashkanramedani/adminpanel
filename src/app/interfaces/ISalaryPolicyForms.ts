@@ -1,6 +1,6 @@
 export interface ISalaryPolicyForms {
   created_fk_by: string;
-  employee_fk_id: string;
+  user_fk_id: string;
   day_starting_time: string;
   day_ending_time: string;
   Regular_hours_factor: number;

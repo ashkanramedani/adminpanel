@@ -31,7 +31,7 @@ export class LeaveRegistrationAddComponent implements OnInit {
       {
         created_fk_by: new FormControl('', [Validators.required]),
         description: new FormControl(''),
-        employee_fk_id: new FormControl('', [Validators.required]),
+        user_fk_id: new FormControl('', [Validators.required]),
         start_date: new FormControl('', [Validators.required]),
         end_date: new FormControl('', [Validators.required]),
         status: new FormControl('', [Validators.required])
@@ -57,7 +57,7 @@ export class LeaveRegistrationAddComponent implements OnInit {
   {
     this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
     this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
-    this.ReportForm.controls["employee_fk_id"].patchValue(this.AuditForm.employee_fk_id);
+    this.ReportForm.controls["user_fk_id"].patchValue(this.AuditForm.user_fk_id);
 
     this.ReportForm.controls["start_date"].patchValue( moment(this.AuditForm.start_date, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
     this.ReportForm.controls["end_date"].patchValue( moment(this.AuditForm.end_date, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
@@ -72,7 +72,7 @@ export class LeaveRegistrationAddComponent implements OnInit {
     {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
-      employee_fk_id: this.ReportForm.controls.employee_fk_id.value,
+      user_fk_id: this.ReportForm.controls.user_fk_id.value,
       end_date:moment.from(this.ReportForm.controls.end_date.value, 'fa', 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'),
       start_date:moment.from(this.ReportForm.controls.start_date.value, 'fa', 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'),
 

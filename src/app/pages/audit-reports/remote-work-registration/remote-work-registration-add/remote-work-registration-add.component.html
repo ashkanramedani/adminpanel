@@ -17,7 +17,7 @@
           <span class="text-meta-1">*</span>
         </label>
         <select formControlName="created_fk_by"  [ngClass]="{'input-invalid': (this.ReportForm.controls.created_fk_by.invalid) &&(this.ReportForm.controls.created_fk_by.dirty ||this.ReportForm.controls.created_fk_by.touched)}"   class="form-control-select">
-          <option *ngFor="let emp of EmployiesData " [value]="emp.employees_pk_id" >{{emp.name + '&nbsp; &nbsp;' +emp.last_name}}</option>
+          <option *ngFor="let emp of EmployiesData " [value]="emp.user_pk_id" >{{emp.name + '&nbsp; &nbsp;' +emp.last_name}}</option>
         </select>
       </div>
       <div>
@@ -25,8 +25,8 @@
           نام پرسنل
           <span class="text-meta-1">*</span>
         </label>
-        <select formControlName="employee_fk_id"  [ngClass]="{'input-invalid': (this.ReportForm.controls.employee_fk_id.invalid) &&(this.ReportForm.controls.employee_fk_id.dirty ||this.ReportForm.controls.employee_fk_id.touched)}"   class="form-control-select">
-          <option *ngFor="let emp of EmployiesData " [value]="emp.employees_pk_id" >{{emp.name + '&nbsp; &nbsp;' +emp.last_name}}</option>
+        <select formControlName="user_fk_id"  [ngClass]="{'input-invalid': (this.ReportForm.controls.user_fk_id.invalid) &&(this.ReportForm.controls.user_fk_id.dirty ||this.ReportForm.controls.user_fk_id.touched)}"   class="form-control-select">
+          <option *ngFor="let emp of EmployiesData " [value]="emp.user_pk_id" >{{emp.name + '&nbsp; &nbsp;' +emp.last_name}}</option>
         </select>
       </div>
       <div>

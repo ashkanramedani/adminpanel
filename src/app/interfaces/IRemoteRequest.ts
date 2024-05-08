@@ -7,7 +7,7 @@ export interface IRemoteRequest {
     description: string
     created: IUser
     employee: IUser
-    employee_fk_id: string
+    user_fk_id: string
     working_location: string
     created_fk_by: string
     status: number

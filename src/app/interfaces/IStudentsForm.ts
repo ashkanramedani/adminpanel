@@ -8,5 +8,5 @@ export interface IStudentsForm{
   address: string,
   created_fk_by: string
   level: string,
-  student_pk_id: string
+  user_pk_id: string
 }

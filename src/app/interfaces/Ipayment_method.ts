@@ -5,7 +5,7 @@ export interface Ipayment_method{
     created_fk_by: string
     description: string
     status: number,
-    employee_fk_id:string
+    user_fk_id:string
     shaba:string
     card_number:string
     payment_method_pk_id: string

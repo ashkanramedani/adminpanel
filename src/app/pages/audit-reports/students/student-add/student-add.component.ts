@@ -77,7 +77,7 @@ export class StudentAddComponent implements OnInit {
     }
     let ReportFormValue: IStudentsForm =
     {
-      student_pk_id:this.id,
+      user_pk_id:this.id,
       name: this.ReportForm.controls.name.value,
       last_name: this.ReportForm.controls.last_name.value,
       //day_of_birth: this.ReportForm.controls.day_of_birth.value,

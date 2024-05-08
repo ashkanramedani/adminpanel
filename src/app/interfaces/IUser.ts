@@ -4,6 +4,6 @@ export interface IUser
 {
     name: string,
     last_name: string
-    employees_pk_id:string,
+    user_pk_id:string,
     roles:IRoles[]
 }

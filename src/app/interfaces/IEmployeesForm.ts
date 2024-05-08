@@ -7,7 +7,7 @@ export interface IEmployeesForm{
     email: string,
     mobile_number: string,
     address: string,
-    employees_pk_id: string
+    user_pk_id: string
     priority: number,
     fingerprint_scanner_user_id: string,
     roles:IRoles[]

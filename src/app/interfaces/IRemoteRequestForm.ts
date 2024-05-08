@@ -2,7 +2,7 @@ export interface IRemoteRequestForm
 {
     created_fk_by:string
   description: string,
-  employee_fk_id: string
+  user_fk_id: string
   start_date: string
   end_date:string
   working_location: string
