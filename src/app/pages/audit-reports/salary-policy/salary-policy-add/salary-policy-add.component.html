@@ -43,7 +43,12 @@
           ساعت پایان روز کاری
           
         </label>
-        <ng-persian-datepicker [uiHideAfterSelectDate]="false" [dateFormat]="'HH:mm:ss'" [uiTodayBtnEnable]="false" [timeEnable]="true"  [dateInitValue]="false">
+        <ng-persian-datepicker 
+        [uiHideAfterSelectDate]="false" 
+        [dateFormat]="'HH:mm:ss'" 
+        [uiTodayBtnEnable]="false" 
+        [timeEnable]="true"  
+        [dateInitValue]="false">
           <input type="text"  formControlName="day_ending_time" dir="ltr"  class="form-control">
         </ng-persian-datepicker>
       </div>

@@ -26,7 +26,7 @@ export interface ISalaryPolicy{
         business_trip_permission: true,
         business_trip_factor: number,
         business_trip_cap: number,
-        SalaryPolicy_pk_id: string
+        salary_policy_pk_id: string
         created: IEmployeesForm
         description: string,
         status: number,

@@ -24,5 +24,5 @@ export interface ISalaryPolicyForms {
   business_trip_permission: boolean;
   business_trip_factor: number;
   business_trip_cap: number;
-  SalaryPolicy_pk_id: string;
+  salary_policy_pk_id: string;
 }

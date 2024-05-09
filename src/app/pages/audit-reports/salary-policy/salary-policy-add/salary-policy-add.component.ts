@@ -132,7 +132,7 @@ export class SalaryPolicyAddComponent implements OnInit {
       business_trip_permission: this.ReportForm.controls.business_trip_permission.value,
       business_trip_factor: this.ReportForm.controls.business_trip_factor.value,
       business_trip_cap: this.ReportForm.controls.business_trip_cap.value,
-      SalaryPolicy_pk_id: this.id
+      salary_policy_pk_id: this.id
     }
     if (this.id != null) {
       this.btnLoading = true
