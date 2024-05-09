@@ -11,5 +11,5 @@ export interface IEmployeeEntryExitForm {
     Date: string
     Enter: string
     Exit: string
-    FingerPrintScanner_pk_id: string
+    fingerprint_scanner_pk_id: string
 }

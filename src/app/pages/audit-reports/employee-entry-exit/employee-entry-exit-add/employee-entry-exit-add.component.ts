@@ -82,7 +82,7 @@ export class EmployeeEntryExitAddComponent implements OnInit {
       Date:moment.from(this.ReportForm.controls.Date.value, 'fa', 'YYYY-MM-DD').format('YYYY-MM-DD'),
       Enter:this.ReportForm.controls.Enter.value,
       Exit:this.ReportForm.controls.Exit.value,
-      FingerPrintScanner_pk_id:this.id
+      fingerprint_scanner_pk_id:this.id
     }
     if (this.id !=null) {
       this.btnLoading=true

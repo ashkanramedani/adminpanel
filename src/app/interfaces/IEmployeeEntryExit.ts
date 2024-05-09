@@ -4,7 +4,7 @@ export interface IEmployeeEntryExit {
         created: IEmployeesForm
         description: string,
         status: number,
-        FingerPrintScanner_pk_id: string
+        fingerprint_scanner_pk_id: string
         Date: string
         Enter: string
         Exit: string
