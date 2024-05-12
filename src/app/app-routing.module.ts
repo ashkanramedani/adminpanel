@@ -3,36 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { ErrorComponent } from './shared/error/error.component';
 
 const routes: Routes = [
+
   {
-    path: 'contents',
+    path: 'basic',
     loadChildren: () =>
-      import('./pages/contents/contents.module').then(
-        (m) => m.ContentsModule
-      ),
+      import('./pages/basic/basic.module').then((m) => m.BasicModule)
   },
   {
-    path: 'libraries',
-    loadChildren: () =>
-      import('./pages/libraries/libraries.module').then(
-        (m) => m.LibrariesModule
-      ),
-  },
-  {
-    path: '',
-    loadChildren: () =>
-      import('./pages/dashboard/dashboard.module').then(
-        (m) => m.DashboardModule
-      ),
-  },
-  {
-    path: 'signin',
-    loadChildren: () =>
-      import('./pages/signin/signin.module').then((m) => m.SigninModule),
-  },
-  {
-    path:'AuditReports',
-    loadChildren:()=>
-    import('./pages/audit-reports/audit-reports.module').then((m)=>m.AuditReportsModule)
+    path: 'reports',
+    loadChildren: () => import('./pages/reports/reports.module').then((m) => m.ReportsModule)
   },
   {
     path: 'notFound',
@@ -50,4 +29,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

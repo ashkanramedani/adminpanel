@@ -33,12 +33,11 @@
     "@types/leaflet": "^1.9.3",
     "alertifyjs": "^1.13.1",
     "express": "^4.15.2",
-    "jalali-moment": "^3.3.11",
     "jalali-ts": "^2.0.5",
+    "jalali-moment": "^3.3.11",
     "moment-jalaali": "^0.10.0",
     "ng-persian-datepicker": "^7.0.0",
     "rxjs": "~7.8.0",
-    "shamsi-date-converter": "^1.0.5",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
   },

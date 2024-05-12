@@ -19,5 +19,5 @@ export interface ILeaveRequest
   can_deleted: boolean
   update_date: boolean
   expire_date: string
-  user_fk_id: string
+  employee_fk_id: string
 }

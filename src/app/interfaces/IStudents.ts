@@ -3,7 +3,7 @@ export interface IStudents{
     address:string ,
     deleted: boolean,
     expire_date: string,
-    user_pk_id: string
+    student_pk_id: string
     visible: boolean,
     name: string,
     created_fk_by: string

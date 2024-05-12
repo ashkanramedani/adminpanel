@@ -1,4 +1,4 @@
-import { IUser } from "./IUser"
+import { IUsers } from "./IUsers"
 
 export interface IRoles {
     role_pk_id: string
@@ -7,6 +7,6 @@ export interface IRoles {
     created_fk_by: string
     description:string
     status: number,
-    created: IUser[]
+    created: IUsers[]
 }
 
