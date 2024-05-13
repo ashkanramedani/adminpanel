@@ -7,7 +7,7 @@
         </ol>
     </nav>
     <div class="icon flex items-center gap-x-2 py-2">
-        <a [routerLink]="['']"
+        <a [routerLink]="['/basic/course-language/add']"
             class="relative text-cyan-600 border border-cyan-600 px-4 py-1 rounded-md group transition-all duration-200 focus:overflow-visible w-max h-max p-2 overflow-hidden flex flex-row items-center justify-center bg-white gap-x-2 ">افزودن</a>
     </div>
 </div>
@@ -31,19 +31,15 @@
                 <img *ngIf="item.status==0" src="/assets/images/icon/deactive.svg" class="w-[1.1rem]" alt="">
             </div>
             <div class="operation flex items-center justify-center gap-x-2">
-                <img (click)="OpenShowMore(item.language_pk_id)" src="/assets/images/icon/show-more.svg"
-                    class="w-6 cursor-pointer">
-                <div *ngIf="ShowMoreItem==item.language_pk_id"
-                    class="absolute left-[4.7rem] z-10 mt-[8rem]  origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                    <div class="text-xs font-semibold text-gray-800" role="none">
-                        <a [routerLink]="['/basic/course-language/edit',item.language_pk_id]"
-                            class="block px-4 py-2 cursor-pointer hover:bg-gray-100">ویرایش</a>
-                        <a (click)="OpenModal(item.language_pk_id)"
-                            class="hover:bg-gray-100 block px-4 py-2 cursor-pointer">مشاهده</a>
-                        <a (click)="RemoveItem(item.language_pk_id)"
-                            class="text-red-600 block px-4 py-2 hover:bg-gray-100 cursor-pointer">حذف</a>
-                    </div>
-                </div>
+                <button (click)="OpenModal(item.language_pk_id)" title="نمایش">
+                    <img src="/assets/images/icon/see-more.svg" class="w-4" alt="">
+                </button>
+                <a [routerLink]="['/basic/course-language/edit',item.language_pk_id]" title="ویرایش">
+                    <img src="/assets/images/icon/edit.svg" class="w-4" alt="">
+                </a>
+                <button title="حذف" (click)="RemoveItem(item.language_pk_id)">
+                    <img src="/assets/images/icon/trash.svg" class="w-4" alt="">
+                </button>
             </div>
         </div>
     </div>

@@ -5,6 +5,11 @@ import { ErrorComponent } from './shared/error/error.component';
 const routes: Routes = [
 
   {
+    path: '',
+    loadChildren: () =>
+      import('./pages/dashboard/dashboard.module').then((m) => m.DashboardModule)
+  },
+  {
     path: 'basic',
     loadChildren: () =>
       import('./pages/basic/basic.module').then((m) => m.BasicModule)
