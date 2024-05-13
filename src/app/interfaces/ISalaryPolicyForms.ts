@@ -7,6 +7,7 @@ export interface ISalaryPolicyForms {
     Regular_hours_cap: number,
     overtime_permission: boolean,
     overtime_factor: number,
+    Base_salary:number
     overtime_cap: number,
     overtime_threshold: number,
     undertime_factor: number,

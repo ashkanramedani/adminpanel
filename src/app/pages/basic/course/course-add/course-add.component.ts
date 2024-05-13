@@ -15,7 +15,6 @@ import { HttpService } from 'src/app/services/http.service';
 @Component({
   selector: 'app-course-add',
   templateUrl: './course-add.component.html',
-  styleUrl: './course-add.component.css'
 })
 export class CourseAddComponent implements OnInit {
   ReportForm: FormGroup;
@@ -47,21 +46,21 @@ export class CourseAddComponent implements OnInit {
     this.GetCourseCategoryData()
     this.ReportForm = this.formBuilder.group(
       {
-        created_fk_by: new FormControl('', [Validators.required]),
+        created_fk_by: new FormControl(''),
         description: new FormControl(''),
-        status: new FormControl('', [Validators.required]),
-        course_name: new FormControl('', [Validators.required]),
-        starting_date: new FormControl('', [Validators.required]),
-        ending_date: new FormControl('', [Validators.required]),
-        course_capacity: new FormControl('', [Validators.required]),
-        course_language: new FormControl('', [Validators.required]),
-        course_type: new FormControl('', [Validators.required]),
+        status: new FormControl(''),
+        course_name: new FormControl(''),
+        starting_date: new FormControl(''),
+        ending_date: new FormControl(''),
+        course_capacity: new FormControl(''),
+        course_language: new FormControl(''),
+        course_type: new FormControl(''),
          tags: new FormControl(''),
          categories: new FormControl(''),
-        course_code: new FormControl('', [Validators.required]),
-        course_image: new FormControl('', [Validators.required]),
-        course_level: new FormControl('', [Validators.required]),
-        package_discount: new FormControl('', [Validators.required]),
+        course_code: new FormControl(''),
+        course_image: new FormControl('',),
+        course_level: new FormControl(''),
+        package_discount: new FormControl(''),
       }
     )
     if (this.id != null) {
@@ -160,7 +159,6 @@ export class CourseAddComponent implements OnInit {
     let ReportFormValue: ICourseForm =
     {
       course_pk_id: this.id,
-
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
       status: this.ReportForm.controls.status.value,

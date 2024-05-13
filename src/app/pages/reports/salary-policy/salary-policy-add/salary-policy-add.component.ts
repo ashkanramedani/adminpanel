@@ -48,10 +48,11 @@ export class SalaryPolicyAddComponent implements OnInit {
         day_starting_time: new FormControl(''),
         day_ending_time: new FormControl(''),
         Regular_hours_factor: new FormControl('',[Validators.required]),
-        Regular_hours_cap: new FormControl(''),
+        Regular_hours_cap: new FormControl(),
         overtime_permission: new FormControl('',[Validators.required]),
         overtime_factor: new FormControl('',[Validators.required]),
         overtime_cap: new FormControl('',[Validators.required]),
+        Base_salary: new FormControl('',[Validators.required]),
         overtime_threshold: new FormControl('',[Validators.required]),
         undertime_factor: new FormControl('',[Validators.required]),
         undertime_threshold: new FormControl('',[Validators.required]),
@@ -95,6 +96,7 @@ export class SalaryPolicyAddComponent implements OnInit {
   FillFormData() {
     this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
     this.ReportForm.controls["user_fk_id"].patchValue(this.AuditForm.user_fk_id);
+    this.ReportForm.controls["Base_salary"].patchValue(this.AuditForm.Base_salary);
     this.ReportForm.controls["day_starting_time"].patchValue(this.AuditForm.day_starting_time);
     this.ReportForm.controls["day_ending_time"].patchValue(this.AuditForm.day_ending_time);
     this.ReportForm.controls["Regular_hours_factor"].patchValue(this.AuditForm.Regular_hours_factor);
@@ -127,6 +129,7 @@ export class SalaryPolicyAddComponent implements OnInit {
     let ReportFormValue: ISalaryPolicyForms =
     {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
+      Base_salary:this.ReportForm.controls.Base_salary.value,
       user_fk_id: this.ReportForm.controls.user_fk_id.value,
       day_starting_time: this.ReportForm.controls.day_starting_time.value,
       day_ending_time: this.ReportForm.controls.day_ending_time.value,
