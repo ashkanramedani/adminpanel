@@ -1,4 +1,4 @@
-import { IEmployeesForm } from "./IEmployeesForm"
+import { IUsersForm } from "./IUsersForm"
 
 export interface Ipayment_method{
  
@@ -9,7 +9,7 @@ export interface Ipayment_method{
     shaba:string
     card_number:string
     payment_method_pk_id: string
-    created: IEmployeesForm
-    employee: IEmployeesForm,
+    created: IUsersForm
+    employee: IUsersForm,
     create_date:string
 }

@@ -1,24 +1,12 @@
-<!-- ===== Page Wrapper Start ===== -->
-<div class="flex h-screen overflow-hidden">
-  <!-- ===== Sidebar Start ===== -->
-
-<app-sidebar></app-sidebar>
-  <!-- ===== Sidebar End ===== -->
-
-  <!-- ===== Content Area Start ===== -->
-  <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden bg-[#e5e5e5] dark:bg-boxdark-2">
-    <!-- ===== Header Start ===== -->
-    <app-header></app-header>
-    <!-- ===== Header End ===== -->
-
-    <!-- ===== Main Content Start ===== -->
-    <main>
-      <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
-        <router-outlet></router-outlet>
-      </div>
-    </main>
-    <!-- ===== Main Content End ===== -->
+<div class="h-screen overflow-hidden bg-gray-200">
+  <app-header></app-header>
+  <div class="flex items-start justify-center mx-auto gap-x-4 py-8 px-6 max-w-[83.5rem] w-full">
+    <div class="sidebar">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="main w-full">
+      <router-outlet></router-outlet>
+    </div>
   </div>
-  <!-- ===== Content Area End ===== -->
 </div>
-<!-- ===== Page Wrapper End ===== -->
+

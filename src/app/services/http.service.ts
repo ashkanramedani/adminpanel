@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, map, throwError } from 'rxjs';
+import { AlertifyService } from './alertify.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,public alertServices: AlertifyService) { }
   getToken()
   {
     let headers;
@@ -60,6 +61,7 @@ export class HttpService {
       catchError(this.errorHandler));
   }
   errorHandler(error:any) {
+    console.log("Errrrorrr: "+error)
     let errorMessage = '';
     if(error.error instanceof ErrorEvent) {
       errorMessage = error.error.message;
@@ -67,7 +69,10 @@ export class HttpService {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     console.log(`Error Code: ${error.status}\nMessage: ${error.message}`)
-   alert("متاسفانه خطایی رخ داده است!!!")
+
+    //this.alertServices.alert('متاسفانه خطایی رخ داده است!',error.message, () => { })
+    confirm('متاسفانه خطایی رخ داده است! \n'+ 'Error Code : '+error.status +'\n' +'Message: ' +error.message)
+   //alert("متاسفانه خطایی رخ داده است!!!")
     return throwError(errorMessage);
  }
 }

@@ -1,11 +1,11 @@
-import { IUser } from "./IUser"
+import { IUsers } from "./IUsers"
 
 export interface IMissionRegisteration {
     business_trip_pk_id: string
     destination: string
     description: string
-    created: IUser
-    employee: IUser
+    created: IUsers
+    employee: IUsers
     delete_date: string,
     end_date: string
     deleted: boolean
@@ -14,7 +14,7 @@ export interface IMissionRegisteration {
     status: number
     priority: number
     can_update: boolean
-    user_fk_id: string
+    employee_fk_id: string
     can_deleted: boolean
     created_fk_by: string
     create_date: string

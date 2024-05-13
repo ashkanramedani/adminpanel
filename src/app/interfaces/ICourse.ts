@@ -1,21 +1,33 @@
-import { IEmployeesForm } from "./IEmployeesForm"
 
-export interface ICourse {
-    created_fk_by: string
-    course_pk_id: string
-    name: string
-    course_time: string
-    duration: number,
-    teachers: IEmployeesForm[]
-    priority: number,
+import { ISubCourse } from "./ISubCourse"
+import { IUsers } from "./IUsers"
+
+export interface ICourse{
+    delete_date: string,
+    course_name: string,
     deleted: boolean,
-    can_deleted: boolean,
-    update_date: string,
     expire_date: string,
-    status: number,
+    course_image: string ,
     visible: boolean,
-    can_update: boolean,
-    create_date: string
-    delete_date: string
     description: string,
+    starting_date: string,
+    priority: number,
+    status: number,
+    ending_date: string,
+    can_update: boolean,
+    course_pk_id: string,
+    course_capacity: number,
+    can_deleted: boolean,
+    created_fk_by: string
+    course_level: string
+    create_date: string
+    course_language: string
+    course_code: string
+    update_date: string
+    course_type: string
+    package_discount: number
+    sub_course: ISubCourse[],
+    teachers: IUsers [],
+    session_signature: [],
+    available_seat: number   
 }

@@ -1,4 +1,4 @@
-import { IEmployeesForm } from "./IEmployeesForm"
+import { IUsersForm } from "./IUsersForm"
 
 export interface IQuestions {
     question_pk_id: string
@@ -7,7 +7,7 @@ export interface IQuestions {
     created_fk_by: string
     description: string
     status: number,
-    created: IEmployeesForm
+    created: IUsersForm
     priority: number,
     deleted: boolean,
     can_deleted: boolean,

@@ -34,13 +34,10 @@ export const Domain =
     "GetSingleClassCancellation": `${environment.apiUrl}/api/v1/form/course_cancellation/search`,
     "PutClassCancellation": `${environment.apiUrl}/api/v1/form/course_cancellation/update`,
     "GetTeachersDelaySingle": `${environment.apiUrl}/api/v1/form/tardy_request/search`,
-
     "GetEmployeeEntryExit": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/search`,
     "CreateEmployeeEntryExit": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/add`,
-    "CreateBulkEmployeeEntryExit": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/bulk_add`,
     "DeleteEmployeeEntryExit": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/delete`,
     "PutEmployeeEntryExit": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/update`,
-
     "GetLeaveRegistration": `${environment.apiUrl}/api/v1/form/leave_request/search`,
     "DeleteLeaveRegistration": `${environment.apiUrl}/api/v1/form/leave_request/delete`,
     "GetSingleLeaveRrgistration": `${environment.apiUrl}/api/v1/form/leave_request/search`,
@@ -78,25 +75,46 @@ export const Domain =
     "PutcourseData" :`${environment.apiUrl}/api/v1/form/course/update`,
     "CreatecourseData" :`${environment.apiUrl}/api/v1/form/course/add`,
 
-    "GetSalaryPolicyData" :`${environment.apiUrl}/api/v1/form/SalaryPolicy/search`,
-    "DeleteSalaryPolicyData" :`${environment.apiUrl}/api/v1/form/SalaryPolicy/delete`,
-    "PutSalaryPolicyData" :`${environment.apiUrl}/api/v1/form/SalaryPolicy/update`,
-    "CreateSalaryPolicyData" :`${environment.apiUrl}/api/v1/form/SalaryPolicy/add`,
-
     "GetQuestionData" :`${environment.apiUrl}/api/v1/form/question/search`,
     "DeleteQuestionData" :`${environment.apiUrl}/api/v1/form/question/delete`,
     "PutQuestionData" :`${environment.apiUrl}/api/v1/form/question/update`,
     "CreateQuestionData" :`${environment.apiUrl}/api/v1/form/question/add`,
+
+    "GetCourseTagData" :`${environment.apiUrl}/api/v1/form/tag/search`,
+    "DeleteCourseTagData" :`${environment.apiUrl}/api/v1/form/tag/delete`,
+    "PutCourseTagData" :`${environment.apiUrl}/api/v1/form/tag/update`,
+    "CreateCourseTagData" :`${environment.apiUrl}/api/v1/form/tag/add`,
+
+    "GetCourseLanguageData" :`${environment.apiUrl}/api/v1/form/language/search`,
+    "DeleteCourseLanguageData" :`${environment.apiUrl}/api/v1/form/language/delete`,
+    "PutCourseLanguageData" :`${environment.apiUrl}/api/v1/form/language/update`,
+    "CreateCourseLanguageData" :`${environment.apiUrl}/api/v1/form/language/add`,
 
     "GetRolesData" :`${environment.apiUrl}/api/v1/form/role/search`,
     "DeleteRolesData" :`${environment.apiUrl}/api/v1/form/role/delete`,
     "PutRolesData" :`${environment.apiUrl}/api/v1/form/role/update`,
     "CreateRolesData" :`${environment.apiUrl}/api/v1/form/role/add`,
 
-    "GetAuditEmplooyies" :`${environment.apiUrl}/api/v1/employee/search`,
-    "DeleteAuditEmplooyies" :`${environment.apiUrl}/api/v1/employee/delete`,
-    "PutAuditEmplooyies" :`${environment.apiUrl}/api/v1/employee/update`,
-    "CreateAuditEmplooyies" :`${environment.apiUrl}/api/v1/employee/add`,
+    "GetUsers" :`${environment.apiUrl}/api/v1/employee/search`,
+    "DeleteUsers" :`${environment.apiUrl}/api/v1/employee/delete`,
+    "PutUsers" :`${environment.apiUrl}/api/v1/employee/update`,
+    "CreateUsers" :`${environment.apiUrl}/api/v1/employee/add`,
+
+    "GetSalaryPolicyData" :`${environment.apiUrl}/api/v1/form/SalaryPolicy/search`,
+    "DeleteSalaryPolicyData" :`${environment.apiUrl}/api/v1/form/SalaryPolicy/delete`,
+    "PutSalaryPolicyData" :`${environment.apiUrl}/api/v1/form/SalaryPolicy/update`,
+    "CreateSalaryPolicyData" :`${environment.apiUrl}/api/v1/form/SalaryPolicy/add`,
+
+    "GetCourseCategoryData" :`${environment.apiUrl}/api/v1/form/category/search`,
+    "DeleteCourseCategoryData" :`${environment.apiUrl}/api/v1/form/category/delete`,
+    "PutCourseCategoryData" :`${environment.apiUrl}/api/v1/form/category/update`,
+    "CreateCourseCategoryData" :`${environment.apiUrl}/api/v1/form/category/add`,
+
+    "GetCourseType" :`${environment.apiUrl}/api/v1/form/course_type/search`, 
+    "DeleteCourseType" :`${environment.apiUrl}/api/v1/form/course_type/delete`,
+    "PutCourseType" :`${environment.apiUrl}/api/v1/form/course_type/update`,
+    "CreateCourseType" :`${environment.apiUrl}/api/v1/form/course_type/add`,
+
 
     "CreateLeaveRequest":`${environment.apiUrl}/api/v1/form/leave_request/add`,
     "PutLeaveRequest" :`${environment.apiUrl}/api/v1/form/leave_request/update`,
