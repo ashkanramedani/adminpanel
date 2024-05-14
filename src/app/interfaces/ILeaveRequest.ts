@@ -1,4 +1,4 @@
-import { IUser } from "./IUser"
+import { IUsers } from "./IUsers"
 
 export interface ILeaveRequest
 {
@@ -6,8 +6,8 @@ export interface ILeaveRequest
     start_date: string
     end_date: string
     description: string
-    created: IUser
-    employee: IUser
+    created: IUsers
+    employee: IUsers
     status:number
     visible: true,
   can_update: true,

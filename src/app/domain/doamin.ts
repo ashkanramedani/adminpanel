@@ -23,40 +23,51 @@ export const Domain =
 
     "GetEmployees": `${environment.apiUrl}/api/v1/user/employees`,
     "GroupDeletePost": `${environment.apiUrl}/api/v1/form/post`,
-    "GetTeachersDelay": `${environment.apiUrl}/api/v1/form/tardy_request/search`,
-    "DeleteTeachersDelay": `${environment.apiUrl}/api/v1/form/tardy_request/delete`,
-    "CreateTeachersDelay": `${environment.apiUrl}/api/v1/form/tardy_request/add`,
-    "PutTeacherDelay" : `${environment.apiUrl}/api/v1/form/tardy_request/update`,
-    "GetSingleTeacherDelay": `${environment.apiUrl}/api/v1/form/tardy_request/search`,
+
+
+    "GetTardeyRequest": `${environment.apiUrl}/api/v1/form/tardy_request/search`,
+    "CreateTardeyRequest": `${environment.apiUrl}/api/v1/form/tardy_request/add`,
+    "PutTardeyRequest": `${environment.apiUrl}/api/v1/form/tardy_request/update`,
+    "DeleteTardeyRequest": `${environment.apiUrl}/api/v1/form/tardy_request/delete`,
+
+
+
     "GetClassCancellation": `${environment.apiUrl}/api/v1/form/course_cancellation/search`,
     "DeleteClassCancellation": `${environment.apiUrl}/api/v1/form/course_cancellation/delete`,
     "CreateClassCancellation": `${environment.apiUrl}/api/v1/form/course_cancellation/add`,
     "GetSingleClassCancellation": `${environment.apiUrl}/api/v1/form/course_cancellation/search`,
     "PutClassCancellation": `${environment.apiUrl}/api/v1/form/course_cancellation/update`,
-    "GetTeachersDelaySingle": `${environment.apiUrl}/api/v1/form/tardy_request/search`,
-    "GetEmployeeEntryExit": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/search`,
-    "CreateEmployeeEntryExit": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/add`,
-    "DeleteEmployeeEntryExit": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/delete`,
-    "PutEmployeeEntryExit": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/update`,
-    "GetLeaveRegistration": `${environment.apiUrl}/api/v1/form/leave_request/search`,
-    "DeleteLeaveRegistration": `${environment.apiUrl}/api/v1/form/leave_request/delete`,
-    "GetSingleLeaveRrgistration": `${environment.apiUrl}/api/v1/form/leave_request/search`,
 
-    "GetMissionRegistration": `${environment.apiUrl}/api/v1/form/business_trip/search`,
-    "DeleteMissionRegistration": `${environment.apiUrl}/api/v1/form/business_trip/delete`,
-    "GetSingleMissionRegistration":`${environment.apiUrl}/api/v1/form/business_trip/search`,
-    "PutMissionRegisteration":`${environment.apiUrl}/api/v1/form/business_trip/update`,
+    "GetFingerScanner": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/search`,
+    "CreateFingerScanner": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/bulk_add`,
+    "CreateFingerScannerBulk": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/add`,
+    "DeleteFingerScanner": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/delete`,
+    "PutFingerScanner": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/update`,
+
+
+    "GetLeaveRequest": `${environment.apiUrl}/api/v1/form/leave_request/search`,
+    "DeleteLeaveRequest": `${environment.apiUrl}/api/v1/form/leave_request/delete`,
+    "CreateLeaveRequest":`${environment.apiUrl}/api/v1/form/leave_request/add`,
+    "PutLeaveRequest" :`${environment.apiUrl}/api/v1/form/leave_request/update`,
+
+
+    "GetBusinessTrip": `${environment.apiUrl}/api/v1/form/business_trip/search`,
+    "DeleteBusinessTrip": `${environment.apiUrl}/api/v1/form/business_trip/delete`,
+    "PutBusinessTrip":`${environment.apiUrl}/api/v1/form/business_trip/update`,
+    "CreateBusinessTrip":`${environment.apiUrl}/api/v1/form/business_trip/add`,
+
     "GetProfessorsReports": `${environment.apiUrl}/api/v1/form/salary/employee`,
-    "GetRemoteWorkRegistration": `${environment.apiUrl}/api/v1/form/remote_request/search`,
-    "CreateRemoteWorkRegistration": `${environment.apiUrl}/api/v1/form/remote_request/add`,
-    "PutRemoteWork":`${environment.apiUrl}/api/v1/form/remote_request/update`,
-    "GetSingleRemoteWork": `${environment.apiUrl}/api/v1/form/remote_request/search`,
-    "DeleteRemoteWorkRegistration": `${environment.apiUrl}/api/v1/form/remote_request/delete`,
-    "GetSubstituteTeacher": `${environment.apiUrl}/api/v1/form/teacher_replacement/search`,
-    "CreateSubstituteTeacher": `${environment.apiUrl}/api/v1/form/teacher_replacement/add`,
-    "DeleteSubstituteTeacher": `${environment.apiUrl}/api/v1/form/teacher_replacement/delete`,
-    "GetSingleSubstituteTeacher": `${environment.apiUrl}/api/v1/form/teacher_replacement/search`,
-    "PutSubstituteTeacher":`${environment.apiUrl}/api/v1/form/teacher_replacement/update`,
+
+    "GetRemoteRequest": `${environment.apiUrl}/api/v1/form/remote_request/search`,
+    "CreateRemoteRequest": `${environment.apiUrl}/api/v1/form/remote_request/add`,
+    "PutRemoteRequest":`${environment.apiUrl}/api/v1/form/remote_request/update`,
+    "DeleteRemoteRequest": `${environment.apiUrl}/api/v1/form/remote_request/delete`,
+
+    "GetTeacherReplacement": `${environment.apiUrl}/api/v1/form/teacher_replacement/search`,
+    "CreateTeacherReplacement": `${environment.apiUrl}/api/v1/form/teacher_replacement/add`,
+    "DeleteTeacherReplacement": `${environment.apiUrl}/api/v1/form/teacher_replacement/delete`,
+    "PutTeacherReplacement":`${environment.apiUrl}/api/v1/form/teacher_replacement/update`,
+
     "GetSurvey": `${environment.apiUrl}/api/v1/form/survey/search`,
     "DeleteSurvey": `${environment.apiUrl}/api/v1/form/survey/delete`,
     
@@ -116,9 +127,6 @@ export const Domain =
     "CreateCourseType" :`${environment.apiUrl}/api/v1/form/course_type/add`,
 
 
-    "CreateLeaveRequest":`${environment.apiUrl}/api/v1/form/leave_request/add`,
-    "PutLeaveRequest" :`${environment.apiUrl}/api/v1/form/leave_request/update`,
-    "CreateMissionRegistration":`${environment.apiUrl}/api/v1/form/business_trip/add`,
     "GetAuditClass":`${environment.apiUrl}/api/v1/form/course/search`,
 
     

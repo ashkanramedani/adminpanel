@@ -1,6 +1,6 @@
 import { IUsers } from "./IUsers"
 
-export interface IMissionRegisteration {
+export interface IBusinessTrip {
     business_trip_pk_id: string
     destination: string
     description: string

@@ -1,11 +1,11 @@
 import { IClass } from "./IClass"
-import { IUser } from "./IUser"
+import { IUsers } from "./IUsers"
 
-export interface ISubstituteTeacher {
+export interface ITeacherReplacement {
     replacement_teacher_fk_id: string
-    created: IUser
-    main_teacher: IUser
-    replacement_teacher: IUser
+    created: IUsers
+    main_teacher: IUsers
+    replacement_teacher: IUsers
     classes: IClass
     created_fk_by: string
     status: number

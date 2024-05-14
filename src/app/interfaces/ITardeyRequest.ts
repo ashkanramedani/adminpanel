@@ -1,11 +1,11 @@
 import { IClass } from "./IClass"
-import { IUser } from "./IUser"
+import { IUsers } from "./IUsers"
 
-export interface ITeacherDelay
+export interface ITardeyRequest
 {
     teacher_tardy_reports_pk_id :string
-    created :IUser
-    teacher :IUser
+    created :IUsers
+    teacher :IUsers
     classes :IClass
     delay :number
 }

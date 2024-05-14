@@ -1,4 +1,4 @@
-export interface IEmployeeEntryExitForm {
+export interface IFingerScannerForm {
     created_fk_by: string
     description: string,
     status: number,
@@ -7,4 +7,5 @@ export interface IEmployeeEntryExitForm {
     Date: string
     Enter: string
     Exit: string
+    fingerprint_scanner_pk_id: string
 }

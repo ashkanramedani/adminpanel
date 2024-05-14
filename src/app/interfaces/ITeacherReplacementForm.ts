@@ -1,4 +1,4 @@
-export interface ISubstituteTeacherForm
+export interface ITeacherReplacementForm
 {
     created_fk_by: string
     description: string,

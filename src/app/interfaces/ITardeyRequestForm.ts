@@ -1,4 +1,5 @@
-export interface ITeacherDelayForm
+
+export interface ITardeyRequestForm
 {
     created_fk_by:string
     description: string,
