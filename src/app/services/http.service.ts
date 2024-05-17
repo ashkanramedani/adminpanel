@@ -61,7 +61,6 @@ export class HttpService {
       catchError(this.errorHandler));
   }
   errorHandler(error:any) {
-    console.log("Errrrorrr: "+error)
     let errorMessage = '';
     if(error.error instanceof ErrorEvent) {
       errorMessage = error.error.message;

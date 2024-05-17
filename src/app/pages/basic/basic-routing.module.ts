@@ -22,6 +22,8 @@ import { StudentAddComponent } from './students/student-add/student-add.componen
 import { QuestionAddComponent } from './questions/question-add/question-add.component';
 import { AnswerAddComponent } from './answers/answer-add/answer-add.component';
 import { PaymentAddComponent } from './payments/payment-add/payment-add.component';
+import { SubCourseComponent } from './course/sub-course/sub-course.component';
+import { SubCourseAddComponent } from './course/sub-course/sub-course-add/sub-course-add.component';
 
 const routes: Routes = [
   { path: 'course', component: CourseComponent },
@@ -38,6 +40,10 @@ const routes: Routes = [
   { path: 'course-tag', component: CourseTagComponent },
   { path: 'course-tag/add', component: CourseTagAddComponent },
   { path: 'course-tag/edit/:id', component: CourseTagAddComponent },
+
+  { path: 'sub-course', component: SubCourseComponent },
+  { path: 'sub-course/add', component: SubCourseAddComponent },
+  { path: 'sub-course/edit/:id', component: SubCourseAddComponent },
 
   { path: 'course-type', component: CourseTypeComponent },
   { path: 'course-type/add', component: CourseTypeAddComponent },

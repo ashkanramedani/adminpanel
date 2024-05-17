@@ -8,6 +8,8 @@ import { IUsersForm } from 'src/app/interfaces/IUsersForm';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
+import { IUserFormRoles } from 'src/app/interfaces/IUserFormRoles';
+import { IuserEditForm } from 'src/app/interfaces/IuserEditForm';
 
 @Component({
   selector: 'app-user-add',
@@ -18,6 +20,7 @@ export class UserAddComponent implements OnInit {
   cancle_link: string = '/basic/users'
   form_title:string="پرسنل"
   AuditForm: IUsersForm
+  EditForm:IuserEditForm
   get_Singel_route: string = Domain.GetUsers
   put_route: string = Domain.PutUsers
   create_route: string = Domain.CreateUsers
@@ -26,8 +29,8 @@ export class UserAddComponent implements OnInit {
   ReportForm: FormGroup;
   isOpenSearchRole: boolean = false
   RolesData: IRoles[] = []
-  RolesInputArray: string[] = []
-  RolesInputTitleArray: string[] = []
+  RolesInputArray: IUserFormRoles[]=[]
+  RolesInputTitleArray: {role_id:string,role_title:string}[]=[]
   id: any;
   EmployiesData: IUsers[] = []
   btnLoading: boolean = false
@@ -37,17 +40,15 @@ export class UserAddComponent implements OnInit {
   }
   ngOnInit(): void {
     this.id = this.route.snapshot?.paramMap.get('id');
-    this.GetEmployeeData()
     this.GetRolesData()
     this.ReportForm = this.formBuilder.group(
       {
         name: new FormControl('', [Validators.required]),
         last_name: new FormControl('', [Validators.required]),
-        day_of_birth: new FormControl(''),
+        day_of_birth: new FormControl('',[Validators.required]),
         email: new FormControl('',),
         mobile_number: new FormControl('', [Validators.required]),
         address: new FormControl(''),
-        priority: new FormControl('',),
         fingerprint_scanner_user_id: new FormControl('', [Validators.required]),
         roles: new FormControl('',)
       }
@@ -58,36 +59,32 @@ export class UserAddComponent implements OnInit {
     }
   }
 
-  GetEmployeeData() {
-    this.http.getAll(Domain.GetUsers).subscribe((response) => {
-      this.EmployiesData = response;
-      console.log(response)
-    })
-  }
+
   get_single_Data() {
     //TODO
     this.http
       .get(this.get_Singel_route, this.id)
       .subscribe((response) => {
         console.log(response)
-        this.AuditForm = response;
+        this.EditForm = response;
         this.FillFormData()
       });
   }
   FillFormData() {
-    this.ReportForm.controls["name"].patchValue(this.AuditForm.name);
-    this.ReportForm.controls["last_name"].patchValue(this.AuditForm.last_name);
-    this.ReportForm.controls["day_of_birth"].patchValue(moment(this.AuditForm.day_of_birth, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
-    this.ReportForm.controls["email"].patchValue(this.AuditForm.email);
-    this.ReportForm.controls["mobile_number"].patchValue(this.AuditForm.mobile_number);
-    this.ReportForm.controls["address"].patchValue(this.AuditForm.address)
-    this.ReportForm.controls["priority"].patchValue(this.AuditForm.priority)
-    this.ReportForm.controls["fingerprint_scanner_user_id"].patchValue(this.AuditForm.fingerprint_scanner_user_id)
-    this.AuditForm.roles.forEach((item, index) => {
-      this.RolesInputTitleArray.push(item.name)
+    this.ReportForm.controls["name"].patchValue(this.EditForm.name);
+    this.ReportForm.controls["last_name"].patchValue(this.EditForm.last_name);
+    if(this.EditForm.day_of_birth!=null){ 
+    this.ReportForm.controls["day_of_birth"].patchValue(moment(this.EditForm.day_of_birth, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
+    }
+    this.ReportForm.controls["email"].patchValue(this.EditForm.email);
+    this.ReportForm.controls["mobile_number"].patchValue(this.EditForm.mobile_number);
+    this.ReportForm.controls["address"].patchValue(this.EditForm.address)
+    this.ReportForm.controls["fingerprint_scanner_user_id"].patchValue(this.EditForm.fingerprint_scanner_user_id)
+    this.EditForm.roles.forEach((item, index) => {
+      this.RolesInputTitleArray.push( {role_id:item.role_pk_id,role_title:item.name})
     })
-    this.AuditForm.roles.forEach((item, index) => {
-      this.RolesInputArray.push(item.role_pk_id)
+    this.EditForm.roles.forEach((item, index) => {
+      this.RolesInputArray.push({old_id:'',  new_id:item.role_pk_id})
     })
   }
   onSubmit() {
@@ -104,10 +101,9 @@ export class UserAddComponent implements OnInit {
       email: this.ReportForm.controls.email.value,
       mobile_number: this.ReportForm.controls.mobile_number.value,
       address: this.ReportForm.controls.address.value,
-      priority: this.ReportForm.controls.priority.value,
       fingerprint_scanner_user_id: this.ReportForm.controls.fingerprint_scanner_user_id.value,
-      roles: this.RolesInputArray.length <= 0 ? new Array() : this.RolesInputArray,
-
+       roles: this.RolesInputArray.length <= 0 ? new Array({old_id:'',  new_id:''}) : this.RolesInputArray,
+      //roles:this.RolesInputArray,
     }
     if (this.id != null) {
       this.btnLoading = true
@@ -141,13 +137,16 @@ export class UserAddComponent implements OnInit {
   }
   AddRoleInput(id: string, name: string) {
     if (id != '') {
-      this.RolesInputArray.push(id);
-      this.RolesInputTitleArray.push(name)
+      let newRole={old_id:'',  new_id:id}
+      this.RolesInputArray.push(newRole);
+      this.RolesInputTitleArray. push( {role_id:id,role_title:name})
     }
   }
-  RemoveRoleInput(index: number) {
+  RemoveRoleInput(index: number,id:string) {
     this.RolesInputArray.splice(index, 1);
+    this.RolesInputArray.push({old_id:id, new_id:''})
     this.RolesInputTitleArray.splice(index, 1);
+    console.log(this.RolesInputArray)
   }
 }
 

@@ -1,4 +1,5 @@
 import { IRoles } from "./IRoles"
+import { IUserFormRoles } from "./IUserFormRoles"
 
 export interface IUsersForm{
     name: string,
@@ -8,7 +9,6 @@ export interface IUsersForm{
     mobile_number: string,
     address: string,
     user_pk_id: string
-    priority: number,
     fingerprint_scanner_user_id: string,
-    roles:IRoles[]
+    roles:IUserFormRoles[]
 }

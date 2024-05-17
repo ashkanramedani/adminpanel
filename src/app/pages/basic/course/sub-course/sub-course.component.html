@@ -19,75 +19,79 @@
 <main *ngIf="!isLoading">
     <div class="p-5 my-3 bg-white rounded-lg">
         <div
-            class="header grid grid-cols-{{table_header.length}} text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6">
+            class="header grid grid-cols-7 text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6">
             <span *ngFor="let item of table_header">{{item}}</span>
         </div>
         <div *ngFor="let item of ResponseDataList | filter: this.SearchValue; let i =index"
-            class="body grid grid-cols-{{table_header.length}} text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
+            class="body grid grid-cols-7 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
             <span>{{ i+1}}</span>
-            <span>{{ item.name + '&nbsp; &nbsp;'+ item.last_name}}</span>
-            <span *ngIf="item.roles.length>0;else other_content">{{item.roles[0].name }}</span>
-            <ng-template #other_content> <span>----</span> </ng-template>
-            <!-- <div class="flex items-center justify-center">
+            <span>{{ item.sub_course_name}}</span>
+            <span>{{ item.sub_course_pk_id}}</span>
+            <span>{{item.sub_course_teacher_fk_id }}</span>
+            <span>{{item.number_of_session}}</span>
+            <div class="flex items-center justify-center">
                 <img *ngIf="item.status==1" src="/assets/images/icon/active.svg" class="w-4" alt="">
                 <img *ngIf="item.status==0" src="/assets/images/icon/deactive.svg" class="w-[1.1rem]" alt="">
-            </div> -->
+            </div>
             <div class="operation flex items-center justify-center gap-x-2">
-                <button (click)="OpenModal(item.user_pk_id)" title="نمایش">
+                <button (click)="OpenModal(item.sub_course_pk_id)" title="نمایش">
                     <img src="/assets/images/icon/see-more.svg" class="w-4" alt="">
                 </button>
-                <a [routerLink]="[edit_url,item.user_pk_id]" title="ویرایش">
+                <a [routerLink]="[edit_url,item.sub_course_pk_id]" title="ویرایش">
                     <img src="/assets/images/icon/edit.svg" class="w-4" alt="">
                 </a>
-                <button title="حذف" (click)="RemoveItem(item.user_pk_id)">
+                <button title="حذف" (click)="RemoveItem(item.sub_course_pk_id)">
                     <img src="/assets/images/icon/trash.svg" class="w-4" alt="">
                 </button>
             </div>
         </div>
     </div>
-
+<!-- 
     <div *ngIf="IsShowenModal==true" x-transition=""
   class="fixed   left-0 top-0 z-999999 flex h-full min-h-screen w-full items-center justify-center bg-black/40 px-4 py-5 text-graydark dark:text-white">
   <div
     class="flex flex-col w-full mx-12  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
     <div class="footer flex  justify-start border-b py-3 border-[#b1b1b1]">
-      <h3 class="font-semibold text-lg"> نمایش رکورد <span> اطلاعات پرسنل </span></h3>
+      <h3 class="font-semibold text-lg"> نمایش رکورد <span> اطلاعات نقش </span></h3>
     </div>
     <div class="grid grid-cols-2 py-3  text-graydark dark:text-white text-base">
-      <div>
-        <label class="my-3 block text-base font-semibold">
-          نام
-        </label>
-        <span>{{SingleData.name+ " "+SingleData.last_name }}</span>
-      </div>
-      <div>
-        <label class="my-3 block text-base font-semibold ">
-          ایمیل
-        </label>
-        <span>{{SingleData.email}}</span>
-      </div>
-
-      <div>
-        <label class="my-3 block text-base font-semibold ">
-          آدرس
-        </label>
-        <span>{{SingleData.address}}</span>
-      </div>
-      <div>
-        <label class="my-3 block text-base font-semibold ">
-          همراه
-        </label>
-        <span>{{SingleData.mobile_number}}</span>
-      </div>
-      <div class="col-span-2 ">
-        <label class="my-3 block text-base font-semibold ">
-          نقش ها
-        </label>
-        <div class="flex items-center justify-center gap-x-3">
-          <!-- <span *ngFor="let item of SingleData.roles"
-            class="text-black dark:text-white rounded-lg px-3 py-1 bg-gray-200">{{item.name}}</span> -->
+        <div>
+            <label class="my-3 block text-base font-semibold">
+                سازنده
+            </label>
+            <span>{{SingleData.created_fk_by}}</span>
         </div>
-      </div>
+        <div>
+            <label class="my-3 block text-base font-semibold">
+                نام
+            </label>
+            <span>{{SingleData.name }}</span>
+        </div>
+        <div>
+            <label class="my-3 block text-base font-semibold">
+                وضعیت
+            </label>
+            <span *ngIf="SingleData.status==0"
+                class="inline-flex rounded-full bg-[#777777] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید
+                نشده </span>
+            <span *ngIf="SingleData.status==1"
+                class="inline-flex rounded-full bg-[#199173] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید
+                شده </span>
+
+        </div>
+        <div>
+            <label class="my-3 block text-base font-semibold">
+                خوشه
+            </label>
+            <span>{{SingleData.cluster }}</span>
+        </div>
+
+        <div>
+            <label class="my-3 block text-base font-semibold ">
+                توضیحات
+            </label>
+            <span>{{SingleData.description}}</span>
+        </div>
     </div>
 
     <div class="footer flex items-end justify-end border-t py-3 border-[#b1b1b1]">
@@ -97,6 +101,6 @@
       </button>
     </div>
   </div>
-</div>
+</div> -->
     
 </main>

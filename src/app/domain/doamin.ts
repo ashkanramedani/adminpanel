@@ -86,6 +86,12 @@ export const Domain =
     "PutcourseData" :`${environment.apiUrl}/api/v1/form/course/update`,
     "CreatecourseData" :`${environment.apiUrl}/api/v1/form/course/add`,
 
+    
+    "GetSubCourseData" :`${environment.apiUrl}/api/v1/form/sub_course/search`,
+    "DeleteSubCourseData" :`${environment.apiUrl}/api/v1/form/sub_course/delete`,
+    "PutSubCourseData" :`${environment.apiUrl}/api/v1/form/sub_course/update`,
+    "CreateSubCourseData" :`${environment.apiUrl}/api/v1/form/sub_course/add`,
+
     "GetQuestionData" :`${environment.apiUrl}/api/v1/form/question/search`,
     "DeleteQuestionData" :`${environment.apiUrl}/api/v1/form/question/delete`,
     "PutQuestionData" :`${environment.apiUrl}/api/v1/form/question/update`,

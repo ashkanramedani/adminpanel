@@ -28,13 +28,15 @@ import { QuestionAddComponent } from './questions/question-add/question-add.comp
 import { RoleAddComponent } from './roles/role-add/role-add.component';
 import { StudentAddComponent } from './students/student-add/student-add.component';
 import { UserAddComponent } from './users/user-add/user-add.component';
+import { SubCourseComponent } from './course/sub-course/sub-course.component';
+import { SubCourseAddComponent } from './course/sub-course/sub-course-add/sub-course-add.component';
 
 
 @NgModule({
   declarations: [CourseComponent, CourseAddComponent, CourseCategoryComponent, CourseCategoryAddComponent, CourseLanguageAddComponent,
     CourseTagAddComponent, CourseTypeAddComponent, CourseLanguageComponent, CourseTagComponent, CourseTypeComponent,
     AnswersComponent, AnswerAddComponent, PaymentsComponent, PaymentAddComponent, QuestionsComponent, QuestionAddComponent,
-    RolesComponent, RoleAddComponent, StudentsComponent, StudentAddComponent, UsersComponent, UserAddComponent
+    RolesComponent, RoleAddComponent, StudentsComponent, StudentAddComponent, UsersComponent, UserAddComponent,SubCourseComponent,SubCourseAddComponent
   ],
   imports: [
     CommonModule,
