@@ -1,13 +1,13 @@
 import { IClass } from "./IClass"
-import { IUser } from "./IUser"
+import { IUsers } from "./IUsers"
 
 export interface IClassCancellation {
     course_cancellation_pk_id: string
     replacement_date: string
     course_duration: number
     course_location: string
-    created: IUser
-    teacher: IUser
+    created: IUsers
+    teacher: IUsers
     classes: IClass
     status: number
     created_fk_by: string

@@ -20,4 +20,5 @@ export interface ILeaveRequest
   update_date: boolean
   expire_date: string
   employee_fk_id: string
+  user_fk_id:string
 }

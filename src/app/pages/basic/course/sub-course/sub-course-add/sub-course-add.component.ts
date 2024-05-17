@@ -92,7 +92,7 @@ export class SubCourseAddComponent implements OnInit {
   FillFormData() {
     this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
     this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
-    this.ReportForm.controls["satatus"].patchValue(this.AuditForm.status);
+    this.ReportForm.controls["status"].patchValue(this.AuditForm.status);
     this.ReportForm.controls["course_fk_id"].patchValue(this.AuditForm.course_fk_id);
     this.ReportForm.controls["sub_course_teacher_fk_id"].patchValue(this.AuditForm.sub_course_teacher_fk_id)
     this.ReportForm.controls["sub_course_name"].patchValue(this.AuditForm.sub_course_name)

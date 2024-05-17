@@ -45,54 +45,63 @@
         </div>
     </div>
 
-    <!-- <div *ngIf="IsShowenModal==true" x-transition=""
+     <div *ngIf="IsShowenModal==true" x-transition=""
   class="fixed   left-0 top-0 z-999999 flex h-full min-h-screen w-full items-center justify-center bg-black/40 px-4 py-5 text-graydark dark:text-white">
   <div
     class="flex flex-col w-full mx-12  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
     <div class="footer flex  justify-start border-b py-3 border-[#b1b1b1]">
       <h3 class="font-semibold text-lg"> نمایش رکورد <span> اطلاعات نقش </span></h3>
     </div>
-    <div class="grid grid-cols-2 py-3  text-graydark dark:text-white text-base">
-        <div>
-            <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
-              ثبت کننده
-            </label>
-            <span>{{SingleData.created_fk_by}}</span>
-          </div>
-          <div>
-            <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
-              وضعیت
-    
-            </label>
-            <span *ngIf="SingleData.status==0"
-              class="inline-flex rounded-full bg-[#777777] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید
-              نشده </span>
-            <span *ngIf="SingleData.status==1"
-              class="inline-flex rounded-full bg-[#199173] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید
-              شده </span>
-    
-          </div>
-          <div>
-            <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
-              نام پرسنل
-    
-            </label>
-            <span>{{SingleData.user_fk_id}} </span>
-          </div>
-          <div>
-            <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
-              ساعت شروع
-    
-            </label>
-            <span>{{SingleData.day_starting_time}} </span>
-          </div>
-          <div>
-            <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
-              ساعت اتمام
-    
-            </label>
-            <span>{{SingleData.day_ending_time}} </span>
-          </div>
+    <div class="grid lg:grid-cols-2 py-3 grid-cols-1 gap-6.5 p-6.5 text-graydark text-base  dark:text-white ">
+      <div>
+        <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
+          ثبت کننده
+        </label>
+          <span>{{SingleData.created.name + '&nbsp;'+SingleData.created.last_name}}</span>
+      </div>
+      <div>
+        <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
+         وضعیت
+        </label>
+        <span *ngIf="SingleData.status==0" class="inline-flex rounded-full bg-[#777777] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید نشده </span>
+        <span *ngIf="SingleData.status==1" class="inline-flex rounded-full bg-[#199173] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید شده </span>
+
+      </div>
+      <div >
+        <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
+         نام پرسنل
+        
+        </label>
+        <span>{{SingleData.employee.name + '&nbsp;'+SingleData.employee.last_name}}</span>
+      </div>
+      <div >
+        <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
+          مقصد
+        
+        </label>
+        <span>{{SingleData.destination}} </span>
+      </div>
+      <div >
+        <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
+          تاریخ شروع
+        
+        </label>
+        <span>{{SingleData.start_date|date: "HH:mm - YYYY/MM/dd"}} </span>
+      </div>
+      <div >
+        <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
+         تاریخ اتمام 
+        
+        </label>
+        <span>{{SingleData.end_date|date: "HH:mm - YYYY/MM/dd"}} </span>
+      </div>
+      
+      <div>
+        <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
+        توضیحات
+        </label>
+        <span>{{SingleData.description}} </span>
+      </div>
     </div>
 
     <div class="footer flex items-end justify-end border-t py-3 border-[#b1b1b1]">
@@ -102,6 +111,6 @@
       </button>
     </div>
   </div>
-</div> -->
+</div> 
     
 </main>

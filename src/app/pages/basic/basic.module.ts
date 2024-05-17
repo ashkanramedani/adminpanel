@@ -30,13 +30,16 @@ import { StudentAddComponent } from './students/student-add/student-add.componen
 import { UserAddComponent } from './users/user-add/user-add.component';
 import { SubCourseComponent } from './course/sub-course/sub-course.component';
 import { SubCourseAddComponent } from './course/sub-course/sub-course-add/sub-course-add.component';
+import { SessionAddComponent } from './course/sessions/session-add/session-add.component';
+import { SessionsComponent } from './course/sessions/sessions.component';
 
 
 @NgModule({
   declarations: [CourseComponent, CourseAddComponent, CourseCategoryComponent, CourseCategoryAddComponent, CourseLanguageAddComponent,
     CourseTagAddComponent, CourseTypeAddComponent, CourseLanguageComponent, CourseTagComponent, CourseTypeComponent,
     AnswersComponent, AnswerAddComponent, PaymentsComponent, PaymentAddComponent, QuestionsComponent, QuestionAddComponent,
-    RolesComponent, RoleAddComponent, StudentsComponent, StudentAddComponent, UsersComponent, UserAddComponent,SubCourseComponent,SubCourseAddComponent
+    SessionAddComponent, SessionsComponent, RolesComponent, RoleAddComponent, StudentsComponent,
+    StudentAddComponent, UsersComponent, UserAddComponent, SubCourseComponent, SubCourseAddComponent
   ],
   imports: [
     CommonModule,

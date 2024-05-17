@@ -8,22 +8,22 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
-  selector: 'app-roles', 
-  templateUrl: './roles.component.html', 
+  selector: 'app-roles',
+  templateUrl: './roles.component.html',
 })
 export class RolesComponent implements OnInit {
 
-  
+
   //#region change this informaion
   ResponseDataList: IUsers[] = []
   SingleData: IRolesForm
   form_title = "اطلاعات پایه / نقش ها"
-  table_header: string[] = ["ردیف", "نام", "ایجاد کننده", "خوشه","وضعیت","عملیات"]
-  field_count:string="role"
-  get_all_route:string=Domain.GetRolesData
-  delete_route:string=Domain.DeleteRolesData
-  add_url:string="/basic/role/add"
-  edit_url:string="/basic/role/edit"
+  table_header: string[] = ["ردیف", "نام", "ایجاد کننده", "خوشه", "وضعیت", "عملیات"]
+  field_count: string = "role"
+  get_all_route: string = Domain.GetRolesData
+  delete_route: string = Domain.DeleteRolesData
+  add_url: string = "/basic/role/add"
+  edit_url: string = "/basic/role/edit"
   //#endregion
   ResponseDataLenght: number[];
   totalCount: number = 0
@@ -32,8 +32,8 @@ export class RolesComponent implements OnInit {
   isLoading: boolean = true
   order: string = "desc"
   IsShowenModal: boolean = false
-   page:number=1
-   limit:number=10
+  page: number = 1
+  limit: number = 10
   currentPage: number = 1
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
@@ -41,7 +41,7 @@ export class RolesComponent implements OnInit {
     this.GetResponseDataLenght()
 
   }
- 
+
   GetResponseDataLenght() {
     this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
       this.totalCount = response
@@ -92,6 +92,10 @@ export class RolesComponent implements OnInit {
       .get(this.get_all_route, id)
       .subscribe((response) => {
         this.SingleData = response;
+        this.http.get(Domain.GetUsers, this.SingleData.created_fk_by).subscribe((emp) => {
+          console.log("emp: " + emp)
+          this.SingleData.created_fk_by = emp.name + " " + emp.last_name
+        })
         this.IsShowenModal = true
       });
   }

@@ -68,6 +68,11 @@ export const Domain =
     "DeleteTeacherReplacement": `${environment.apiUrl}/api/v1/form/teacher_replacement/delete`,
     "PutTeacherReplacement":`${environment.apiUrl}/api/v1/form/teacher_replacement/update`,
 
+    "GetSession": `${environment.apiUrl}/api/v1/form/session/search`,
+    "CreateSession": `${environment.apiUrl}/api/v1/form/session/add`,
+    "DeleteSession": `${environment.apiUrl}/api/v1/form/session/delete`,
+    "PutSesssion":`${environment.apiUrl}/api/v1/form/session/update`,
+
     "GetSurvey": `${environment.apiUrl}/api/v1/form/survey/search`,
     "DeleteSurvey": `${environment.apiUrl}/api/v1/form/survey/delete`,
     

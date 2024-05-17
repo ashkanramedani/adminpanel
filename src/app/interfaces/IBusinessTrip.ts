@@ -20,4 +20,5 @@ export interface IBusinessTrip {
     create_date: string
     start_date: string
     update_date: string
+    user_fk_id:string
 }

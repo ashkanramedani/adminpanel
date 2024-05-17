@@ -1,25 +1,27 @@
+
 import { Component, OnInit } from '@angular/core';
-import { Domain } from 'src/app/domain/doamin';
-import { IFingerScanner } from 'src/app/interfaces/IFingerScanner';
-import { IRemoteRequest } from 'src/app/interfaces/IRemoteRequest';
+import { Domain } from 'src/app/domain/doamin'; 
+import { ISubCourse } from 'src/app/interfaces/ISubCourse';  
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
-  selector: 'app-fingerprint-scanner',
-  templateUrl: './fingerprint-scanner.component.html'
+  selector: 'app-sessions',
+  templateUrl: './sessions.component.html',
 })
-export class FingerprintScannerComponent implements OnInit {
+export class SessionsComponent implements OnInit {
+
+  
   //#region change this informaion
-  ResponseDataList: IFingerScanner[] = []
-  SingleData: IFingerScanner
-  form_title = "گزارشات حسابرسی /  وورد و خروج پرسنل "
-  table_header: string[] = ["ردیف", "  تاریخ" ," ورود"," خروج","سازنده","وضعیت","عملیات"]
-  field_count:string="fingerprint_scanner"
-  get_all_route:string=Domain.GetFingerScanner
-  delete_route:string=Domain.DeleteFingerScanner
-  add_url:string="/reports/finger_scanner/add"
-  edit_url:string="/reports/finger_scanner/edit"
+  ResponseDataList: ISubCourse[] = []
+  SingleData: ISubCourse
+  form_title = "اطلاعات پایه /  جلسات کلاس"
+  table_header: string[] = ["ردیف", "نام دوره", " نام کلاس ", "استاد","مدت جلسه","وضعیت","عملیات"]
+  field_count:string="role"
+  get_all_route:string=Domain.GetSession
+  delete_route:string=Domain.DeleteSession
+  add_url:string="/basic/session/add"
+  edit_url:string="/basic/session/edit"
   //#endregion
   ResponseDataLenght: number[];
   totalCount: number = 0
@@ -39,10 +41,10 @@ export class FingerprintScannerComponent implements OnInit {
   }
  
   GetResponseDataLenght() {
-    // this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
-    //   this.totalCount = response
-    //   this.ResponseDataLenght = new Array(Math.ceil(response / 10))
-    // })
+    this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
+      this.totalCount = response
+      this.ResponseDataLenght = new Array(Math.ceil(response / 10))
+    })
   }
   GetResponseData(page: number, limit: number, order: string) {
     this.isLoading = true;
@@ -88,11 +90,6 @@ export class FingerprintScannerComponent implements OnInit {
       .get(this.get_all_route, id)
       .subscribe((response) => {
         this.SingleData = response;
-        this.http.get(Domain.GetUsers, this.SingleData.created_fk_by).subscribe((emp)=>
-          {
-            console.log("emp: "+emp)
-            this.SingleData.created_fk_by=emp.name + " "+emp.last_name
-          })
         this.IsShowenModal = true
       });
   }
@@ -100,4 +97,3 @@ export class FingerprintScannerComponent implements OnInit {
     this.IsShowenModal = false
   }
 }
-

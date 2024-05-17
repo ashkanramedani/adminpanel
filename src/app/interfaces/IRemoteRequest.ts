@@ -7,6 +7,8 @@ export interface IRemoteRequest {
     start_date: string
     end_date:string
     working_location: string
-    status:boolean
+    status:number
     remote_request_pk_id:string
+    created:IUsers
+    employee:IUsers
 }

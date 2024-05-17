@@ -24,6 +24,8 @@ import { AnswerAddComponent } from './answers/answer-add/answer-add.component';
 import { PaymentAddComponent } from './payments/payment-add/payment-add.component';
 import { SubCourseComponent } from './course/sub-course/sub-course.component';
 import { SubCourseAddComponent } from './course/sub-course/sub-course-add/sub-course-add.component';
+import { SessionsComponent } from './course/sessions/sessions.component';
+import { SessionAddComponent } from './course/sessions/session-add/session-add.component';
 
 const routes: Routes = [
   { path: 'course', component: CourseComponent },
@@ -44,6 +46,11 @@ const routes: Routes = [
   { path: 'sub-course', component: SubCourseComponent },
   { path: 'sub-course/add', component: SubCourseAddComponent },
   { path: 'sub-course/edit/:id', component: SubCourseAddComponent },
+
+  
+  { path: 'sessions', component: SessionsComponent },
+  { path: 'session/add', component: SessionAddComponent },
+  { path: 'session/edit/:id', component: SessionAddComponent },
 
   { path: 'course-type', component: CourseTypeComponent },
   { path: 'course-type/add', component: CourseTypeAddComponent },

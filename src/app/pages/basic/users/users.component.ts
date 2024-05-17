@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
+import { IUserSigleForm } from 'src/app/interfaces/IUserSigleForm';
 import { IUsers } from 'src/app/interfaces/IUsers';
 import { IUsersForm } from 'src/app/interfaces/IUsersForm';
 import { AlertifyService } from 'src/app/services/alertify.service';
@@ -15,7 +16,7 @@ export class UsersComponent implements OnInit {
   
   //#region change this informaion
   ResponseDataList: IUsers[] = []
-  SingleData: IUsersForm
+  SingleData: IUserSigleForm
   form_title = "اطلاعات پایه / پرسنل"
   table_header: string[] = ["ردیف", "نام", "نقش", "عملیات"]
   field_count:string="Employee"

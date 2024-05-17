@@ -97,7 +97,7 @@ export class RemoteRequestAddComponent implements OnInit {
       this.ReportForm.markAllAsTouched();
       return;
     }
-    let ReportFormValue: IRemoteRequest =
+    let ReportFormValue: IRemoteRequestForm =
     {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
