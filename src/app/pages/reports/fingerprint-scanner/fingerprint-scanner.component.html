@@ -31,7 +31,8 @@
             <span>{{item.Date|date: "YYYY/MM/dd"}}</span>
             <span>{{item.Enter}}</span>
             <span>{{item.Exit}}</span>
-            <span>{{item.created.name + '&nbsp; &nbsp;'+item.created.last_name }}</span>  
+            <span title="{{item.fingerprint_scanner_pk_id}}" class="whitespace-nowrap overflow-hidden text-ellipsis">{{item.fingerprint_scanner_pk_id}}</span>
+            <!-- <span>{{item.created.name + '&nbsp; &nbsp;'+item.created.last_name }}</span>   -->
 
             <div class="flex items-center justify-center">
                 <img *ngIf="item.status==1" src="/assets/images/icon/active.svg" class="w-4" alt="">

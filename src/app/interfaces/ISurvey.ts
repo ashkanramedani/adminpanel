@@ -1,12 +1,12 @@
 import { IClass } from "./IClass"
 import { IQuestions } from "./IQuestions"
-import { IUser } from "./IUser"
+import { IUsers } from "./IUsers"
 
 
 export interface ISurvey {
     survey_pk_id: string
     title: string
-    created: IUser,
+    created: IUsers,
     classes: IClass
     questions: IQuestions[]
     visible: boolean,
