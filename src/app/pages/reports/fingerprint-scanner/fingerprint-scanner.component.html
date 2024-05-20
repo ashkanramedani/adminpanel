@@ -50,6 +50,12 @@
                 </button>
             </div>
         </div>
+        <ul class="paging flex items-center justify-center mt-16 flex-wrap " dir="ltr">
+          <li *ngFor="let item of  ResponseDataLenght ;let i = index">
+            <a (click)="GetResponseData(i+1,10,order)" [ngClass]="{'!bg-gray-300 text-black': (currentPage==i+1) }"
+              class="cursor-pointer h-11 w-11  flex items-center justify-center border border-stroke  font-medium hover:border-primary hover:bg-gray-400 hover:text-primary">{{i+1}}</a>
+          </li>
+        </ul>
     </div>
 
    <div *ngIf="IsShowenModal==true" x-transition=""

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
 import { IFingerScanner } from 'src/app/interfaces/IFingerScanner';
-import { IRemoteRequest } from 'src/app/interfaces/IRemoteRequest';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -29,7 +28,7 @@ export class FingerprintScannerComponent implements OnInit {
   order: string = "desc"
   IsShowenModal: boolean = false
    page:number=1
-   limit:number=10
+   limit:number=20
   currentPage: number = 1
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
@@ -39,10 +38,10 @@ export class FingerprintScannerComponent implements OnInit {
   }
  
   GetResponseDataLenght() {
-    // this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
-    //   this.totalCount = response
-    //   this.ResponseDataLenght = new Array(Math.ceil(response / 10))
-    // })
+    this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
+      this.totalCount = response
+      this.ResponseDataLenght = new Array(Math.ceil(response / 10))
+    })
   }
   GetResponseData(page: number, limit: number, order: string) {
     this.isLoading = true;

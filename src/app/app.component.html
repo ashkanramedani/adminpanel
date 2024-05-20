@@ -1,12 +1,35 @@
-<div class="h-screen overflow-hidden bg-gray-200">
+<!-- <div class="h-screen overflow-y bg-gray-200">
   <app-header></app-header>
-  <div class="flex items-start justify-center mx-auto gap-x-4 py-8 px-6 max-w-[83.5rem] w-full">
+  <div class="h-screen mt-20"> 
+  <div class="flex items-start justify-center mx-auto gap-x-4 pb-8 px-6 max-w-[83.5rem] w-full">
     <div class="sidebar">
       <app-sidebar></app-sidebar>
     </div>
-    <div class="main w-full">
+    <div class="main w-full ">
       <router-outlet></router-outlet>
     </div>
   </div>
 </div>
+</div>
+ -->
 
+
+ <!-- <div class="flex h-screen overflow-hidden bg-gray-200">
+  <app-sidebar></app-sidebar>
+
+  <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+    <app-header></app-header>
+    <div class="main w-full ">
+      <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+ </div> -->
+
+ <div>
+  <app-sidebar></app-sidebar>
+  <main class="max-h-full h-full relative overflow-hidden mr-[19rem] p-4">
+    <router-outlet></router-outlet>
+  </main>
+ </div>

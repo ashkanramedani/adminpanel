@@ -43,10 +43,10 @@ export class SalaryPolicyComponent implements OnInit {
   }
  
   GetResponseDataLenght() {
-    // this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
-    //   this.totalCount = response
-    //   this.ResponseDataLenght = new Array(Math.ceil(response / 10))
-    // })
+    this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
+      this.totalCount = response
+      this.ResponseDataLenght = new Array(Math.ceil(response / 10))
+    })
   }
   GetResponseData(page: number, limit: number, order: string) {
     this.isLoading = true;
