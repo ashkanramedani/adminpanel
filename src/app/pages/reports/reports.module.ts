@@ -27,6 +27,8 @@ import { RouterLink } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProfessorsReportsComponent } from './professors-reports/professors-reports.component';
 import { FingerprintScannerBulkComponent } from './fingerprint-scanner/fingerprint-scanner-bulk/fingerprint-scanner-bulk.component';
+import { MatTimepickerModule } from 'mat-timepicker';
+
 
 
 @NgModule({
@@ -35,6 +37,7 @@ import { FingerprintScannerBulkComponent } from './fingerprint-scanner/fingerpri
     RemoteRequestAddComponent, SalaryPolicyComponent, SalaryPolicyAddComponent, SurveyComponent, SurveyAddComponent, TardeyRequestComponent,
     TardeyRequestAddComponent, TeacherReplacementComponent, TeacherReplacementAddComponent,ProfessorsReportsComponent],
   imports: [
+    MatTimepickerModule ,
     CommonModule,
     ReportsRoutingModule,
     NgPersianDatepickerModule,
@@ -43,7 +46,7 @@ import { FingerprintScannerBulkComponent } from './fingerprint-scanner/fingerpri
     ReactiveFormsModule,
     RouterLink,
     SharedModule,
-
+    //BrowserAnimationsModule,
   ]
 })
 export class ReportsModule { }

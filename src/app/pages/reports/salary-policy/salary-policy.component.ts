@@ -38,7 +38,7 @@ export class SalaryPolicyComponent implements OnInit {
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
     this.GetResponseData(1, 10, this.order)
-    this.GetResponseDataLenght()
+    //this.GetResponseDataLenght()
 
   }
  

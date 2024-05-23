@@ -7,6 +7,8 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { ISalaryPolicyForms } from 'src/app/interfaces/ISalaryPolicyForms';
+import { ISalaryPolicyFormsFixedTime } from 'src/app/interfaces/ISalaryPolicyFormsFixedTime';
+import { ISalaryPolicyFormsFlotingTime } from 'src/app/interfaces/ISalaryPolicyFormsFlotingTime';
 
 @Component({
   selector: 'app-salary-policy-add', 
@@ -45,8 +47,8 @@ export class SalaryPolicyAddComponent implements OnInit {
       {
         created_fk_by: new FormControl('', [Validators.required]),
         user_fk_id: new FormControl('', [Validators.required]),
-        day_starting_time: new FormControl(''),
-        day_ending_time: new FormControl(''),
+        day_starting_time: new FormControl('10:22:44'),
+        day_ending_time: new FormControl('10:22:44'),
         Regular_hours_factor: new FormControl('',[Validators.required]),
         Regular_hours_cap: new FormControl(),
         overtime_permission: new FormControl('',[Validators.required]),
@@ -127,7 +129,8 @@ export class SalaryPolicyAddComponent implements OnInit {
       return;
     }
     this.btnLoading = true
-    let ReportFormValue: ISalaryPolicyForms =
+    
+    let ReportFormValueFixedTime: ISalaryPolicyFormsFixedTime =
     {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       Base_salary:this.ReportForm.controls.Base_salary.value,
@@ -158,15 +161,45 @@ export class SalaryPolicyAddComponent implements OnInit {
       salary_policy_pk_id: this.id
 
     }
+    let ReportFormValueFlotingTime: ISalaryPolicyFormsFlotingTime =
+    {
+      created_fk_by: this.ReportForm.controls.created_fk_by.value,
+      Base_salary:this.ReportForm.controls.Base_salary.value,
+      user_fk_id: this.ReportForm.controls.user_fk_id.value,  
+      Regular_hours_factor: this.ReportForm.controls.Regular_hours_factor.value,
+      Regular_hours_cap: this.ReportForm.controls.Regular_hours_cap.value,
+      overtime_permission: this.ReportForm.controls.overtime_permission.value,
+      overtime_factor: this.ReportForm.controls.overtime_factor.value,
+      overtime_cap: this.ReportForm.controls.overtime_cap.value,
+      overtime_threshold: this.ReportForm.controls.overtime_threshold.value,
+      undertime_factor: this.ReportForm.controls.undertime_factor.value,
+      undertime_threshold: this.ReportForm.controls.undertime_threshold.value,
+      off_day_permission: this.ReportForm.controls.off_day_permission.value,
+      off_day_factor: this.ReportForm.controls.off_day_factor.value,
+      off_day_cap: this.ReportForm.controls.off_day_cap.value,
+      remote_permission: this.ReportForm.controls.remote_permission.value,
+      remote_factor: this.ReportForm.controls.remote_factor.value,
+      remote_cap: this.ReportForm.controls.remote_cap.value,
+      medical_leave_factor: this.ReportForm.controls.medical_leave_factor.value,
+      medical_leave_cap: this.ReportForm.controls.medical_leave_cap.value,
+      vacation_leave_factor: this.ReportForm.controls.vacation_leave_factor.value,
+      vacation_leave_cap: this.ReportForm.controls.vacation_leave_cap.value,
+      business_trip_permission: this.ReportForm.controls.business_trip_permission.value,
+      business_trip_factor: this.ReportForm.controls.business_trip_factor.value,
+      business_trip_cap: this.ReportForm.controls.business_trip_cap.value,
+      salary_policy_pk_id: this.id
+
+    }
+
     if (this.id != null) { 
-      this.http.put(this.put_route, ReportFormValue, null).subscribe((response) => {
+      this.http.put(this.put_route, this.isOpenTab==1 ? ReportFormValueFlotingTime : ReportFormValueFixedTime, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت ویرایش شد"); 
       }
       )
     }
     else { 
-      this.http.create(this.create_route, ReportFormValue, null).subscribe((response) => {
+      this.http.create(this.create_route, this.isOpenTab==1 ? ReportFormValueFlotingTime : ReportFormValueFixedTime, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت اضافه شد");
         this.ReportForm.reset(); 
