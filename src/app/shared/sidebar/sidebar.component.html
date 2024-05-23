@@ -1,14 +1,94 @@
-<aside  class="right-0 my-4 mr-4 lg:block hidden fixed top-0 bottom-0 w-full max-w-[18rem] p-0 overflow-hidden z-999 rounded-lg bg-white "
+<header class="sticky  top-0 z-40 w-full bg-white lg:px-12 px-4 lg:py-3 py-2">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-x-4">
+      <button (click)="openHamburgerMenu()" class="border border-gray-200 p-1 w-8 block lg:hidden">
+        <img src="/assets/images/icon/menu.svg" class="w-full" alt="">
+      </button>
+      <a class="block flex-shrink-0">
+        <img class="hidden lg:block w-32" src="/assets/images/logo.webp" alt="Logo" />
+        <img class="block lg:hidden w-5" src="/assets/images/logo-mini.webp" alt="Logo" />
+      </a>
+    </div>
+    <div class="flex items-center gap-x-3">
+      <a class="relative border bg-gray-100 rounded-full flex items-center justify-center w-8 h-8" href="">
+        <span  class="absolute -top-0.5 right-0 z-1 h-2 w-2 rounded-full bg-rose-600">
+          <span class="absolute -z-1 inline-flex h-full w-full animate-ping rounded-full bg-rose-600 opacity-75"></span>
+        </span>
+        <img src="/assets/images/icon/notification1.svg" class="w-5 fill-gray-100" alt="">
+      </a>
+      <a class="relative border bg-gray-100 rounded-full flex items-center justify-center w-8 h-8" href="">
+        <span  class="absolute -top-0.5 right-0 z-1 h-2 w-2 rounded-full bg-rose-600">
+          <span class="absolute -z-1 inline-flex h-full w-full animate-ping rounded-full bg-rose-600 opacity-75"></span>
+        </span>
+        <img src="/assets/images/icon/message.svg" class="w-5 fill-gray-100" alt="">
+      </a>
+    </div>
+    <!-- <div class="menu w-full">
+      <ul class="flex items-center justify-center gap-x-6 font-medium text-sm text-gray-700">
+        <li>
+          <a class="flex items-center">
+            <span>صفحه اصلی</span>
+          </a>
+        </li>
+        <li>
+          <a class="flex items-center ">
+            <span> محصولات</span>
+          </a>
+        </li>
+        <li>
+          <a class="flex items-center ">
+            <span> کتابخانه رایگان</span>
+            <img src="/assets/images/bottom-svg.svg" alt="" class="w-4">
+          </a>
+        </li>
+        <li>
+          <a class="flex items-center ">
+            <span> دوره ها</span>
+            <img src="/assets/images/bottom-svg.svg" alt="" class="w-4">
+          </a>
+        </li>
+        <li>
+          <a class="flex items-center ">
+            <span> خدمات </span>
+          </a>
+        </li>
+        <li>
+          <a class="flex items-center ">
+            <span> پادکست</span>
+          </a>
+        </li>
+        <li>
+          <a class="flex items-center ">
+            <span> بلاگ</span>
+          </a>
+        </li>
+        <li>
+          <a class="flex items-center ">
+            <span> اخبار</span>
+          </a>
+        </li>
+        <li>
+          <a class="flex items-center ">
+            <span> همکاری با ما</span>
+          </a>
+        </li>
+        <li>
+          <a class="flex items-center ">
+            <span> درباره ما  </span>
+          </a>
+        </li>
+      </ul>
+    </div> -->
+  </div>
+</header>
+
+<aside [ngClass]="{'!translate-x-0': (isOpenHamburgerMenu) }"  class="transition transform ease-in-out duration-700 lg:translate-x-0  translate-x-72  right-0  lg:my-4 lg:mr-4 fixed lg:top-[3.6rem] top-0 bottom-0 w-full max-w-[18rem] p-0 overflow-hidden lg:z-30 z-50 rounded-lg lg:bg-white bg-gray-50 shadow-lg lg:shadow-none "
   >
   <!-- SIDEBAR HEADER -->
-  <div class="flex items-center justify-center gap-2 px-2 py-5.5 lg:py-6.5">
-    <button class="block lg:hidden p-3" (click)="openHamburgerMenu()">
-      <svg class="dark:fill-white fill-black rotate-180" width="20" height="18" viewBox="0 0 20 18" fill="none"
-        xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M19 8.175H2.98748L9.36248 1.6875C9.69998 1.35 9.69998 0.825 9.36248 0.4875C9.02498 0.15 8.49998 0.15 8.16248 0.4875L0.399976 8.3625C0.0624756 8.7 0.0624756 9.225 0.399976 9.5625L8.16248 17.4375C8.31248 17.5875 8.53748 17.7 8.76248 17.7C8.98748 17.7 9.17498 17.625 9.36248 17.475C9.69998 17.1375 9.69998 16.6125 9.36248 16.275L3.02498 9.8625H19C19.45 9.8625 19.825 9.4875 19.825 9.0375C19.825 8.55 19.45 8.175 19 8.175Z"
-          fill="" />
-      </svg>
+  <div class="lg:hidden flex items-center justify-between gap-2 px-2 pt-3">
+    <img class="w-28" src="/assets/images/logo.webp" alt="Logo" />
+    <button class="p-3" (click)="openHamburgerMenu()">
+      <img class="w-5" src="/assets/images/icon/close.svg" alt="Logo" />
     </button>
   </div>
   <!-- SIDEBAR HEADER -->

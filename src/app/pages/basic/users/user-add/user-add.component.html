@@ -92,9 +92,9 @@
                         </div>
                     </div>
                     <div  *ngIf="RolesInputArray.length > 0"
-                        class=" grid grid-cols-3 items-center gap-2 mt-7 p-2  overflow-y-auto  w-1/2">
+                        class=" grid lg:grid-cols-3 grid-cols-1 items-center gap-2 mt-7 p-2  overflow-y-auto  w-1/2">
                         <div *ngFor="let item of RolesInputTitleArray; let i = index"
-                            class="flex text-center justify-between text-black font-semibold  p-2 border border-gray-200 bg-gray-100 rounded-md">
+                            class="flex text-center justify-between text-black lg:font-semibold  p-2 border border-gray-200 bg-gray-100 rounded-md">
                             <button>
                                 <svg (click)="RemoveRoleInput(i,item.role_id)"
                                     class="w-9 pl-2 fill-body hover:fill-black dark:fill-bodydark dark:hover:fill-bodydark1 mx-auto cursor-pointer"

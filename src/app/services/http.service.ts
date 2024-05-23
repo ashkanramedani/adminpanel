@@ -68,7 +68,7 @@ export class HttpService {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     console.log(`Error Code: ${error.status}\nMessage: ${error.message}`)
-   alertify.alert('متاسفانه خطایی رخ داده است!',JSON.stringify(error.error.detail), function(){ }).set('label', 'بستن'); ;
+   alertify.alert(`متاسفانه خطایی رخ داده است( کد خطا: ${error.status})`,JSON.stringify(error.error.detail), function(){ }).set('label', 'بستن'); ;
     return throwError(errorMessage);
  }
 }
