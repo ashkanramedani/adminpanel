@@ -82,6 +82,7 @@ export class CourseCategoryAddComponent implements OnInit {
       this.ReportForm.markAllAsTouched();
       return;
     }
+    this.btnLoading = true
     let ReportFormValue: ICourseCategoryForm =
     {
       category_pk_id: this.id,
@@ -91,24 +92,21 @@ export class CourseCategoryAddComponent implements OnInit {
       category_name: this.ReportForm.controls.category_name.value,
     }
     if (this.id != null) {
-      this.btnLoading = true
       this.http.put(Domain.PutCourseCategoryData, ReportFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت ویرایش شد");
-        this.btnLoading = false
       }
       )
     }
     else {
-      this.btnLoading = true
       this.http.create(Domain.CreateCourseCategoryData, ReportFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت اضافه شد");
         this.ReportForm.reset();
-        this.btnLoading = false
       }
       )
     }
+    this.btnLoading = false
   }
 }
 

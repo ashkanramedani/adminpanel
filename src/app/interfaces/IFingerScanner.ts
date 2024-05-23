@@ -10,4 +10,5 @@ export interface IFingerScanner {
     Exit: string
     EnNo: number
     created_fk_by:string
+    Name:string
 }

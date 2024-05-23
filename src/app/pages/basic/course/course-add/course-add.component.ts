@@ -92,6 +92,12 @@ export class CourseAddComponent implements OnInit {
     console.log("TeacherInputTitleArray" + this.TeacherInputTitleArray)
 
   }
+  AddTagInputManually() {
+    if (this.ReportForm.controls.tags.value.length > 0) {
+      this.tagsInputArray.push(this.ReportForm.controls.tags.value);
+      this.ReportForm.controls.tags.setValue('');
+    }
+  }
   OpenSearchTeacher() {
     this.isOpenSearchTeacher = !this.isOpenSearchTeacher;
   }
@@ -156,6 +162,7 @@ export class CourseAddComponent implements OnInit {
       this.ReportForm.markAllAsTouched();
       return;
     }
+    this.btnLoading = true
     let ReportFormValue: ICourseForm =
     {
       course_pk_id: this.id,
@@ -168,7 +175,7 @@ export class CourseAddComponent implements OnInit {
       course_capacity: this.ReportForm.controls.course_capacity.value,
       course_language: this.ReportForm.controls.course_language.value,
       course_type: this.ReportForm.controls.course_type.value,
-      // tags: [],
+       //tags: this.tagsInputArray,
       // categories: [],
       course_code: this.ReportForm.controls.course_code.value,
       course_image: this.ReportForm.controls.course_image.value,
@@ -176,11 +183,9 @@ export class CourseAddComponent implements OnInit {
       package_discount: this.ReportForm.controls.package_discount.value,
     }
     if (this.id != null) {
-      this.btnLoading = true
       this.http.put(Domain.PutcourseData, ReportFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت ویرایش شد");
-        this.btnLoading = false
       }
       )
     }
@@ -190,10 +195,10 @@ export class CourseAddComponent implements OnInit {
         console.log(response)
         this.alertServices.success("با موفقیت اضافه شد");
         this.ReportForm.reset();
-        this.btnLoading = false
       }
       )
     }
+    this.btnLoading = false
   }
 }
 

@@ -7,6 +7,7 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { IRolesForm } from 'src/app/interfaces/IRolesForm';
+import { IRoleCluster } from 'src/app/interfaces/IRoleCluster';
 
 @Component({
   selector: 'app-role-add', 
@@ -22,6 +23,7 @@ export class RoleAddComponent implements OnInit {
   create_route: string = Domain.CreateRolesData
   //#endregion
   page_title: string = "ایجاد"
+  RoleClusterData:string[]=[]
   ReportForm: FormGroup;
   isOpenSearchRole: boolean = false
   RolesData: IRoles[] = []
@@ -38,6 +40,7 @@ export class RoleAddComponent implements OnInit {
     this.id = this.route.snapshot?.paramMap.get('id');
     this.GetEmployeeData()
     this.GetRolesData()
+    this.GetRolesClusterData()
     this.ReportForm = this.formBuilder.group(
       {
         created_fk_by: new FormControl('', [Validators.required]),
@@ -56,6 +59,12 @@ export class RoleAddComponent implements OnInit {
   GetEmployeeData() {
     this.http.getAll(Domain.GetUsers).subscribe((response) => {
       this.EmployiesData = response;
+      console.log(response)
+    })
+  }
+  GetRolesClusterData() {
+    this.http.getAll(Domain.GetRoleCluster).subscribe((response) => {
+      this.RoleClusterData = response;
       console.log(response)
     })
   }
@@ -78,10 +87,13 @@ export class RoleAddComponent implements OnInit {
     this.ReportForm.controls["role_pk_id"].patchValue(this.id);
   }
   onSubmit() {
+    
     if (this.ReportForm.invalid) {
       this.ReportForm.markAllAsTouched();
       return;
     }
+    
+    this.btnLoading = true
     let ReportFormValue: IRolesForm =
     {
       role_pk_id:this.id,
@@ -90,27 +102,23 @@ export class RoleAddComponent implements OnInit {
       status: this.ReportForm.controls.status.value,
       name: this.ReportForm.controls.name.value,
       cluster: this.ReportForm.controls.cluster.value,
-
     }
     if (this.id != null) {
-      this.btnLoading = true
       this.http.put(this.put_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت ویرایش شد");
-        this.btnLoading = false
       }
       )
     }
     else {
-      this.btnLoading = true
       this.http.create(this.create_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت اضافه شد");
         this.ReportForm.reset();
-        this.btnLoading = false
       }
       )
     }
+    this.btnLoading=false
   }
 
   GetRolesData() {

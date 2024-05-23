@@ -94,6 +94,7 @@ export class BusinessTripAddComponent implements OnInit {
       this.ReportForm.markAllAsTouched();
       return;
     }
+    this.btnLoading = true
     let ReportFormValue: IBusinessTripForm =
     {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
@@ -106,25 +107,22 @@ export class BusinessTripAddComponent implements OnInit {
       business_trip_pk_id:this.id
 
     }
-    if (this.id != null) {
-      this.btnLoading = true
+    if (this.id != null) { 
       this.http.put(this.put_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
-        this.alertServices.success("با موفقیت ویرایش شد");
-        this.btnLoading = false
+        this.alertServices.success("با موفقیت ویرایش شد"); 
       }
       )
     }
-    else {
-      this.btnLoading = true
+    else { 
       this.http.create(this.create_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت اضافه شد");
         this.ReportForm.reset();
-        this.btnLoading = false
       }
       )
     }
+    this.btnLoading = false
   }
 
   GetRolesData() {

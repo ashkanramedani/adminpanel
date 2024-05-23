@@ -137,6 +137,7 @@ export const Domain =
     "PutCourseType" :`${environment.apiUrl}/api/v1/form/course_type/update`,
     "CreateCourseType" :`${environment.apiUrl}/api/v1/form/course_type/add`,
 
+    "GetRoleCluster" :`${environment.apiUrl}/api/v1/form/role/cluster`, 
 
     "GetAuditClass":`${environment.apiUrl}/api/v1/form/course/search`,
 

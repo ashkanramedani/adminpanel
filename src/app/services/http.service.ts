@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { AlertifyService } from './alertify.service';
-
+declare let alertify: any;
 @Injectable({
   providedIn: 'root'
 })
@@ -68,10 +68,7 @@ export class HttpService {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     console.log(`Error Code: ${error.status}\nMessage: ${error.message}`)
-
-    //this.alertServices.alert('متاسفانه خطایی رخ داده است!',error.message, () => { })
-    confirm('متاسفانه خطایی رخ داده است! \n'+ 'Error Code : '+error.status +'\n' +'Message: ' +error.message)
-   //alert("متاسفانه خطایی رخ داده است!!!")
+   alertify.alert('متاسفانه خطایی رخ داده است!',JSON.stringify(error.error.detail), function(){ }).set('label', 'بستن'); ;
     return throwError(errorMessage);
  }
 }

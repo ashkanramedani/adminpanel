@@ -12,7 +12,7 @@ export interface ICourseForm {
     course_capacity: number,
     course_language: string
     course_type: string
-    // tags: [],
+     //tags: string[],
     // categories: [],
     course_code: string,
     course_image: string,

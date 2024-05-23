@@ -97,6 +97,7 @@ export class SessionAddComponent implements OnInit {
       this.ReportForm.markAllAsTouched();
       return;
     }
+    this.btnLoading = true
     let ReportFormValue: ISessionForm =
     {
       course_fk_id: this.ReportForm.controls.course_fk_id.value,
@@ -111,25 +112,22 @@ export class SessionAddComponent implements OnInit {
       days_of_week: this.ReportForm.controls.days_of_week.value,
       session_pk_id: this.id
     }
-    if (this.id != null) {
-      this.btnLoading = true
+    if (this.id != null) { 
       this.http.put(this.put_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
-        this.alertServices.success("با موفقیت ویرایش شد");
-        this.btnLoading = false
+        this.alertServices.success("با موفقیت ویرایش شد"); 
       }
       )
     }
-    else {
-      this.btnLoading = true
+    else { 
       this.http.create(this.create_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت اضافه شد");
-        this.ReportForm.reset();
-        this.btnLoading = false
+        this.ReportForm.reset(); 
       }
       )
     }
+    this.btnLoading = false
   }
 
   GetRolesData() {

@@ -61,7 +61,7 @@
 }
 .datepicker-outer-container{
   z-index: 9999 !important;
-  position: absolute !important;
+  /* position: absolute !important; */
   width: 100%;
 }
 .ajs-message {
@@ -107,4 +107,12 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #adadad;
+}
+.ajs-ok{
+  @apply border border-gray-300 rounded-md hover:bg-gray-200 font-semibold text-emerald-700
+}
+
+.ajs-cancel
+{
+  @apply border border-gray-300 rounded-md hover:bg-gray-200 text-red-500
 }

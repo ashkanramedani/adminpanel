@@ -79,6 +79,7 @@ export class QuestionAddComponent implements OnInit {
       this.ReportForm.markAllAsTouched();
       return;
     }
+    this.btnLoading = true
     let ReportFormValue: IQuestionsForm =
     {
       question_pk_id:this.id,
@@ -90,17 +91,14 @@ export class QuestionAddComponent implements OnInit {
       create_date:''
 
     }
-    if (this.id != null) {
-      this.btnLoading = true
+    if (this.id != null) { 
       this.http.put(this.put_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
-        this.alertServices.success("با موفقیت ویرایش شد");
-        this.btnLoading = false
+        this.alertServices.success("با موفقیت ویرایش شد"); 
       }
       )
     }
-    else {
-      this.btnLoading = true
+    else { 
       this.http.create(this.create_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت اضافه شد");
@@ -109,6 +107,7 @@ export class QuestionAddComponent implements OnInit {
       }
       )
     }
+    this.btnLoading = false
   }
 
   GetRolesData() {
