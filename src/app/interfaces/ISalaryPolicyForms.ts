@@ -1,3 +1,5 @@
+import { SalaryTypeEnum } from "../enum/SalaryTypeEnum"
+
 export interface ISalaryPolicyForms {
     created_fk_by: string
     user_fk_id: string
@@ -26,4 +28,5 @@ export interface ISalaryPolicyForms {
     business_trip_factor: number,
     business_trip_cap: number
     salary_policy_pk_id:string
+    Salary_Type:SalaryTypeEnum
 }

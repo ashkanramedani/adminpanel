@@ -1,3 +1,5 @@
+import { SalaryTypeEnum } from "../enum/SalaryTypeEnum"
+
 export interface ISalaryPolicy{
 
     visible: boolean,
@@ -26,7 +28,7 @@ export interface ISalaryPolicy{
     remote_permission: boolean,
     business_trip_factor: number,
     update_date: string,
-    is_Fixed: boolean,
+    Salary_Type: SalaryTypeEnum,
     overtime_threshold: number,
     remote_factor: number,
     business_trip_cap: number,

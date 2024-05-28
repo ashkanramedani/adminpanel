@@ -7,11 +7,10 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { ISalaryPolicyForms } from 'src/app/interfaces/ISalaryPolicyForms';
-import { ISalaryPolicyFormsFixedTime } from 'src/app/interfaces/ISalaryPolicyFormsFixedTime';
-import { ISalaryPolicyFormsFlotingTime } from 'src/app/interfaces/ISalaryPolicyFormsFlotingTime';
+import { SalaryTypeEnum } from 'src/app/enum/SalaryTypeEnum';
 
 @Component({
-  selector: 'app-salary-policy-add', 
+  selector: 'app-salary-policy-add',
   templateUrl: './salary-policy-add.component.html',
 })
 export class SalaryPolicyAddComponent implements OnInit {
@@ -24,10 +23,10 @@ export class SalaryPolicyAddComponent implements OnInit {
   create_route: string = Domain.CreateSalaryPolicyData
   //#endregion
   page_title: string = "ایجاد"
-  isOpenTab:number=1
-  OpenTab(value:number){
-    this.isOpenTab=value
-    //this.setValidation(value)
+  salary_type_enum=SalaryTypeEnum
+  Salary_Type:SalaryTypeEnum
+  OpenTab(value:SalaryTypeEnum){
+    this.Salary_Type=value
   }
   ReportForm: FormGroup;
   isOpenSearchRole: boolean = false
@@ -41,6 +40,7 @@ export class SalaryPolicyAddComponent implements OnInit {
   }
   ngOnInit(): void {
     this.id = this.route.snapshot?.paramMap.get('id');
+    this.Salary_Type=SalaryTypeEnum.Fixed
     this.GetEmployeeData()
     this.GetRolesData()
     this.ReportForm = this.formBuilder.group(
@@ -129,8 +129,8 @@ export class SalaryPolicyAddComponent implements OnInit {
       return;
     }
     this.btnLoading = true
-    
-    let ReportFormValueFixedTime: ISalaryPolicyFormsFixedTime =
+
+    let ReportFormValue: ISalaryPolicyForms =
     {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       Base_salary:this.ReportForm.controls.Base_salary.value,
@@ -158,51 +158,22 @@ export class SalaryPolicyAddComponent implements OnInit {
       business_trip_permission: this.ReportForm.controls.business_trip_permission.value,
       business_trip_factor: this.ReportForm.controls.business_trip_factor.value,
       business_trip_cap: this.ReportForm.controls.business_trip_cap.value,
-      salary_policy_pk_id: this.id
-
-    }
-    let ReportFormValueFlotingTime: ISalaryPolicyFormsFlotingTime =
-    {
-      created_fk_by: this.ReportForm.controls.created_fk_by.value,
-      Base_salary:this.ReportForm.controls.Base_salary.value,
-      user_fk_id: this.ReportForm.controls.user_fk_id.value,  
-      Regular_hours_factor: this.ReportForm.controls.Regular_hours_factor.value,
-      Regular_hours_cap: this.ReportForm.controls.Regular_hours_cap.value,
-      overtime_permission: this.ReportForm.controls.overtime_permission.value,
-      overtime_factor: this.ReportForm.controls.overtime_factor.value,
-      overtime_cap: this.ReportForm.controls.overtime_cap.value,
-      overtime_threshold: this.ReportForm.controls.overtime_threshold.value,
-      undertime_factor: this.ReportForm.controls.undertime_factor.value,
-      undertime_threshold: this.ReportForm.controls.undertime_threshold.value,
-      off_day_permission: this.ReportForm.controls.off_day_permission.value,
-      off_day_factor: this.ReportForm.controls.off_day_factor.value,
-      off_day_cap: this.ReportForm.controls.off_day_cap.value,
-      remote_permission: this.ReportForm.controls.remote_permission.value,
-      remote_factor: this.ReportForm.controls.remote_factor.value,
-      remote_cap: this.ReportForm.controls.remote_cap.value,
-      medical_leave_factor: this.ReportForm.controls.medical_leave_factor.value,
-      medical_leave_cap: this.ReportForm.controls.medical_leave_cap.value,
-      vacation_leave_factor: this.ReportForm.controls.vacation_leave_factor.value,
-      vacation_leave_cap: this.ReportForm.controls.vacation_leave_cap.value,
-      business_trip_permission: this.ReportForm.controls.business_trip_permission.value,
-      business_trip_factor: this.ReportForm.controls.business_trip_factor.value,
-      business_trip_cap: this.ReportForm.controls.business_trip_cap.value,
-      salary_policy_pk_id: this.id
-
+      salary_policy_pk_id: this.id,
+      Salary_Type:this.Salary_Type
     }
 
-    if (this.id != null) { 
-      this.http.put(this.put_route, this.isOpenTab==1 ? ReportFormValueFlotingTime : ReportFormValueFixedTime, null).subscribe((response) => {
+    if (this.id != null) {
+      this.http.put(this.put_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
-        this.alertServices.success("با موفقیت ویرایش شد"); 
+        this.alertServices.success("با موفقیت ویرایش شد");
       }
       )
     }
-    else { 
-      this.http.create(this.create_route, this.isOpenTab==1 ? ReportFormValueFlotingTime : ReportFormValueFixedTime, null).subscribe((response) => {
+    else {
+      this.http.create(this.create_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت اضافه شد");
-        this.ReportForm.reset(); 
+        this.ReportForm.reset();
       }
       )
     }
