@@ -14,4 +14,5 @@ export interface IClassDetails
     course_pk_id: string
     name: string
     duration: number
+    course_name:string
 }

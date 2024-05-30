@@ -3,22 +3,21 @@ import { Domain } from 'src/app/domain/doamin';
 import { IRolesForm } from 'src/app/interfaces/IRolesForm';
 import { IStudents } from 'src/app/interfaces/IStudents';
 import { IStudentsForm } from 'src/app/interfaces/IStudentsForm';
-import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
-  selector: 'app-students', 
+  selector: 'app-students',
   templateUrl: './students.component.html',
 })
 export class StudentsComponent implements OnInit {
 
-  
+
   //#region change this informaion
   ResponseDataList: IStudents[] = []
   SingleData: IStudentsForm
   form_title = "اطلاعات پایه /  دانشجویان"
-  table_header: string[] = ["ردیف", "نام", " همراه", "سطح","عملیات"]
+  table_header: string[] = ["ردیف", "نام", "سطح","عملیات"]
   field_count:string="Student"
   get_all_route:string=Domain.GetStudentData
   delete_route:string=Domain.DeleteStudentData
@@ -41,7 +40,7 @@ export class StudentsComponent implements OnInit {
     this.GetResponseDataLenght()
 
   }
- 
+
   GetResponseDataLenght() {
     this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
       this.totalCount = response

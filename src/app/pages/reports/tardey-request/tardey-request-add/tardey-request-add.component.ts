@@ -9,9 +9,10 @@ import { IRoles } from 'src/app/interfaces/IRoles';
 import { ISalaryPolicyForms } from 'src/app/interfaces/ISalaryPolicyForms';
 import { ITardeyRequestForm } from 'src/app/interfaces/ITardeyRequestForm';
 import { IClassDetails } from 'src/app/interfaces/IClassDetails';
+import { ISubCourse } from 'src/app/interfaces/ISubCourse';
 
 @Component({
-  selector: 'app-tardey-request-add', 
+  selector: 'app-tardey-request-add',
   templateUrl: './tardey-request-add.component.html',
 })
 export class TardeyRequestAddComponent implements OnInit {
@@ -33,6 +34,7 @@ export class TardeyRequestAddComponent implements OnInit {
   isOpenSearchRole: boolean = false
   RolesData: IRoles[] = []
   ClassData: IClassDetails[] = []
+  sub_course_data:ISubCourse[]=[]
   id: any;
   EmployiesData: IUsers[] = []
   btnLoading: boolean = false
@@ -41,18 +43,20 @@ export class TardeyRequestAddComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    this.GetSubCourseData()
     this.id = this.route.snapshot?.paramMap.get('id');
     this.GetClassData()
     this.GetEmployeeData()
-    this.GetRolesData()
     this.ReportForm = this.formBuilder.group(
       {
+
         created_fk_by: new FormControl('', [Validators.required]),
         description: new FormControl(''),
         status: new FormControl('', [Validators.required]),
         course_fk_id: new FormControl('', [Validators.required]),
         teacher_fk_id: new FormControl('', [Validators.required]),
         delay: new FormControl('', [Validators.required]),
+        sub_course_fk_id:new FormControl('', [Validators.required]),
       }
     )
     if (this.id != null) {
@@ -99,17 +103,18 @@ export class TardeyRequestAddComponent implements OnInit {
       course_fk_id: this.ReportForm.controls.course_fk_id.value,
       teacher_fk_id: this.ReportForm.controls.teacher_fk_id.value,
       delay: this.ReportForm.controls.delay.value,
-      teacher_tardy_reports_pk_id:this.id
+      teacher_tardy_reports_pk_id:this.id,
+      sub_course_fk_id:this.ReportForm.controls.sub_course_fk_id.value,
 
     }
-    if (this.id != null) { 
+    if (this.id != null) {
       this.http.put(this.put_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
-        this.alertServices.success("با موفقیت ویرایش شد"); 
+        this.alertServices.success("با موفقیت ویرایش شد");
       }
       )
     }
-    else { 
+    else {
       this.http.create(this.create_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت اضافه شد");
@@ -121,14 +126,15 @@ export class TardeyRequestAddComponent implements OnInit {
     this.btnLoading = false
   }
 
-  GetRolesData() {
-    this.http.getAll(`${Domain.GetRolesData}?page=1&limit=1000&order=desc`).subscribe((response) => {
-      this.RolesData = response;
-    })
-  }
   GetClassData() {
     this.http.getAll(Domain.GetAuditClass).subscribe((response) => {
       this.ClassData = response;
+      console.log(response)
+    })
+  }
+  GetSubCourseData() {
+    this.http.getAll(Domain.GetSubCourseData).subscribe((response) => {
+      this.sub_course_data = response;
       console.log(response)
     })
   }
