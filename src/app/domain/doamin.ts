@@ -14,7 +14,7 @@ export const Domain =
     "GetSinglePost": `${environment.apiUrl}/api/v1/post/{topic}`,
     "GetLibrary": `${environment.apiUrl}/api/v1/form/library`,
     "GetLibraryTopic": `${environment.apiUrl}/api/v1/form/library/get_library_topic`,
-    "GetLibraryCategory": `${environment.apiUrl}/api/v1/form/category/all`,   
+    "GetLibraryCategory": `${environment.apiUrl}/api/v1/form/category/all`,
     "DeleteLibrary": `${environment.apiUrl}/api/v1/form/library`,
     "CreateLibrary": `${environment.apiUrl}/api/v1/form/library`,
     "PatchLibrary": `${environment.apiUrl}/api/v1/form/library/update`,
@@ -30,8 +30,6 @@ export const Domain =
     "PutTardeyRequest": `${environment.apiUrl}/api/v1/form/tardy_request/update`,
     "DeleteTardeyRequest": `${environment.apiUrl}/api/v1/form/tardy_request/delete`,
 
-
-
     "GetClassCancellation": `${environment.apiUrl}/api/v1/form/course_cancellation/search`,
     "DeleteClassCancellation": `${environment.apiUrl}/api/v1/form/course_cancellation/delete`,
     "CreateClassCancellation": `${environment.apiUrl}/api/v1/form/course_cancellation/add`,
@@ -39,8 +37,8 @@ export const Domain =
     "PutClassCancellation": `${environment.apiUrl}/api/v1/form/course_cancellation/update`,
 
     "GetFingerScanner": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/search`,
-    "CreateFingerScanner": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/bulk_add`,
-    "CreateFingerScannerBulk": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/add`,
+    "CreateFingerScanner": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/add`,
+    "CreateFingerScannerBulk": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/bulk_add`,
     "DeleteFingerScanner": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/delete`,
     "PutFingerScanner": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/update`,
 
@@ -75,7 +73,7 @@ export const Domain =
 
     "GetSurvey": `${environment.apiUrl}/api/v1/form/survey/search`,
     "DeleteSurvey": `${environment.apiUrl}/api/v1/form/survey/delete`,
-    
+
     "GetStudentData" :`${environment.apiUrl}/api/v1/form/student/search`,
     "DeleteStudentData" :`${environment.apiUrl}/api/v1/form/student/delete`,
     "PutStudentData" :`${environment.apiUrl}/api/v1/form/student/update`,
@@ -91,7 +89,7 @@ export const Domain =
     "PutcourseData" :`${environment.apiUrl}/api/v1/form/course/update`,
     "CreatecourseData" :`${environment.apiUrl}/api/v1/form/course/add`,
 
-    
+
     "GetSubCourseData" :`${environment.apiUrl}/api/v1/form/sub_course/search`,
     "DeleteSubCourseData" :`${environment.apiUrl}/api/v1/form/sub_course/delete`,
     "PutSubCourseData" :`${environment.apiUrl}/api/v1/form/sub_course/update`,
@@ -132,15 +130,15 @@ export const Domain =
     "PutCourseCategoryData" :`${environment.apiUrl}/api/v1/form/category/update`,
     "CreateCourseCategoryData" :`${environment.apiUrl}/api/v1/form/category/add`,
 
-    "GetCourseType" :`${environment.apiUrl}/api/v1/form/course_type/search`, 
+    "GetCourseType" :`${environment.apiUrl}/api/v1/form/course_type/search`,
     "DeleteCourseType" :`${environment.apiUrl}/api/v1/form/course_type/delete`,
     "PutCourseType" :`${environment.apiUrl}/api/v1/form/course_type/update`,
     "CreateCourseType" :`${environment.apiUrl}/api/v1/form/course_type/add`,
 
-    "GetRoleCluster" :`${environment.apiUrl}/api/v1/form/role/cluster`, 
+    "GetRoleCluster" :`${environment.apiUrl}/api/v1/form/role/cluster`,
 
     "GetAuditClass":`${environment.apiUrl}/api/v1/form/course/search`,
 
-    
+
 
 }

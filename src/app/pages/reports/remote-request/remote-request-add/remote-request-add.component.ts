@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
 import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
@@ -15,7 +15,7 @@ import { IRemoteRequest } from 'src/app/interfaces/IRemoteRequest';
 import { IRemoteRequestForm } from 'src/app/interfaces/IRemoteRequestForm';
 
 @Component({
-  selector: 'app-remote-request-add', 
+  selector: 'app-remote-request-add',
   templateUrl: './remote-request-add.component.html'
 })
 export class RemoteRequestAddComponent implements OnInit {
@@ -41,7 +41,7 @@ export class RemoteRequestAddComponent implements OnInit {
   EmployiesData: IUsers[] = []
   btnLoading: boolean = false
   isLoading: boolean = false
-  constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService) {
+  constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService,private router:Router) {
 
   }
   ngOnInit(): void {
@@ -110,18 +110,19 @@ export class RemoteRequestAddComponent implements OnInit {
       remote_request_pk_id:this.id
 
     }
-    if (this.id != null) { 
+    if (this.id != null) {
       this.http.put(this.put_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
-        this.alertServices.success("با موفقیت ویرایش شد"); 
+        this.alertServices.success("با موفقیت ویرایش شد");
+        this.router.navigate([this.cancle_link])
       }
       )
     }
-    else { 
+    else {
       this.http.create(this.create_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت اضافه شد");
-        this.ReportForm.reset(); 
+        this.ReportForm.reset();
       }
       )
     }

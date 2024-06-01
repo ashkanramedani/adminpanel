@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
 import { ICourse } from 'src/app/interfaces/ICourse';
 import { ICourseCategory } from 'src/app/interfaces/ICourseCategory';
@@ -27,6 +27,7 @@ export class CourseAddComponent implements OnInit {
   TeacherInputArray: string[] = [];
   TeacherInputTitleArray: string[] = [];
   isOpenSearchTeacher: boolean = false;
+  cancle_link:string='/basic/course'
   EmployiesData: IUsers[] = []
   CourseTypeData:ICourseType[]=[]
   page_title: string = "افزودن"
@@ -34,7 +35,7 @@ export class CourseAddComponent implements OnInit {
   AuditForm: ICourseForm
   isLoading:boolean=false
   isOpenSearchTag:boolean=false
-  constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService) {
+  constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService,private router:Router) {
 
   }
   ngOnInit(): void {
@@ -186,6 +187,7 @@ export class CourseAddComponent implements OnInit {
       this.http.put(Domain.PutcourseData, ReportFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت ویرایش شد");
+        this.router.navigate([this.cancle_link])
       }
       )
     }

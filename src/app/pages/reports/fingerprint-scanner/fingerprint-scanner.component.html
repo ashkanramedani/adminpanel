@@ -27,7 +27,7 @@
         </div>
         <div *ngFor="let item of ResponseDataList | filter: this.SearchValue; let i =index"
             class="body grid grid-cols-7 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
-            <span>{{ i+1}}</span>
+            <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
             <span>{{item.Date|date: "YYYY/MM/dd"}}</span>
             <span>{{item.Enter}}</span>
             <span>{{item.Exit}}</span>
@@ -61,7 +61,7 @@
    <div *ngIf="IsShowenModal==true" x-transition=""
   class="fixed   left-0 top-0 z-999999 flex h-full min-h-screen w-full items-center justify-center bg-black/40 px-4 py-5 text-graydark dark:text-white">
   <div
-    class="flex flex-col w-full mx-12  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
+    class="flex flex-col w-full mx-12 lg:mr-[19rem]  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
     <div class="footer flex  justify-start border-b py-3 border-[#b1b1b1]">
       <h3 class="font-semibold text-lg"> نمایش رکورد <span> اطلاعات نقش </span></h3>
     </div>
@@ -75,7 +75,7 @@
       <div>
         <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
          وضعیت
-        
+
         </label>
         <span *ngIf="SingleData.status==0" class="inline-flex rounded-full bg-[#777777] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید نشده </span>
         <span *ngIf="SingleData.status==1" class="inline-flex rounded-full bg-[#199173] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید شده </span>
@@ -96,7 +96,7 @@
       <div >
         <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
          خروج
-       
+
         </label>
         <span>{{SingleData.Exit}} </span>
       </div>
@@ -115,6 +115,6 @@
       </button>
     </div>
   </div>
-</div> 
-    
+</div>
+
 </main>

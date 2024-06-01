@@ -16,7 +16,7 @@ import { IRolesForm } from 'src/app/interfaces/IRolesForm';
 export class ProfessorsReportsComponent implements OnInit {
   //#region change this information
 
-  form_title:string="گزارشات حسابرسی / فرم گزارشات اساتید"
+  form_title:string="گزارشات / فرم گزارشات اساتید"
   AuditForm: IRolesForm
   //#endregion
   ReportForm: FormGroup;

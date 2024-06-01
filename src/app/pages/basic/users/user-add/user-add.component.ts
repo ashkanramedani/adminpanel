@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
 import * as moment from 'jalali-moment';
 import { IUsers } from 'src/app/interfaces/IUsers';
@@ -35,7 +35,7 @@ export class UserAddComponent implements OnInit {
   EmployiesData: IUsers[] = []
   btnLoading: boolean = false
   isLoading: boolean = false
-  constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService) {
+  constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService,private router:Router) {
 
   }
   ngOnInit(): void {
@@ -73,7 +73,7 @@ export class UserAddComponent implements OnInit {
   FillFormData() {
     this.ReportForm.controls["name"].patchValue(this.EditForm.name);
     this.ReportForm.controls["last_name"].patchValue(this.EditForm.last_name);
-    if(this.EditForm.day_of_birth!=null){ 
+    if(this.EditForm.day_of_birth!=null){
     this.ReportForm.controls["day_of_birth"].patchValue(moment(this.EditForm.day_of_birth, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
     }
     this.ReportForm.controls["email"].patchValue(this.EditForm.email);
@@ -106,14 +106,15 @@ export class UserAddComponent implements OnInit {
        roles: this.RolesInputArray.length <= 0 ? new Array({old_id:'',  new_id:''}) : this.RolesInputArray,
       //roles:this.RolesInputArray,
     }
-    if (this.id != null) { 
+    if (this.id != null) {
       this.http.put(this.put_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
-        this.alertServices.success("با موفقیت ویرایش شد"); 
+        this.alertServices.success("با موفقیت ویرایش شد");
+        this.router.navigate([this.cancle_link])
       }
       )
     }
-    else { 
+    else {
       this.http.create(this.create_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت اضافه شد");

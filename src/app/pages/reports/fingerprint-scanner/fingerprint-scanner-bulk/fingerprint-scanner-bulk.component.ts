@@ -19,7 +19,7 @@ import { IFingerScannerBulkForm } from 'src/app/interfaces/IFingerScannerBulkFor
 export class FingerprintScannerBulkComponent implements OnInit {
   //#region change this information
   cancle_link: string = '/reports/finger_scanner'
-  form_title:string=" ورود خرج کارکنان"
+  form_title:string=" ورود خروج کارکنان"
   AuditForm: IFingerScannerForm
   get_Singel_route: string = Domain.GetFingerScanner
   put_route: string = Domain.PutFingerScanner
@@ -69,28 +69,22 @@ export class FingerprintScannerBulkComponent implements OnInit {
       this.formData.append("file", file);
   }
   }
-
   onSubmit() {
     if (this.ReportForm.invalid) {
       this.ReportForm.markAllAsTouched();
       return;
     }
-    let ReportFormValue: IFingerScannerBulkForm =
-    {
-      file: this.ReportForm.controls.file.value,
-    }
-      this.btnLoading=true
+      this.btnLoading = true
       this.http.create(`${Domain.CreateFingerScanner}/${this.ReportForm.controls.created_fk_by.value}`, this.formData, null).subscribe((response) => {
         console.log(response)
         if (response == 'File added') {
           this.alertServices.success("با موفقیت اضافه شد" );
           this.ReportForm.reset();
-          this.btnLoading=false
         }
       }
       )
+      this.btnLoading = false
   }
-
   GetRolesData() {
     this.http.getAll(`${Domain.GetRolesData}?page=1&limit=1000&order=desc`).subscribe((response) => {
       this.RolesData = response;

@@ -7,14 +7,14 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
-  selector: 'app-course-cancellation', 
+  selector: 'app-course-cancellation',
   templateUrl: './course-cancellation.component.html',
 })
 export class CourseCancellationComponent implements OnInit {
   //#region change this informaion
   ResponseDataList: IClassCancellation[] = []
   SingleData: IClassCancellation
-  form_title = "گزارشات حسابرسی /  کنسلی کلاس "
+  form_title = "گزارشات /  کنسلی کلاس "
   table_header: string[] = ["ردیف" ,"  کلاس","  استاد", "تاریخ جابجایی","وضعیت","عملیات"]
   field_count:string="course Cancellation"
   get_all_route:string=Domain.GetClassCancellation
@@ -38,7 +38,7 @@ export class CourseCancellationComponent implements OnInit {
     this.GetResponseDataLenght()
 
   }
- 
+
   GetResponseDataLenght() {
     this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
       this.totalCount = response

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
 import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
@@ -10,8 +10,8 @@ import { IRolesForm } from 'src/app/interfaces/IRolesForm';
 import { Ipayment_methodForm } from 'src/app/interfaces/Ipayment_methodForm';
 
 @Component({
-  selector: 'app-payment-add', 
-  templateUrl: './payment-add.component.html', 
+  selector: 'app-payment-add',
+  templateUrl: './payment-add.component.html',
 })
 export class PaymentAddComponent implements OnInit {
   //#region change this information
@@ -33,7 +33,7 @@ export class PaymentAddComponent implements OnInit {
   EmployiesData: IUsers[] = []
   btnLoading: boolean = false
   isLoading: boolean = false
-  constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService) {
+  constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService,private router:Router) {
 
   }
   ngOnInit(): void {
@@ -46,8 +46,8 @@ export class PaymentAddComponent implements OnInit {
         description: new FormControl(''),
         status: new FormControl('',[Validators.required]),
         user_fk_id: new FormControl('',[Validators.required]),
-        shaba: new FormControl('',[Validators.required,Validators.minLength(24)]),
-        card_number: new FormControl('',[Validators.required,Validators.minLength(16)])
+        shaba: new FormControl('',[Validators.required,Validators.minLength(24),Validators.maxLength(24)]),
+        card_number: new FormControl('',[Validators.required,Validators.minLength(16),Validators.maxLength(16)])
       }
     )
     if (this.id != null) {
@@ -98,18 +98,19 @@ export class PaymentAddComponent implements OnInit {
       card_number: this.ReportForm.controls.card_number.value,
 
     }
-    if (this.id != null) { 
+    if (this.id != null) {
       this.http.put(this.put_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
-        this.alertServices.success("با موفقیت ویرایش شد"); 
+        this.alertServices.success("با موفقیت ویرایش شد");
+        this.router.navigate([this.cancle_link])
       }
       )
     }
-    else { 
+    else {
       this.http.create(this.create_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت اضافه شد");
-        this.ReportForm.reset(); 
+        this.ReportForm.reset();
       }
       )
     }
@@ -134,6 +135,6 @@ export class PaymentAddComponent implements OnInit {
       this.EmployeName = response.name +' '+ response.last_name;
     })
   }
- 
+
 }
 

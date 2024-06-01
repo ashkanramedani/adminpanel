@@ -6,14 +6,14 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
-  selector: 'app-remote-request', 
+  selector: 'app-remote-request',
   templateUrl: './remote-request.component.html',
 })
 export class RemoteRequestComponent implements OnInit {
   //#region change this informaion
   ResponseDataList: IRemoteRequest[] = []
   SingleData: IRemoteRequest
-  form_title = "گزارشات حسابرسی /  دورکاری "
+  form_title = "گزارشات /  دورکاری "
   table_header: string[] = ["ردیف", " ایجاد کننده" ,"تاریخ شروع","تاریخ پایان", "پرسنل ","وضعیت","عملیات"]
   field_count:string="Remote Request"
   get_all_route:string=Domain.GetRemoteRequest
@@ -37,7 +37,7 @@ export class RemoteRequestComponent implements OnInit {
     this.GetResponseDataLenght()
 
   }
- 
+
   GetResponseDataLenght() {
     this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
       this.totalCount = response

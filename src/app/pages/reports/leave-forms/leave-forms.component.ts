@@ -7,14 +7,14 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
-  selector: 'app-leave-forms', 
+  selector: 'app-leave-forms',
   templateUrl: './leave-forms.component.html'
 })
 export class LeaveFormsComponent implements OnInit {
   //#region change this informaion
   ResponseDataList: ILeaveRequest[] = []
   SingleData: ILeaveRequest
-  form_title = "گزارشات حسابرسی /   ثبت مرخصی"
+  form_title = "گزارشات /   ثبت مرخصی"
   table_header: string[] = ["ردیف", "تاریخ شروع", " تاریخ پایان ", "پرسنل ","وضعیت","عملیات"]
   field_count:string="Leave Forms"
   get_all_route:string=Domain.GetLeaveRequest
@@ -38,7 +38,7 @@ export class LeaveFormsComponent implements OnInit {
     this.GetResponseDataLenght()
 
   }
- 
+
   GetResponseDataLenght() {
     this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
       this.totalCount = response

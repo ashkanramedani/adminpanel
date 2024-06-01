@@ -8,16 +8,16 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
-  selector: 'app-salary-policy', 
+  selector: 'app-salary-policy',
   templateUrl: './salary-policy.component.html',
 })
 export class SalaryPolicyComponent implements OnInit {
 
-  
+
   //#region change this informaion
   ResponseDataList: ISalaryPolicy[] = []
   SingleData: ISalaryPolicy
-  form_title = "گزارشات حسابرسی / ضریب محاسبه حقوق"
+  form_title = "گزارشات / ضریب محاسبه حقوق"
   table_header: string[] = ["ردیف", "پرسنل", "زمان شروع ", "زمان پایان","ایجاد کننده","وضعیت","عملیات"]
   field_count:string="SalaryPolicy"
   get_all_route:string=Domain.GetSalaryPolicyData
@@ -41,7 +41,7 @@ export class SalaryPolicyComponent implements OnInit {
     //this.GetResponseDataLenght()
 
   }
- 
+
   GetResponseDataLenght() {
     this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
       this.totalCount = response

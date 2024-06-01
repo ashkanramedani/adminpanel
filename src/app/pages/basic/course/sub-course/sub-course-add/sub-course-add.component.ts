@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
 import * as moment from 'jalali-moment';
 import { IUsers } from 'src/app/interfaces/IUsers';
@@ -39,7 +39,7 @@ export class SubCourseAddComponent implements OnInit {
   EmployiesData: IUsers[] = []
   btnLoading: boolean = false
   isLoading: boolean = false
-  constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService) {
+  constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService,private router:Router) {
 
   }
   ngOnInit(): void {
@@ -124,18 +124,19 @@ export class SubCourseAddComponent implements OnInit {
       sub_course_ending_date: moment.from(this.ReportForm.controls.sub_course_ending_date.value, 'fa', 'YYYY-MM-DD').format('YYYY-MM-DD'),
     }
     console.log(ReportFormValue)
-    if (this.id != null) { 
+    if (this.id != null) {
       this.http.put(this.put_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
-        this.alertServices.success("با موفقیت ویرایش شد"); 
+        this.alertServices.success("با موفقیت ویرایش شد");
+        this.router.navigate([this.cancle_link])
       }
       )
     }
-    else { 
+    else {
       this.http.create(this.create_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت اضافه شد");
-        this.ReportForm.reset(); 
+        this.ReportForm.reset();
       }
       )
     }

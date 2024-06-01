@@ -6,14 +6,14 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
-  selector: 'app-business-trip', 
+  selector: 'app-business-trip',
   templateUrl: './business-trip.component.html'
 })
 export class BusinessTripComponent implements OnInit {
   //#region change this informaion
   ResponseDataList: IBusinessTrip[] = []
   SingleData: IBusinessTrip
-  form_title = "گزارشات حسابرسی /   ثبت ماموریت"
+  form_title = "گزارشات /   ثبت ماموریت"
   table_header: string[] = ["ردیف", " ایجاد کننده" , "پرسنل ","وضعیت","عملیات"]
   field_count:string="Business Trip"
   get_all_route:string=Domain.GetBusinessTrip
@@ -37,7 +37,7 @@ export class BusinessTripComponent implements OnInit {
     this.GetResponseDataLenght()
 
   }
- 
+
   GetResponseDataLenght() {
     this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
       this.totalCount = response

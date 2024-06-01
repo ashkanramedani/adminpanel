@@ -7,14 +7,14 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
-  selector: 'app-survey', 
+  selector: 'app-survey',
   templateUrl: './survey.component.html'
 })
 export class SurveyComponent implements OnInit {
   //#region change this informaion
   ResponseDataList: ISurvey[] = []
   SingleData: ISurvey
-  form_title = "گزارشات حسابرسی /  نظر سنجی "
+  form_title = "گزارشات /  نظر سنجی "
   table_header: string[] = ["ردیف", " ایجاد کننده" ," عنوان"," کلاس","وضعیت","عملیات"]
   field_count:string="survey"
   get_all_route:string=Domain.GetSurvey
@@ -38,7 +38,7 @@ export class SurveyComponent implements OnInit {
     this.GetResponseDataLenght()
 
   }
- 
+
   GetResponseDataLenght() {
     this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
       this.totalCount = response

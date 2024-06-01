@@ -24,7 +24,7 @@
         </div>
         <div *ngFor="let item of ResponseDataList | filter: this.SearchValue; let i =index"
             class="body grid grid-cols-5 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
-            <span>{{ i+1}}</span>
+            <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
             <span>{{item.created.name + '&nbsp; &nbsp;' +item.created.last_name}}</span>
             <span>{{item.employee.name + '&nbsp; &nbsp;' +item.employee.last_name}}</span>
             <div class="flex items-center justify-center">
@@ -54,7 +54,7 @@
      <div *ngIf="IsShowenModal==true" x-transition=""
   class="fixed   left-0 top-0 z-999999 flex h-full min-h-screen w-full items-center justify-center bg-black/40 px-4 py-5 text-graydark dark:text-white">
   <div
-    class="flex flex-col w-full mx-12  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
+    class="flex flex-col w-full  lg:mr-[19rem]  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
     <div class="footer flex  justify-start border-b py-3 border-[#b1b1b1]">
       <h3 class="font-semibold text-lg"> نمایش رکورد <span> اطلاعات نقش </span></h3>
     </div>
@@ -76,32 +76,32 @@
       <div >
         <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
          نام پرسنل
-        
+
         </label>
         <span>{{SingleData.employee.name + '&nbsp;'+SingleData.employee.last_name}}</span>
       </div>
       <div >
         <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
           مقصد
-        
+
         </label>
         <span>{{SingleData.destination}} </span>
       </div>
       <div >
         <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
           تاریخ شروع
-        
+
         </label>
         <span>{{SingleData.start_date|date: "HH:mm - YYYY/MM/dd"}} </span>
       </div>
       <div >
         <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
-         تاریخ اتمام 
-        
+         تاریخ اتمام
+
         </label>
         <span>{{SingleData.end_date|date: "HH:mm - YYYY/MM/dd"}} </span>
       </div>
-      
+
       <div>
         <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
         توضیحات
@@ -117,6 +117,6 @@
       </button>
     </div>
   </div>
-</div> 
-    
+</div>
+
 </main>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
 import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
@@ -33,11 +33,11 @@ export class StudentAddComponent implements OnInit {
   EmployiesData: IUsers[] = []
   btnLoading: boolean = false
   isLoading: boolean = false
-  constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService) {
+  constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService,private router:Router) {
 
   }
   ngOnInit(): void {
-    this.id = this.route.snapshot?.paramMap.get('id'); 
+    this.id = this.route.snapshot?.paramMap.get('id');
     this.ReportForm = this.formBuilder.group(
       {
         name: new FormControl('', [Validators.required]),
@@ -45,7 +45,6 @@ export class StudentAddComponent implements OnInit {
         day_of_birth: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required]),
         mobile_number: new FormControl('', [Validators.required]),
-        id_card_number: new FormControl('', [Validators.required]),
         address: new FormControl('', [Validators.required]),
         level: new FormControl('', [Validators.required]),
       }
@@ -73,7 +72,6 @@ export class StudentAddComponent implements OnInit {
     this.ReportForm.controls["email"].patchValue(this.AuditForm.email);
     this.ReportForm.controls["mobile_number"].patchValue(this.AuditForm.mobile_number);
     this.ReportForm.controls["mobile_number"].patchValue(this.AuditForm.mobile_number);
-    this.ReportForm.controls["id_card_number"].patchValue(this.AuditForm.id_card_number);
     this.ReportForm.controls["address"].patchValue(this.AuditForm.address);
     this.ReportForm.controls["level"].patchValue(this.AuditForm.level);
     this.ReportForm.controls["user_pk_id"].patchValue(this.id);
@@ -93,8 +91,7 @@ export class StudentAddComponent implements OnInit {
       last_name: this.ReportForm.controls.last_name.value,
       day_of_birth: this.ReportForm.controls.day_of_birth.value,
       email: this.ReportForm.controls.email.value,
-      mobile_number: this.ReportForm.controls.mobile_number.value,
-      id_card_number: this.ReportForm.controls.id_card_number.value,
+      mobile_number: this.ReportForm.controls.mobile_number.value, 
       address: this.ReportForm.controls.address.value,
       level: this.ReportForm.controls.level.value,
     }
@@ -102,6 +99,7 @@ export class StudentAddComponent implements OnInit {
       this.http.put(this.put_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت ویرایش شد");
+        this.router.navigate([this.cancle_link])
       }
       )
     }

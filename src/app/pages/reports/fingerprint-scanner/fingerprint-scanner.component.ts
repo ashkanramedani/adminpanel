@@ -12,7 +12,7 @@ export class FingerprintScannerComponent implements OnInit {
   //#region change this informaion
   ResponseDataList: IFingerScanner[] = []
   SingleData: IFingerScanner
-  form_title = "گزارشات حسابرسی /  وورد و خروج پرسنل "
+  form_title = "گزارشات /  وورد و خروج پرسنل "
   table_header: string[] = ["ردیف", "  تاریخ" ," ورود"," خروج","نام","وضعیت","عملیات"]
   field_count:string="fingerprint_scanner"
   get_all_route:string=Domain.GetFingerScanner
@@ -36,7 +36,7 @@ export class FingerprintScannerComponent implements OnInit {
     this.GetResponseDataLenght()
 
   }
- 
+
   GetResponseDataLenght() {
     this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
       this.totalCount = response

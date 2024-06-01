@@ -6,16 +6,16 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
-  selector: 'app-tardey-request', 
+  selector: 'app-tardey-request',
   templateUrl: './tardey-request.component.html',
 })
 export class TardeyRequestComponent implements OnInit {
 
-  
+
   //#region change this informaion
   ResponseDataList: ITardeyRequest[] = []
   SingleData: ISalaryPolicy
-  form_title = "گزارشات حسابرسی /  تاخیر اساتید"
+  form_title = "گزارشات /  تاخیر اساتید"
   table_header: string[] = ["ردیف", "سازنده", " استاد ", "کلاس ","تاخیر ","وضعیت","عملیات"]
   field_count:string="Tardy Request"
   get_all_route:string=Domain.GetTardeyRequest
@@ -39,7 +39,7 @@ export class TardeyRequestComponent implements OnInit {
     this.GetResponseDataLenght()
 
   }
- 
+
   GetResponseDataLenght() {
     this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
       this.totalCount = response

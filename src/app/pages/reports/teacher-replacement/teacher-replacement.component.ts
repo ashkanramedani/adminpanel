@@ -7,14 +7,14 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
-  selector: 'app-teacher-replacement', 
+  selector: 'app-teacher-replacement',
   templateUrl: './teacher-replacement.component.html'
 })
 export class TeacherReplacementComponent implements OnInit {
   //#region change this informaion
   ResponseDataList: ITardeyRequest[] = []
   SingleData: ISalaryPolicy
-  form_title = "گزارشات حسابرسی /  استاد جایگزین"
+  form_title = "گزارشات /  استاد جایگزین"
   table_header: string[] = ["ردیف", "سازنده", " استاد اصلی ", "استاد جایگزین","کلاس ","وضعیت","عملیات"]
   field_count:string="Teacher Replacement"
   get_all_route:string=Domain.GetTeacherReplacement
@@ -38,7 +38,7 @@ export class TeacherReplacementComponent implements OnInit {
     this.GetResponseDataLenght()
 
   }
- 
+
   GetResponseDataLenght() {
     this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
       this.totalCount = response

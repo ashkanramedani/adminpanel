@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
 import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
@@ -13,13 +13,13 @@ import { IRemoteRequestForm } from 'src/app/interfaces/IRemoteRequestForm';
 import { IFingerScannerForm } from 'src/app/interfaces/IFingerScannerForm';
 
 @Component({
-  selector: 'app-fingerprint-scanner-add', 
+  selector: 'app-fingerprint-scanner-add',
   templateUrl: './fingerprint-scanner-add.component.html'
 })
 export class FingerprintScannerAddComponent implements OnInit {
   //#region change this information
   cancle_link: string = '/reports/finger_scanner'
-  form_title:string=" ورود خرج کارکنان"
+  form_title:string=" ورود خروج کارکنان"
   AuditForm: IFingerScannerForm
   get_Singel_route: string = Domain.GetFingerScanner
   put_route: string = Domain.PutFingerScanner
@@ -39,7 +39,7 @@ export class FingerprintScannerAddComponent implements OnInit {
   EmployiesData: IUsers[] = []
   btnLoading: boolean = false
   isLoading: boolean = false
-  constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService) {
+  constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService,private router:Router) {
 
   }
   ngOnInit(): void {
@@ -51,7 +51,6 @@ export class FingerprintScannerAddComponent implements OnInit {
       {
         created_fk_by: new FormControl('', [Validators.required]),
         description: new FormControl(''),
-        status: new FormControl('', [Validators.required]),
         EnNo: new FormControl('', [Validators.required]),
         Name: new FormControl('', [Validators.required]),
         Date: new FormControl('', [Validators.required]),
@@ -84,7 +83,6 @@ export class FingerprintScannerAddComponent implements OnInit {
   FillFormData() {
     this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
     this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
-    this.ReportForm.controls["status"].patchValue(this.AuditForm.status);
     this.ReportForm.controls["EnNo"].patchValue(this.AuditForm.EnNo);
     this.ReportForm.controls["Name"].patchValue(this.AuditForm.Name);
     this.ReportForm.controls["Date"].patchValue( moment(this.AuditForm.Date, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
@@ -101,7 +99,6 @@ export class FingerprintScannerAddComponent implements OnInit {
     {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
-      status: this.ReportForm.controls.status.value,
       EnNo: this.ReportForm.controls.EnNo.value,
       Name: this.ReportForm.controls.Name.value,
       Date:moment.from(this.ReportForm.controls.Date.value, 'fa', 'YYYY-MM-DD').format('YYYY-MM-DD'),
@@ -110,18 +107,19 @@ export class FingerprintScannerAddComponent implements OnInit {
       fingerprint_scanner_pk_id:this.id
 
     }
-    if (this.id != null) { 
+    if (this.id != null) {
       this.http.put(this.put_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
-        this.alertServices.success("با موفقیت ویرایش شد"); 
+        this.alertServices.success("با موفقیت ویرایش شد");
+        this.router.navigate([this.cancle_link])
       }
       )
     }
-    else { 
+    else {
       this.http.create(this.create_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت اضافه شد");
-        this.ReportForm.reset(); 
+        this.ReportForm.reset();
       }
       )
     }
