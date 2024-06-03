@@ -1,3 +1,5 @@
+import { IUsers } from "./IUsers"
+
 export interface ICourseTagForm {
     created_fk_by: string
     description: string,

@@ -45,101 +45,49 @@
         </div>
     </div>
 
-    <!-- <div *ngIf="IsShowenModal==true"
-        class="fixed left-0 top-0 z-999999 flex h-full min-h-screen w-full items-center justify-center bg-black/60 px-4 py-5 text-graydark dark:text-white">
-        <div
-            class="flex flex-col w-full mx-12 lg:mr-[19rem]  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
-            <div class="footer flex  justify-start border-b py-3 border-[#b1b1b1]">
-                <h3 class="font-semibold text-lg"> نمایش رکورد <span> اطلاعات درس </span></h3>
+    <div *ngIf="IsShowenModal==true"
+    class="fixed left-0 top-0 z-999999 flex h-full min-h-screen w-full items-center justify-center bg-black/60 px-4 py-5 text-graydark dark:text-white">
+    <div
+        class="flex flex-col w-full mx-12 lg:mr-[19rem]  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
+        <div class="footer flex  justify-start border-b py-3 border-[#b1b1b1]">
+            <h3 class="font-semibold text-lg"> نمایش رکورد <span> اطلاعات برچسب </span></h3>
+        </div>
+        <div class="grid lg:grid-cols-2 grid-cols-1 gap-6.5 p-6.5 text-graydark dark:text-white text-base py-4">
+            <div>
+                <label class="my-3 block text-base font-semibold">
+                    عنوان
+                </label>
+                <span>{{SingleData.category_name }}</span>
             </div>
-            <div class="grid lg:grid-cols-2 grid-cols-1 gap-6.5 p-6.5 text-graydark dark:text-white text-base py-4">
-
-                <div>
-                    <label class="my-3 block text-base font-semibold">
-                        نام کلاس
-                    </label>
-                    <span>{{SingleData.course_name }}</span>
-                </div>
-                <div>
-                    <label class="my-3 block text-base font-semibold">
-                        تاریخ شروع
-                    </label>
-                    <span>{{SingleData.starting_date|date: "HH:mm - YYYY/MM/dd" }}</span>
-                </div>
-                <div>
-                    <label class="my-3 block text-base font-semibold">
-                        تاریخ اتمام
-                    </label>
-                    <span>{{SingleData.ending_date |date: "HH:mm - YYYY/MM/dd"}}</span>
-                </div>
-                <div>
-                    <label class="my-3 block text-base font-semibold ">
-                        ظرفیت کلاس
-                    </label>
-                    <span>{{SingleData.course_capacity }}</span>
-                </div>
-                <div>
-                    <label class="my-3 block text-base font-semibold ">
-                        سطح کلاس
-                    </label>
-                    <span>{{SingleData.course_level}}</span>
-                </div>
-                <div>
-                    <label class="my-3 block text-base font-semibold ">
-                        زبان کلاس
-                    </label>
-                    <span>{{SingleData.course_language}}</span>
-                </div>
-                <div>
-                    <label class="my-3 block text-base font-semibold ">
-                        کد کلاس
-                    </label>
-                    <span>{{SingleData.course_code}}</span>
-                </div>
-                <div>
-                    <label class="my-3 block text-base font-semibold ">
-                        نوع کلاس
-                    </label>
-                    <span>{{SingleData.course_type}}</span>
-                </div>
-                <div>
-                    <label class="my-3 block text-base font-semibold">
-                        تخفیف
-                    </label>
-                    <span>{{SingleData.package_discount}}%</span>
-                </div>
-                <div>
-                    <label class="my-3 block text-base font-semibold">
-                        سازنده
-                    </label>
-                    <span>{{SingleData.created_fk_by }}</span>
-                </div>
-                <div>
-                    <label class="my-3 block text-base font-semibold ">
-                        توضیحات
-                    </label>
-                    <span>{{SingleData.description}}</span>
-                </div>
-                <div class="col-span-2 mt-3">
-                    <label class="my-3 block text-base font-semibold ">
-                        اســـــاتــیـــد
-                    </label>
-                    <div class="grid grid-cols-4 gap-x-2 mt-3">
-                        <div *ngFor="let teacher of SingleData.teachers"
-                            class="flex items-center justify-center flex-col gap-y-3">
-                            <img src="/assets/images/user.png" class="w-12 rounded-full border border-gray-200">
-                            <span class="text-sm">{{teacher.name+ " "+ teacher.last_name}}</span>
-                        </div>
-                    </div>
-                </div>
+            <div>
+                <label class="my-3 block text-base font-semibold">
+                     سازنده
+                </label>
+                <span>{{SingleData.created_fk_by }}</span>
             </div>
+            <div>
+                <label class="my-3 block text-base font-semibold">
+                     توضیحات
+                </label>
+                <span>{{SingleData.description}}</span>
+            </div>
+            <div>
+              <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
+               وضعیت
+              </label>
+              <span *ngIf="SingleData.status==0" class="inline-flex rounded-full bg-[#777777] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید نشده </span>
+              <span *ngIf="SingleData.status==1" class="inline-flex rounded-full bg-[#199173] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید شده </span>
 
-            <div class="footer flex items-end justify-end border-t py-3 border-[#b1b1b1]">
-                <button (click)="CloseModal()"
-                    class="block  rounded border border-stroke bg-stroke hover:bg-bodydark1 font-semibold px-6 py-3 text-center  text-black-2 transition   dark:border-strokedark dark:bg-meta-4 dark:text-white">
-                    بستن
-                </button>
             </div>
         </div>
-    </div> -->
+
+        <div class="footer flex items-end justify-end border-t py-3 border-[#b1b1b1]">
+            <button (click)="CloseModal()"
+                class="block  rounded border border-stroke bg-stroke hover:bg-bodydark1 font-semibold px-6 py-3 text-center  text-black-2 transition   dark:border-strokedark dark:bg-meta-4 dark:text-white">
+                بستن
+            </button>
+        </div>
+    </div>
+</div>
+
 </main>

@@ -7,9 +7,7 @@
         </ol>
     </nav>
     <div class="flex items-center gap-x-7 pt-2">
-        <a href="" class="py-3 border-b border-cyan-600  text-cyan-600">آنلاین</a>
-        <a href="" class="py-3">آفلاین</a>
-        <a href="" class="py-3">حضوری</a>
+        <a *ngFor="let item of CourseTypeData" (click)="GetResponseData(item.course_type_pk_id,1,10,order)"  class="py-3 border-b border-cyan-600  text-cyan-600">{{item.course_type_name}}</a>
     </div>
     <div class="icon flex items-center gap-x-2 py-2">
         <a [routerLink]="['/basic/course/add']"

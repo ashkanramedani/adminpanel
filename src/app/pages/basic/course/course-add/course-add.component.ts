@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Domain } from 'src/app/domain/doamin';
 import { ICourse } from 'src/app/interfaces/ICourse';
 import { ICourseCategory } from 'src/app/interfaces/ICourseCategory';
@@ -35,6 +36,7 @@ export class CourseAddComponent implements OnInit {
   AuditForm: ICourseForm
   isLoading:boolean=false
   isOpenSearchTag:boolean=false
+  public editor:any = ClassicEditor;
   constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService,private router:Router) {
 
   }

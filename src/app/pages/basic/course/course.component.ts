@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
 import { ICourse } from 'src/app/interfaces/ICourse';
+import { ICourseType } from 'src/app/interfaces/ICourseType';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -13,17 +14,20 @@ export class CourseComponent implements OnInit {
   ShowMoreItem: string
   ResponseDataList: ICourse[] = []
   ResponseDataLenght: number[];
+  CourseTypeData:ICourseType[]=[]
   SearchValue: string
   isCheckedStatus: number;
   isLoading: boolean = true
   currentPage: number = 1
   isOpenSettins:boolean=false
   order: string = "desc"
+  type_pk_id:string
   SingleData: ICourse
   IsShowenModal: boolean = false
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
-    this.GetResponseData(1, 10, this.order)
+    this.GetCourseTypeData()
+    this.GetResponseData("",1, 10, this.order)
     this.GetResponseDataLenght()
   }
   GetResponseDataLenght() {
@@ -34,7 +38,7 @@ export class CourseComponent implements OnInit {
   OpenSettins(){
     this.isOpenSettins=!this.isOpenSettins;
   }
-  GetResponseData(page: number, limit: number, order: string) {
+  GetResponseData(type_pk_id:string,page: number, limit: number, order: string) {
     this.isLoading = true
     this.http.getAll(`${Domain.GetcourseData}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       this.ResponseDataList = response;
@@ -48,7 +52,7 @@ export class CourseComponent implements OnInit {
   }
   ChangeSort(value: any) {
     this.order = value.target.value
-    this.GetResponseData(1, 10, this.order);
+    this.GetResponseData("",1, 10, this.order);
   }
   RemoveItem(id?: string) {
     this.ShowMoreItem=""
@@ -61,7 +65,7 @@ export class CourseComponent implements OnInit {
           .subscribe((response) => {
             console.log(response);
             if (response == "Deleted") {
-              this.GetResponseData(1, 10, this.order);
+              this.GetResponseData("",1, 10, this.order);
               this.alertServices.success('آیتم با موفقیت حذف شد');
             }
             else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
@@ -106,6 +110,11 @@ export class CourseComponent implements OnInit {
     else {
       this.ShowMoreItem = id;
     }
+  }
+  GetCourseTypeData() {
+    this.http.getAll(`${Domain.GetCourseType}`).subscribe((response) => {
+      this.CourseTypeData = response
+    })
   }
 }
 

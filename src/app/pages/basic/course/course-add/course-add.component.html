@@ -1,12 +1,12 @@
 <div class="breadcrumb flex gap-x-2 justify-between items-center px-5 mb-3 bg-white rounded-lg font-semibold text-xs">
-    <nav>
-        <ol class="flex items-center gap-1 py-2">
-            <li>
-                <span> ایجاد دوره</span>
-            </li>
-        </ol>
-    </nav>
-    <div class="flex justify-center items-center gap-x-7 pt-2 flex-1">
+  <nav>
+    <ol class="flex items-center gap-1 py-2">
+      <li>
+        <span> ایجاد دوره</span>
+      </li>
+    </ol>
+  </nav>
+  <!-- <div class="flex justify-center items-center gap-x-7 pt-2 flex-1">
         <a class="flex  items-center py-3 border-b border-cyan-600  text-cyan-600">
             <span>اطلاعات کلی</span>
             <svg class="w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="_24x24_On_Light_Arrow-Left"
@@ -68,205 +68,183 @@
             </svg>
         </a>
 
-    </div>
-    <div class="icon flex items-center gap-x-3 py-2">
-      <button [disabled]="this.ReportForm.invalid || btnLoading" (click)="onSubmit()"
-          class="border border-cyan-600 px-4 py-2 rounded-md bg-cyan-600 text-white disabled:bg-cyan-400 disabled:border-cyan-400">
-          ذخیره
-      </button>
-      <a class="border border-gray-500 px-4 py-2 rounded-md hover:bg-gray-200 "
-          [routerLink]="['/basic/course']">انصراف</a>
+    </div> -->
+  <div class="icon flex items-center gap-x-3 py-2">
+    <button [disabled]="this.ReportForm.invalid || btnLoading" (click)="onSubmit()"
+      class="border border-cyan-600 px-4 py-2 rounded-md bg-cyan-600 text-white disabled:bg-cyan-400 disabled:border-cyan-400">
+      ذخیره
+    </button>
+    <a class="border border-gray-500 px-4 py-2 rounded-md hover:bg-gray-200 "
+      [routerLink]="['/basic/course']">انصراف</a>
   </div>
 </div>
-<div class="loading flex justify-center my-10 " *ngIf="isLoading">
-    <div class="animate-spin">
-        <svg width="49" height="50" viewBox="0 0 49 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <mask id="path-1-inside-1_1881_16179" fill="white">
-                <path
-                    d="M18.5503 49.3989C23.2997 50.4597 28.2554 50.1113 32.8097 48.3965C37.364 46.6816 41.3187 43.6748 44.1889 39.7449C47.0591 35.815 48.7199 31.1328 48.9676 26.2727C49.2153 21.4125 48.0392 16.5858 45.5834 12.3844C43.1277 8.18304 39.4991 4.78974 35.1428 2.62071C30.7865 0.451685 25.8918 -0.398759 21.0592 0.173693C16.2265 0.746144 11.666 2.7166 7.93703 5.84338C4.20803 8.97015 1.47267 13.1173 0.0664691 17.7761L5.29059 19.353C6.38986 15.711 8.52815 12.4691 11.4432 10.0248C14.3582 7.58057 17.9233 6.04021 21.7011 5.59272C25.4789 5.14522 29.3052 5.81003 32.7106 7.50561C36.116 9.20119 38.9526 11.8538 40.8723 15.1381C42.792 18.4224 43.7114 22.1956 43.5178 25.9949C43.3241 29.7942 42.0258 33.4543 39.7822 36.5264C37.5385 39.5986 34.4469 41.949 30.8868 43.2896C27.3266 44.6302 23.4525 44.9025 19.7398 44.0732L18.5503 49.3989Z">
-                </path>
-            </mask>
-            <path
-                d="M18.5503 49.3989C23.2997 50.4597 28.2554 50.1113 32.8097 48.3965C37.364 46.6816 41.3187 43.6748 44.1889 39.7449C47.0591 35.815 48.7199 31.1328 48.9676 26.2727C49.2153 21.4125 48.0392 16.5858 45.5834 12.3844C43.1277 8.18304 39.4991 4.78974 35.1428 2.62071C30.7865 0.451685 25.8918 -0.398759 21.0592 0.173693C16.2265 0.746144 11.666 2.7166 7.93703 5.84338C4.20803 8.97015 1.47267 13.1173 0.0664691 17.7761L5.29059 19.353C6.38986 15.711 8.52815 12.4691 11.4432 10.0248C14.3582 7.58057 17.9233 6.04021 21.7011 5.59272C25.4789 5.14522 29.3052 5.81003 32.7106 7.50561C36.116 9.20119 38.9526 11.8538 40.8723 15.1381C42.792 18.4224 43.7114 22.1956 43.5178 25.9949C43.3241 29.7942 42.0258 33.4543 39.7822 36.5264C37.5385 39.5986 34.4469 41.949 30.8868 43.2896C27.3266 44.6302 23.4525 44.9025 19.7398 44.0732L18.5503 49.3989Z"
-                stroke="#3C50E0" stroke-width="14" mask="url(#path-1-inside-1_1881_16179)"></path>
-        </svg>
-    </div>
-</div>
 <main>
-
-    <div class="p-5 mb-3 bg-white rounded-lg">
-        <form [formGroup]="ReportForm">
-          <div class="w-full flex items-end justify-between gap-x-2 mb-7">
-            <div class="w-6/12">
-              <div class="relative">
-                <input type="text" formControlName="course_name"
-                    class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" " />
-                <label
-                    class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">عنوان
-                    دوره </label>
+  <div class="p-5 mb-3 bg-white rounded-lg">
+    <form [formGroup]="ReportForm">
+      <div class="grid grid-cols-4 gap-x-3 gap-y-8 w-full py-4">
+        <div class="relative col-span-2 ">
+          <input type="text" formControlName="course_name"
+            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" " />
+          <label
+            class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">عنوان
+            دوره </label>
+        </div>
+        <div class="relative">
+          <input type="text" formControlName="course_level"
+            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" " />
+          <label
+            class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+            سطح دوره </label>
+        </div>
+        <div class="relative">
+          <input formControlName="course_code" type="text"
+            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" " />
+          <label
+            class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+            کد دوره </label>
+        </div>
+        <div class="relative col-span-2">
+          <select formControlName="course_language"
+            class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+            <option *ngFor="let item of CourseLanguageData" [value]="item.language_pk_id">{{item.language_name}}
+            </option>
+          </select>
+          <label
+            class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">زبان
+            دوره
+          </label>
+        </div>
+        <div class="relative">
+          <input formControlName="course_capacity" type="number"
+            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" " />
+          <label
+            class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+            ظرفیت دوره</label>
+        </div>
+        <div class="relative">
+          <input formControlName="package_discount" type="number"
+            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" " />
+          <label
+            class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+            تخفیف </label>
+        </div>
+        <div class="relative">
+          <ng-persian-datepicker dir="ltr" [dateFormat]="'YYYY-MM-DD'" [dateInitValue]="true">
+            <input type="text" formControlName="starting_date"
+              class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+          </ng-persian-datepicker>
+          <label
+            class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+            تاریخ شروع </label>
+        </div>
+        <div class="relative">
+          <ng-persian-datepicker dir="ltr" [dateFormat]="'YYYY-MM-DD'" [dateInitValue]="true">
+            <input type="text" formControlName="ending_date"
+              class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+          </ng-persian-datepicker>
+          <label
+            class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+            تاریخ اتمام </label>
+        </div>
+        <div class="relative">
+          <select formControlName="created_fk_by"
+            class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+            <option *ngFor="let item of EmployiesData" [value]="item.user_pk_id">{{item.name+" "+item.last_name}}
+            </option>
+          </select>
+          <label
+            class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">سازنده
+          </label>
+        </div>
+        <div class="relative">
+          <select formControlName="status"
+            class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+            <option value="1">فعال</option>
+            <option value="0">غیر فعال </option>
+          </select>
+          <label
+            class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">وضعیت
+          </label>
+        </div>
+        <div class="flex flex-col col-span-4">
+          <label>نوع دوره</label>
+          <div class="flex items-center justify-between bg-gray-100 w-full rounded-lg px-3 py-2 mt-2"
+            *ngIf="CourseTypeData.length<=0;else CourseTypeTemplate">
+            <span>در حال حاضر هیچ نوع دوره ای ثبت نشده است !</span>
+            <a class="border border-gray-800 rounded-lg px-3 py-2 bg-white font-medium"
+              [routerLink]="['/basic/course-type/add']">افزودن نوع دوره</a>
+          </div>
+          <ng-template #CourseTypeTemplate>
+            <div class="grid grid-cols-4 bg-gray-100 w-full rounded-lg p-2 mt-2">
+              <div *ngFor="let item of CourseTypeData;let i=index"
+                class="flex w-full text-center font-medium space-x-1">
+                <input [value]="item.course_type_pk_id" type="radio" formControlName="course_type" name="course_type"
+                  id="kind-{{i}}" class="peer hidden" />
+                <label for="kind-{{i}}"
+                  class="peer-checked:bg-white border border-dashed border-gray-400  peer-checked:font-bold peer-checked:shadow-md rounded-lg p-2 cursor-pointer w-full ">{{item.course_type_name}}</label>
+              </div>
             </div>
-            </div>
-            <div class="w-3/12">
-              <div class="relative">
-                <input type="text" formControlName="course_level"
-                    class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" " />
-                <label
-                    class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-                    سطح دوره </label>
-            </div>
-            </div>
-            <div class="w-3/12">
-              <div class="relative">
-                <input formControlName="course_code" type="text"
-                    class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" " />
-                <label
-                    class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-                    کد دوره </label>
-            </div>
+          </ng-template>
+        </div>
+        <div class="relative col-span-4">
+          <label class="mb-3 block text-base "> توضیحات تکمیلی</label>
+          <ckeditor class="w-full mt-2" formControlName="description" [editor]="editor"></ckeditor>
+        </div>
+        <div class="col-span-4">
+          <label class="mb-3 block text-base text-graydark dark:text-white">
+            برچسب
+            <span class="text-form-input font-medium dark:text-white">
+              (Press Enter to add )
+            </span>
+          </label>
+          <input type="text" formControlName="tags" (click)="OpenSearchTag()" (keyup.enter)="AddTagInputManually()"
+            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600">
+          <div *ngIf="isOpenSearchTag"
+            class="search-tag  bg-white dark:bg-form-input dark:text-bodydark1 text-black  border border-t-0 border-gray-300 rounded-br-lg rounded-bl-lg shadow-md max-h-34 overflow-y-auto">
+            <div (click)="AddTagInput(item.tag_pk_id,item.tag_name)"
+              *ngFor="let item of CourseTagData | filter: this.ReportForm.controls.tags.value"
+              class="px-4 py-3 cursor-pointer hover:bg-gray-100 font-medium text-black dark:text-white">
+              {{item.tag_name}}</div>
+          </div>
+          <div *ngIf="tagsInputArray.length>0"
+            class="w-full bg-gray-100 flex items-center gap-2 mt-4 p-2 flex-wrap max-h-34 overflow-y-auto border border-gray-400 border-1 border-dashed  rounded-md">
+            <div *ngFor="let item of tagsInputArray;let i = index"
+              class=" flex text-center justify-between text-black dark:text-white shadow-md px-3 py-1 bg-white rounded-md ">
+              <button>
+                <svg (click)="RemoveTagInput(i)"
+                  class="w-8  pl-2 fill-body hover:fill-black dark:fill-bodydark dark:hover:fill-bodydark1 mx-auto cursor-pointer"
+                  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path fill-rule="evenodd"
+                    d="M15.78 14.36a1 1 0 0 1-1.42 1.42l-2.82-2.83-2.83 2.83a1 1 0 1 1-1.42-1.42l2.83-2.82L7.3 8.7a1 1 0 0 1 1.42-1.42l2.83 2.83 2.82-2.83a1 1 0 0 1 1.42 1.42l-2.83 2.83 2.83 2.82z">
+                  </path>
+                </svg>
+              </button>
+              <span>{{item}}</span>
             </div>
           </div>
-          <div class="w-full flex items-end justify-between gap-x-2 mb-7">
-            <div class="w-6/12">
-              <div class="relative">
-                <select formControlName="course_language"
-                    class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-                    <option *ngFor="let item of CourseLanguageData" [value]="item.language_pk_id">{{item.language_name}}</option>
-                </select>
-                <label
-                    class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">زبان دوره
-                </label>
-            </div>
-            </div>
-            <div class="w-3/12">
-              <div class="relative">
-                <input formControlName="course_capacity" type="text"
-                    class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" " />
-                <label
-                    class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-                    ظرفیت دوره</label>
-            </div>
-            </div>
-            <div class="w-3/12">
-              <div class="relative">
-                <input formControlName="package_discount" type="number"
-                    class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" " />
-                <label
-                    class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-                    تخفیف </label>
-            </div>
-            </div>
+        </div>
+        <div class="col-span-4">
+          <div class="bg-gray-100 rounded-lg border-dashed border border-gray-400 cursor-pointer flex flex-col p-4 items-center justify-center h-52
+w-full gap-y-4">
+            <img src="/assets/images/icon/upload.svg" class="w-8">
+            <span class="font-normal text-gray-800">آپلود تصویر شاخص دوره</span>
           </div>
-
-          <div class="w-full flex items-center justify-between gap-x-2 mb-7">
-            <div class="relative w-full">
-              <ng-persian-datepicker dir="ltr" [dateFormat]="'YYYY-MM-DD'" [dateInitValue]="true">
-                  <input type="text"  formControlName="starting_date"  class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-                </ng-persian-datepicker>
-              <label
-                  class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-                  تاریخ شروع </label>
-          </div>
-          <div class="relative w-full">
-              <ng-persian-datepicker dir="ltr" [dateFormat]="'YYYY-MM-DD'" [dateInitValue]="true">
-                  <input type="text"  formControlName="ending_date"  class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-                </ng-persian-datepicker>
-              <label
-                  class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-                  تاریخ اتمام </label>
-          </div>
-          </div>
-
-          <div class="w-full flex items-center justify-between gap-x-2 mb-7">
-
-            <div class="relative w-full">
-              <select formControlName="created_fk_by"
-                  class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-                  <option *ngFor="let item of EmployiesData" [value]="item.user_pk_id">{{item.name+" "+item.last_name}}</option>
-              </select>
-              <label
-                  class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">سازنده
-              </label>
-          </div>
-          <div class="relative w-full">
-              <select formControlName="status"
-                  class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-                  <option value="1">فعال</option>
-                  <option value="0">غیر فعال </option>
-              </select>
-              <label
-                  class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">وضعیت
-              </label>
-          </div>
-          </div>
-
-            <div class="flex justify-between">
-                <div class="w-1/2 pl-4">
-                    <div class="flex flex-col gap-y-7">
-                        <div class="relative">
-                            <!-- <input type="text" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " /> -->
-                            <textarea formControlName="description"
-                                class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                cols="30" rows="5"></textarea>
-                            <label
-                                class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">توضیحات
-                            </label>
-                        </div>
-                        <div >
-                            <label class="mb-3 block text-base font-semibold  text-graydark dark:text-white">
-                              برچسب
-                              <span class="text-form-input font-medium dark:text-white">
-                                (Press Enter to add )
-                              </span>
-                            </label>
-                            <input  type="text" formControlName="tags" (click)="OpenSearchTag()" (keyup.enter)="AddTagInputManually()"   class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600">
-                            <div *ngIf="isOpenSearchTag" class="search-tag  bg-white dark:bg-form-input dark:text-bodydark1 text-black  border border-t-0 border-gray-300 rounded-br-lg rounded-bl-lg shadow-md max-h-34 overflow-y-auto">
-                              <div (click)="AddTagInput(item.tag_pk_id,item.tag_name)" *ngFor="let item of CourseTagData | filter: this.ReportForm.controls.tags.value" class="px-4 py-3 cursor-pointer hover:bg-gray-100 font-medium text-black dark:text-white">{{item.tag_name}}</div>
-                            </div>
-                            <div *ngIf="tagsInputArray.length>0" class="w-full bg-gray-100 flex items-center gap-2 mt-4 p-2 flex-wrap max-h-34 overflow-y-auto border border-gray-400 border-1 border-dashed  rounded-md">
-                              <div *ngFor="let item of tagsInputArray;let i = index" class=" flex text-center justify-between text-black dark:text-white shadow-md px-3 py-1 bg-white rounded-md ">
-                                <button >
-                                  <svg (click)="RemoveTagInput(i)" class="w-8  pl-2 fill-body hover:fill-black dark:fill-bodydark dark:hover:fill-bodydark1 mx-auto cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.78 14.36a1 1 0 0 1-1.42 1.42l-2.82-2.83-2.83 2.83a1 1 0 1 1-1.42-1.42l2.83-2.82L7.3 8.7a1 1 0 0 1 1.42-1.42l2.83 2.83 2.82-2.83a1 1 0 0 1 1.42 1.42l-2.83 2.83 2.83 2.82z"></path></svg>
-                                </button>
-                                <span>{{item}}</span>
-                                </div>
-                            </div>
-                          </div>
-                        <div class="flex gap-x-4">
-                            <div class="w-1/2">
-                                <div class="bg-gray-100 rounded-lg border-dashed border border-gray-400 cursor-pointer flex flex-col p-4 items-center justify-center h-52
-                             w-full gap-y-4">
-                                    <img src="/assets/images/icon/upload.svg" class="w-8">
-                                    <span class="font-normal text-gray-800">آپلود تصویر شاخص دوره</span>
-                                </div>
-                            </div>
-                            <div class="w-1/2"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class=" w-1/2 flex flex-col gap-y-7 ">
-                    <div class="flex flex-col">
-                        <label class="font-semibold">نوع دوره</label>
-                        <div class="grid grid-cols-3 bg-gray-200 w-full rounded-lg p-1 mt-2">
-                            <div *ngFor="let item of CourseTypeData;let i=index" class="flex w-full text-center font-medium space-x-1">
-                                <input [value]="item.course_type_pk_id"   type="radio" formControlName="course_type" name="course_type" id="kind-{{i}}" class="peer hidden" />
-                                <label for="kind-{{i}}"
-                                    class="peer-checked:bg-white border border-dashed border-gray-400  peer-checked:font-bold peer-checked:shadow-md rounded-lg p-2 cursor-pointer w-full ">{{item.course_type_name}}</label>
-                            </div>
-                        </div>
-                    </div>
+        </div>
+      </div>
 
 
 
 
 
 
-                </div>
-            </div>
-        </form>
-    </div>
+
+
+
+    </form>
+  </div>
 </main>

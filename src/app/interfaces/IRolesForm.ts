@@ -3,6 +3,6 @@ export interface IRolesForm{
     description: string,
     status: number,
     name: string,
-    cluster: string,
+    cluster: string[],
     role_pk_id: string
 }

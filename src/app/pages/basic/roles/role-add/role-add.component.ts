@@ -25,10 +25,9 @@ export class RoleAddComponent implements OnInit {
   page_title: string = "ایجاد"
   RoleClusterData:string[]=[]
   ReportForm: FormGroup;
-  isOpenSearchRole: boolean = false
+  isOpenSearchCluster: boolean = false
   RolesData: IRoles[] = []
-  RolesInputArray: string[] = []
-  RolesInputTitleArray: string[] = []
+  ClusterInputArray: string[] = []
   id: any;
   EmployiesData: IUsers[] = []
   btnLoading: boolean = false
@@ -39,7 +38,6 @@ export class RoleAddComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot?.paramMap.get('id');
     this.GetEmployeeData()
-    this.GetRolesData()
     this.GetRolesClusterData()
     this.ReportForm = this.formBuilder.group(
       {
@@ -101,7 +99,7 @@ export class RoleAddComponent implements OnInit {
       description: this.ReportForm.controls.description.value,
       status: this.ReportForm.controls.status.value,
       name: this.ReportForm.controls.name.value,
-      cluster: this.ReportForm.controls.cluster.value,
+      cluster: this.ClusterInputArray
     }
     if (this.id != null) {
       this.http.put(this.put_route, ReportFormValue, null).subscribe((response) => {
@@ -121,24 +119,24 @@ export class RoleAddComponent implements OnInit {
     this.btnLoading=false
   }
 
-  GetRolesData() {
-    this.http.getAll(`${Domain.GetRolesData}?page=1&limit=1000&order=desc`).subscribe((response) => {
-      this.RolesData = response;
-    })
-  }
 
-  OpenSearchRole() {
-    this.isOpenSearchRole = !this.isOpenSearchRole;
+  OpenSearchCluster() {
+    this.isOpenSearchCluster = !this.isOpenSearchCluster;
   }
-  AddRoleInput(id: string, name: string) {
-    if (id != '') {
-      this.RolesInputArray.push(id);
-      this.RolesInputTitleArray.push(name)
+  AddClusterInput(name: string) {
+    if (name != '') {
+      this.ClusterInputArray.push(name);
     }
   }
-  RemoveRoleInput(index: number) {
-    this.RolesInputArray.splice(index, 1);
-    this.RolesInputTitleArray.splice(index, 1);
+  RemoveRoleInput(index: number,title: string) {
+    this.ClusterInputArray.splice(index, 1);
   }
+  AddClusterInputManually() {
+    if (this.ReportForm.controls.cluster.value.length > 0) {
+      this.ClusterInputArray.push(this.ReportForm.controls.cluster.value);
+      this.ReportForm.controls.cluster.setValue('');
+    }
+  }
+
 }
 

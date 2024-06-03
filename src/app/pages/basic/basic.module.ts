@@ -33,7 +33,6 @@ import { SubCourseAddComponent } from './course/sub-course/sub-course-add/sub-co
 import { SessionAddComponent } from './course/sessions/session-add/session-add.component';
 import { SessionsComponent } from './course/sessions/sessions.component';
 
-
 @NgModule({
   declarations: [CourseComponent, CourseAddComponent, CourseCategoryComponent, CourseCategoryAddComponent, CourseLanguageAddComponent,
     CourseTagAddComponent, CourseTypeAddComponent, CourseLanguageComponent, CourseTagComponent, CourseTypeComponent,
