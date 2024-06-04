@@ -199,10 +199,9 @@
           <label class="mb-3 block text-base text-graydark dark:text-white">
             برچسب
             <span class="text-form-input font-medium dark:text-white">
-              (Press Enter to add )
             </span>
           </label>
-          <input type="text" formControlName="tags" (click)="OpenSearchTag()" (keyup.enter)="AddTagInputManually()"
+          <input type="text" formControlName="tags" (click)="OpenSearchTag()"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600">
           <div *ngIf="isOpenSearchTag"
             class="search-tag  bg-white dark:bg-form-input dark:text-bodydark1 text-black  border border-t-0 border-gray-300 rounded-br-lg rounded-bl-lg shadow-md max-h-34 overflow-y-auto">
@@ -213,7 +212,7 @@
           </div>
           <div *ngIf="tagsInputArray.length>0"
             class="w-full bg-gray-100 flex items-center gap-2 mt-4 p-2 flex-wrap max-h-34 overflow-y-auto border border-gray-400 border-1 border-dashed  rounded-md">
-            <div *ngFor="let item of tagsInputArray;let i = index"
+            <div *ngFor="let item of tagsInputTitleArray;let i = index"
               class=" flex text-center justify-between text-black dark:text-white shadow-md px-3 py-1 bg-white rounded-md ">
               <button>
                 <svg (click)="RemoveTagInput(i)"
@@ -224,7 +223,7 @@
                   </path>
                 </svg>
               </button>
-              <span>{{item}}</span>
+              <span>{{item.role_title}}</span>
             </div>
           </div>
         </div>

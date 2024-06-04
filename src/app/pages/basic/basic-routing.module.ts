@@ -30,6 +30,7 @@ import { SessionAddComponent } from './course/sessions/session-add/session-add.c
 const routes: Routes = [
   { path: 'course', component: CourseComponent },
   { path: 'course/add', component: CourseAddComponent },
+  { path: 'course/edit/:id', component: CourseAddComponent },
 
   { path: 'course-category', component: CourseCategoryComponent },
   { path: 'course-category/add', component: CourseCategoryAddComponent },
@@ -47,7 +48,7 @@ const routes: Routes = [
   { path: 'sub-course/add', component: SubCourseAddComponent },
   { path: 'sub-course/edit/:id', component: SubCourseAddComponent },
 
-  
+
   { path: 'sessions', component: SessionsComponent },
   { path: 'session/add', component: SessionAddComponent },
   { path: 'session/edit/:id', component: SessionAddComponent },

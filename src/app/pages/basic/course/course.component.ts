@@ -64,11 +64,9 @@ export class CourseComponent implements OnInit {
           .deleteWithQuery(`${Domain.DeletecourseData}/${id}`)
           .subscribe((response) => {
             console.log(response);
-            if (response == "Deleted") {
               this.GetResponseData("",1, 10, this.order);
               this.alertServices.success('آیتم با موفقیت حذف شد');
-            }
-            else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
+            //else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
           });
       },
       () => { }
@@ -89,13 +87,13 @@ export class CourseComponent implements OnInit {
           console.log("emp: "+emp)
           this.SingleData.created_fk_by=emp.name + " "+emp.last_name
         })
-        // this.http.get(Domain.GetAuditEmplooyies, this.SingleData.employee_fk_id).subscribe((teacher)=>
-        // {
-        //   this.SingleData.employee_fk_id=teacher.name + " "+teacher.last_name
-        // })
-        // this.http.get(Domain.GetAuditClass,this.SingleData.class_fk_id).subscribe((cls) => {
-        //   this.SingleData.class_fk_id=cls.name
-        // })
+        this.http.get(Domain.GetCourseLanguageData, this.SingleData.course_language).subscribe((lang)=>
+        {
+          this.SingleData.course_language=lang.language_name
+        })
+        this.http.get(Domain.GetCourseType,this.SingleData.course_type).subscribe((type) => {
+          this.SingleData.course_type=type.course_type_name
+        })
         this.ShowMoreItem=""
         this.IsShowenModal = true
       });

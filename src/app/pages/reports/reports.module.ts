@@ -27,6 +27,7 @@ import { RouterLink } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProfessorsReportsComponent } from './professors-reports/professors-reports.component';
 import { FingerprintScannerBulkComponent } from './fingerprint-scanner/fingerprint-scanner-bulk/fingerprint-scanner-bulk.component';
+import { OnlyNumberDirective } from 'src/app/directive/only_number.directive';
 
 
 
@@ -34,7 +35,7 @@ import { FingerprintScannerBulkComponent } from './fingerprint-scanner/fingerpri
   declarations: [BusinessTripComponent, BusinessTripAddComponent, CourseCancellationComponent, CourseCancellationAddComponent,
     FingerprintScannerComponent, FingerprintScannerAddComponent,FingerprintScannerBulkComponent, LeaveFormsComponent, LeaveFormAddComponent, RemoteRequestComponent,
     RemoteRequestAddComponent, SalaryPolicyComponent, SalaryPolicyAddComponent, SurveyComponent, SurveyAddComponent, TardeyRequestComponent,
-    TardeyRequestAddComponent, TeacherReplacementComponent, TeacherReplacementAddComponent,ProfessorsReportsComponent],
+    TardeyRequestAddComponent, TeacherReplacementComponent, TeacherReplacementAddComponent,ProfessorsReportsComponent,OnlyNumberDirective],
   imports: [
     CommonModule,
     ReportsRoutingModule,

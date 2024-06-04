@@ -1,3 +1,6 @@
+import { ICourseFormTag } from "./ICourseFormTag"
+import { IUserFormRoles } from "./IUserFormRoles"
+
 export interface ICourseForm {
     created_fk_by: string
     description: string,
@@ -12,7 +15,7 @@ export interface ICourseForm {
     course_capacity: number,
     course_language: string
     course_type: string
-     //tags: string[],
+    tags: IUserFormRoles[]
     // categories: [],
     course_code: string,
     course_image: string,

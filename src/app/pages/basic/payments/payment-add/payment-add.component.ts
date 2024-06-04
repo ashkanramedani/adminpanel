@@ -46,7 +46,7 @@ export class PaymentAddComponent implements OnInit {
         description: new FormControl(''),
         status: new FormControl('',[Validators.required]),
         user_fk_id: new FormControl('',[Validators.required]),
-        shaba: new FormControl('',[Validators.required,Validators.minLength(24),Validators.maxLength(24)]),
+        shaba: new FormControl<number |null>(null,[Validators.required,Validators.minLength(24),Validators.maxLength(24)]),
         card_number: new FormControl('',[Validators.required,Validators.minLength(16),Validators.maxLength(16)])
       }
     )

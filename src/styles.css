@@ -118,7 +118,7 @@
 }
 .ck-content
 {
-  height: 300px;
-  direction: rtl;
-  text-align: right;
+  height: 300px !important;
+  direction: rtl  !important;
+  text-align: right !important;
 }
