@@ -25,17 +25,17 @@
       <div *ngFor="let item of ResponseDataList | filter: this.SearchValue; let i =index"
           class="body grid grid-cols-5 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
           <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
-          <span>{{item.post_title}}</span>
+          <span>{{item.library_name}}</span>
           <span>{{item.create_date|date: "YYYY/MM/dd" }}</span>
-          <span [ngClass]="ShowTitleStatus(item.post_status).classStatus" >{{ShowTitleStatus(item.post_status).title  }}</span>
+          <span [ngClass]="ShowTitleStatus(item.library_status).classStatus" >{{ShowTitleStatus(item.library_status).title  }}</span>
           <div class="operation flex items-center justify-center gap-x-2">
-              <button (click)="OpenModal(item.post_pk_id)" title="نمایش">
+              <button (click)="OpenModal(item.library_pk_id)" title="نمایش">
                   <img src="/assets/images/icon/see-more.svg" class="w-4" alt="">
               </button>
-              <a [routerLink]="[edit_url,item.post_pk_id]" title="ویرایش">
+              <a [routerLink]="[edit_url,item.library_pk_id]" title="ویرایش">
                   <img src="/assets/images/icon/edit.svg" class="w-4" alt="">
               </a>
-              <button title="حذف" (click)="RemoveItem(item.post_pk_id)">
+              <button title="حذف" (click)="RemoveItem(item.library_pk_id)">
                   <img src="/assets/images/icon/trash.svg" class="w-4" alt="">
               </button>
           </div>

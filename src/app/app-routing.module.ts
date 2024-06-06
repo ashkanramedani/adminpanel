@@ -22,6 +22,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'libraries',
+    loadChildren: () =>
+      import('./pages/libraries/libraries.module').then(
+        (m) => m.LibrariesModule
+      ),
+  },
+  {
     path: 'reports',
     loadChildren: () => import('./pages/reports/reports.module').then((m) => m.ReportsModule)
   },
