@@ -8,6 +8,7 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { IRolesForm } from 'src/app/interfaces/IRolesForm';
+import { ITardeyRequest } from 'src/app/interfaces/ITardeyRequest';
 
 @Component({
   selector: 'app-professors-reports',
@@ -16,9 +17,15 @@ import { IRolesForm } from 'src/app/interfaces/IRolesForm';
 export class ProfessorsReportsComponent implements OnInit {
   //#region change this information
 
-  form_title:string="گزارشات / فرم گزارشات اساتید"
+  form_title:string="گزارشات/ مالی /   محاسبات حقوقی پرسنل"
   AuditForm: IRolesForm
+  table_header: string[] = ["پرسنل", " موقعیت ", "وضعیت "]
+  ResponseDataList: ITardeyRequest[] = []
+  get_all_route:string=Domain.GetTardeyRequest
   //#endregion
+  order: string = "desc"
+  currentPage: number = 1
+  ResponseDataLenght: number[];
   ReportForm: FormGroup;
   isOpenSearchRole: boolean = false
   RolesData: IRoles[] = []
@@ -36,12 +43,22 @@ export class ProfessorsReportsComponent implements OnInit {
     this.GetEmployeeData()
     this.ReportForm = this.formBuilder.group(
       {
-        employee_id : new FormControl('', [Validators.required]),
         year: new FormControl('',[Validators.required]),
         month : new FormControl('',[Validators.required]),
       }
     )
 
+  }
+
+  GetResponseData(page: number, limit: number, order: string) {
+    this.isLoading = true;
+    this.currentPage = page;
+    this.http.getAll(`${this.get_all_route}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
+      this.ResponseDataList = response;
+      this.currentPage = page
+      this.isLoading = false
+      console.log(response)
+    })
   }
 
   GetEmployeeData() {

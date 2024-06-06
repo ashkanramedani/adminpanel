@@ -168,7 +168,7 @@
                   </li>
                   <li>
                     <a [routerLink]="['/basic/answers']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer"> پاسخ سوالات </a>
-                  </li> 
+                  </li>
                   <li>
                     <a [routerLink]="['/basic/payments']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">  روش های پرداخت </a>
                   </li>
@@ -312,7 +312,7 @@
               </a>
               <!-- Dropdown Menu Start -->
               <div *ngIf="menuItem == 5" class="overflow-hidden">
-                
+
                 <ul class="mt-4 mb-5.5 flex flex-col  pr-3 ">
                 <li>
                     <a (click)="ChangeSubMenuItem(4.2)"  class="flex items-center justify-between hover:bg-meta-4 py-2 px-4 cursor-pointer">
@@ -336,7 +336,7 @@
                         </ul>
                       </div>
                   </li>
-  
+
                   <li>
                     <a (click)="ChangeSubMenuItem(4.3)"  class="flex items-center justify-between hover:bg-meta-4 py-2 px-4 cursor-pointer">
                       <div class="flex items-center gap-x-2 w-full">
@@ -365,7 +365,7 @@
                         </ul>
                       </div>
                   </li>
-  
+
                   <li>
                     <a (click)="ChangeSubMenuItem(4.4)"  class="flex items-center justify-between hover:bg-meta-4 py-2 px-4 cursor-pointer">
                       <div class="flex items-center gap-x-2 w-full">
@@ -391,8 +391,8 @@
                         </ul>
                       </div>
                   </li>
-  
-  
+
+
                   <li>
                     <a (click)="ChangeSubMenuItem(4.5)"  class="flex items-center justify-between hover:bg-meta-4 py-2 px-4 cursor-pointer">
                       <div class="flex items-center gap-x-2 w-full">
@@ -415,16 +415,34 @@
                           <li>
                             <a [routerLink]="['/reports/class_cancellation']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">   کنسلی کلاس</a>
                           </li>
+                        </ul>
+                      </div>
+                  </li>
+
+                  <li>
+                    <a (click)="ChangeSubMenuItem(4.6)"  class="flex items-center justify-between hover:bg-meta-4 py-2 px-4 cursor-pointer">
+                      <div class="flex items-center gap-x-2 w-full">
+                          <span class="w-1.5 h-1.5 relative bottom-[0.15rem] rounded-full  bg-secondary"></span>
+                        <span class="group relative flex items-center rounded-md  font-medium text-bodydark1">
+                           مالی
+                        </span>
+                      </div>
+                      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="fill-bodydark1 w-4">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z"
+                          fill=""></path>
+                      </svg>
+                    </a>
+                      <div class="overflow-hidden" *ngIf="subMenuItem == 4.6">
+                        <ul class="my-2 flex flex-col  pr-6">
                           <li>
-                            <a [routerLink]="['/reports/professorsreports']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">  گزارشات اساتید </a>
+                            <a [routerLink]="['/reports/professorsreports']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer"> محاسبات حقوقی پرسنل</a>
                           </li>
                         </ul>
                       </div>
                   </li>
-  
-  
                   <li>
-                    <a (click)="ChangeSubMenuItem(4.6)"  class="flex items-center justify-between hover:bg-meta-4 py-2 px-4 cursor-pointer">
+                    <a (click)="ChangeSubMenuItem(4.7)"  class="flex items-center justify-between hover:bg-meta-4 py-2 px-4 cursor-pointer">
                       <div class="flex items-center gap-x-2 w-full">
                           <span class="w-1.5 h-1.5 relative bottom-[0.15rem] rounded-full  bg-secondary"></span>
                         <span class="group relative flex items-center rounded-md  font-medium text-bodydark1">
@@ -437,7 +455,7 @@
                           fill=""></path>
                       </svg>
                     </a>
-                      <div class="overflow-hidden" *ngIf="subMenuItem == 4.6">
+                      <div class="overflow-hidden" *ngIf="subMenuItem == 4.7">
                         <ul class="my-2 flex flex-col  pr-6">
                           <li>
                             <a [routerLink]="['/reports/survey']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">  نظر سنجی</a>
@@ -452,7 +470,7 @@
             <!-- Menu Item Dashboard -->
           </ul>
         </div>
-        
+
       </div>
     </nav>
     <!-- Sidebar Menu -->

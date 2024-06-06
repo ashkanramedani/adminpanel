@@ -4,6 +4,7 @@ export const Domain =
     "WebsiteUrl": "",
     "GetCount": `${environment.apiUrl}/api/v1/form/count`,
     "GetTagList": `${environment.apiUrl}/api/v1/tag/all`,
+
     "GetPost": `${environment.apiUrl}/api/v1/post`,
     "GetPostTopic": `${environment.apiUrl}/api/v1/post/get_post_topic`,
     "GetPostCategory": `${environment.apiUrl}/api/v1/category/all`,
