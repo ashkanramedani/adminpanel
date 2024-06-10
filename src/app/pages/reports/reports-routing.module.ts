@@ -20,6 +20,7 @@ import { CourseCancellationAddComponent } from './course-cancellation/course-can
 import { SurveyComponent } from './survey/survey.component';
 import { SurveyAddComponent } from './survey/survey-add/survey-add.component';
 import { FingerprintScannerBulkComponent } from './fingerprint-scanner/fingerprint-scanner-bulk/fingerprint-scanner-bulk.component';
+import { ProfessorsreportStepComponent } from './professors-reports/professorsreport-step/professorsreport-step.component';
 
 const routes: Routes = [
   {path:'salarypolicy',component:SalaryPolicyComponent},
@@ -59,7 +60,8 @@ const routes: Routes = [
 {path:'survey/edit/:id',component:SurveyAddComponent},
 
 
-{path:'professorsreports',component:ProfessorsReportsComponent}
+{path:'professorsreports',component:ProfessorsReportsComponent},
+{path:'professorsreport',component:ProfessorsreportStepComponent}
 ];
 
 @NgModule({
