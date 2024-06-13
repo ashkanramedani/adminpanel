@@ -1,14 +1,15 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
 import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { IRolesForm } from 'src/app/interfaces/IRolesForm';
-import { ITardeyRequest } from 'src/app/interfaces/ITardeyRequest';
+import { IProfessorsReports } from 'src/app/interfaces/IProfessorsReports';
+import { IReportEmployee } from 'src/app/interfaces/IReportEmployee';
 
 @Component({
   selector: 'app-professors-reports',
@@ -17,11 +18,10 @@ import { ITardeyRequest } from 'src/app/interfaces/ITardeyRequest';
 export class ProfessorsReportsComponent implements OnInit {
   //#region change this information
 
-  form_title:string="گزارشات/ مالی /   محاسبات حقوقی پرسنل"
+  form_title: string = "گزارشات/ مالی /   محاسبات حقوقی پرسنل"
   AuditForm: IRolesForm
   table_header: string[] = ["پرسنل", " موقعیت ", "وضعیت "]
-  ResponseDataList: ITardeyRequest[] = []
-  get_all_route:string=Domain.GetTardeyRequest
+  ResponseDataList: IReportEmployee[] = []
   //#endregion
   order: string = "desc"
   currentPage: number = 1
@@ -31,64 +31,63 @@ export class ProfessorsReportsComponent implements OnInit {
   RolesData: IRoles[] = []
   RolesInputArray: string[] = []
   RolesInputTitleArray: string[] = []
-  id: any;
   EmployiesData: IUsers[] = []
   btnLoading: boolean = false
   isLoading: boolean = false
-  constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService) {
+  isShowenAlert: boolean = false
+  year: number
+  month: number
+  constructor(private http: HttpService, private route: ActivatedRoute, private router:Router,private formBuilder: FormBuilder, private alertServices: AlertifyService) {
 
   }
   ngOnInit(): void {
-    this.id = this.route.snapshot?.paramMap.get('id');
-    this.GetEmployeeData()
     this.ReportForm = this.formBuilder.group(
       {
-        year: new FormControl('',[Validators.required]),
-        month : new FormControl('',[Validators.required]),
+        year: new FormControl<number>(1403, [Validators.required]),
+        month: new FormControl<number>(1, [Validators.required]),
       }
     )
-
   }
 
-  GetResponseData(page: number, limit: number, order: string) {
-    this.isLoading = true;
-    this.currentPage = page;
-    this.http.getAll(`${this.get_all_route}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
-      this.ResponseDataList = response;
-      this.currentPage = page
-      this.isLoading = false
-      console.log(response)
-    })
-  }
-
-  GetEmployeeData() {
-    this.http.getAll(Domain.GetUsers).subscribe((response) => {
-      this.EmployiesData = response;
-      console.log(response)
-    })
-  }
 
   onSubmit() {
     if (this.ReportForm.invalid) {
       this.ReportForm.markAllAsTouched();
       return;
     }
-    // let ReportFormValue: IRolesForm =
-    // {
-    //   role_pk_id:this.id,
-    //   created_fk_by: this.ReportForm.controls.created_fk_by.value,
-    //   description: this.ReportForm.controls.description.value,
-    //   status: this.ReportForm.controls.status.value,
-    //   name: this.ReportForm.controls.name.value,
-    //   cluster: this.ReportForm.controls.cluster.value,
-
-    // }
-    this.http.getAll(`${Domain.GetProfessorsReports}/${this.ReportForm.controls.employee_id.value}?year=${this.ReportForm.controls.year.value}&month=${this.ReportForm.controls.month.value}`, null).subscribe((response) => {
+    let ReportFormValue: IProfessorsReports =
+    {
+      year: this.ReportForm.controls.year.value,
+      month: this.ReportForm.controls.month.value,
+    }
+    this.http.create(Domain.PostProfessorsReports, ReportFormValue, null).subscribe((response) => {
       console.log(response)
-        // this.alertServices.success("با موفقیت اضافه شد");
-        // this.ReportForm.reset();
-         this.btnLoading = false
-    } )
+      this.ResponseDataList = response
+      this.year = this.ReportForm.controls.year.value,
+        this.month = this.ReportForm.controls.month.value,
+        this.isShowenAlert = true
+      this.ReportForm.reset();
+    }
+    )
+  }
+  SalaryCheck(user_id: string) {
+    if (user_id == null) {
+      this.alertServices.error("متاسفانه خطایی رخ داده است")
+      return
+    }
+    // this.http.getAll(`${Domain.GetSalaryEmployee}/${user_id}?year=${this.year}&month=${this.month}`).subscribe((response) => {
+    //   console.log(response)
+    // })
+  }
+  SalaryCalculation(user_id: string) {
+    if (user_id == null) {
+      this.alertServices.error("متاسفانه خطایی رخ داده است")
+      return
+    }
+    this.router.navigate(['/reports/professorsreport/'+user_id], { queryParams: { step: "1",year:this.year,month:this.month}})
+    // this.http.getAll(`${Domain.GetSalaryEmployee}/${user_id}?year=${this.year}&month=${this.month}`).subscribe((response) => {
+    //   console.log(response)
+    // })
   }
 }
 

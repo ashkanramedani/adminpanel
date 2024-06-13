@@ -42,25 +42,29 @@ export const Domain =
     "CreateFingerScannerBulk": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/bulk_add`,
     "DeleteFingerScanner": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/delete`,
     "PutFingerScanner": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/update`,
+    "GetFingerScannerReport": `${environment.apiUrl}/api/v1/form/fingerprint_scanner/report`,
 
 
     "GetLeaveRequest": `${environment.apiUrl}/api/v1/form/leave_request/search`,
     "DeleteLeaveRequest": `${environment.apiUrl}/api/v1/form/leave_request/delete`,
     "CreateLeaveRequest":`${environment.apiUrl}/api/v1/form/leave_request/add`,
     "PutLeaveRequest" :`${environment.apiUrl}/api/v1/form/leave_request/update`,
+    "GetLeaveRequestReport": `${environment.apiUrl}/api/v1/form/leave_request/report`,
 
 
     "GetBusinessTrip": `${environment.apiUrl}/api/v1/form/business_trip/search`,
     "DeleteBusinessTrip": `${environment.apiUrl}/api/v1/form/business_trip/delete`,
     "PutBusinessTrip":`${environment.apiUrl}/api/v1/form/business_trip/update`,
     "CreateBusinessTrip":`${environment.apiUrl}/api/v1/form/business_trip/add`,
+    "GetBusinessReport": `${environment.apiUrl}/api/v1/form/business_trip/report`,
 
-    "GetProfessorsReports": `${environment.apiUrl}/api/v1/form/salary/employee`,
+    "PostProfessorsReports": `${environment.apiUrl}/api/v1/form/salary/employee`,
 
     "GetRemoteRequest": `${environment.apiUrl}/api/v1/form/remote_request/search`,
     "CreateRemoteRequest": `${environment.apiUrl}/api/v1/form/remote_request/add`,
     "PutRemoteRequest":`${environment.apiUrl}/api/v1/form/remote_request/update`,
     "DeleteRemoteRequest": `${environment.apiUrl}/api/v1/form/remote_request/delete`,
+    "GetRemoteRequestReport": `${environment.apiUrl}/api/v1/form/remote_request/report`,
 
     "GetTeacherReplacement": `${environment.apiUrl}/api/v1/form/teacher_replacement/search`,
     "CreateTeacherReplacement": `${environment.apiUrl}/api/v1/form/teacher_replacement/add`,
@@ -140,6 +144,6 @@ export const Domain =
 
     "GetAuditClass":`${environment.apiUrl}/api/v1/form/course/search`,
 
-
+  "GetSalaryEmployee":`${environment.apiUrl}/api/v1/form/salary/employee`,
 
 }

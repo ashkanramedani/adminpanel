@@ -24,10 +24,11 @@ export class CourseComponent implements OnInit {
   type_pk_id:string
   SingleData: ICourse
   IsShowenModal: boolean = false
+  is_active_course_type:string=''
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
     this.GetCourseTypeData()
-    this.GetResponseData("",1, 10, this.order)
+    this.GetResponseData(1, 10, this.order,"")
     this.GetResponseDataLenght()
   }
   GetResponseDataLenght() {
@@ -38,9 +39,10 @@ export class CourseComponent implements OnInit {
   OpenSettins(){
     this.isOpenSettins=!this.isOpenSettins;
   }
-  GetResponseData(type_pk_id:string,page: number, limit: number, order: string) {
+  GetResponseData(page: number, limit: number, order: string,course_type:string) {
     this.isLoading = true
-    this.http.getAll(`${Domain.GetcourseData}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
+    this.is_active_course_type=course_type
+    this.http.getAll(`${Domain.GetcourseData}?course_type=${course_type}&page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       this.ResponseDataList = response;
       console.log(response)
       this.currentPage = page
@@ -52,7 +54,7 @@ export class CourseComponent implements OnInit {
   }
   ChangeSort(value: any) {
     this.order = value.target.value
-    this.GetResponseData("",1, 10, this.order);
+    this.GetResponseData(1, 10, this.order,"");
   }
   RemoveItem(id?: string) {
     this.ShowMoreItem=""
@@ -64,7 +66,7 @@ export class CourseComponent implements OnInit {
           .deleteWithQuery(`${Domain.DeletecourseData}/${id}`)
           .subscribe((response) => {
             console.log(response);
-              this.GetResponseData("",1, 10, this.order);
+              this.GetResponseData(1, 10, this.order,"");
               this.alertServices.success('آیتم با موفقیت حذف شد');
             //else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
           });

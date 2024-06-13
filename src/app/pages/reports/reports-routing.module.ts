@@ -61,7 +61,7 @@ const routes: Routes = [
 
 
 {path:'professorsreports',component:ProfessorsReportsComponent},
-{path:'professorsreport',component:ProfessorsreportStepComponent}
+{path:'professorsreport/:id',component:ProfessorsreportStepComponent}
 ];
 
 @NgModule({

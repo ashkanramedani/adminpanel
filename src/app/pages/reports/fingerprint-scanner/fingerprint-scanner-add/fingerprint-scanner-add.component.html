@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="relative">
-                  <select formControlName="EnNo"
+                  <select formControlName="user_fk_id"
                     class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
                     <option *ngFor="let item of EmployiesData" [value]="item.user_pk_id">{{item.name+" "+item.last_name}}
                     </option>

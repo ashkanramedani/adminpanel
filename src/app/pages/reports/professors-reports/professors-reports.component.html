@@ -1,98 +1,103 @@
 <div class="breadcrumb flex gap-x-2 justify-between items-center px-5 mb-3 bg-white rounded-lg font-semibold text-xs">
-    <nav>
-        <ol class="flex items-center gap-1 py-3">
-            <li>
-                <span class="pr-1">{{form_title}}</span>
-            </li>
-        </ol>
-    </nav>
+  <nav>
+    <ol class="flex items-center gap-1 py-3">
+      <li>
+        <span class="pr-1">{{form_title}}</span>
+      </li>
+    </ol>
+  </nav>
 </div>
 <main>
-    <div class="p-5 mb-3 bg-white rounded-lg">
-        <form [formGroup]="ReportForm">
-            <div class="flex items-center justify-between gap-x-3 gap-y-8 w-full py-4">
-              <div class="flex items-center gap-x-4">
-                <div class="relative w-48">
-                  <select formControlName="year"
-                    class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-                    <option value="1402">1402 </option>
-                    <option value="1403">1403 </option>
-                </select>
-                    <label
-                        class="absolute text-sm font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-                        انتخاب سال
-                    </label>
-                </div>
-                <div class="relative w-48">
-                  <select formControlName="month"
-                    class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-                    <option value="فروردین">فروردین </option>
-                    <option value="اردیبهشت">اردیبهشت </option>
-                    <option value="اردیبهشت">خرداد </option>
-                    <option value="اردیبهشت">تیر </option>
-                    <option value="اردیبهشت">مرداد </option>
-                    <option value="اردیبهشت">شهریور </option>
-                    <option value="اردیبهشت">مهر </option>
-                    <option value="اردیبهشت">آبان </option>
-                    <option value="اردیبهشت">آذر </option>
-                    <option value="اردیبهشت">دی </option>
-                    <option value="اردیبهشت">بهمن</option>
-                    <option value="اردیبهشت">اسفند </option>
-                </select>
-                    <label
-                        class="absolute text-sm font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-                        انتخاب ماه
-                    </label>
-                </div>
-              </div>
-
-                <button [disabled]="this.ReportForm.invalid || btnLoading" (click)="onSubmit()"
-            class="border border-cyan-600 px-4 py-2 rounded-md bg-cyan-600 text-white disabled:bg-cyan-400 disabled:border-cyan-400 ">
-            شروع فرآیند محاسبات حقوقی
-        </button>
-            </div>
-            <div class="main mt-4">
-              <div
-              class="header grid grid-cols-3 text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6" >
-              <span *ngFor="let item of table_header">{{item}}</span>
+  <div class="p-5 mb-3 bg-white rounded-lg">
+    <form [formGroup]="ReportForm">
+      <div class="flex items-center justify-between gap-x-3 gap-y-8 w-full py-4">
+        <div class="flex items-center gap-x-4">
+          <div class="relative w-48">
+            <select formControlName="year"
+              class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+              <option value="1402">1402 </option>
+              <option value="1403">1403 </option>
+            </select>
+            <label
+              class="absolute text-sm font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+              انتخاب سال
+            </label>
           </div>
-          <div class="body grid grid-cols-3 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
-              <div class="flex items-center justify-center gap-x-2">
-                <img src="/assets/images/user.svg" class="w-7" alt="">
-                <span>آرمین شهنازی</span>
-              </div>
-              <span>استاد</span>
-              <div class="operation flex items-center justify-center gap-x-4">
-                 <span class="text-red-600 border-l pl-3 border-gray-300" >
-                  محاسبه نشده
-                 </span>
-                 <button class="bg-cyan-600  text-white px-5 py-2 rounded-lg font-semibold">
-                  محاسبه
-                 </button>
-              </div>
+          <div class="relative w-48">
+            <select formControlName="month"
+              class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+              <option value="1">فروردین </option>
+              <option value="2">اردیبهشت </option>
+              <option value="3">خرداد </option>
+              <option value="4">تیر </option>
+              <option value="5">مرداد </option>
+              <option value="6">شهریور </option>
+              <option value="7">مهر </option>
+              <option value="8">آبان </option>
+              <option value="9">آذر </option>
+              <option value="10">دی </option>
+              <option value="11">بهمن</option>
+              <option value="12">اسفند </option>
+            </select>
+            <label
+              class="absolute text-sm font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+              انتخاب ماه
+            </label>
           </div>
-          <div class="body grid grid-cols-3 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
-            <div class="flex items-center justify-center gap-x-2">
-              <img src="/assets/images/user.svg" class="w-7" alt="">
-              <span>آرمین شهنازی</span>
-            </div>
-            <span>استاد</span>
-            <div class="operation flex items-center justify-center gap-x-4">
-               <span class="border-l pl-3 border-gray-300">
-                محاسبه شده
-               </span>
-               <button class="bg-cyan-600  text-white px-5 py-2 rounded-lg font-semibold">
-                بررسی
-               </button>
-            </div>
         </div>
-          <ul class="paging flex items-center justify-center mt-16 flex-wrap " dir="ltr">
+
+        <button [disabled]="this.ReportForm.invalid || btnLoading" (click)="onSubmit()"
+          class="border border-cyan-600 px-4 py-2 rounded-md bg-cyan-600 text-white disabled:bg-cyan-400 disabled:border-cyan-400 ">
+          شروع فرآیند محاسبات حقوقی
+        </button>
+      </div>
+      <div *ngIf="isShowenAlert && ResponseDataList.length<1" class="flex bg-blue-100 rounded-lg p-4 my-4 text-md text-blue-700 gap-x-2"
+        role="alert">
+        <svg class="w-6 h-6 inline " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <div>
+          <span class="font-medium">در بازه انتخابی شما، اطلاعاتی یافت نشد </span>
+        </div>
+      </div>
+      <div *ngIf="ResponseDataList.length>0" class="main mt-4">
+        <div
+          class="header grid grid-cols-3 text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6">
+          <span *ngFor="let item of table_header">{{item}}</span>
+        </div>
+        <div *ngFor="let item of ResponseDataList"
+          class="body grid grid-cols-3 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
+          <div class="flex items-center justify-center gap-x-2">
+            <img src="/assets/images/user.svg" class="w-7" alt="">
+            <span>{{ item.name + '&nbsp; &nbsp;'+ item.last_name}}</span>
+          </div>
+          <span>{{item.role}}</span>
+          <div class="operation flex items-center justify-center gap-x-4">
+            <span *ngIf="item.Does_Have_Salary_Record==true " class="border-l pl-3 border-gray-300">
+              محاسبه شده
+            </span>
+            <span *ngIf="item.Does_Have_Salary_Record==false" class="border-l pl-3 border-gray-300 text-red-500">
+              محاسبه نشده
+            </span>
+            <button *ngIf="item.Does_Have_Salary_Record==true" (click)="SalaryCheck(item.user_pk_id)"
+              class="bg-cyan-600  text-white px-5 py-2 rounded-lg font-semibold">
+              بررسی
+            </button>
+            <button *ngIf="item.Does_Have_Salary_Record==false" (click)="SalaryCalculation(item.user_pk_id)"
+              class="bg-cyan-600  text-white px-5 py-2 rounded-lg font-semibold">
+              محاسبه
+            </button>
+          </div>
+        </div>
+        <!-- <ul class="paging flex items-center justify-center mt-16 flex-wrap " dir="ltr">
             <li *ngFor="let item of  ResponseDataLenght ;let i = index">
               <a (click)="GetResponseData(i+1,10,order)" [ngClass]="{'!bg-gray-300 text-black': (currentPage==i+1) }"
                 class="cursor-pointer h-11 w-11  flex items-center justify-center border border-stroke  font-medium hover:border-primary hover:bg-gray-400 hover:text-primary">{{i+1}}</a>
             </li>
-          </ul>
-            </div>
-        </form>
-    </div>
+          </ul> -->
+      </div>
+    </form>
+  </div>
 </main>

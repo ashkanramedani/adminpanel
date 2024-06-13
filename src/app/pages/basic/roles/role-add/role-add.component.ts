@@ -27,7 +27,7 @@ export class RoleAddComponent implements OnInit {
   ReportForm: FormGroup;
   isOpenSearchCluster: boolean = false
   RolesData: IRoles[] = []
-  ClusterInputArray: string[] = []
+  ClusterInput: string=''
   id: any;
   EmployiesData: IUsers[] = []
   btnLoading: boolean = false
@@ -99,7 +99,7 @@ export class RoleAddComponent implements OnInit {
       description: this.ReportForm.controls.description.value,
       status: this.ReportForm.controls.status.value,
       name: this.ReportForm.controls.name.value,
-      cluster: this.ClusterInputArray
+      cluster: this.ClusterInput
     }
     if (this.id != null) {
       this.http.put(this.put_route, ReportFormValue, null).subscribe((response) => {
@@ -125,15 +125,15 @@ export class RoleAddComponent implements OnInit {
   }
   AddClusterInput(name: string) {
     if (name != '') {
-      this.ClusterInputArray.push(name);
+      this.ClusterInput=name;
     }
   }
-  RemoveRoleInput(index: number,title: string) {
-    this.ClusterInputArray.splice(index, 1);
+  RemoveRoleInput() {
+    this.ClusterInput=''
   }
   AddClusterInputManually() {
     if (this.ReportForm.controls.cluster.value.length > 0) {
-      this.ClusterInputArray.push(this.ReportForm.controls.cluster.value);
+      this.ClusterInput=this.ReportForm.controls.cluster.value;
       this.ReportForm.controls.cluster.setValue('');
     }
   }

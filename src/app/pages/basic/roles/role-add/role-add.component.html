@@ -71,12 +71,12 @@
                         </div>
                     </div>
                 </div>
-                <div  *ngIf="ClusterInputArray.length > 0"
+                <div  *ngIf="ClusterInput!= ''"
                     class=" grid lg:grid-cols-3 grid-cols-1 items-center gap-2 mt-7 p-2  overflow-y-auto  w-1/2">
-                    <div *ngFor="let item of ClusterInputArray; let i = index"
+                    <div
                         class="flex text-center justify-between text-black lg:font-semibold  p-2 border border-gray-200 bg-gray-100 rounded-md">
                         <button>
-                            <svg (click)="RemoveRoleInput(i,item)"
+                            <svg (click)="RemoveRoleInput()"
                                 class="w-9 pl-2 fill-body hover:fill-black dark:fill-bodydark dark:hover:fill-bodydark1 mx-auto cursor-pointer"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path fill-rule="evenodd"
@@ -84,7 +84,7 @@
                                 </path>
                             </svg>
                         </button>
-                        <span title="{{item}}" class="pt-1 whitespace-nowrap overflow-hidden text-ellipsis">{{ item }}</span>
+                        <span title="{{ClusterInput}}" class="pt-1 whitespace-nowrap overflow-hidden text-ellipsis">{{ ClusterInput }}</span>
                     </div>
                 </div>
             </div>

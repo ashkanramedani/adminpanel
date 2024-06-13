@@ -8,8 +8,6 @@ import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { IClassDetails } from 'src/app/interfaces/IClassDetails';
 import * as moment from 'jalali-moment';
-import { IRemoteRequest } from 'src/app/interfaces/IRemoteRequest';
-import { IRemoteRequestForm } from 'src/app/interfaces/IRemoteRequestForm';
 import { IFingerScannerForm } from 'src/app/interfaces/IFingerScannerForm';
 
 @Component({
@@ -51,7 +49,7 @@ export class FingerprintScannerAddComponent implements OnInit {
       {
         created_fk_by: new FormControl('', [Validators.required]),
         description: new FormControl(''),
-        EnNo: new FormControl('', [Validators.required]),
+        user_fk_id: new FormControl('', [Validators.required]),
         Name: new FormControl('', [Validators.required]),
         Date: new FormControl('', [Validators.required]),
         Enter: new FormControl('', [Validators.required]),
@@ -83,7 +81,7 @@ export class FingerprintScannerAddComponent implements OnInit {
   FillFormData() {
     this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
     this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
-    this.ReportForm.controls["EnNo"].patchValue(this.AuditForm.EnNo);
+    this.ReportForm.controls["user_fk_id"].patchValue(this.AuditForm.user_fk_id);
     this.ReportForm.controls["Name"].patchValue(this.AuditForm.Name);
     this.ReportForm.controls["Date"].patchValue( moment(this.AuditForm.Date, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
     this.ReportForm.controls["Enter"].patchValue( this.AuditForm.Enter);
@@ -99,7 +97,7 @@ export class FingerprintScannerAddComponent implements OnInit {
     {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
-      EnNo: this.ReportForm.controls.EnNo.value,
+      user_fk_id: this.ReportForm.controls.user_fk_id.value,
       Name: this.ReportForm.controls.Name.value,
       Date:moment.from(this.ReportForm.controls.Date.value, 'fa', 'YYYY-MM-DD').format('YYYY-MM-DD'),
       Enter:this.ReportForm.controls.Enter.value,

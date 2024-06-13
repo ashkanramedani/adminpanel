@@ -1,7 +1,7 @@
 export interface IFingerScannerForm {
     created_fk_by: string
     description: string,
-    EnNo: number,
+    user_fk_id: number,
     Name: string,
     Date: string
     Enter: string
