@@ -11,4 +11,5 @@ export interface IUsersForm{
     user_pk_id: string
     fingerprint_scanner_user_id: string,
     roles:IUserFormRoles[]
+    id_card_number:string
 }

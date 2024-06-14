@@ -128,6 +128,19 @@ export class ProfessorsreportStepComponent implements OnInit {
       this.alertServices.success("تغییر وضعیت انجام شد")
     })
   }
+  ChangeStatusLeaveRequest(id: string) {
+    if (id == null) {
+      this.alertServices.error("متاسفانه خطایی رخ داده است")
+      return
+    }
+    let ids: Array<string> = [];
+    ids.push(id)
+    let data={leave_request_id:ids}
+    this.http.put(Domain.PutLeaveRequestVerify, data, null).subscribe((response) => {
+      console.log(response)
+      this.alertServices.success("تغییر وضعیت انجام شد")
+    })
+  }
   ChangeStatusRemoteRequest(id: string) {
     if (id == null) {
       this.alertServices.error("متاسفانه خطایی رخ داده است")

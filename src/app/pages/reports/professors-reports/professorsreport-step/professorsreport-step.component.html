@@ -116,10 +116,6 @@
       </div>
     </div>
   </div>
-
-
-
-
   <div class="p-5 mb-3 bg-white rounded-lg">
     <div *ngIf="this.step==1"
       class="flex items-center w-1/3 justify-between border border-gray-200 p-2 rounded-md mb-4 font-medium">
@@ -134,7 +130,7 @@
       </div>
     </div>
     <table class="min-w-full leading-normal">
-      <thead>
+      <thead *ngIf="this.step<5">
         <tr>
           <th *ngFor="let item of table_header"
             class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-800 uppercase tracking-wider">
@@ -159,7 +155,7 @@
         </tr>
       </tbody>
       <tbody *ngIf="this.step==2">
-        <tr *ngFor="let item of response_fingerprint_report | filter: this.SearchValue; let i =index">
+        <tr *ngFor="let item of response_leave_request_report | filter: this.SearchValue; let i =index">
           <td class="border-b py-3 border-gray-200  text-center">
             <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
           </td>
@@ -171,6 +167,13 @@
           </td>
           <td class="border-b py-3 border-gray-200  text-center">
             <span>{{item.Exit}}</span>
+          </td>
+          <td class="border-b py-3 border-gray-200  text-center">
+            <select [(ngModel)]="item.status" (change)="ChangeStatusLeaveRequest(item.leave_request_pk_id)"
+              class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+              <option class="text-red-500" value="0"> تایید نشده</option>
+              <option class="text-green-600"  value="1"> تایید شده </option>
+            </select>
           </td>
         </tr>
       </tbody>
@@ -243,8 +246,8 @@
         </div>
         <div class="flex justify-center flex-col gap-y-3 w-full p-4">
           <div class="flex justify-between"><span> مرخصی</span>
-            <span>{{response_salary_receipt_report.medical_leave}}</span></div>
-          <div class="flex justify-between"><span> تاخیر</span> <span>---</span></div>
+            <span>{{response_salary_receipt_report.vacation_leave}}</span></div>
+          <div class="flex justify-between"><span> تاخیر</span> <span>{{response_salary_receipt_report.Undertime_earning}}</span></div>
           <div class="flex justify-between"><span> بیمه</span> <span>----</span></div>
           <div class="flex justify-between"><span> مالیات</span> <span>----</span></div>
         </div>

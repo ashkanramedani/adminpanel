@@ -47,6 +47,7 @@ export class StudentAddComponent implements OnInit {
         mobile_number: new FormControl('', [Validators.required]),
         address: new FormControl('', [Validators.required]),
         level: new FormControl('', [Validators.required]),
+        id_card_number:new FormControl('', [Validators.required]),
       }
     )
     if (this.id != null) {
@@ -74,6 +75,7 @@ export class StudentAddComponent implements OnInit {
     this.ReportForm.controls["mobile_number"].patchValue(this.AuditForm.mobile_number);
     this.ReportForm.controls["address"].patchValue(this.AuditForm.address);
     this.ReportForm.controls["level"].patchValue(this.AuditForm.level);
+    this.ReportForm.controls["id_card_number"].patchValue(this.AuditForm.id_card_number);
     this.ReportForm.controls["user_pk_id"].patchValue(this.id);
   }
   onSubmit() {
@@ -91,9 +93,10 @@ export class StudentAddComponent implements OnInit {
       last_name: this.ReportForm.controls.last_name.value,
       day_of_birth: this.ReportForm.controls.day_of_birth.value,
       email: this.ReportForm.controls.email.value,
-      mobile_number: this.ReportForm.controls.mobile_number.value, 
+      mobile_number: this.ReportForm.controls.mobile_number.value,
       address: this.ReportForm.controls.address.value,
       level: this.ReportForm.controls.level.value,
+      id_card_number: this.ReportForm.controls.id_card_number.value,
     }
     if (this.id != null) {
       this.http.put(this.put_route, ReportFormValue, null).subscribe((response) => {

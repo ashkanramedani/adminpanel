@@ -49,6 +49,7 @@ export const Domain =
     "DeleteLeaveRequest": `${environment.apiUrl}/api/v1/form/leave_request/delete`,
     "CreateLeaveRequest":`${environment.apiUrl}/api/v1/form/leave_request/add`,
     "PutLeaveRequest" :`${environment.apiUrl}/api/v1/form/leave_request/update`,
+    "PutLeaveRequestVerify" :`${environment.apiUrl}/api/v1/form/leave_request/verify`,
     "GetLeaveRequestReport": `${environment.apiUrl}/api/v1/form/leave_request/report`,
 
 

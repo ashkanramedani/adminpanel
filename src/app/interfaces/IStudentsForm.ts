@@ -7,4 +7,5 @@ export interface IStudentsForm{
   address: string,
   level: string
   user_pk_id:string
+  id_card_number:string
 }

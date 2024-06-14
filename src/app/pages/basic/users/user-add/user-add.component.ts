@@ -50,7 +50,8 @@ export class UserAddComponent implements OnInit {
         mobile_number: new FormControl('', [Validators.required]),
         address: new FormControl(''),
         fingerprint_scanner_user_id: new FormControl('', [Validators.required]),
-        roles: new FormControl('',)
+        roles: new FormControl('',),
+        id_card_number:new FormControl('', [Validators.required]),
       }
     )
     if (this.id != null) {
@@ -73,6 +74,7 @@ export class UserAddComponent implements OnInit {
   FillFormData() {
     this.ReportForm.controls["name"].patchValue(this.EditForm.name);
     this.ReportForm.controls["last_name"].patchValue(this.EditForm.last_name);
+    this.ReportForm.controls["id_card_number"].patchValue(this.EditForm.id_card_number);
     if(this.EditForm.day_of_birth!=null){
     this.ReportForm.controls["day_of_birth"].patchValue(moment(this.EditForm.day_of_birth, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
     }
@@ -80,12 +82,12 @@ export class UserAddComponent implements OnInit {
     this.ReportForm.controls["mobile_number"].patchValue(this.EditForm.mobile_number);
     this.ReportForm.controls["address"].patchValue(this.EditForm.address)
     this.ReportForm.controls["fingerprint_scanner_user_id"].patchValue(this.EditForm.fingerprint_scanner_user_id)
-    this.EditForm.roles.forEach((item, index) => {
-      this.RolesInputTitleArray.push( {role_id:item.role_pk_id,role_title:item.name})
-    })
-    this.EditForm.roles.forEach((item, index) => {
-      this.RolesInputArray.push({old_id:'',  new_id:item.role_pk_id})
-    })
+    // this.EditForm.roles.forEach((item, index) => {
+    //   this.RolesInputTitleArray.push( {role_id:item.role_pk_id,role_title:item.name})
+    // })
+    // this.EditForm.roles.forEach((item, index) => {
+    //   this.RolesInputArray.push({old_id:'',  new_id:item.role_pk_id})
+    // })
   }
   onSubmit() {
     if (this.ReportForm.invalid) {
@@ -104,6 +106,7 @@ export class UserAddComponent implements OnInit {
       address: this.ReportForm.controls.address.value,
       fingerprint_scanner_user_id: this.ReportForm.controls.fingerprint_scanner_user_id.value,
        roles: this.RolesInputArray.length <= 0 ? new Array({old_id:'',  new_id:''}) : this.RolesInputArray,
+       id_card_number: this.ReportForm.controls.id_card_number.value,
       //roles:this.RolesInputArray,
     }
     if (this.id != null) {
