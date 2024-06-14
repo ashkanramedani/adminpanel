@@ -1,4 +1,4 @@
-<div class="breadcrumb flex gap-x-2 justify-between items-center px-5 mb-3 rounded-lg font-semibold text-xs">
+<div class="noprint breadcrumb flex gap-x-2 justify-between items-center px-5 mb-3 rounded-lg font-semibold text-xs">
   <nav>
     <ol class="flex items-center gap-1 py-3">
       <li>
@@ -10,7 +10,7 @@
 <main>
   <!-- component -->
   <div
-    class="relative max-w-md mx-auto md:max-w-2xl  min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16">
+    class="noprint relative max-w-md mx-auto md:max-w-2xl  min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16">
     <div class="px-6">
       <div class="flex flex-wrap justify-center">
         <div class="w-full flex justify-center">
@@ -21,9 +21,10 @@
         </div>
       </div>
       <div class="text-center mt-20">
-        <h3 class="text-2xl text-slate-700 font-bold leading-normal mb-1">صابر جعفری </h3>
+        <h3 class="text-2xl text-slate-700 font-bold leading-normal mb-1">{{UserInfo.name + "&nbsp;"
+          +UserInfo.last_name}} </h3>
         <div class="text-xs mt-0 mb-2 text-slate-600 font-bold uppercase">
-          استاد/ سوپروایزور/ ادیتور
+          پرسنل
         </div>
       </div>
       <div class="mt-6 py-6 border-t border-slate-200 text-center">
@@ -34,20 +35,14 @@
           <span> ایمیل</span>
         </div>
         <div class="header grid grid-cols-3 text-center text-gray-900 font-medium mt-3">
-          <span>09156154745</span>
+          <span>{{UserInfo.mobile_number}}</span>
           <span>3157456565</span>
-          <span>info&#64;mail.com</span>
+          <span>{{UserInfo.email}}</span>
         </div>
       </div>
     </div>
   </div>
-
-
-
-
-
-
-  <div class="p-5">
+  <div class="p-5 noprint">
     <div class="mx-4 p-4">
       <div class="flex items-center">
         <div class="flex items-center text-gray-500 gap-x-2" [ngClass]="{'!text-teal-600': (this.step>=1)}">
@@ -126,6 +121,18 @@
 
 
   <div class="p-5 mb-3 bg-white rounded-lg">
+    <div *ngIf="this.step==1"
+      class="flex items-center w-1/3 justify-between border border-gray-200 p-2 rounded-md mb-4 font-medium">
+      <div class="flex items-center gap-x-2">
+        <span class="border-l pl-2 border-gray-200">مدت کارکرد</span>
+        <span>23:45</span>
+      </div>
+      <div class="flex items-center gap-x-2">
+        <span class="text-red-400">تردد ناقص</span>
+        <span
+          class="bg-red-400 flex items-center justify-center font-semibold text-white p-1 rounded-md w-8 h-8">4</span>
+      </div>
+    </div>
     <table class="min-w-full leading-normal">
       <thead>
         <tr>
@@ -179,13 +186,18 @@
             <span>{{item.end_date |date: "HH:mm - YYYY/MM/dd"}}</span>
           </td>
           <td class="border-b py-3 border-gray-200  text-center">
-            <span *ngIf="item.status==0" class="inline-flex rounded-full bg-[#777777] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید نشده </span>
-            <span *ngIf="item.status==1" class="inline-flex rounded-full bg-[#199173] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید شده </span>
-
+            <span>{{item.destination}}</span>
+          </td>
+          <td class="border-b py-3 border-gray-200  text-center">
+            <select [(ngModel)]="item.status" (change)="ChangeStatusBusinessTrip(item.business_trip_pk_id)"
+              class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+              <option class="text-red-500" value="0"> تایید نشده</option>
+              <option class="text-green-600"  value="1"> تایید شده </option>
+            </select>
           </td>
         </tr>
       </tbody>
-        <tbody *ngIf="this.step==4">
+      <tbody *ngIf="this.step==4">
         <tr *ngFor="let item of response_remote_request_report | filter: this.SearchValue; let i =index">
           <td class="border-b py-3 border-gray-200  text-center">
             <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
@@ -197,20 +209,22 @@
             <span>{{item.end_date |date: "HH:mm - YYYY/MM/dd"}}</span>
           </td>
           <td class="border-b py-3 border-gray-200  text-center">
-            <span *ngIf="item.status==0" class="inline-flex rounded-full bg-[#777777] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید نشده </span>
-            <span *ngIf="item.status==1" class="inline-flex rounded-full bg-[#199173] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید شده </span>
-
+            <select [(ngModel)]="item.status" (change)="ChangeStatusRemoteRequest(item.remote_request_pk_id)"
+              class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+              <option class="text-red-500" value="0"> تایید نشده</option>
+              <option class="text-green-600"  value="1"> تایید شده </option>
+            </select>
           </td>
         </tr>
       </tbody>
     </table>
     <div *ngIf="this.step==5" class="flex flex-col">
       <div class="flex items-center justify-between border border-gray-300 bg-gray-100 p-3">
-        <div class="flex flex-col gap-y-3 items-center"><b>نام:</b><span>تست</span></div>
-        <div  class="flex flex-col gap-y-3 items-center"><b>نام خانوادگی:</b><span>تست</span></div>
-        <div  class="flex flex-col gap-y-3 items-center"><b>کدملی:</b><span>تست</span></div>
-        <div  class="flex flex-col gap-y-3 items-center"><b>سمت:</b><span>تست</span></div>
-        <div  class="flex flex-col gap-y-3 items-center"><b>تاریخ صدور فیش:</b><span>تست</span></div>
+        <div class="flex flex-col gap-y-3 items-center"><b>نام:</b><span>{{UserInfo.name}}</span></div>
+        <div class="flex flex-col gap-y-3 items-center"><b>نام خانوادگی:</b><span>{{UserInfo.last_name}}</span></div>
+        <div class="flex flex-col gap-y-3 items-center"><b>کدملی:</b><span>-----</span></div>
+        <div class="flex flex-col gap-y-3 items-center"><b>سمت:</b><span>پرسنل</span></div>
+        <div class="flex flex-col gap-y-3 items-center"><b>تاریخ صدور فیش:</b><span>-----</span></div>
       </div>
       <div class="flex justify-between border border-t-0 border-gray-300 bg-gray-100">
         <div class="flex justify-center items-center w-full border-l border-gray-300 p-3"><b>سایر</b></div>
@@ -218,27 +232,31 @@
       </div>
       <div class="flex justify-between border border-gray-300 border-y-0">
         <div class="flex justify-center flex-col gap-y-3 w-full border-l border-gray-300 p-4">
-          <div class="flex justify-between"><span>اضافه کاری</span> <span>4444</span></div>
-          <div class="flex justify-between"><span>دور کاری</span> <span></span></div>
-          <div class="flex justify-between"><span> ماموریت</span> <span></span></div>
-          <div class="flex justify-between"><span> میزان کارکرد کل</span> <span></span></div>
+          <div class="flex justify-between"><span>اضافه کاری</span>
+            <span>{{response_salary_receipt_report.overtime}}</span></div>
+          <div class="flex justify-between"><span>دور کاری</span> <span>{{response_salary_receipt_report.remote}}</span>
+          </div>
+          <div class="flex justify-between"><span> ماموریت</span>
+            <span>{{response_salary_receipt_report.business_trip}}</span></div>
+          <div class="flex justify-between"><span> میزان کارکرد کل</span>
+            <span>{{response_salary_receipt_report.total_earning}}</span></div>
         </div>
         <div class="flex justify-center flex-col gap-y-3 w-full p-4">
-          <div class="flex justify-between"><span> مرخصی</span> <span></span></div>
-          <div class="flex justify-between"><span> تاخیر</span> <span></span></div>
-          <div class="flex justify-between"><span> بیمه</span> <span></span></div>
-          <div class="flex justify-between"><span>   مالیات</span> <span></span></div>
+          <div class="flex justify-between"><span> مرخصی</span>
+            <span>{{response_salary_receipt_report.medical_leave}}</span></div>
+          <div class="flex justify-between"><span> تاخیر</span> <span>---</span></div>
+          <div class="flex justify-between"><span> بیمه</span> <span>----</span></div>
+          <div class="flex justify-between"><span> مالیات</span> <span>----</span></div>
         </div>
       </div>
-      <div class="flex items-center justify-between border border-gray-300 bg-gray-100 p-3">
-        <div class="flex flex-col gap-y-3 items-center"><b> جمع کسورات:</b><span>تست</span></div>
-        <div  class="flex flex-col gap-y-3 items-center"><b>مبلغ ناخالص دریافتی:</b><span>تست</span></div>
-        <div  class="flex flex-col gap-y-3 items-center"><b> مبلغ قابل پرداخت:</b><span>تست</span></div>
+      <div class="flex items-center justify-between border border-gray-300 bg-gray-100 py-3 px-6">
+        <div class="flex flex-col gap-y-3 items-center"><b> جمع کسورات:</b><span>----</span></div>
+        <div class="flex flex-col gap-y-3 items-center"><b>مبلغ ناخالص دریافتی:</b><span>--------</span></div>
+        <div class="flex flex-col gap-y-3 items-center"><b> مبلغ قابل پرداخت:</b><span>---</span></div>
       </div>
     </div>
-
   </div>
-  <div class="flex gap-x-4 mt-6">
+  <div class="noprint flex gap-x-4 mt-6">
     <a *ngIf="this.step>1" [routerLink]="['/reports/professorsreport',this.id]"
       [queryParams]="{step: (this.step)-1 ,year:this.year,month:this.month}"
       class="border border-gray-400 px-8 font-semibold py-3 rounded-md bg-gray-300 text-gray-500 text-base gap-x-2 flex items-center"
@@ -252,7 +270,7 @@
       <span>تایید و ادامه</span>
       <img src="/assets/images/icon/left-arrow.svg" class="w-8" alt="">
     </a>
-    <button *ngIf="this.step==5"
+    <button (click)="PrintPage()" *ngIf="this.step==5"
       class="border border-cyan-600 px-8 font-semibold py-3 rounded-md bg-cyan-600 hover:bg-cyan-700 text-white text-base gap-x-2 flex items-center">
       <span>صدور فیش حقوقی</span>
     </button>

@@ -8,6 +8,7 @@ import { ILibrary } from 'src/app/interfaces/ILibrary';
 import { IRemoteRequest } from 'src/app/interfaces/IRemoteRequest';
 import { IRemoteRequestReport } from 'src/app/interfaces/IRemoteRequestReport';
 import { ISalaryReceiptReport } from 'src/app/interfaces/ISalaryReceiptReport';
+import { IuserEditForm } from 'src/app/interfaces/IuserEditForm';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -26,12 +27,13 @@ export class ProfessorsreportStepComponent implements OnInit {
   add_url: string = ""
   edit_url: string = ""
   table_header: string[] = []
+  UserInfo: IuserEditForm
 
   response_fingerprint_report: IFingerScannerReport[] = []
   response_leave_request_report: ILeaveRequestReport[] = []
   response_business_trip_report: IBusinessTripReport[] = []
   response_remote_request_report: IRemoteRequestReport[] = []
-  response_salary_receipt_report: ISalaryReceiptReport[] = []
+  response_salary_receipt_report: ISalaryReceiptReport
   //#endregion
   ResponseDataLenght: number[];
   totalCount: number = 0
@@ -44,19 +46,28 @@ export class ProfessorsreportStepComponent implements OnInit {
   limit: number = 10
   currentPage: number = 1
   id: any
-  year:number
-  month:number
+  year: number
+  month: number
   constructor(private http: HttpService, private alertServices: AlertifyService, private activateRoute: ActivatedRoute, private router: Router) { }
   ngOnInit(): void {
     this.id = this.activateRoute.snapshot?.paramMap.get('id');
+    this.GetUserInfo()
     this.activateRoute.queryParams.subscribe((res) => {
-      console.log("res:",res)
-      this.step =Number(res.step);
+      console.log("res:", res)
+      this.step = Number(res.step);
       this.year = res.year;
       this.month = res.month;
       this.ChangePage();
     });
-
+  }
+  GetUserInfo() {
+    this.http.get(Domain.GetUsers, this.id).subscribe((response) => {
+      this.UserInfo = response
+      console.log("user:", response)
+    })
+  }
+  PrintPage() {
+    window.print()
   }
   ChangePage() {
     //ورود و خروج
@@ -78,7 +89,7 @@ export class ProfessorsreportStepComponent implements OnInit {
     }
     //ماموریت
     else if (this.step == 3) {
-      this.table_header = ["ردیف", " تاریخ شروع ماموریت", " تاریخ پایان ماموریت   ", " وضعیت"]
+      this.table_header = ["ردیف", " تاریخ شروع ماموریت", " تاریخ پایان ماموریت   ", "محل ماموریت", " وضعیت"]
       this.http.getAll(`${Domain.GetBusinessReport}/${this.id}?year=${this.year}&month=${this.month}`).subscribe((response) => {
         this.response_business_trip_report = response
         console.log("business trip response: ", response)
@@ -94,17 +105,42 @@ export class ProfessorsreportStepComponent implements OnInit {
     }
     //فیش حقوقی
     else if (this.step == 5) {
-      // this.http.getAll(`${Domain.GetSalaryEmployee}/${this.id}?year=${this.year}&month=${this.month}`).subscribe((response) => {
-      //   this.response_salary_receipt_report = response
-      //   console.log("salary receipt report response: ", response)
-      // })
+      this.http.getAll(`${Domain.GetSalaryEmployee}/${this.id}?year=${this.year}&month=${this.month}`).subscribe((response) => {
+        this.response_salary_receipt_report = response
+        console.log("salary receipt report response: ", response)
+      })
     }
 
     else {
       this.router.navigate(['/notFound'])
     }
   }
-
+  ChangeStatusBusinessTrip(id: string) {
+    if (id == null) {
+      this.alertServices.error("متاسفانه خطایی رخ داده است")
+      return
+    }
+    let ids: Array<string> = [];
+    ids.push(id)
+    let data={business_trip_id:ids}
+    this.http.put(Domain.PutBusinessTripVerify, data, null).subscribe((response) => {
+      console.log(response)
+      this.alertServices.success("تغییر وضعیت انجام شد")
+    })
+  }
+  ChangeStatusRemoteRequest(id: string) {
+    if (id == null) {
+      this.alertServices.error("متاسفانه خطایی رخ داده است")
+      return
+    }
+    let ids: Array<string> = [];
+    ids.push(id)
+    let data={remote_request_id:ids}
+    this.http.put(Domain.PutRemoteRequestVerify, data, null).subscribe((response) => {
+      console.log(response)
+      this.alertServices.success("تغییر وضعیت انجام شد")
+    })
+  }
   GetResponseData(page: number, limit: number, order: string) {
 
   }

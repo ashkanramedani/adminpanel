@@ -55,6 +55,7 @@ export const Domain =
     "GetBusinessTrip": `${environment.apiUrl}/api/v1/form/business_trip/search`,
     "DeleteBusinessTrip": `${environment.apiUrl}/api/v1/form/business_trip/delete`,
     "PutBusinessTrip":`${environment.apiUrl}/api/v1/form/business_trip/update`,
+    "PutBusinessTripVerify":`${environment.apiUrl}/api/v1/form/business_trip/verify`,
     "CreateBusinessTrip":`${environment.apiUrl}/api/v1/form/business_trip/add`,
     "GetBusinessReport": `${environment.apiUrl}/api/v1/form/business_trip/report`,
 
@@ -63,6 +64,7 @@ export const Domain =
     "GetRemoteRequest": `${environment.apiUrl}/api/v1/form/remote_request/search`,
     "CreateRemoteRequest": `${environment.apiUrl}/api/v1/form/remote_request/add`,
     "PutRemoteRequest":`${environment.apiUrl}/api/v1/form/remote_request/update`,
+    "PutRemoteRequestVerify":`${environment.apiUrl}/api/v1/form/remote_request/verify`,
     "DeleteRemoteRequest": `${environment.apiUrl}/api/v1/form/remote_request/delete`,
     "GetRemoteRequestReport": `${environment.apiUrl}/api/v1/form/remote_request/report`,
 

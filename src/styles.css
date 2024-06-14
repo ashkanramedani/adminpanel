@@ -122,3 +122,13 @@
   direction: rtl  !important;
   text-align: right !important;
 }
+
+@media print {
+  body{
+    background-color: #fff !important;
+  }
+  .noprint {
+     visibility: hidden !important;
+     display: none !important;
+  }
+}
