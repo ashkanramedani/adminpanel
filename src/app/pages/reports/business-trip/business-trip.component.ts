@@ -88,6 +88,10 @@ export class BusinessTripComponent implements OnInit {
       .get(this.get_all_route, id)
       .subscribe((response) => {
         this.SingleData = response;
+        this.http.get(Domain.GetUsers, this.SingleData.created_fk_by).subscribe((emp) => {
+          console.log("emp: " + emp)
+          this.SingleData.created_fk_by = emp.name + " " + emp.last_name
+        })
         this.IsShowenModal = true
       });
   }

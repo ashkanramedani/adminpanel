@@ -81,7 +81,8 @@ export class RoleAddComponent implements OnInit {
     this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
     this.ReportForm.controls["status"].patchValue(this.AuditForm.status);
     this.ReportForm.controls["name"].patchValue(this.AuditForm.name);
-    this.ReportForm.controls["cluster"].patchValue(this.AuditForm.cluster);
+    this.ClusterInput=this.AuditForm.cluster
+    //this.ReportForm.controls["cluster"].patchValue(this.AuditForm.cluster);
     this.ReportForm.controls["role_pk_id"].patchValue(this.id);
   }
   onSubmit() {

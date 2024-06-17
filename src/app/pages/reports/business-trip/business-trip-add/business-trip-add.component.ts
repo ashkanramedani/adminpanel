@@ -84,8 +84,8 @@ export class BusinessTripAddComponent implements OnInit {
     this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
     this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
     this.ReportForm.controls["user_fk_id"].patchValue(this.AuditForm.user_fk_id);
-    this.ReportForm.controls["start_date"].patchValue( moment(this.AuditForm.start_date, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
-    this.ReportForm.controls["end_date"].patchValue( moment(this.AuditForm.end_date, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
+    this.ReportForm.controls["start_date"].patchValue( moment(this.AuditForm.start_date, 'YYYY/MM/DD HH:mm:ss').locale('fa').format('YYYY/MM/DD HH:mm:ss'));
+    this.ReportForm.controls["end_date"].patchValue( moment(this.AuditForm.end_date, 'YYYY/MM/DD HH:mm:ss').locale('fa').format('YYYY/MM/DD HH:mm:ss'));
     this.ReportForm.controls["destination"].patchValue(this.AuditForm.destination)
     this.ReportForm.controls["status"].patchValue(this.AuditForm.status)
   }

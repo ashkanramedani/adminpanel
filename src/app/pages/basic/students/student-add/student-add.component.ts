@@ -8,6 +8,7 @@ import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { IRolesForm } from 'src/app/interfaces/IRolesForm';
 import { IStudentsForm } from 'src/app/interfaces/IStudentsForm';
+import * as moment from 'jalali-moment';
 
 @Component({
   selector: 'app-student-add',
@@ -69,7 +70,9 @@ export class StudentAddComponent implements OnInit {
   FillFormData() {
     this.ReportForm.controls["name"].patchValue(this.AuditForm.name);
     this.ReportForm.controls["last_name"].patchValue(this.AuditForm.last_name);
-    this.ReportForm.controls["day_of_birth"].patchValue(this.AuditForm.day_of_birth);
+    if(this.AuditForm.day_of_birth!=null){
+      this.ReportForm.controls["day_of_birth"].patchValue(moment(this.AuditForm.day_of_birth, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
+      }
     this.ReportForm.controls["email"].patchValue(this.AuditForm.email);
     this.ReportForm.controls["mobile_number"].patchValue(this.AuditForm.mobile_number);
     this.ReportForm.controls["mobile_number"].patchValue(this.AuditForm.mobile_number);
@@ -91,7 +94,7 @@ export class StudentAddComponent implements OnInit {
       user_pk_id:this.id,
       name: this.ReportForm.controls.name.value,
       last_name: this.ReportForm.controls.last_name.value,
-      day_of_birth: this.ReportForm.controls.day_of_birth.value,
+      day_of_birth: moment.from(this.ReportForm.controls.day_of_birth.value, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD'),
       email: this.ReportForm.controls.email.value,
       mobile_number: this.ReportForm.controls.mobile_number.value,
       address: this.ReportForm.controls.address.value,

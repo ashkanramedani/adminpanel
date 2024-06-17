@@ -13,7 +13,7 @@ export class FingerprintScannerComponent implements OnInit {
   ResponseDataList: IFingerScanner[] = []
   SingleData: IFingerScanner
   form_title = "گزارشات /  وورد و خروج پرسنل "
-  table_header: string[] = ["ردیف", "  تاریخ" ," ورود"," خروج","نام","وضعیت","عملیات"]
+  table_header: string[] = ["ردیف", "  تاریخ" ," ورود"," خروج","کاربر","وضعیت","عملیات"]
   field_count:string="fingerprint_scanner"
   get_all_route:string=Domain.GetFingerScanner
   delete_route:string=Domain.DeleteFingerScanner

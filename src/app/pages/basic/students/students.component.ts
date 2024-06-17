@@ -67,7 +67,7 @@ export class StudentsComponent implements OnInit {
           .deleteWithQuery(`${this.delete_route}/${id}`)
           .subscribe((response) => {
             console.log(response);
-            if (response == "Deleted") {
+            if (response == "Student Deleted") {
               this.GetResponseData(1, 10, this.order);
               this.alertServices.success('آیتم با موفقیت حذف شد');
             }
