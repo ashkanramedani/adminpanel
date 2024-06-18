@@ -43,7 +43,7 @@ export class TardeyRequestAddComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.GetSubCourseData()
+    //this.GetSubCourseData()
     this.id = this.route.snapshot?.paramMap.get('id');
     this.GetClassData()
     this.GetEmployeeData()
@@ -133,12 +133,14 @@ export class TardeyRequestAddComponent implements OnInit {
       console.log(response)
     })
   }
-  GetSubCourseData() {
-    this.http.getAll(Domain.GetSubCourseData).subscribe((response) => {
+  GetSubCourseData(id:string) {
+    this.http.get(Domain.GetSubCourseData,id).subscribe((response) => {
       this.sub_course_data = response;
       console.log(response)
     })
   }
-
+  ChangeCourse(value:any){
+    alert(value.target.value)
+  }
 }
 

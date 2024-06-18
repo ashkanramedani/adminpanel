@@ -92,6 +92,10 @@ export class BusinessTripComponent implements OnInit {
           console.log("emp: " + emp)
           this.SingleData.created_fk_by = emp.name + " " + emp.last_name
         })
+        this.http.get(Domain.GetUsers, this.SingleData.user_fk_id).subscribe((emp) => {
+          console.log("emp: " + emp)
+          this.SingleData.user_fk_id = emp.name + " " + emp.last_name
+        })
         this.IsShowenModal = true
       });
   }

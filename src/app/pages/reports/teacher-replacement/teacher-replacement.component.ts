@@ -16,7 +16,7 @@ export class TeacherReplacementComponent implements OnInit {
   SingleData: ISalaryPolicy
   form_title = "گزارشات /  استاد جایگزین"
   table_header: string[] = ["ردیف", "سازنده", " استاد اصلی ", "استاد جایگزین","کلاس ","وضعیت","عملیات"]
-  field_count:string="Teacher Replacement"
+  field_count:string="Sub Request"
   get_all_route:string=Domain.GetTeacherReplacement
   delete_route:string=Domain.DeleteTeacherReplacement
   add_url:string="/reports/teacher_replacement/add"
@@ -40,10 +40,10 @@ export class TeacherReplacementComponent implements OnInit {
   }
 
   GetResponseDataLenght() {
-    this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
-      this.totalCount = response
-      this.ResponseDataLenght = new Array(Math.ceil(response / 10))
-    })
+    // this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
+    //   this.totalCount = response
+    //   this.ResponseDataLenght = new Array(Math.ceil(response / 10))
+    // })
   }
   GetResponseData(page: number, limit: number, order: string) {
     this.isLoading = true;

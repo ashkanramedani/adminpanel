@@ -6,10 +6,9 @@ import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
-import { ITardeyRequestForm } from 'src/app/interfaces/ITardeyRequestForm';
 import { IClassDetails } from 'src/app/interfaces/IClassDetails';
-import { ITeacherReplacement } from 'src/app/interfaces/TeacherReplacement';
 import { ITeacherReplacementForm } from 'src/app/interfaces/ITeacherReplacementForm';
+import { ISession } from 'src/app/interfaces/ISession';
 
 @Component({
   selector: 'app-teacher-replacement-add',
@@ -33,7 +32,7 @@ export class TeacherReplacementAddComponent implements OnInit {
   ReportForm: FormGroup;
   isOpenSearchRole: boolean = false
   RolesData: IRoles[] = []
-  ClassData: IClassDetails[] = []
+  SesssionData: ISession[] = []
   id: any;
   EmployiesData: IUsers[] = []
   btnLoading: boolean = false
@@ -51,9 +50,9 @@ export class TeacherReplacementAddComponent implements OnInit {
         created_fk_by: new FormControl('', [Validators.required]),
         description: new FormControl(''),
         status:new FormControl(Boolean,[Validators.required]),
-        teacher_fk_id: new FormControl('', [Validators.required]),
-        replacement_teacher_fk_id:  new FormControl('', [Validators.required]),
-        course_fk_id:new FormControl('', [Validators.required]),
+        main_teacher_fk_id: new FormControl('', [Validators.required]),
+        sub_teacher_fk_id:  new FormControl('', [Validators.required]),
+        session_fk_id:new FormControl('', [Validators.required]),
       }
     )
     if (this.id != null) {
@@ -82,9 +81,9 @@ export class TeacherReplacementAddComponent implements OnInit {
     this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
     this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
     this.ReportForm.controls["status"].patchValue(this.AuditForm.status);
-    this.ReportForm.controls["teacher_fk_id"].patchValue(this.AuditForm.teacher_fk_id);
-    this.ReportForm.controls["replacement_teacher_fk_id"].patchValue(this.AuditForm.replacement_teacher_fk_id);
-    this.ReportForm.controls["course_fk_id"].patchValue(this.AuditForm.course_fk_id)
+    this.ReportForm.controls["main_teacher_fk_id"].patchValue(this.AuditForm.main_teacher_fk_id);
+    this.ReportForm.controls["sub_teacher_fk_id"].patchValue(this.AuditForm.sub_teacher_fk_id);
+    this.ReportForm.controls["session_fk_id"].patchValue(this.AuditForm.session_fk_id)
   }
   onSubmit() {
     if (this.ReportForm.invalid) {
@@ -97,10 +96,10 @@ export class TeacherReplacementAddComponent implements OnInit {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
       status:this.ReportForm.controls.status.value,
-      teacher_fk_id:this.ReportForm.controls.teacher_fk_id.value,
-      replacement_teacher_fk_id: this.ReportForm.controls.replacement_teacher_fk_id.value,
-      course_fk_id:this.ReportForm.controls.course_fk_id.value,
-      teacher_replacement_pk_id:this.id
+      main_teacher_fk_id:this.ReportForm.controls.main_teacher_fk_id.value,
+      sub_teacher_fk_id: this.ReportForm.controls.sub_teacher_fk_id.value,
+      session_fk_id:this.ReportForm.controls.session_fk_id.value,
+      sub_request_pk_id:this.id
 
     }
     if (this.id != null) {
@@ -128,8 +127,8 @@ export class TeacherReplacementAddComponent implements OnInit {
     })
   }
   GetClassData() {
-    this.http.getAll(Domain.GetAuditClass).subscribe((response) => {
-      this.ClassData = response;
+    this.http.getAll(Domain.GetSession).subscribe((response) => {
+      this.SesssionData = response;
       console.log(response)
     })
   }
