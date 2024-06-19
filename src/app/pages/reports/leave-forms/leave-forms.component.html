@@ -19,12 +19,13 @@
 <main *ngIf="!isLoading">
     <div class="p-5 my-3 bg-white rounded-lg">
         <div
-            class="header grid grid-cols-6 text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6" >
+            class="header grid grid-cols-7 text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6" >
             <span *ngFor="let item of table_header">{{item}}</span>
         </div>
         <div *ngFor="let item of ResponseDataList | filter: this.SearchValue; let i =index"
-            class="body grid grid-cols-6 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
+            class="body grid grid-cols-7 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
             <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
+            <span>{{item.date|HijriDate}}</span>
             <span>{{ item.start_date}}</span>
             <span>{{item.end_date }}</span>
             <span>{{item.employee.name + '&nbsp; &nbsp;' +item.employee.last_name  }}</span>
@@ -65,13 +66,13 @@
         <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
           ثبت کننده
         </label>
-        <span>{{SingleData.created.name+'&nbsp; &nbsp;'+SingleData.created.last_name}}</span>
+        <span>{{SingleData.created_fk_by}}</span>
       </div>
       <div>
         <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
           نام پرسنل
         </label>
-        <span>{{SingleData.employee.name+'&nbsp; &nbsp;'+SingleData.employee.last_name}}</span>
+        <span>{{SingleData.user_fk_id}}</span>
       </div>
 
       <div>

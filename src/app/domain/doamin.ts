@@ -99,6 +99,7 @@ export const Domain =
 
 
     "GetSubCourseData" :`${environment.apiUrl}/api/v1/form/sub_course/search`,
+    "GetSubCourseByCourseId" :`${environment.apiUrl}/api/v1/form/sub_course/course`,
     "DeleteSubCourseData" :`${environment.apiUrl}/api/v1/form/sub_course/delete`,
     "PutSubCourseData" :`${environment.apiUrl}/api/v1/form/sub_course/update`,
     "CreateSubCourseData" :`${environment.apiUrl}/api/v1/form/sub_course/add`,

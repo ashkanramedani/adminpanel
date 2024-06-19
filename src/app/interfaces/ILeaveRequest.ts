@@ -5,6 +5,7 @@ export interface ILeaveRequest
     leave_request_pk_id: string
     start_date: string
     end_date: string
+    date:string
     description: string
     created: IUsers
     employee: IUsers

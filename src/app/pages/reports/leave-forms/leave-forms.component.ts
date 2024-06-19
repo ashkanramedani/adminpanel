@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
 import { ILeaveRequest } from 'src/app/interfaces/ILeaveRequest';
 import { ISalaryPolicy } from 'src/app/interfaces/ISalaryPolicy';
@@ -15,7 +16,7 @@ export class LeaveFormsComponent implements OnInit {
   ResponseDataList: ILeaveRequest[] = []
   SingleData: ILeaveRequest
   form_title = "گزارشات /   ثبت مرخصی"
-  table_header: string[] = ["ردیف", "تاریخ شروع", " تاریخ پایان ", "پرسنل ","وضعیت","عملیات"]
+  table_header: string[] = ["ردیف", "تاریخ","ساعت شروع", " ساعت پایان ", "پرسنل ","وضعیت","عملیات"]
   field_count:string="Leave Forms"
   get_all_route:string=Domain.GetLeaveRequest
   delete_route:string=Domain.DeleteLeaveRequest
@@ -55,7 +56,6 @@ export class LeaveFormsComponent implements OnInit {
       console.log(response)
     })
   }
-
   RemoveItem(id?: string) {
     this.alertServices.confirm(
       'حذف آیتم',

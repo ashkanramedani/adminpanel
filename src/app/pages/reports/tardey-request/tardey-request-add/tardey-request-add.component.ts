@@ -6,7 +6,6 @@ import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
-import { ISalaryPolicyForms } from 'src/app/interfaces/ISalaryPolicyForms';
 import { ITardeyRequestForm } from 'src/app/interfaces/ITardeyRequestForm';
 import { IClassDetails } from 'src/app/interfaces/IClassDetails';
 import { ISubCourse } from 'src/app/interfaces/ISubCourse';
@@ -133,14 +132,17 @@ export class TardeyRequestAddComponent implements OnInit {
       console.log(response)
     })
   }
-  GetSubCourseData(id:string) {
-    this.http.get(Domain.GetSubCourseData,id).subscribe((response) => {
-      this.sub_course_data = response;
-      console.log(response)
-    })
-  }
+  // GetSubCourseData(id:string) {
+  //   this.http.get(Domain.GetSubCourseData,id).subscribe((response) => {
+  //     this.sub_course_data = response;
+  //     console.log(response)
+  //   })
+  // }
   ChangeCourse(value:any){
-    alert(value.target.value)
+    this.http.get(Domain.GetSubCourseByCourseId,value.target.value).subscribe((response)=>{
+      console.log("sub is : " ,response)
+      this.sub_course_data = response;
+    })
   }
 }
 

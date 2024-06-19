@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Pipe, PipeTransform } from '@angular/core';
+import * as moment from 'jalali-moment';
 
 @Pipe({
   name: 'HijriDate'
@@ -8,9 +9,6 @@ export class HijriDatePipe implements PipeTransform {
 
   transform(date:Date): string {
     if (!date)  return "";
-    date=new  Date(date)
-    alert(date);
-    return ""
-    //return (new Intl.DateTimeFormat('fa-IR').format(date));
+    return ( moment(date, 'YYYY-MM-DD').locale('fa').format('YYYY-MM-DD'))
    }
 }
