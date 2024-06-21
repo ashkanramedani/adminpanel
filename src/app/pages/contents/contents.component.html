@@ -11,11 +11,7 @@
           class="relative text-cyan-600 border border-cyan-600 px-4 py-1 rounded-md group transition-all duration-200 focus:overflow-visible w-max h-max p-2 overflow-hidden flex flex-row items-center justify-center bg-white gap-x-2 ">افزودن</a>
   </div>
 </div>
-<div class="loading flex justify-center my-10 w-full" *ngIf="isLoading">
-  <div class="animate-spin">
-      <img src="/assets/images/icon/loading.svg" alt="">
-  </div>
-</div>
+<app-loading *ngIf="isLoading"></app-loading>
 <main *ngIf="!isLoading">
   <div class="p-5 my-3 bg-white rounded-lg">
       <div

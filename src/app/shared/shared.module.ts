@@ -6,12 +6,13 @@ import { RouterModule } from '@angular/router';
 import { FilterPipe } from '../utilities/filter.pipe';
 import { HijriDatePipe } from '../utilities/HijriDate.pipe';
 import { FloatingInputComponent } from './floating-input/floating-input.component';
+import { LoadingComponent } from './loading/loading.component';
 @NgModule({
-  declarations: [HeaderComponent,SidebarComponent,FilterPipe,HijriDatePipe,FloatingInputComponent],
+  declarations: [HeaderComponent,SidebarComponent,FilterPipe,HijriDatePipe,FloatingInputComponent,LoadingComponent],
   imports: [
     CommonModule,
     RouterModule
   ],
-  exports:[HeaderComponent,SidebarComponent,FilterPipe,HijriDatePipe,FloatingInputComponent]
+  exports:[HeaderComponent,SidebarComponent,FilterPipe,HijriDatePipe,FloatingInputComponent,LoadingComponent]
 })
 export class SharedModule { }

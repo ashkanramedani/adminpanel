@@ -152,25 +152,25 @@
               <div class="overflow-hidden" *ngIf="menuItem ==2">
                 <ul class="my-2 flex flex-col  pr-6">
                   <li>
-                    <a [routerLink]="['/basic/users']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer"> پرسنل </a>
+                    <a [routerLink]="['/basic/users']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" class="group relative flex items-center gap-2.5  px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer"> پرسنل </a>
                   </li>
                   <li>
-                    <a [routerLink]="['/basic/roles']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer"> نقش ها </a>
+                    <a [routerLink]="['/basic/roles']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" class="group relative flex items-center gap-2.5  px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer"> نقش ها </a>
                   </li>
                   <li>
-                    <a [routerLink]="['/basic/students']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer"> دانشجویان </a>
+                    <a [routerLink]="['/basic/students']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" class="group relative flex items-center gap-2.5  px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer"> دانشجویان </a>
                   </li>
                   <li>
-                    <a [routerLink]="['/basic/course']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer"> دوره </a>
+                    <a [routerLink]="['/basic/course']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" class="group  relative flex items-center gap-2.5  px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer"> دوره </a>
                   </li>
                   <li>
-                    <a [routerLink]="['/basic/questions']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer"> سوالات </a>
+                    <a [routerLink]="['/basic/questions']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2"  class="group relative flex items-center gap-2.5  px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer"> سوالات </a>
                   </li>
                   <li>
-                    <a [routerLink]="['/basic/answers']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer"> پاسخ سوالات </a>
+                    <a [routerLink]="['/basic/answers']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" class="group relative flex items-center gap-2.5  px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer"> پاسخ سوالات </a>
                   </li>
                   <li>
-                    <a [routerLink]="['/basic/payments']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">  روش های پرداخت </a>
+                    <a [routerLink]="['/basic/payments']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" class="group relative flex items-center gap-2.5  px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">  روش های پرداخت </a>
                   </li>
                 </ul>
               </div>
@@ -210,18 +210,18 @@
               <div *ngIf="menuItem == 3" class="overflow-hidden">
                 <ul class="mt-4 mb-5.5 flex flex-col gap-3 pr-6">
                   <li>
-                    <a [routerLink]="['/contents']" [queryParams]="{type: 'blog'}"
-                      class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5">بلاگ
+                    <a [routerLink]="['/contents']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" [queryParams]="{type: 'blog'}"
+                      class="group relative flex items-center gap-2.5  px-4 font-medium text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5">بلاگ
                     </a>
                   </li>
                   <li>
-                    <a [routerLink]="['/contents']" [queryParams]="{type: 'podcast'}"
-                      class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5">پادکست
+                    <a [routerLink]="['/contents']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" [queryParams]="{type: 'podcast'}"
+                      class="group relative flex items-center gap-2.5  px-4 font-medium text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5">پادکست
                     </a>
                   </li>
                   <li>
-                    <a [routerLink]="['/contents']" [queryParams]="{type: 'news'}"
-                      class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5">اخبار
+                    <a [routerLink]="['/contents']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" [queryParams]="{type: 'news'}"
+                      class="group relative flex items-center gap-2.5  px-4 font-medium text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5">اخبار
                     </a>
                   </li>
                 </ul>
@@ -262,18 +262,18 @@
               <div *ngIf="menuItem == 4" class="overflow-hidden">
                 <ul class="mt-4 mb-5.5 flex flex-col gap-3 pr-6">
                   <li>
-                    <a [routerLink]="['/libraries']" [queryParams]="{type: 'story'}"
-                      class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5">داستانی
+                    <a [routerLink]="['/libraries']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" [queryParams]="{type: 'story'}"
+                      class="group relative flex items-center gap-2.5  px-4 font-medium text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5">داستانی
                     </a>
                   </li>
                   <li>
-                    <a [routerLink]="['/libraries']" [queryParams]="{type: 'magazine'}"
-                      class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5">مجلات
+                    <a [routerLink]="['/libraries']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" [queryParams]="{type: 'magazine'}"
+                      class="group relative flex items-center gap-2.5  px-4 font-medium text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5">مجلات
                     </a>
                   </li>
                   <li>
-                    <a [routerLink]="['/libraries']" [queryParams]="{type: 'educational'}"
-                      class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5">آموزشی
+                    <a [routerLink]="['/libraries']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" [queryParams]="{type: 'educational'}"
+                      class="group relative flex items-center gap-2.5  px-4 font-medium text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5">آموزشی
                     </a>
                   </li>
                 </ul>
@@ -318,7 +318,7 @@
                     <a (click)="ChangeSubMenuItem(4.2)"  class="flex items-center justify-between hover:bg-meta-4 py-2 px-4 cursor-pointer">
                       <div class="flex items-center gap-x-2 w-full">
                           <span class="w-1.5 h-1.5 relative bottom-[0.15rem] rounded-full  bg-secondary"></span>
-                        <span class="group relative flex items-center rounded-md  font-medium text-bodydark1">
+                        <span class="group relative flex items-center   font-medium text-bodydark1">
                           کادر دفتر
                         </span>
                       </div>
@@ -331,7 +331,7 @@
                       <div class="overflow-hidden" *ngIf="subMenuItem == 4.2">
                         <ul class="my-2 flex flex-col  pr-6">
                           <li>
-                            <a [routerLink]="['/reports/tardy_request']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">ثبت تاخیر اساتید</a>
+                            <a [routerLink]="['/reports/tardy_request']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" class="group relative flex items-center gap-2.5  px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">ثبت تاخیر اساتید</a>
                           </li>
                         </ul>
                       </div>
@@ -341,7 +341,7 @@
                     <a (click)="ChangeSubMenuItem(4.3)"  class="flex items-center justify-between hover:bg-meta-4 py-2 px-4 cursor-pointer">
                       <div class="flex items-center gap-x-2 w-full">
                           <span class="w-1.5 h-1.5 relative bottom-[0.15rem] rounded-full  bg-secondary"></span>
-                        <span class="group relative flex items-center rounded-md  font-medium text-bodydark1">
+                        <span class="group relative flex items-center   font-medium text-bodydark1">
                           عمومی
                         </span>
                       </div>
@@ -354,13 +354,13 @@
                       <div class="overflow-hidden" *ngIf="subMenuItem == 4.3">
                         <ul class="my-2 flex flex-col  pr-6">
                           <li>
-                            <a [routerLink]="['/reports/leave_request']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">مرخصی</a>
+                            <a [routerLink]="['/reports/leave_request']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" class="group relative flex items-center gap-2.5  px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">مرخصی</a>
                           </li>
                           <li>
-                            <a [routerLink]="['/reports/business_trip']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">ماموریت</a>
+                            <a [routerLink]="['/reports/business_trip']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" class="group relative flex items-center gap-2.5  px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">ماموریت</a>
                           </li>
                           <li>
-                            <a [routerLink]="['/reports/remote_request']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">دورکاری</a>
+                            <a [routerLink]="['/reports/remote_request']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" class="group relative flex items-center gap-2.5  px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">دورکاری</a>
                           </li>
                         </ul>
                       </div>
@@ -370,7 +370,7 @@
                     <a (click)="ChangeSubMenuItem(4.4)"  class="flex items-center justify-between hover:bg-meta-4 py-2 px-4 cursor-pointer">
                       <div class="flex items-center gap-x-2 w-full">
                           <span class="w-1.5 h-1.5 relative bottom-[0.15rem] rounded-full  bg-secondary"></span>
-                        <span class="group relative flex items-center rounded-md  font-medium text-bodydark1">
+                        <span class="group relative flex items-center   font-medium text-bodydark1">
                           حسابداری
                         </span>
                       </div>
@@ -383,10 +383,10 @@
                       <div class="overflow-hidden" *ngIf="subMenuItem == 4.4">
                         <ul class="my-2 flex flex-col  pr-6">
                           <li>
-                            <a [routerLink]="['/reports/finger_scanner']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">ورود و خروج کارکنان</a>
+                            <a [routerLink]="['/reports/finger_scanner']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" class="group relative flex items-center gap-2.5  px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">ورود و خروج کارکنان</a>
                           </li>
                           <li>
-                            <a [routerLink]="['/reports/salarypolicy']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">ضریب محاسبه ی حقوق</a>
+                            <a [routerLink]="['/reports/salarypolicy']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" class="group relative flex items-center gap-2.5  px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">ضریب محاسبه ی حقوق</a>
                           </li>
                         </ul>
                       </div>
@@ -397,7 +397,7 @@
                     <a (click)="ChangeSubMenuItem(4.5)"  class="flex items-center justify-between hover:bg-meta-4 py-2 px-4 cursor-pointer">
                       <div class="flex items-center gap-x-2 w-full">
                           <span class="w-1.5 h-1.5 relative bottom-[0.15rem] rounded-full  bg-secondary"></span>
-                        <span class="group relative flex items-center rounded-md  font-medium text-bodydark1">
+                        <span class="group relative flex items-center   font-medium text-bodydark1">
                           آموزش
                         </span>
                       </div>
@@ -410,10 +410,10 @@
                       <div class="overflow-hidden" *ngIf="subMenuItem == 4.5">
                         <ul class="my-2 flex flex-col  pr-6">
                           <li>
-                            <a [routerLink]="['/reports/teacher_replacement']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">  استاد جایگزین</a>
+                            <a [routerLink]="['/reports/teacher_replacement']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" class="group relative flex items-center gap-2.5  px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">  استاد جایگزین</a>
                           </li>
                           <li>
-                            <a [routerLink]="['/reports/class_cancellation']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">   کنسلی کلاس</a>
+                            <a [routerLink]="['/reports/class_cancellation']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" class="group relative flex items-center gap-2.5  px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">   کنسلی کلاس</a>
                           </li>
                         </ul>
                       </div>
@@ -423,7 +423,7 @@
                     <a (click)="ChangeSubMenuItem(4.6)"  class="flex items-center justify-between hover:bg-meta-4 py-2 px-4 cursor-pointer">
                       <div class="flex items-center gap-x-2 w-full">
                           <span class="w-1.5 h-1.5 relative bottom-[0.15rem] rounded-full  bg-secondary"></span>
-                        <span class="group relative flex items-center rounded-md  font-medium text-bodydark1">
+                        <span class="group relative flex items-center   font-medium text-bodydark1">
                            مالی
                         </span>
                       </div>
@@ -436,7 +436,10 @@
                       <div class="overflow-hidden" *ngIf="subMenuItem == 4.6">
                         <ul class="my-2 flex flex-col  pr-6">
                           <li>
-                            <a [routerLink]="['/reports/professorsreports']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer"> محاسبات حقوقی پرسنل</a>
+                            <a [routerLink]="['/reports/professorsreports']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" class="group relative flex items-center gap-2.5  px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer"> محاسبات حقوقی پرسنل</a>
+                          </li>
+                          <li>
+                            <a routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" class="group relative flex items-center gap-2.5  px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer"> محاسبات حقوقی اساتید</a>
                           </li>
                         </ul>
                       </div>
@@ -445,7 +448,7 @@
                     <a (click)="ChangeSubMenuItem(4.7)"  class="flex items-center justify-between hover:bg-meta-4 py-2 px-4 cursor-pointer">
                       <div class="flex items-center gap-x-2 w-full">
                           <span class="w-1.5 h-1.5 relative bottom-[0.15rem] rounded-full  bg-secondary"></span>
-                        <span class="group relative flex items-center rounded-md  font-medium text-bodydark1">
+                        <span class="group relative flex items-center   font-medium text-bodydark1">
                           روابط عمومی
                         </span>
                       </div>
@@ -458,7 +461,7 @@
                       <div class="overflow-hidden" *ngIf="subMenuItem == 4.7">
                         <ul class="my-2 flex flex-col  pr-6">
                           <li>
-                            <a [routerLink]="['/reports/survey']" class="group relative flex items-center gap-2.5 rounded-md px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">  نظر سنجی</a>
+                            <a [routerLink]="['/reports/survey']" routerLinkActive="text-cyan-600 font-semibold border-r border-cyan-600 pr-2" class="group relative flex items-center gap-2.5  px-4 font-normal text-sm text-bodydark1  hover:text-meta-5 dark:hover:text-meta-5 py-2 cursor-pointer">  نظر سنجی</a>
                           </li>
                         </ul>
                       </div>

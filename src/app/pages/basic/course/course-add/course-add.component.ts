@@ -174,6 +174,9 @@ export class CourseAddComponent implements OnInit {
       this.tagsInputArray.push({old_id:'',  new_id:item.tag_pk_id})
     })
   }
+  onSubmitNext(){
+    alert("comming soon")
+  }
   onSubmit() {
     if (this.ReportForm.invalid) {
       this.ReportForm.markAllAsTouched();
