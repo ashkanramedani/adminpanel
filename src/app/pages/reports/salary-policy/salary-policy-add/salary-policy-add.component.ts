@@ -41,8 +41,7 @@ export class SalaryPolicyAddComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot?.paramMap.get('id');
     this.Salary_Type=SalaryTypeEnum.Fixed
-    this.GetEmployeeData()
-    this.GetRolesData()
+    this.GetEmployeeData() 
     this.ReportForm = this.formBuilder.group(
       {
         created_fk_by: new FormControl('', [Validators.required]),
@@ -181,11 +180,7 @@ export class SalaryPolicyAddComponent implements OnInit {
     this.btnLoading = false
   }
 
-  GetRolesData() {
-    this.http.getAll(`${Domain.GetRolesData}?page=1&limit=1000&order=desc`).subscribe((response) => {
-      this.RolesData = response;
-    })
-  }
+
 
 }
 

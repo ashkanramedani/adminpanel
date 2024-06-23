@@ -45,10 +45,8 @@ export class RemoteRequestAddComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.id = this.route.snapshot?.paramMap.get('id');
-    this.GetClassData()
+    this.id = this.route.snapshot?.paramMap.get('id'); 
     this.GetEmployeeData()
-    this.GetRolesData()
     this.ReportForm = this.formBuilder.group(
       {
         created_fk_by: new FormControl('', [Validators.required]),
@@ -129,17 +127,6 @@ export class RemoteRequestAddComponent implements OnInit {
     this.btnLoading = false
   }
 
-  GetRolesData() {
-    this.http.getAll(`${Domain.GetRolesData}?page=1&limit=1000&order=desc`).subscribe((response) => {
-      this.RolesData = response;
-    })
-  }
-  GetClassData() {
-    this.http.getAll(Domain.GetAuditClass).subscribe((response) => {
-      this.ClassData = response;
-      console.log(response)
-    })
-  }
 
 }
 

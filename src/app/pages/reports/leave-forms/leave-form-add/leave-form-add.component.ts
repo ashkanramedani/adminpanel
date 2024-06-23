@@ -6,9 +6,7 @@ import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
-import { ITardeyRequestForm } from 'src/app/interfaces/ITardeyRequestForm';
 import { IClassDetails } from 'src/app/interfaces/IClassDetails';
-import { ILeaveRequest } from 'src/app/interfaces/ILeaveRequest';
 import { ILeaveRequestForm } from 'src/app/interfaces/ILeaveRequestForm';
 import * as moment from 'jalali-moment';
 
@@ -43,10 +41,8 @@ export class LeaveFormAddComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.id = this.route.snapshot?.paramMap.get('id');
-    this.GetClassData()
+    this.id = this.route.snapshot?.paramMap.get('id'); 
     this.GetEmployeeData()
-    this.GetRolesData()
     this.ReportForm = this.formBuilder.group(
       {
         created_fk_by: new FormControl('', [Validators.required]),
@@ -123,17 +119,7 @@ export class LeaveFormAddComponent implements OnInit {
     this.btnLoading = false
   }
 
-  GetRolesData() {
-    this.http.getAll(`${Domain.GetRolesData}?page=1&limit=1000&order=desc`).subscribe((response) => {
-      this.RolesData = response;
-    })
-  }
-  GetClassData() {
-    this.http.getAll(Domain.GetAuditClass).subscribe((response) => {
-      this.ClassData = response;
-      console.log(response)
-    })
-  }
+
 
 }
 

@@ -42,9 +42,7 @@ export class FingerprintScannerAddComponent implements OnInit {
   }
   ngOnInit(): void {
     this.id = this.route.snapshot?.paramMap.get('id');
-    this.GetClassData()
     this.GetEmployeeData()
-    this.GetRolesData()
     this.ReportForm = this.formBuilder.group(
       {
         created_fk_by: new FormControl('', [Validators.required]),
@@ -95,7 +93,7 @@ export class FingerprintScannerAddComponent implements OnInit {
     {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
-      user_fk_id: this.ReportForm.controls.user_fk_id.value, 
+      user_fk_id: this.ReportForm.controls.user_fk_id.value,
       Date:moment.from(this.ReportForm.controls.Date.value, 'fa', 'YYYY-MM-DD').format('YYYY-MM-DD'),
       Enter:this.ReportForm.controls.Enter.value,
       Exit:this.ReportForm.controls.Exit.value,
@@ -121,17 +119,6 @@ export class FingerprintScannerAddComponent implements OnInit {
     this.btnLoading = false
   }
 
-  GetRolesData() {
-    this.http.getAll(`${Domain.GetRolesData}?page=1&limit=1000&order=desc`).subscribe((response) => {
-      this.RolesData = response;
-    })
-  }
-  GetClassData() {
-    this.http.getAll(Domain.GetAuditClass).subscribe((response) => {
-      this.ClassData = response;
-      console.log(response)
-    })
-  }
 
 }
 
