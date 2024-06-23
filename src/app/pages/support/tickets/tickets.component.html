@@ -1,0 +1,117 @@
+<div class="breadcrumb flex justify-between items-center px-5 mb-3 bg-white rounded-lg font-semibold">
+  <nav>
+      <ol class="flex items-center gap-1 text-sm py-2">
+          <li>
+              <span> {{form_title}} </span>
+          </li>
+      </ol>
+  </nav>
+  <div class="icon flex items-center gap-x-2 py-2">
+      <a [routerLink]="[add_url]"
+          class="relative text-cyan-600 border border-cyan-600 px-4 py-1 rounded-md group transition-all duration-200 focus:overflow-visible w-max h-max p-2 overflow-hidden flex flex-row items-center justify-center bg-white gap-x-2 ">ثبت تیکت جدید</a>
+  </div>
+</div>
+<app-loading *ngIf="isLoading"></app-loading>
+<main *ngIf="!isLoading">
+  <div class="p-5 my-3 bg-white rounded-lg">
+      <div
+          class="header grid grid-cols-5 text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6" >
+          <span *ngFor="let item of table_header">{{item}}</span>
+      </div>
+      <div *ngFor="let item of ResponseDataList | filter: this.SearchValue; let i =index"
+          class="body grid grid-cols-5 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
+          <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
+          <span>{{item.created.name + '&nbsp; &nbsp;' +item.created.last_name}}</span>
+          <span>{{item.employee.name + '&nbsp; &nbsp;' +item.employee.last_name}}</span>
+          <div class="flex items-center justify-center">
+              <img *ngIf="item.status==1" src="/assets/images/icon/active.svg" class="w-4" alt="">
+              <img *ngIf="item.status==0" src="/assets/images/icon/deactive.svg" class="w-[1.1rem]" alt="">
+          </div>
+          <div class="operation flex items-center justify-center gap-x-2">
+              <button (click)="OpenModal(item.business_trip_pk_id)" title="نمایش">
+                  <img src="/assets/images/icon/see-more.svg" class="w-4" alt="">
+              </button>
+              <a [routerLink]="[edit_url,item.business_trip_pk_id]" title="ویرایش">
+                  <img src="/assets/images/icon/edit.svg" class="w-4" alt="">
+              </a>
+              <button title="حذف" (click)="RemoveItem(item.business_trip_pk_id)">
+                  <img src="/assets/images/icon/trash.svg" class="w-4" alt="">
+              </button>
+          </div>
+      </div>
+      <ul class="paging flex items-center justify-center mt-16 flex-wrap " dir="ltr">
+        <li *ngFor="let item of  ResponseDataLenght ;let i = index">
+          <a (click)="GetResponseData(i+1,10,order)" [ngClass]="{'!bg-gray-300 text-black': (currentPage==i+1) }"
+            class="cursor-pointer h-11 w-11  flex items-center justify-center border border-stroke  font-medium hover:border-primary hover:bg-gray-400 hover:text-primary">{{i+1}}</a>
+        </li>
+      </ul>
+  </div>
+
+   <div *ngIf="IsShowenModal==true" x-transition=""
+class="fixed   left-0 top-0 z-999999 flex h-full min-h-screen w-full items-center justify-center bg-black/40 px-4 py-5 text-graydark dark:text-white">
+<div
+  class="flex flex-col w-full  lg:mr-[19rem]  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
+  <div class="footer flex  justify-start border-b py-3 border-[#b1b1b1]">
+    <h3 class="font-semibold text-lg"> نمایش رکورد <span> ثبت ماموریت  </span></h3>
+  </div>
+  <div class="grid lg:grid-cols-2 py-3 grid-cols-1 gap-6.5 p-6.5 text-graydark text-base  dark:text-white ">
+    <div>
+      <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
+        ثبت کننده
+      </label>
+        <span>{{SingleData.created_fk_by}}</span>
+    </div>
+    <div>
+      <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
+       وضعیت
+      </label>
+      <span *ngIf="SingleData.status==0" class="inline-flex rounded-full bg-[#777777] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید نشده </span>
+      <span *ngIf="SingleData.status==1" class="inline-flex rounded-full bg-[#199173] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید شده </span>
+
+    </div>
+    <div >
+      <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
+       نام پرسنل
+
+      </label>
+      <span>{{SingleData.user_fk_id}}</span>
+    </div>
+    <div >
+      <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
+        مقصد
+
+      </label>
+      <span>{{SingleData.destination}} </span>
+    </div>
+    <div >
+      <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
+        تاریخ شروع
+
+      </label>
+      <span>{{SingleData.start_date|date: "HH:mm - YYYY/MM/dd"}} </span>
+    </div>
+    <div >
+      <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
+       تاریخ اتمام
+
+      </label>
+      <span>{{SingleData.end_date|date: "HH:mm - YYYY/MM/dd"}} </span>
+    </div>
+
+    <div>
+      <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
+      توضیحات
+      </label>
+      <span>{{SingleData.description}} </span>
+    </div>
+  </div>
+  <div class="footer flex items-end justify-end border-t py-3 border-[#b1b1b1]">
+    <button (click)="CloseModal()"
+      class="block  rounded border border-stroke bg-stroke hover:bg-bodydark1 font-semibold px-6 py-3 text-center  text-black-2 transition   dark:border-strokedark dark:bg-meta-4 dark:text-white">
+      بستن
+    </button>
+  </div>
+</div>
+</div>
+
+</main>

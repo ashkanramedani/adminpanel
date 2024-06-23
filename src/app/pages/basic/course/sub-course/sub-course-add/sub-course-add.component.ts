@@ -20,8 +20,8 @@ import { ISessionSignature } from 'src/app/interfaces/ISessionSignature';
 })
 export class SubCourseAddComponent implements OnInit {
   //#region change this information
-  cancle_link: string = '/basic/users'
-  form_title:string="دوره"
+  cancle_link: string = '/basic/sub-course'
+  form_title:string="درس"
   AuditForm: ISubCourseForm
   get_Singel_route: string = Domain.GetSubCourseData
   put_route: string = Domain.PutSubCourseData
@@ -39,10 +39,15 @@ export class SubCourseAddComponent implements OnInit {
   EmployiesData: IUsers[] = []
   btnLoading: boolean = false
   isLoading: boolean = false
+  course_id:string
   constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService,private router:Router) {
 
   }
   ngOnInit(): void {
+    this.route.queryParams.subscribe((res) => {
+    this.course_id = res.course;
+  });
+
     this.id = this.route.snapshot?.paramMap.get('id');
     this.GetEmployeeData()
     this.GetClassData()
@@ -52,7 +57,7 @@ export class SubCourseAddComponent implements OnInit {
         created_fk_by: new FormControl('', [Validators.required]),
         description: new FormControl(''),
         status: new FormControl('',[Validators.required]),
-        course_fk_id:new FormControl('',[Validators.required]),
+        course_fk_id:new FormControl(this.course_id,[Validators.required]),
         sub_course_teacher_fk_id:new FormControl('',[Validators.required]),
         sub_course_name:new FormControl('',[Validators.required]),
         number_of_session:new FormControl('',[Validators.required]),

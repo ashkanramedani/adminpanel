@@ -1,0 +1,83 @@
+<div class=" bg-white rounded-lg px-5 pb-8">
+  <div class="header flex items-center justify-between text-lg py-8 px-6  border-b border-gray-300 text-gray-800">
+    <div class="flex flex-col gap-y-3">
+      <span class="font-bold text-sky-700 text-xl">پیگیری google.com</span>
+      <span class="font-semibold"> تیکت <span>2415065</span></span>
+      <span>بخش پیگیری تمدید</span>
+    </div>
+    <div class="flex flex-col gap-y-3">
+      <div class="flex items-center gap-x-2"><b>وضعیت تیکت</b><span> تکمیل شده</span></div>
+      <div class="flex items-center gap-x-2"><b>وضعیت تیکت</b><span> تکمیل شده</span></div>
+      <div class="flex items-center gap-x-2"><b>وضعیت تیکت</b><span> تکمیل شده</span></div>
+    </div>
+  </div>
+  <div class="content py-4 mt-4">
+    <div class="admin my-6 flex justify-end gap-x-3">
+      <div class="rounded-md bg-blue-500 text-white flex flex-col p-6 w-4/6">
+        <div class="flex items-center justify-end">
+          <span class="font-semibold">پشتیبان سایت</span>
+          <h5 class="font-bold text-xl">&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; اشکان رمدانی </h5>
+
+        </div>
+        <div class="mt-4 pr-4 text-lg font-medium">
+          <p class="leading-10">
+            ممنون از شما
+          </p>
+        </div>
+      </div>
+      <div class="w-12 h-12 rounded-md bg-blue-700 flex items-center justify-center">
+        <img src="/assets/images/icon/support.svg" class="w-8" alt="">
+      </div>
+    </div>
+    <div class="customer my-6 flex justify-start gap-x-3">
+      <div class="w-12 h-12 rounded-md bg-slate-400 flex items-center justify-center">
+        <img src="/assets/images/icon/user.svg" class="w-8" alt="">
+      </div>
+      <div class="rounded-md bg-slate-300 text-slate-800 flex flex-col p-6 w-4/6">
+        <div class="flex items-center">
+          <h5 class="font-bold text-xl">عباس میرزایی &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;</h5>
+          <span class="font-semibold">کاربر</span>
+        </div>
+        <div class="mt-4 pr-4 text-lg font-medium text-slate-700">
+          <p class="leading-10">
+            ممنون از شما
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+		<div class="p-5 rounded-lg shadow-sm border border-gray-200">
+			<details class="group">
+				<summary class="flex justify-between items-center font-medium cursor-pointer list-none ">
+          <div class="flex items-center gap-x-2 ">
+            <img src="/assets/images/icon/pen.svg" class="w-6 pb-2" alt="">
+            <span class="text-gray-700 font-semibold text-xl"> پاسخ</span>
+          </div>
+
+					<span class="transition group-open:rotate-180">
+                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path>
+</svg>
+              </span>
+				</summary>
+        <div class="relative mt-14 ">
+          <label class="mb-3 block text-base font-semibold"> پیام:</label>
+          <ckeditor class="w-full mt-2" formControlName="description" [editor]="editor"></ckeditor>
+        </div>
+        <div class="flex items-center gap-x-4 my-4">
+          <button
+          class="border border-cyan-600 px-6 py-3 rounded-md font-semibold text-lg bg-cyan-600 text-white disabled:bg-cyan-400 disabled:border-cyan-400">
+          ارسال
+        </button>
+          <a class="border border-gray-500 px-6 py-3 font-semibold rounded-md text-lg hover:bg-gray-200 "
+          [routerLink]="['/']">انصراف</a>
+
+        </div>
+			</details>
+		</div>
+
+
+
+</div>

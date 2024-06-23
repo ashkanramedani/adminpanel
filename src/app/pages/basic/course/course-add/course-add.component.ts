@@ -175,7 +175,49 @@ export class CourseAddComponent implements OnInit {
     })
   }
   onSubmitNext(){
-    alert("comming soon")
+    if (this.ReportForm.invalid) {
+      this.ReportForm.markAllAsTouched();
+      return;
+    }
+    this.btnLoading = true
+    let ReportFormValue: ICourseForm =
+    {
+      course_pk_id: this.id,
+      created_fk_by: this.ReportForm.controls.created_fk_by.value,
+      description: this.ReportForm.controls.description.value,
+      status: this.ReportForm.controls.status.value,
+      course_name: this.ReportForm.controls.course_name.value,
+      starting_date: this.ReportForm.controls.starting_date.value,
+      ending_date: this.ReportForm.controls.ending_date.value,
+      course_capacity: this.ReportForm.controls.course_capacity.value,
+      course_language: this.ReportForm.controls.course_language.value,
+      course_type: this.ReportForm.controls.course_type.value,
+       tags: this.tagsInputArray.length <= 0 ? new Array({old_id:'',  new_id:''}) : this.tagsInputArray,
+      // categories: [],
+      course_code: this.ReportForm.controls.course_code.value,
+      course_image: this.ReportForm.controls.course_image.value,
+      course_level: this.ReportForm.controls.course_level.value,
+      package_discount: this.ReportForm.controls.package_discount.value,
+    }
+    if (this.id != null) {
+      this.http.put(Domain.PutcourseData, ReportFormValue, null).subscribe((response) => {
+        console.log(response)
+        this.alertServices.success("با موفقیت ویرایش شد");
+        this.router.navigate([this.cancle_link])
+      }
+      )
+    }
+    else {
+      this.btnLoading = true
+      this.http.create(Domain.CreatecourseData, ReportFormValue, null).subscribe((response) => {
+        console.log(response)
+        this.alertServices.success("با موفقیت اضافه شد");
+        this.ReportForm.reset();
+        this.router.navigate(['/basic/sub-course/add'], { queryParams: { course: response.id}})
+      }
+      )
+    }
+    this.btnLoading = false
   }
   onSubmit() {
     if (this.ReportForm.invalid) {
