@@ -32,8 +32,8 @@
         class="body grid grid-cols-7 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
         <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
         <span>{{ item.sub_course_name}}</span>
-        <span>{{ item.sub_course_pk_id}}</span>
-        <span>{{item.sub_course_teacher_fk_id }}</span>
+        <span>{{ item.course.course_name}}</span>
+        <span>{{item.teacher.name + '&nbsp;'+ item.teacher.last_name }}</span>
         <span>{{item.number_of_session}}</span>
         <div class="flex items-center justify-center">
           <img *ngIf="item.status==1" src="/assets/images/icon/active.svg" class="w-4" alt="">

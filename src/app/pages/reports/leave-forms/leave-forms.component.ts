@@ -17,7 +17,7 @@ export class LeaveFormsComponent implements OnInit {
   SingleData: ILeaveRequest
   form_title = "گزارشات /   ثبت مرخصی"
   table_header: string[] = ["ردیف", "تاریخ","ساعت شروع", " ساعت پایان ", "پرسنل ","وضعیت","عملیات"]
-  field_count:string="Leave Forms"
+  field_count:string="Leave_Request"
   get_all_route:string=Domain.GetLeaveRequest
   delete_route:string=Domain.DeleteLeaveRequest
   add_url:string="/reports/leave_request/add"

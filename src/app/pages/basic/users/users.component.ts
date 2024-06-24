@@ -13,13 +13,13 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class UsersComponent implements OnInit {
 
-  
+
   //#region change this informaion
   ResponseDataList: IUsers[] = []
   SingleData: IUserSigleForm
   form_title = "اطلاعات پایه / پرسنل"
   table_header: string[] = ["ردیف", "نام", "نقش", "عملیات"]
-  field_count:string="Employee"
+  field_count:string="User"
   get_all_route:string=Domain.GetUsers
   delete_route:string=Domain.DeleteUsers
   add_url:string="/basic/user/add"
@@ -41,7 +41,7 @@ export class UsersComponent implements OnInit {
     this.GetResponseDataLenght()
 
   }
- 
+
   GetResponseDataLenght() {
     this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
       this.totalCount = response

@@ -9,17 +9,17 @@ import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-payments',
-  templateUrl: './payments.component.html', 
+  templateUrl: './payments.component.html',
 })
 export class PaymentsComponent implements OnInit {
 
-  
+
   //#region change this informaion
   ResponseDataList: Ipayment_method[] = []
   SingleData: Ipayment_method
   form_title = "اطلاعات پایه / روش های پرداخت"
   table_header: string[] = ["ردیف", "نام", "سازنده","وضعیت", "عملیات"]
-  field_count:string="payment_method"
+  field_count:string="Payment_Method"
   get_all_route:string=Domain.GetPaymentMethodData
   delete_route:string=Domain.DeletePaymentMethodData
   add_url:string="/basic/payment/add"
@@ -41,7 +41,7 @@ export class PaymentsComponent implements OnInit {
     this.GetResponseDataLenght()
 
   }
- 
+
   GetResponseDataLenght() {
     this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
       this.totalCount = response

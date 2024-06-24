@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
-import { Domain } from 'src/app/domain/doamin'; 
-import { ISubCourse } from 'src/app/interfaces/ISubCourse';  
+import { Domain } from 'src/app/domain/doamin';
+import { ISubCourse } from 'src/app/interfaces/ISubCourse';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -11,13 +11,13 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class SessionsComponent implements OnInit {
 
-  
+
   //#region change this informaion
   ResponseDataList: ISubCourse[] = []
   SingleData: ISubCourse
   form_title = "اطلاعات پایه /  جلسات کلاس"
   table_header: string[] = ["ردیف", "نام دوره", " نام کلاس ", "استاد","مدت جلسه","وضعیت","عملیات"]
-  field_count:string="role"
+  field_count:string="Session"
   get_all_route:string=Domain.GetSession
   delete_route:string=Domain.DeleteSession
   add_url:string="/basic/session/add"
@@ -39,7 +39,7 @@ export class SessionsComponent implements OnInit {
     this.GetResponseDataLenght()
 
   }
- 
+
   GetResponseDataLenght() {
     this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
       this.totalCount = response

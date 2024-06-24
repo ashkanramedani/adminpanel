@@ -19,7 +19,7 @@ export class RolesComponent implements OnInit {
   SingleData: IRolesForm
   form_title = "اطلاعات پایه / نقش ها"
   table_header: string[] = ["ردیف", "نام", "ایجاد کننده", "خوشه", "وضعیت", "عملیات"]
-  field_count: string = "role"
+  field_count: string = "Role"
   get_all_route: string = Domain.GetRolesData
   delete_route: string = Domain.DeleteRolesData
   add_url: string = "/basic/role/add"

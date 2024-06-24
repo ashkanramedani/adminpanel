@@ -16,7 +16,7 @@ export class CourseCancellationComponent implements OnInit {
   SingleData: IClassCancellation
   form_title = "گزارشات /  کنسلی کلاس "
   table_header: string[] = ["ردیف" ,"  کلاس","  استاد", "تاریخ جابجایی","وضعیت","عملیات"]
-  field_count:string="course Cancellation"
+  field_count:string="Session_Cancellation"
   get_all_route:string=Domain.GetClassCancellation
   delete_route:string=Domain.DeleteClassCancellation
   add_url:string="/reports/class_cancellation/add"

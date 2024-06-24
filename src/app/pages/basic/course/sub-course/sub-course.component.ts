@@ -14,13 +14,13 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class SubCourseComponent implements OnInit {
 
-  
+
   //#region change this informaion
   ResponseDataList: ISubCourse[] = []
   SingleData: ISubCourse
   form_title = "اطلاعات پایه /  دوره های درس"
   table_header: string[] = ["ردیف", "نام دوره", "درس اصلی ", "استاد","تعداد جلسات","وضعیت","عملیات"]
-  field_count:string="role"
+  field_count:string="Sub_Course"
   get_all_route:string=Domain.GetSubCourseData
   delete_route:string=Domain.DeleteSubCourseData
   add_url:string="/basic/sub-course/add"
@@ -42,7 +42,7 @@ export class SubCourseComponent implements OnInit {
     this.GetResponseDataLenght()
 
   }
- 
+
   GetResponseDataLenght() {
     this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
       this.totalCount = response

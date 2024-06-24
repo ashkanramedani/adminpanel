@@ -15,7 +15,7 @@ export class TicketsComponent implements OnInit {
   SingleData: IBusinessTrip
   form_title = "پشتیبانی /    تیکت ها"
   table_header: string[] = ["ردیف", "  تاریخ" , "عنوان ","وضعیت","جزئیات"]
-  field_count:string="Business Trip"
+  field_count:string=""
   get_all_route:string=Domain.GetBusinessTrip
   delete_route:string=Domain.DeleteBusinessTrip
   add_url:string="/reports/business_trip/add"

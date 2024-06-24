@@ -17,7 +17,7 @@ export class ContentsComponent implements OnInit {
   title: string = '';
   form_title = `محتوای آموزشی /${this.title}`
   table_header: string[] = ["ردیف", " عنوان " , "تاریخ ","وضعیت","عملیات"]
-  field_count:string="Business Trip"
+  field_count:string=""
   get_all_route:string=Domain.GetPost
   content_type: string;
   delete_route:string=Domain.DeletePost

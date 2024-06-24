@@ -15,7 +15,7 @@ export class RemoteRequestComponent implements OnInit {
   SingleData: IRemoteRequest
   form_title = "گزارشات /  دورکاری "
   table_header: string[] = ["ردیف", " ایجاد کننده" ,"تاریخ شروع","تاریخ پایان", "پرسنل ","وضعیت","عملیات"]
-  field_count:string="Remote Request"
+  field_count:string="Remote_Request"
   get_all_route:string=Domain.GetRemoteRequest
   delete_route:string=Domain.DeleteRemoteRequest
   add_url:string="/reports/remote_request/add"

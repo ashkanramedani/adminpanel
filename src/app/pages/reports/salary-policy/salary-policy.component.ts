@@ -19,7 +19,7 @@ export class SalaryPolicyComponent implements OnInit {
   SingleData: ISalaryPolicy
   form_title = "گزارشات / ضریب محاسبه حقوق"
   table_header: string[] = ["ردیف", "پرسنل", "زمان شروع ", "زمان پایان","ایجاد کننده","وضعیت","عملیات"]
-  field_count:string="SalaryPolicy"
+  field_count:string="Salary_Policy"
   get_all_route:string=Domain.GetSalaryPolicyData
   delete_route:string=Domain.DeleteSalaryPolicyData
   add_url:string="/reports/salarypolicy/add"

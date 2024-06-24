@@ -17,7 +17,7 @@ export class TardeyRequestComponent implements OnInit {
   SingleData: ISalaryPolicy
   form_title = "گزارشات /  تاخیر اساتید"
   table_header: string[] = ["ردیف", "سازنده", " استاد ", "کلاس ","تاخیر ","وضعیت","عملیات"]
-  field_count:string="Tardy Request"
+  field_count:string="Teacher_Tardy_report"
   get_all_route:string=Domain.GetTardeyRequest
   delete_route:string=Domain.DeleteTardeyRequest
   add_url:string="/reports/tardy_request/add"

@@ -16,7 +16,7 @@ export class TeacherReplacementComponent implements OnInit {
   SingleData: ISalaryPolicy
   form_title = "گزارشات /  استاد جایگزین"
   table_header: string[] = ["ردیف", "سازنده", " استاد اصلی ", "استاد جایگزین","کلاس ","وضعیت","عملیات"]
-  field_count:string="Sub Request"
+  field_count:string="Sub_Request"
   get_all_route:string=Domain.GetTeacherReplacement
   delete_route:string=Domain.DeleteTeacherReplacement
   add_url:string="/reports/teacher_replacement/add"

@@ -18,7 +18,7 @@ export class StudentsComponent implements OnInit {
   SingleData: IStudentsForm
   form_title = "اطلاعات پایه /  دانشجویان"
   table_header: string[] = ["ردیف", "نام", "سطح","عملیات"]
-  field_count:string="Student"
+  field_count:string="student"
   get_all_route:string=Domain.GetStudentData
   delete_route:string=Domain.DeleteStudentData
   add_url:string="/basic/student/add"

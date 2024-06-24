@@ -35,7 +35,7 @@ export class SubCourseAddComponent implements OnInit {
   RolesInputArray: string[] = []
   RolesInputTitleArray: string[] = []
   id: any;
-  session_signature_value:ISessionSignature[]
+  session_signature_value:ISessionSignature[]=[]
   EmployiesData: IUsers[] = []
   btnLoading: boolean = false
   isLoading: boolean = false
