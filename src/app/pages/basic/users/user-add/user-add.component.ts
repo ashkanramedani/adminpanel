@@ -25,6 +25,7 @@ export class UserAddComponent implements OnInit {
   put_route: string = Domain.PutUsers
   create_route: string = Domain.CreateUsers
   //#endregion
+  IsShowenModal:boolean=false
   page_title: string = "ایجاد"
   ReportForm: FormGroup;
   isOpenSearchRole: boolean = false
@@ -82,12 +83,12 @@ export class UserAddComponent implements OnInit {
     this.ReportForm.controls["mobile_number"].patchValue(this.EditForm.mobile_number);
     this.ReportForm.controls["address"].patchValue(this.EditForm.address)
     this.ReportForm.controls["fingerprint_scanner_user_id"].patchValue(this.EditForm.fingerprint_scanner_user_id)
-    // this.EditForm.roles.forEach((item, index) => {
-    //   this.RolesInputTitleArray.push( {role_id:item.role_pk_id,role_title:item.name})
-    // })
-    // this.EditForm.roles.forEach((item, index) => {
-    //   this.RolesInputArray.push({old_id:'',  new_id:item.role_pk_id})
-    // })
+    this.EditForm.roles.forEach((item, index) => {
+      this.RolesInputTitleArray.push( {role_id:item.role_pk_id,role_title:item.name})
+    })
+    this.EditForm.roles.forEach((item, index) => {
+      this.RolesInputArray.push({old_id:'',  new_id:item.role_pk_id})
+    })
   }
   onSubmit() {
     if (this.ReportForm.invalid) {
@@ -149,6 +150,13 @@ export class UserAddComponent implements OnInit {
     this.RolesInputArray.push({old_id:id, new_id:''})
     this.RolesInputTitleArray.splice(index, 1);
     console.log(this.RolesInputArray)
+  }
+  CloseModal() {
+    this.GetRolesData()
+    this.IsShowenModal = false
+  }
+  OpenModal(){
+    this.IsShowenModal = true
   }
 }
 

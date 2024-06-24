@@ -65,7 +65,7 @@ export class TardeyRequestAddComponent implements OnInit {
   }
 
   GetEmployeeData() {
-    this.http.getAll(Domain.GetUsers).subscribe((response) => {
+    this.http.getAll(`${Domain.GetUsers}?page=1&limit=1000&order=desc`).subscribe((response) => {
       this.EmployiesData = response;
       console.log(response)
     })

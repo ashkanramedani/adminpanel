@@ -11,7 +11,7 @@
             class="border border-cyan-600 px-4 py-2 rounded-md bg-cyan-600 text-white disabled:bg-cyan-400 disabled:border-cyan-400">
             ذخیره
         </button>
-        <a class="border border-gray-500 px-4 py-2 rounded-md hover:bg-gray-200" [routerLink]="[cancle_link]">انصراف</a>
+        <a *ngIf="ShowCancleLink==true" class="border border-gray-500 px-4 py-2 rounded-md hover:bg-gray-200" [routerLink]="[cancle_link]">انصراف</a>
     </div>
 </div>
 <main>
@@ -72,7 +72,7 @@
                     </div>
                 </div>
                 <div  *ngIf="ClusterInput!= ''"
-                    class=" grid lg:grid-cols-3 grid-cols-1 items-center gap-2 mt-7 p-2  overflow-y-auto  w-1/2">
+                    class=" grid lg:grid-cols-3 grid-cols-1 items-center gap-2 mt-5 p-2  overflow-y-auto  w-1/2">
                     <div
                         class="flex text-center justify-between text-black lg:font-semibold  p-2 border border-gray-200 bg-gray-100 rounded-md">
                         <button>

@@ -38,6 +38,9 @@
                 <button title="حذف" (click)="RemoveItem(item.user_pk_id)">
                     <img src="/assets/images/icon/trash.svg" class="w-4" alt="">
                 </button>
+                <a target="_blank" [routerLink]="['/basic/payment/add']"  [queryParams]="{user_id:item.user_pk_id }" title="روش های پرداخت">
+                  <img src="/assets/images/icon/payment.svg" class="w-4" alt="">
+              </a>
             </div>
         </div>
         <ul class="paging flex items-center justify-center mt-16 flex-wrap " dir="ltr">
@@ -100,5 +103,7 @@
     </div>
   </div>
 </div>
+
+
 
 </main>

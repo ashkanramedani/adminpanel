@@ -43,7 +43,7 @@ export class CourseCancellationAddComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot?.paramMap.get('id');
     this.GetClassData()
-    this.GetEmployeeData() 
+    this.GetEmployeeData()
     this.ReportForm = this.formBuilder.group(
       {
         created_fk_by: new FormControl('', [Validators.required]),
@@ -63,7 +63,7 @@ export class CourseCancellationAddComponent implements OnInit {
   }
 
   GetEmployeeData() {
-    this.http.getAll(Domain.GetUsers).subscribe((response) => {
+    this.http.getAll(`${Domain.GetUsers}?page=1&limit=1000&order=desc`).subscribe((response) => {
       this.EmployiesData = response;
       console.log(response)
     })

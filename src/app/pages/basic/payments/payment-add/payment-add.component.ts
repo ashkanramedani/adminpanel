@@ -23,6 +23,7 @@ export class PaymentAddComponent implements OnInit {
   create_route: string = Domain.CreatePaymentMethodData
   //#endregion
   page_title: string = "ایجاد"
+  user_id:string
   EmployeName:string
   ReportForm: FormGroup;
   isOpenSearchRole: boolean = false
@@ -38,13 +39,17 @@ export class PaymentAddComponent implements OnInit {
   }
   ngOnInit(): void {
     this.id = this.route.snapshot?.paramMap.get('id');
+    this.route.queryParams.subscribe((res) => {
+      console.log(res)
+    this.user_id = res.user_id;
+  });
     this.GetEmployeeData()
     this.ReportForm = this.formBuilder.group(
       {
         created_fk_by: new FormControl('', [Validators.required]),
         description: new FormControl(''),
         status: new FormControl('',[Validators.required]),
-        user_fk_id: new FormControl('',[Validators.required]),
+        user_fk_id: new FormControl(this.user_id,[Validators.required]),
         shaba: new FormControl<number |null>(null,[Validators.required,Validators.minLength(24),Validators.maxLength(24)]),
         card_number: new FormControl('',[Validators.required,Validators.minLength(16),Validators.maxLength(16)])
       }
@@ -56,7 +61,7 @@ export class PaymentAddComponent implements OnInit {
   }
 
   GetEmployeeData() {
-    this.http.getAll(Domain.GetUsers).subscribe((response) => {
+    this.http.getAll(`${Domain.GetUsers}?page=1&limit=1000&order=desc`).subscribe((response) => {
       this.EmployiesData = response;
       console.log(response)
     })
@@ -110,6 +115,7 @@ export class PaymentAddComponent implements OnInit {
         console.log(response)
         this.alertServices.success("با موفقیت اضافه شد");
         this.ReportForm.reset();
+        this.EmployeName=''
       }
       )
     }

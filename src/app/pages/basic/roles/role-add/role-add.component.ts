@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
@@ -22,6 +22,7 @@ export class RoleAddComponent implements OnInit {
   put_route: string = Domain.PutRolesData
   create_route: string = Domain.CreateRolesData
   //#endregion
+  @Input() ShowCancleLink:boolean=true
   page_title: string = "ایجاد"
   RoleClusterData:string[]=[]
   ReportForm: FormGroup;
@@ -55,7 +56,7 @@ export class RoleAddComponent implements OnInit {
   }
 
   GetEmployeeData() {
-    this.http.getAll(Domain.GetUsers).subscribe((response) => {
+    this.http.getAll(`${Domain.GetUsers}?page=1&limit=1000&order=desc`).subscribe((response) => {
       this.EmployiesData = response;
       console.log(response)
     })
@@ -114,6 +115,9 @@ export class RoleAddComponent implements OnInit {
       this.http.create(this.create_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت اضافه شد");
+        this.ReportForm.reset();
+        this.ClusterInput=''
+        this.isOpenSearchCluster=false
       }
       )
     }
@@ -128,6 +132,7 @@ export class RoleAddComponent implements OnInit {
     if (name != '') {
       this.ClusterInput=name;
     }
+    this.isOpenSearchCluster=false
   }
   RemoveRoleInput() {
     this.ClusterInput=''

@@ -41,7 +41,7 @@ export class LeaveFormAddComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.id = this.route.snapshot?.paramMap.get('id'); 
+    this.id = this.route.snapshot?.paramMap.get('id');
     this.GetEmployeeData()
     this.ReportForm = this.formBuilder.group(
       {
@@ -60,7 +60,7 @@ export class LeaveFormAddComponent implements OnInit {
   }
 
   GetEmployeeData() {
-    this.http.getAll(Domain.GetUsers).subscribe((response) => {
+    this.http.getAll(`${Domain.GetUsers}?page=1&limit=1000&order=desc`).subscribe((response) => {
       this.EmployiesData = response;
       console.log(response)
     })

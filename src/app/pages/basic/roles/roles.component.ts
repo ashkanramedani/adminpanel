@@ -18,7 +18,7 @@ export class RolesComponent implements OnInit {
   ResponseDataList: IUsers[] = []
   SingleData: IRolesForm
   form_title = "اطلاعات پایه / نقش ها"
-  table_header: string[] = ["ردیف", "نام", "ایجاد کننده", "خوشه", "وضعیت", "عملیات"]
+  table_header: string[] = ["ردیف", "نام", "خوشه", "وضعیت", "عملیات"]
   field_count: string = "Role"
   get_all_route: string = Domain.GetRolesData
   delete_route: string = Domain.DeleteRolesData

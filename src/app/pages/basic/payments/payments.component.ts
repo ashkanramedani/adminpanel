@@ -18,7 +18,7 @@ export class PaymentsComponent implements OnInit {
   ResponseDataList: Ipayment_method[] = []
   SingleData: Ipayment_method
   form_title = "اطلاعات پایه / روش های پرداخت"
-  table_header: string[] = ["ردیف", "نام", "سازنده","وضعیت", "عملیات"]
+  table_header: string[] = ["ردیف", "نام", "شماره کارت",'شماره شبا',"وضعیت", "عملیات"]
   field_count:string="Payment_Method"
   get_all_route:string=Domain.GetPaymentMethodData
   delete_route:string=Domain.DeletePaymentMethodData
@@ -108,4 +108,18 @@ export class PaymentsComponent implements OnInit {
   CloseModal() {
     this.IsShowenModal = false
   }
+    CopyValue(val: any){
+      let selBox = document.createElement('textarea');
+        selBox.style.position = 'fixed';
+        selBox.style.left = '0';
+        selBox.style.top = '0';
+        selBox.style.opacity = '0';
+        selBox.value = val;
+        document.body.appendChild(selBox);
+        selBox.focus();
+        selBox.select();
+        document.execCommand('copy');
+        document.body.removeChild(selBox);
+        this.alertServices.success("اطلاعات در حافظه کپی شد")
+      }
 }
