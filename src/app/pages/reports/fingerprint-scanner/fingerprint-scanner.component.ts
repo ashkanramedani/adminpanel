@@ -20,7 +20,7 @@ export class FingerprintScannerComponent implements OnInit {
   add_url:string="/reports/finger_scanner/add"
   edit_url:string="/reports/finger_scanner/edit"
   //#endregion
-  ResponseDataLenght: number[];
+  ResponseDataLenght: number[]=[];
   totalCount: number = 0
   SearchValue: string
   isCheckedStatus: number;
@@ -30,7 +30,8 @@ export class FingerprintScannerComponent implements OnInit {
    page:number=1
    limit:number=20
   currentPage: number = 1
-  constructor(private http: HttpService, private alertServices: AlertifyService) { }
+  constructor(private http: HttpService, private alertServices: AlertifyService) {
+   }
   ngOnInit(): void {
     this.GetResponseData(1, 10, this.order)
     this.GetResponseDataLenght()
@@ -99,4 +100,5 @@ export class FingerprintScannerComponent implements OnInit {
     this.IsShowenModal = false
   }
 }
+
 

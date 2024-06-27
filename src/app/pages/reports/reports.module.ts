@@ -30,8 +30,6 @@ import { FingerprintScannerBulkComponent } from './fingerprint-scanner/fingerpri
 import { OnlyNumberDirective } from 'src/app/directive/only_number.directive';
 import { ProfessorsreportStepComponent } from './professors-reports/professorsreport-step/professorsreport-step.component';
 
-
-
 @NgModule({
   declarations: [BusinessTripComponent, BusinessTripAddComponent, CourseCancellationComponent, CourseCancellationAddComponent,
     FingerprintScannerComponent, FingerprintScannerAddComponent,FingerprintScannerBulkComponent, LeaveFormsComponent, LeaveFormAddComponent, RemoteRequestComponent,

@@ -52,8 +52,8 @@ export class SessionAddComponent implements OnInit {
         session_teacher_fk_id: new FormControl('', [Validators.required]),
         is_sub: new FormControl('', [Validators.required]),
         session_date: new FormControl('', [Validators.required]),
-        session_starting_time: new FormControl('', [Validators.required]),
-        session_ending_time: new FormControl('', [Validators.required]),
+        session_starting_time: new FormControl('21:11:27', [Validators.required]),
+        session_ending_time: new FormControl('21:15:27', [Validators.required]),
         session_duration: new FormControl('', [Validators.required]),
         days_of_week: new FormControl('', [Validators.required]),
       }

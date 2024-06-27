@@ -46,68 +46,73 @@
           <a [routerLink]="[edit_url,item.sub_course_pk_id]" title="ویرایش">
             <img src="/assets/images/icon/edit.svg" class="w-4" alt="">
           </a>
-          <button title="حذف" (click)="RemoveItem(item.sub_course_pk_id)">
+          <button title="حذف" (click)="RemoveItem(item.sub_course_pk_id,item.course.course_pk_id)">
             <img src="/assets/images/icon/trash.svg" class="w-4" alt="">
           </button>
         </div>
       </div>
     </div>
-    <!--
+
     <div *ngIf="IsShowenModal==true" x-transition=""
-  class="fixed   left-0 top-0 z-999999 flex h-full min-h-screen w-full items-center justify-center bg-black/40 px-4 py-5 text-graydark dark:text-white">
-  <div
-    class="flex flex-col w-full mx-12 lg:mr-[19rem]  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
-    <div class="footer flex  justify-start border-b py-3 border-[#b1b1b1]">
-      <h3 class="font-semibold text-lg"> نمایش رکورد <span> اطلاعات نقش </span></h3>
-    </div>
-    <div class="grid grid-cols-2 py-3  text-graydark dark:text-white text-base">
-        <div>
+      class="fixed   left-0 top-0 z-999999 flex h-full min-h-screen w-full items-center justify-center bg-black/40 px-4 py-5 text-graydark dark:text-white">
+      <div
+        class="flex flex-col w-full mx-12 lg:mr-[19rem]  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
+        <div class="footer flex  justify-start border-b py-3 border-[#b1b1b1]">
+          <h3 class="font-semibold text-lg"> نمایش رکورد <span> اطلاعات دوره های درس </span></h3>
+        </div>
+        <div class="grid grid-cols-2 py-3  text-graydark dark:text-white text-base">
+          <div>
             <label class="my-3 block text-base font-semibold">
-                سازنده
+              سازنده
             </label>
             <span>{{SingleData.created_fk_by}}</span>
-        </div>
-        <div>
+          </div>
+          <div>
             <label class="my-3 block text-base font-semibold">
-                نام
+              نام
             </label>
-            <span>{{SingleData.name }}</span>
-        </div>
-        <div>
+            <span>{{SingleData.sub_course_name }}</span>
+          </div>
+          <div>
             <label class="my-3 block text-base font-semibold">
-                وضعیت
+              وضعیت
             </label>
             <span *ngIf="SingleData.status==0"
-                class="inline-flex rounded-full bg-[#777777] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید
-                نشده </span>
+              class="inline-flex rounded-full bg-[#777777] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید
+              نشده </span>
             <span *ngIf="SingleData.status==1"
-                class="inline-flex rounded-full bg-[#199173] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید
-                شده </span>
+              class="inline-flex rounded-full bg-[#199173] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید
+              شده </span>
 
-        </div>
-        <div>
+          </div>
+          <div>
             <label class="my-3 block text-base font-semibold">
-                خوشه
+              درس اصلی
             </label>
-            <span>{{SingleData.cluster }}</span>
-        </div>
-
-        <div>
+            <span>{{SingleData.course_fk_id }}</span>
+          </div>
+          <div>
             <label class="my-3 block text-base font-semibold ">
-                توضیحات
+              تعداد جلسات
             </label>
-            <span>{{SingleData.description}}</span>
+            <span>{{SingleData.number_of_session}}</span>
+          </div>
+          <div>
+            <label class="my-3 block text-base font-semibold ">
+              استاد
+            </label>
+            <span>{{SingleData.sub_course_teacher_fk_id}}</span>
+          </div>
         </div>
-    </div>
 
-    <div class="footer flex items-end justify-end border-t py-3 border-[#b1b1b1]">
-      <button (click)="CloseModal()"
-        class="block  rounded border border-stroke bg-stroke hover:bg-bodydark1 font-semibold px-6 py-3 text-center  text-black-2 transition   dark:border-strokedark dark:bg-meta-4 dark:text-white">
-        بستن
-      </button>
+        <div class="footer flex items-end justify-end border-t py-3 border-[#b1b1b1]">
+          <button (click)="CloseModal()"
+            class="block  rounded border border-stroke bg-stroke hover:bg-bodydark1 font-semibold px-6 py-3 text-center  text-black-2 transition   dark:border-strokedark dark:bg-meta-4 dark:text-white">
+            بستن
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-</div> -->
 
   </main>
 </ng-template>

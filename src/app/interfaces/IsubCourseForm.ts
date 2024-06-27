@@ -12,5 +12,6 @@ export interface ISubCourseForm{
         sub_course_ending_date: string
         session_signature: ISessionSignature[]
         description:string
-    
+        sub_request_threshold:number
+
 }

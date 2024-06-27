@@ -56,7 +56,7 @@ export class SubCourseAddComponent implements OnInit {
       {
         created_fk_by: new FormControl('', [Validators.required]),
         description: new FormControl(''),
-        status: new FormControl('',[Validators.required]),
+        status: new FormControl<number>(1,[Validators.required]),
         course_fk_id:new FormControl(this.course_id,[Validators.required]),
         sub_course_teacher_fk_id:new FormControl('',[Validators.required]),
         sub_course_name:new FormControl('',[Validators.required]),
@@ -64,6 +64,7 @@ export class SubCourseAddComponent implements OnInit {
         sub_course_starting_date:new FormControl('',[Validators.required]),
         sub_course_ending_date:new FormControl('',[Validators.required]),
         session_signature:new FormControl(''),
+        sub_request_threshold:new FormControl<number>(1,[Validators.required]),
       }
     )
     if (this.id != null) {
@@ -106,6 +107,7 @@ export class SubCourseAddComponent implements OnInit {
     this.ReportForm.controls["sub_course_name"].patchValue(this.AuditForm.sub_course_name)
     this.ReportForm.controls["sub_course_starting_date"].patchValue(moment(this.AuditForm.sub_course_starting_date, 'YYYY-MM-DD').locale('fa').format('YYYY-MM-DD'));
     this.ReportForm.controls["sub_course_ending_date"].patchValue(moment(this.AuditForm.sub_course_ending_date, 'YYYY-MM-DD').locale('fa').format('YYYY-MM-DD'));
+    this.ReportForm.controls["sub_request_threshold"].patchValue(this.AuditForm.sub_request_threshold)
   }
   onSubmit() {
     if (this.ReportForm.invalid) {
@@ -124,6 +126,7 @@ export class SubCourseAddComponent implements OnInit {
       course_fk_id: this.ReportForm.controls.course_fk_id.value,
       sub_course_teacher_fk_id: this.ReportForm.controls.sub_course_teacher_fk_id.value,
       sub_course_name: this.ReportForm.controls.sub_course_name.value,
+      sub_request_threshold:this.ReportForm.controls.sub_request_threshold.value,
       number_of_session: this.ReportForm.controls.number_of_session.value,
       sub_course_starting_date: moment.from(this.ReportForm.controls.sub_course_starting_date.value, 'fa', 'YYYY-MM-DD').format('YYYY-MM-DD'),
       sub_course_ending_date: moment.from(this.ReportForm.controls.sub_course_ending_date.value, 'fa', 'YYYY-MM-DD').format('YYYY-MM-DD'),

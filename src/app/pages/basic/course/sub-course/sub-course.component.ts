@@ -60,20 +60,17 @@ export class SubCourseComponent implements OnInit {
     })
   }
 
-  RemoveItem(id?: string) {
+  RemoveItem(id?: string,course_id?:string) {
     this.alertServices.confirm(
       'حذف آیتم',
       'آیا از حذف این آیتم اطمینان دارید؟',
       () => {
         this.http
-          .deleteWithQuery(`${this.delete_route}/${id}`)
+          .deleteWithQuery(`${this.delete_route}/${id}?course_id=${course_id}`)
           .subscribe((response) => {
             console.log(response);
-            if (response == "Deleted") {
               this.GetResponseData(1, 10, this.order);
               this.alertServices.success('آیتم با موفقیت حذف شد');
-            }
-            else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
           });
       },
       () => { }
@@ -93,6 +90,17 @@ export class SubCourseComponent implements OnInit {
       .get(this.get_all_route, id)
       .subscribe((response) => {
         this.SingleData = response;
+        this.http.get(Domain.GetUsers, this.SingleData.created_fk_by).subscribe((emp) => {
+          console.log("emp: " + emp)
+          this.SingleData.created_fk_by = emp.name + " " + emp.last_name
+        })
+        this.http.get(Domain.GetUsers, this.SingleData.sub_course_teacher_fk_id).subscribe((teacher)=>
+        {
+          this.SingleData.sub_course_teacher_fk_id=teacher.name + " "+teacher.last_name
+        })
+        this.http.get(Domain.GetcourseData,this.SingleData.course_fk_id).subscribe((cls) => {
+          this.SingleData.course_fk_id=cls.course_name
+        })
         this.IsShowenModal = true
       });
   }
