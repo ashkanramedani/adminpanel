@@ -9,6 +9,7 @@ import { RouterLink } from '@angular/router';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EmployeesUsersComponent } from './employees-users/employees-users.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { EmployeesUsersComponent } from './employees-users/employees-users.compo
     CommonModule,
     RouterLink,
     CKEditorModule,
-    SharedModule
+    SharedModule,
+    NgxPaginationModule
   ]
 })
 export class ContentsModule { }

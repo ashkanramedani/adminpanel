@@ -29,6 +29,7 @@ import { ProfessorsReportsComponent } from './professors-reports/professors-repo
 import { FingerprintScannerBulkComponent } from './fingerprint-scanner/fingerprint-scanner-bulk/fingerprint-scanner-bulk.component';
 import { OnlyNumberDirective } from 'src/app/directive/only_number.directive';
 import { ProfessorsreportStepComponent } from './professors-reports/professorsreport-step/professorsreport-step.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [BusinessTripComponent, BusinessTripAddComponent, CourseCancellationComponent, CourseCancellationAddComponent,
@@ -44,6 +45,7 @@ import { ProfessorsreportStepComponent } from './professors-reports/professorsre
     ReactiveFormsModule,
     RouterLink,
     SharedModule,
+    NgxPaginationModule
   ]
 })
 export class ReportsModule { }

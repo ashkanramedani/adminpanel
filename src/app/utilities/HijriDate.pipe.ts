@@ -7,7 +7,7 @@ import * as moment from 'jalali-moment';
 })
 export class HijriDatePipe implements PipeTransform {
 
-  transform(date:Date): string {
+  transform(date:string): string {
     if (!date)  return "";
     return ( moment(date, 'YYYY-MM-DD').locale('fa').format('YYYY-MM-DD'))
    }

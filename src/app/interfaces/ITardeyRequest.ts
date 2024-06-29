@@ -8,4 +8,5 @@ export interface ITardeyRequest
     teacher :IUsers
     classes :IClass
     delay :number
+    status:number
 }

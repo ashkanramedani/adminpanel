@@ -14,6 +14,7 @@ import { IPost } from 'src/app/interfaces/IPost';
 import { IPostWriter } from 'src/app/interfaces/IPostWriter';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ITagValue } from 'src/app/interfaces/ITagValue';
+import { IPostForm } from 'src/app/interfaces/IPostForm';
 
 @Component({
   selector: 'app-content-add',
@@ -221,11 +222,11 @@ export class ContentAddComponent implements OnInit {
       return;
     }
     this.btnLoading = true
-    let ReportFormValue: IPost =
+    let ReportFormValue: IPostForm =
     {
       post_title: this.ReportForm.controls.post_title.value,
       post_summary: this.ReportForm.controls.post_summary.value,
-      // post_discribtion: this.postForm.controls.post_de.value,
+       post_discribtion: this.ReportForm.controls.post_de.value,
       post_content: this.ReportForm.controls.post_content.value,
       post_image: this.ReportForm.controls.post_image.value,
       priority: this.ReportForm.controls.post_priority.value,

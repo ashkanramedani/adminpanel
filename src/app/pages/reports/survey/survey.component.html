@@ -18,7 +18,7 @@
             class="header grid grid-cols-7 text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6" >
             <span *ngFor="let item of table_header">{{item}}</span>
         </div>
-        <div *ngFor="let item of ResponseDataList | filter: this.SearchValue; let i =index"
+        <div *ngFor="let item of ResponseDataList | paginate: { itemsPerPage: 10,currentPage: currentPage }; let i =index"
             class="body grid grid-cols-7 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
             <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
             <span>{{item.created.name + '&nbsp; &nbsp;' + item.created.last_name}}</span>
@@ -41,12 +41,9 @@
                 </button>
             </div>
         </div>
-        <ul class="paging flex items-center justify-center mt-16 flex-wrap " dir="ltr">
-          <li *ngFor="let item of  ResponseDataLenght ;let i = index">
-            <a (click)="GetResponseData(i+1,10,order)" [ngClass]="{'!bg-gray-300 text-black': (currentPage==i+1) }"
-              class="cursor-pointer h-11 w-11  flex items-center justify-center border border-stroke  font-medium hover:border-primary hover:bg-gray-400 hover:text-primary">{{i+1}}</a>
-          </li>
-        </ul>
+        <div class="paging flex items-center justify-center mt-16 flex-wrap ">
+          <pagination-controls (pageChange)="currentPage= $event" previousLabel="قبلی" nextLabel="بعدی" ></pagination-controls>
+        </div>
     </div>
 
     <div *ngIf="IsShowenModal==true" x-transition=""

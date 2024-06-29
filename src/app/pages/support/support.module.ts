@@ -11,6 +11,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ReactiveFormsModule,
     RouterLink,
     SharedModule,
+    NgxPaginationModule
   ]
 })
 export class SupportModule { }

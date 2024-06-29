@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
 import { IUserSigleForm } from 'src/app/interfaces/IUserSigleForm';
 import { IUsers } from 'src/app/interfaces/IUsers';
-import { IUsersForm } from 'src/app/interfaces/IUsersForm';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -37,7 +36,7 @@ export class UsersComponent implements OnInit {
   currentPage: number = 1
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
-    this.GetResponseData(1, 10, this.order)
+    this.GetResponseData(1, 1000, this.order)
     this.GetResponseDataLenght()
 
   }
@@ -69,7 +68,7 @@ export class UsersComponent implements OnInit {
           .subscribe((response) => {
             console.log(response);
             if (response == "Deleted") {
-              this.GetResponseData(1, 10, this.order);
+              this.GetResponseData(1, 1000, this.order);
               this.alertServices.success('آیتم با موفقیت حذف شد');
             }
             else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
@@ -80,7 +79,7 @@ export class UsersComponent implements OnInit {
   }
   ChangeSort(value: any) {
     this.order = value.target.value
-    this.GetResponseData(1, 10, this.order);
+    this.GetResponseData(1, 1000, this.order);
   }
 
   OpenModal(id: string) {

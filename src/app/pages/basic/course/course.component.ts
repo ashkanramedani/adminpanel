@@ -28,7 +28,7 @@ export class CourseComponent implements OnInit {
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
     this.GetCourseTypeData()
-    this.GetResponseData(1, 10, this.order,"")
+    this.GetResponseData(1, 1000, this.order,"")
     this.GetResponseDataLenght()
   }
   GetResponseDataLenght() {
@@ -54,7 +54,7 @@ export class CourseComponent implements OnInit {
   }
   ChangeSort(value: any) {
     this.order = value.target.value
-    this.GetResponseData(1, 10, this.order,"");
+    this.GetResponseData(1, 1000, this.order,"");
   }
   RemoveItem(id?: string) {
     this.ShowMoreItem=""
@@ -66,7 +66,7 @@ export class CourseComponent implements OnInit {
           .deleteWithQuery(`${Domain.DeletecourseData}/${id}`)
           .subscribe((response) => {
             console.log(response);
-              this.GetResponseData(1, 10, this.order,"");
+              this.GetResponseData(1, 1000, this.order,"");
               this.alertServices.success('آیتم با موفقیت حذف شد');
             //else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
           });

@@ -26,6 +26,7 @@ import { SubCourseComponent } from './course/sub-course/sub-course.component';
 import { SubCourseAddComponent } from './course/sub-course/sub-course-add/sub-course-add.component';
 import { SessionsComponent } from './course/sessions/sessions.component';
 import { SessionAddComponent } from './course/sessions/session-add/session-add.component';
+import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
   { path: 'course', component: CourseComponent },
@@ -80,7 +81,9 @@ const routes: Routes = [
 
   { path: 'payments', component: PaymentsComponent },
   { path: 'payment/add', component: PaymentAddComponent },
-  { path: 'payment/edit/:id', component: PaymentAddComponent }
+  { path: 'payment/edit/:id', component: PaymentAddComponent },
+
+  { path: 'test', component: TestComponent }
 
 ];
 

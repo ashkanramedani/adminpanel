@@ -1,4 +1,5 @@
 import { SalaryTypeEnum } from "../enum/SalaryTypeEnum"
+import { IUsers } from "./IUsers"
 
 export interface ISalaryPolicy{
 
@@ -41,4 +42,7 @@ export interface ISalaryPolicy{
     day_ending_time: string,
     undertime_threshold: number
     user_fk_id:string
+    salary_policy_pk_id:string
+    employee:IUsers
+    created:IUsers
 }

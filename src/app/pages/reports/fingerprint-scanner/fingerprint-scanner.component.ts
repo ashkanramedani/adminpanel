@@ -33,7 +33,7 @@ export class FingerprintScannerComponent implements OnInit {
   constructor(private http: HttpService, private alertServices: AlertifyService) {
    }
   ngOnInit(): void {
-    this.GetResponseData(1, 10, this.order)
+    this.GetResponseData(1, 1000, this.order)
     this.GetResponseDataLenght()
 
   }
@@ -65,7 +65,7 @@ export class FingerprintScannerComponent implements OnInit {
           .subscribe((response) => {
             console.log(response);
             if (response == "Deleted") {
-              this.GetResponseData(1, 10, this.order);
+              this.GetResponseData(1, 1000, this.order);
               this.alertServices.success('آیتم با موفقیت حذف شد');
             }
             else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
@@ -76,7 +76,7 @@ export class FingerprintScannerComponent implements OnInit {
   }
   ChangeSort(value: any) {
     this.order = value.target.value
-    this.GetResponseData(1, 10, this.order);
+    this.GetResponseData(1, 1000, this.order);
   }
 
   OpenModal(id: string) {

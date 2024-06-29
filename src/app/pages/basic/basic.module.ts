@@ -32,13 +32,15 @@ import { SubCourseComponent } from './course/sub-course/sub-course.component';
 import { SubCourseAddComponent } from './course/sub-course/sub-course-add/sub-course-add.component';
 import { SessionAddComponent } from './course/sessions/session-add/session-add.component';
 import { SessionsComponent } from './course/sessions/sessions.component';
+import { TestComponent } from './test/test.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [CourseComponent, CourseAddComponent, CourseCategoryComponent, CourseCategoryAddComponent, CourseLanguageAddComponent,
     CourseTagAddComponent, CourseTypeAddComponent, CourseLanguageComponent, CourseTagComponent, CourseTypeComponent,
     AnswersComponent, AnswerAddComponent, PaymentsComponent, PaymentAddComponent, QuestionsComponent, QuestionAddComponent,
     SessionAddComponent, SessionsComponent, RolesComponent, RoleAddComponent, StudentsComponent,
-    StudentAddComponent, UsersComponent, UserAddComponent, SubCourseComponent, SubCourseAddComponent
+    StudentAddComponent, UsersComponent, UserAddComponent, SubCourseComponent, SubCourseAddComponent,TestComponent
   ],
   imports: [
     CommonModule,
@@ -49,6 +51,7 @@ import { SessionsComponent } from './course/sessions/sessions.component';
     ReactiveFormsModule,
     RouterLink,
     SharedModule,
+    NgxPaginationModule
   ]
 })
 export class BasicModule { }

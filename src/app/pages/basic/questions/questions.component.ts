@@ -6,12 +6,12 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
-  selector: 'app-questions', 
-  templateUrl: './questions.component.html', 
+  selector: 'app-questions',
+  templateUrl: './questions.component.html',
 })
 export class QuestionsComponent implements OnInit {
 
-  
+
   //#region change this informaion
   ResponseDataList: IQuestions[] = []
   SingleData: IQuestionsForm
@@ -35,11 +35,11 @@ export class QuestionsComponent implements OnInit {
   currentPage: number = 1
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
-    this.GetResponseData(1, 10, this.order)
+    this.GetResponseData(1, 1000, this.order)
     this.GetResponseDataLenght()
 
   }
- 
+
   GetResponseDataLenght() {
     this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
       this.totalCount = response
@@ -67,7 +67,7 @@ export class QuestionsComponent implements OnInit {
           .subscribe((response) => {
             console.log(response);
             if (response == "Deleted") {
-              this.GetResponseData(1, 10, this.order);
+              this.GetResponseData(1, 1000, this.order);
               this.alertServices.success('آیتم با موفقیت حذف شد');
             }
             else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
@@ -78,7 +78,7 @@ export class QuestionsComponent implements OnInit {
   }
   ChangeSort(value: any) {
     this.order = value.target.value
-    this.GetResponseData(1, 10, this.order);
+    this.GetResponseData(1, 1000, this.order);
   }
 
   OpenModal(id: string) {

@@ -7,7 +7,6 @@ export interface IPost {
   priority: number;
   post_status: number;
   post_direction: string;
-  post_pk_id?: number;
   visible?: boolean;
   post_type: string;
   expier_date: string;
@@ -25,4 +24,6 @@ export interface IPost {
   users_post_writer:  string[];
   users_post_actor:  string[];
   user_creator_fk_id?: number;
+  create_date:string
+  post_pk_id:string
 }

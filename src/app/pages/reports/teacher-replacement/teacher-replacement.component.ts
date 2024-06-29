@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
 import { ISalaryPolicy } from 'src/app/interfaces/ISalaryPolicy';
 import { ITardeyRequest } from 'src/app/interfaces/ITardeyRequest';
+import { ITeacherReplacement } from 'src/app/interfaces/TeacherReplacement';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -12,7 +13,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class TeacherReplacementComponent implements OnInit {
   //#region change this informaion
-  ResponseDataList: ITardeyRequest[] = []
+  ResponseDataList: ITeacherReplacement[] = []
   SingleData: ISalaryPolicy
   form_title = "گزارشات /  استاد جایگزین"
   table_header: string[] = ["ردیف", "سازنده", " استاد اصلی ", "استاد جایگزین","کلاس ","وضعیت","عملیات"]
@@ -34,7 +35,7 @@ export class TeacherReplacementComponent implements OnInit {
   currentPage: number = 1
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
-    this.GetResponseData(1, 10, this.order)
+    this.GetResponseData(1, 1000, this.order)
     this.GetResponseDataLenght()
 
   }
@@ -66,7 +67,7 @@ export class TeacherReplacementComponent implements OnInit {
           .subscribe((response) => {
             console.log(response);
             if (response == "Deleted") {
-              this.GetResponseData(1, 10, this.order);
+              this.GetResponseData(1, 1000, this.order);
               this.alertServices.success('آیتم با موفقیت حذف شد');
             }
             else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
@@ -77,7 +78,7 @@ export class TeacherReplacementComponent implements OnInit {
   }
   ChangeSort(value: any) {
     this.order = value.target.value
-    this.GetResponseData(1, 10, this.order);
+    this.GetResponseData(1, 1000, this.order);
   }
 
   OpenModal(id: string) {

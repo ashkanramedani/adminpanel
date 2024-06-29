@@ -9,6 +9,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { LibrariesComponent } from './libraries.component';
 import { LibrariesAddComponent } from './libraries-add/libraries-add.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     RouterLink,
     CKEditorModule,
-    SharedModule
+    SharedModule,
+    NgxPaginationModule
   ]
 })
 export class LibrariesModule { }
