@@ -30,6 +30,7 @@ import { FingerprintScannerBulkComponent } from './fingerprint-scanner/fingerpri
 import { OnlyNumberDirective } from 'src/app/directive/only_number.directive';
 import { ProfessorsreportStepComponent } from './professors-reports/professorsreport-step/professorsreport-step.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { MatNativeDateTimeModule, MatTimepickerModule } from '@dhutaryan/ngx-mat-timepicker';
 
 @NgModule({
   declarations: [BusinessTripComponent, BusinessTripAddComponent, CourseCancellationComponent, CourseCancellationAddComponent,
@@ -45,7 +46,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ReactiveFormsModule,
     RouterLink,
     SharedModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ]
 })
 export class ReportsModule { }

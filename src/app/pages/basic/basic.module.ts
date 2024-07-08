@@ -34,6 +34,7 @@ import { SessionAddComponent } from './course/sessions/session-add/session-add.c
 import { SessionsComponent } from './course/sessions/sessions.component';
 import { TestComponent } from './test/test.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { MatNativeDateTimeModule, MatTimepickerModule } from '@dhutaryan/ngx-mat-timepicker';
 
 @NgModule({
   declarations: [CourseComponent, CourseAddComponent, CourseCategoryComponent, CourseCategoryAddComponent, CourseLanguageAddComponent,
@@ -51,7 +52,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ReactiveFormsModule,
     RouterLink,
     SharedModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ]
 })
 export class BasicModule { }

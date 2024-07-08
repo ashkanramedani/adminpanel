@@ -29,6 +29,7 @@
     "@ckeditor/ckeditor5-engine": "^41.0.0",
     "@ckeditor/ckeditor5-utils": "^41.0.0",
     "@ckeditor/ckeditor5-watchdog": "^41.0.0",
+    "@dhutaryan/ngx-mat-timepicker": "^17.6.0",
     "@fancyapps/ui": "^5.0.20",
     "@types/leaflet": "^1.9.3",
     "alertifyjs": "^1.13.1",

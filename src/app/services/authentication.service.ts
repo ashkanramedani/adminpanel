@@ -20,18 +20,19 @@ export class AuthenticationService {
     }
     return headers;
   }
-  login(mobile: string): Observable<any> {
-    return this.http.create(Domain.Login, {
-      mobile: mobile,
+  login(username: string,password:string): Observable<any> {
+    return this.http.create(Domain.SingIn, {
+      username: username,
+      password:password
     });
   }
 
-  twoStepSubmit(mobile: string, code: string): Observable<any> {
-    return this.http.create(Domain.validateCode, {
-      mobile: mobile,
-      code: code,
-    });
-  }
+  // twoStepSubmit(mobile: string, code: string): Observable<any> {
+  //   return this.http.create(Domain.validateCode, {
+  //     mobile: mobile,
+  //     code: code,
+  //   });
+  // }
   logout(): void {
     localStorage.clear();
     this.router.navigate(['']);
