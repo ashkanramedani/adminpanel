@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
 import { Isignin } from 'src/app/interfaces/Isignin';
 import { AlertifyService } from 'src/app/services/alertify.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -17,12 +18,12 @@ export class SigninComponent implements OnInit {
   ReportForm: FormGroup;
   btnLoading:boolean=false
 
-  constructor(private formBuilder: FormBuilder,private http:HttpService,private alertServices:AlertifyService,private router:Router){}
+  constructor(private formBuilder: FormBuilder,private http:HttpService,private alertServices:AlertifyService,private router:Router,private authService:AuthenticationService){}
   ngOnInit(): void {
     this.ReportForm = this.formBuilder.group(
       {
-        username: new FormControl('', [Validators.required]),
-        password: new FormControl('')
+        username: new FormControl('admin@ieltsdaily.ir', [Validators.required]),
+        password: new FormControl('Aa123456@@')
       }
     )
   }
@@ -32,15 +33,12 @@ export class SigninComponent implements OnInit {
       return;
     }
     this.btnLoading = true
-    let ReportFormValue: Isignin =
-    {
-      username: this.ReportForm.controls.username.value,
-      password: this.ReportForm.controls.password.value,
-    }
-      this.http.create(Domain.SingIn, ReportFormValue, null).subscribe((response) => {
+    const val = this.ReportForm.value;
+    this.authService.login(val.username,val.password).subscribe((response) => {
         console.log(response)
-        this.router.navigate(['']);
-        this.ReportForm.reset();
+        localStorage.setItem('token',response.access_token)
+        console.log("User is logged in");
+        this.router.navigate(['/']);
       }
       )
     this.btnLoading=false

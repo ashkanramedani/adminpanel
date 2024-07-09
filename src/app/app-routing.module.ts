@@ -1,46 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ErrorComponent } from './shared/error/error.component';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-
   {
     path: '',
+    canActivate:[authGuard],
     loadChildren: () =>
-      import('./pages/dashboard/dashboard.module').then((m) => m.DashboardModule)
-  },
-  {
-    path: 'basic',
-    loadChildren: () =>
-      import('./pages/basic/basic.module').then((m) => m.BasicModule)
+      import('./templates/main-template/main-template.module').then((m) => m.MainTemplateModule)
   },
   {
     path: 'auth',
     loadChildren: () =>
       import('./pages/auth/auth.module').then((m) => m.AuthModule)
-  },
-  {
-    path: 'support',
-    loadChildren: () =>
-      import('./pages/support/support.module').then((m) => m.SupportModule)
-  },
-  {
-    path: 'contents',
-    loadChildren: () =>
-      import('./pages/contents/contents.module').then(
-        (m) => m.ContentsModule
-      ),
-  },
-  {
-    path: 'libraries',
-    loadChildren: () =>
-      import('./pages/libraries/libraries.module').then(
-        (m) => m.LibrariesModule
-      ),
-  },
-  {
-    path: 'reports',
-    loadChildren: () => import('./pages/reports/reports.module').then((m) => m.ReportsModule)
   },
   {
     path: 'notFound',

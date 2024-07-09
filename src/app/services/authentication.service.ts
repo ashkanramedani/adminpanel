@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { Domain } from '../domain/doamin';
 import { Observable, map, of } from 'rxjs';
-import { HttpResponse, HttpStatusCode } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -35,18 +34,22 @@ export class AuthenticationService {
   // }
   logout(): void {
     localStorage.clear();
-    this.router.navigate(['']);
+    this.router.navigate(['/auth/sigin']);
   }
 
   IsAuthenticated(): boolean {
-    let todayTick = Date.now() * 10000 + 621355968000000000;
+    let todayTick =Math.floor((new Date).getTime() / 1000)
+    console.log("todayTick",todayTick)
     let accessToken = localStorage.getItem('token');
     if (accessToken != null) {
-      if (todayTick < JSON.parse(accessToken).exp_date) {
+      let token_exp_date= JSON.parse(atob( accessToken.split('.')[1])).exp
+      console.log("token_exp_date",token_exp_date)
+      if (todayTick < token_exp_date) {
+        console.log("login")
         return true;
       }
     }
-    //console.log('token time expire');
+    console.log('token time expire');
     return false;
   }
 }

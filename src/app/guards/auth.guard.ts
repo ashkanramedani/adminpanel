@@ -5,16 +5,14 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class authGuard implements CanActivate
-{
-  constructor(private authService:AuthenticationService,private router:Router){}
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    if(!this.authService.IsAuthenticated)
-      {
-        this.router.navigate(['']);
-        return false;
-      }
-      return true;
+export class authGuard {
+  constructor(private authService: AuthenticationService, private router: Router) { }
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    if (this.authService.IsAuthenticated() !== true) {
+      this.router.navigate(['auth/sigin']);
+      return false;
+    }
+    return true;
   }
 
 }
