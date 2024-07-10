@@ -5,9 +5,10 @@ import { SignupComponent } from './signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { SigninComponent } from './signin/signin.component';
 
 @NgModule({
-  declarations: [SignupComponent],
+  declarations: [SignupComponent,SigninComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

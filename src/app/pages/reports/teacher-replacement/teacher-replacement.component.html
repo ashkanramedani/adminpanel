@@ -27,8 +27,7 @@
             <span>{{item.classes.name}}</span>
 
             <div class="flex items-center justify-center">
-                <img *ngIf="item.status==1" src="/assets/images/icon/active.svg" class="w-4" alt="">
-                <img *ngIf="item.status==0" src="/assets/images/icon/deactive.svg" class="w-[1.1rem]" alt="">
+              <span class="badge badge-ghost">{{item.status}}</span>
             </div>
             <div class="operation flex items-center justify-center gap-x-2">
                 <button (click)="OpenModal(item.teacher_replacement_pk_id)" title="نمایش">

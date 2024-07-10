@@ -25,6 +25,7 @@ import { ProfessorsreportStepComponent } from './professors-reports/professorsre
 const routes: Routes = [
   {path:'salarypolicy',component:SalaryPolicyComponent},
   {path:'salarypolicy/add',component:SalaryPolicyAddComponent},
+  {path:'salarypolicy/edit/:id',component:SalaryPolicyAddComponent},
 
   {path:'tardy_request',component:TardeyRequestComponent},
   {path:'tardy_request/add',component:TardeyRequestAddComponent},

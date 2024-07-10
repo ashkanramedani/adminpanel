@@ -66,7 +66,7 @@ export class ProfessorsReportsComponent implements OnInit {
       this.year = this.ReportForm.controls.year.value,
         this.month = this.ReportForm.controls.month.value,
         this.isShowenAlert = true
-      this.ReportForm.reset();
+
     }
     )
   }

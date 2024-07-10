@@ -19,13 +19,12 @@ export class AuthenticationService {
     }
     return headers;
   }
-  login(username: string,password:string): Observable<any> {
-    return this.http.create(Domain.SingIn, {
-      username: username,
-      password:password
-    });
+  login(MobileNumber: string,): Observable<any> {
+    return this.http.create(`${Domain.OTP}?mobile_number=${MobileNumber}` );
   }
-
+  VerifyOTP(code: string,): Observable<any> {
+    return this.http.create(`${Domain.VerifyOTP}?code=${code}` );
+  }
   // twoStepSubmit(mobile: string, code: string): Observable<any> {
   //   return this.http.create(Domain.validateCode, {
   //     mobile: mobile,

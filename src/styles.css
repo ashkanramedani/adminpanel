@@ -80,33 +80,30 @@
 .alertify.ajs-closable .ajs-commands button.ajs-close {
   display: none !important
 }
-
-
 /* Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
-
 }
 
 /* width */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 5px !important;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #f1f1f1 !important;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #c9c9c9;
-  border-radius: 10px;
+  background: #c9c9c9 !important;
+  border-radius: 10px !important;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #adadad;
+  background: #adadad !important;
 }
 .ajs-ok{
   @apply border border-gray-300 rounded-md hover:bg-gray-200 font-semibold text-emerald-700

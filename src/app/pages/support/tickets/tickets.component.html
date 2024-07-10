@@ -24,8 +24,7 @@
           <span>{{item.created.name + '&nbsp; &nbsp;' +item.created.last_name}}</span>
           <span>{{item.employee.name + '&nbsp; &nbsp;' +item.employee.last_name}}</span>
           <div class="flex items-center justify-center">
-              <img *ngIf="item.status==1" src="/assets/images/icon/active.svg" class="w-4" alt="">
-              <img *ngIf="item.status==0" src="/assets/images/icon/deactive.svg" class="w-[1.1rem]" alt="">
+            <span class="badge badge-ghost">{{item.status}}</span>
           </div>
           <div class="operation flex items-center justify-center gap-x-2">
               <button (click)="OpenModal(item.business_trip_pk_id)" title="نمایش">
@@ -49,7 +48,7 @@ class="fixed   left-0 top-0 z-999999 flex h-full min-h-screen w-full items-cente
 <div
   class="flex flex-col w-full  lg:mr-[19rem]  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
   <div class="footer flex  justify-start border-b py-3 border-[#b1b1b1]">
-    <h3 class="font-semibold text-lg"> نمایش رکورد <span> ثبت ماموریت  </span></h3>
+    <h3 class="font-semibold text-lg"> نمایش رکورد  ثبت ماموریت  </h3>
   </div>
   <div class="grid lg:grid-cols-2 py-3 grid-cols-1 gap-6.5 p-6.5 text-graydark text-base  dark:text-white ">
     <div>
