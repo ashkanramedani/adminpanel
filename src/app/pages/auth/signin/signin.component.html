@@ -1,17 +1,13 @@
-<section class="bg-gray-100 h-screen flex items-center justify-center">
-  <div class="flex items-center justify-between gap-x-6 px-6 py-8 max-w-5xl w-full">
-    <div class="w-full hidden lg:block">
-      <img src="/assets/images/login.png" alt="illustration">
-    </div>
-
-    <div class="w-full flex flex-col items-center justify-center bg-white rounded-lg shadow p-6">
+<section class="bg-gray-100 h-screen  flex overflow-hidden items-center justify-center">
+  <div class="lg:w-5/12 w-full lg:mx-0 mx-8">
+    <div class="lg:w-3/5 w-full flex flex-col items-center justify-center bg-white rounded-lg shadow px-8 py-14 mx-auto border border-gray-300">
       <img class="w-32 " src="/assets/images/logo.webp" alt="logo">
       <div class="space-y-4 md:space-y-6 mt-6 w-full">
         <h1
           class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-center">
           ورود | ثبت نام
         </h1>
-        <form [formGroup]="ReportForm" *ngIf="!IsActiveTwoStep;else OtherContent" class="space-y-4 md:space-y-6">
+        <form [formGroup]="ReportForm" *ngIf="IsSigninStep" class="space-y-4 md:space-y-6">
           <div>
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> لطفا شماره موبایل یا ایمیل خود
               را وارد کنید
@@ -24,24 +20,15 @@
           </div>
 
           <button [disabled]="this.ReportForm.invalid || btnLoading" (click)="this.onSubmit()"
-            class="w-full flex items-center justify-center gap-x-3 text-white  bg-cyan-600 font-semibold hover:bg-cyan-700  rounded-lg text-sm px-5 py-2.5 text-center ">
+            class="w-full flex items-center justify-center gap-x-3 text-white  bg-cyan-600 font-semibold hover:bg-cyan-700  rounded-lg text-lg px-5 py-3 text-center ">
             <span *ngIf="!this.btnLoading">ورود</span>
             <div *ngIf="this.btnLoading"
-              class="animate-spin inline-block w-5 h-5 border-[2px] border-white border-t-transparent text-gray-800 rounded-full ">
+              class="animate-spin inline-block w-6 h-6 border-[3px] border-white border-t-transparent text-gray-800 rounded-full ">
             </div>
           </button>
-          <div class="flex items-center justify-between">
-            <div class="flex items-center justify-end">
-              <a href="#" class="text-sm font-medium text-sky-700 hover:underline ">فراموشی رمز</a>
-            </div>
-            <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-              حساب کاربری ندارید؟ <a href="#" class="font-medium text-sky-700 hover:underline">ثبت نام </a>
-            </p>
-          </div>
         </form>
 
-        <ng-template #OtherContent>
-          <form [formGroup]="TwoStepForm" class="space-y-4 md:space-y-6">
+          <form *ngIf="IsTwoStep" [formGroup]="TwoStepForm" class="space-y-4 md:space-y-6">
             <div>
               <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> لطفا کد تایید را وارد کنید
                 <span
@@ -53,10 +40,10 @@
             </div>
 
             <button [disabled]="this.TwoStepForm.invalid || btnLoading" (click)="this.TwoStepSubmit()"
-              class="w-full flex items-center justify-center gap-x-3 text-white  bg-cyan-600 font-semibold hover:bg-cyan-700  rounded-lg text-sm px-5 py-2.5 text-center ">
+              class="w-full flex items-center justify-center gap-x-3 text-white  bg-cyan-600 font-semibold hover:bg-cyan-700  rounded-lg text-lg px-5 py-3 text-center ">
               <span *ngIf="!this.btnLoading">ادامه</span>
               <div *ngIf="this.btnLoading"
-                class="animate-spin inline-block w-5 h-5 border-[2px] border-white border-t-transparent text-gray-800 rounded-full ">
+                class="animate-spin inline-block w-6 h-6 border-[3px] border-white border-t-transparent text-gray-800 rounded-full ">
               </div>
             </button>
             <div *ngIf="!this.counter_end;else EndTimeContent" class="flex items-center justify-center gap-x-4">
@@ -71,10 +58,86 @@
                 <button (click)="ResendPassword()" class="text-blue-600 font-semibold">ارسال مجدد رمز</button>
               </div>
             </ng-template>
+            <div class="flex items-center justify-center gap-x-4">
+              <button (click)="SignInWithPassword()" class="text-blue-600 font-semibold">  ورود با رمز عبور</button>
+            </div>
           </form>
-        </ng-template>
+
+          <form [formGroup]="SignInWithPasswordForm" *ngIf="IsSigningWithPassword" class="space-y-4 md:space-y-6">
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> نام کاربری</label>
+              <input type="text" formControlName="username"
+                class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  رمز عبور</label>
+              <input type="text" formControlName="password"
+                class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+
+            <button [disabled]="this.ReportForm.invalid || btnLoading" (click)="this.SubmitWithPassword()"
+              class="w-full flex items-center justify-center gap-x-3 text-white  bg-cyan-600 font-semibold hover:bg-cyan-700  rounded-lg text-lg px-5 py-3 text-center ">
+              <span *ngIf="!this.btnLoading">ورود</span>
+              <div *ngIf="this.btnLoading"
+                class="animate-spin inline-block w-6 h-6 border-[3px] border-white border-t-transparent text-gray-800 rounded-full ">
+              </div>
+            </button>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center justify-end">
+                <a href="#" class="text-sm font-medium text-sky-700 hover:underline ">فراموشی رمز</a>
+              </div>
+              <div class="flex items-center justify-center gap-x-4">
+                <button (click)="SignInWithCode()" class="text-blue-600 font-semibold">  ورود با کد پیامک </button>
+              </div>
+
+            </div>
+          </form>
+        <form *ngIf="IsSignupStep" [formGroup]="this.SignUpForm" class="space-y-4 md:space-y-6">
+          <div>
+            <h3 class="text-lg font-medium mb-4">اطلاعات تکمیلی زیر را وارد نمایید</h3>
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> شماره همراه </label>
+            <input type="text" formControlName="mobile_number"
+              class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          </div>
+          <div>
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  ایمیل</label>
+            <input type="text" formControlName="email"
+              class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          </div>
+          <div>
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  رمز عبور</label>
+            <input type="password" formControlName="password"
+              class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          </div>
+          <div>
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  نام </label>
+            <input type="text" formControlName="fname"
+              class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          </div>
+          <div>
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  نام خانوادگی </label>
+            <input type="text" formControlName="lname"
+              class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          </div>
+
+          <button [disabled]="this.SignUpForm.invalid || btnLoading" (click)="this.SignupSubmit()"
+            class="w-full flex items-center justify-center gap-x-3 text-white  bg-cyan-600 font-semibold hover:bg-cyan-700  rounded-lg text-lg px-5 py-3 text-center ">
+            <span *ngIf="!this.btnLoading">ادامه</span>
+            <div *ngIf="this.btnLoading"
+              class="animate-spin inline-block w-6 h-6 border-[3px] border-white border-t-transparent text-gray-800 rounded-full ">
+            </div>
+          </button>
+        </form>
       </div>
     </div>
   </div>
-
+  <div class="w-7/12 relative h-screen hidden lg:block">
+      <img src="/assets/images/login/Vector-1.webp" class="lines-login">
+      <img src="/assets/images/login/Vector-2.webp" class="lines-login">
+      <img src="/assets/images/login/Vector-3.webp" class="lines-login">
+      <img src="/assets/images/login/Vector-6.webp" class="lines-login">
+      <img src="/assets/images/login/bg-login.webp" class=" bg-login">
+      <img src="/assets/images/login/images-in.webp" class="left-0 top-[25%] absolute w-[65%]">
+  </div>
 </section>
+

@@ -101,13 +101,16 @@
           <div class="flex items-center gap-x-2 ">
             <img src="/assets/images/user.svg" class="w-9" alt="">
             <div class="flex flex-col text-xs  gap-y-1">
-              <span>آرسین شهنازی</span>
-              <span>sahfaskjf2020&#64;.com</span>
+              <span>{{this.loggedInUser.fname + '&nbsp;' + this.loggedInUser.lname }}</span>
+              <span>{{this.loggedInUser.email}}</span>
             </div>
           </div>
-          <button (click)="Logout()">
-            <img src="/assets/images/logout.svg" class="w-5 fill-gray-700" alt="">
-          </button>
+          <div class="tooltip  tooltip-bottom" data-tip="خروج">
+            <button (click)="Logout()">
+              <img src="/assets/images/logout.svg" class="w-5 fill-gray-700" alt="">
+            </button>
+          </div>
+
         </div>
         <div class="py-6">
 

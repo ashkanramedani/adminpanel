@@ -3,6 +3,7 @@ import { HttpService } from './http.service';
 import { Domain } from '../domain/doamin';
 import { Observable, map, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { IsignUp } from '../interfaces/IsignUp';
 
 @Injectable({
   providedIn: 'root',
@@ -22,8 +23,14 @@ export class AuthenticationService {
   login(MobileNumber: string,): Observable<any> {
     return this.http.create(`${Domain.OTP}?mobile_number=${MobileNumber}` );
   }
+  loginWithPassword(username: string,password:string): Observable<any> {
+    return this.http.create(`${Domain.SingIn}`,{username:username,password:password} );
+  }
   VerifyOTP(code: string,): Observable<any> {
     return this.http.create(`${Domain.VerifyOTP}?code=${code}` );
+  }
+  SignUp(data: IsignUp,): Observable<any> {
+    return this.http.put(`${Domain.SingUp}`,data,null );
   }
   // twoStepSubmit(mobile: string, code: string): Observable<any> {
   //   return this.http.create(Domain.validateCode, {
@@ -33,16 +40,14 @@ export class AuthenticationService {
   // }
   logout(): void {
     localStorage.clear();
-    this.router.navigate(['/auth/sigin']);
+    this.router.navigate(['/auth/signin']);
   }
 
   IsAuthenticated(): boolean {
     let todayTick =Math.floor((new Date).getTime() / 1000)
-    console.log("todayTick",todayTick)
     let accessToken = localStorage.getItem('token');
     if (accessToken != null) {
       let token_exp_date= JSON.parse(atob( accessToken.split('.')[1])).exp
-      console.log("token_exp_date",token_exp_date)
       if (todayTick < token_exp_date) {
         console.log("login")
         return true;

@@ -152,7 +152,7 @@ export const Domain =
 
   "SingIn":`https://api.ieltsdaily.ir/api/v1/auth/signin`,
   "OTP":`https://api.ieltsdaily.ir/api/v1/auth/otp`,
-  "VerifyOTP":`https://api.ieltsdaily.ir/api/v1/auth/verifyotp
-`,
-
+  "VerifyOTP":`https://api.ieltsdaily.ir/api/v1/auth/verifyotp`,
+  "SingUp":`https://api.ieltsdaily.ir/api/v1/auth/signup`,
+   "GetloggedInUser":`https://api.ieltsdaily.ir/api/v1/user`,
 }
