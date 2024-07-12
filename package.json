@@ -31,6 +31,7 @@
     "@ckeditor/ckeditor5-watchdog": "^41.0.0",
     "@dhutaryan/ngx-mat-timepicker": "^17.6.0",
     "@fancyapps/ui": "^5.0.20",
+    "@persian-tools/persian-tools": "^3.5.2",
     "@types/leaflet": "^1.9.3",
     "alertifyjs": "^1.13.1",
     "express": "^4.15.2",

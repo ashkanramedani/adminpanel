@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { Domain } from '../domain/doamin';
-import { Observable, map, of } from 'rxjs';
+import { Observable, } from 'rxjs';
 import { Router } from '@angular/router';
-import { IsignUp } from '../interfaces/IsignUp';
+import { IsignUpForm } from '../interfaces/IsignUpForm';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +29,7 @@ export class AuthenticationService {
   VerifyOTP(code: string,): Observable<any> {
     return this.http.create(`${Domain.VerifyOTP}?code=${code}` );
   }
-  SignUp(data: IsignUp,): Observable<any> {
+  SignUp(data: IsignUpForm,): Observable<any> {
     return this.http.put(`${Domain.SingUp}`,data,null );
   }
   // twoStepSubmit(mobile: string, code: string): Observable<any> {

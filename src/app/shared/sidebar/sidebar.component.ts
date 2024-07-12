@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'; 
+import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
 import { IloggedInUser } from 'src/app/interfaces/IloggedInUser';
 import { AlertifyService } from 'src/app/services/alertify.service';
