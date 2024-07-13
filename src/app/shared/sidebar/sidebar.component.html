@@ -4,7 +4,7 @@
       <button (click)="openHamburgerMenu()" class="border border-gray-200 p-1 w-8 block lg:hidden">
         <img src="/assets/images/icon/menu.svg" class="w-full" alt="">
       </button>
-      <a class="block flex-shrink-0">
+      <a [routerLink]="['/']" class="block flex-shrink-0">
         <img class="hidden lg:block w-32" src="/assets/images/logo.webp" alt="Logo" />
         <img class="block lg:hidden w-5" src="/assets/images/logo-mini.webp" alt="Logo" />
       </a>
@@ -101,7 +101,7 @@
           <div class="flex items-center gap-x-2 ">
             <img src="/assets/images/user.svg" class="w-9" alt="">
             <div class="flex flex-col text-xs  gap-y-1">
-              <span>{{this.loggedInUser.fname + '&nbsp;' + this.loggedInUser.lname }}</span>
+              <span>{{this.loggedInUser.fname  + '&nbsp;' + this.loggedInUser.lname }}</span>
               <span>{{this.loggedInUser.email}}</span>
             </div>
           </div>
@@ -124,7 +124,7 @@
                   <li class="py-1"><a [routerLink]="['/basic/roles']">نقش ها</a></li>
                   <li class="py-1"><a [routerLink]="['/basic/students']">دانشجویان</a></li>
                   <li class="py-1"><a [routerLink]="['/basic/course']">دوره ها</a></li>
-                  <li class="py-1"><a [routerLink]="['/basic/questions']">سوالاات</a></li>
+                  <li class="py-1"><a [routerLink]="['/basic/questions']">سوالات</a></li>
                   <li class="py-1"><a [routerLink]="['/basic/answers']">پاسخ سوالات</a></li>
                   <li class="py-1"><a [routerLink]="['/basic/payments']">روش های پرداخت</a></li>
                 </ul>

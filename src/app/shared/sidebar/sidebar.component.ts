@@ -14,8 +14,7 @@ export class SidebarComponent implements OnInit {
   isOpenHamburgerMenu: boolean = false;
   menuItem: number = 0;
   subMenuItem: number = 0;
-  loggedInUser: IloggedInUser
-
+  loggedInUser ={} as IloggedInUser
   constructor(private authService: AuthenticationService, private alertServices: AlertifyService, private http: HttpService) { }
   ngOnInit(): void {
     this.GetloggedInUser()

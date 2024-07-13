@@ -99,6 +99,7 @@ export class FingerprintScannerComponent implements OnInit {
   CloseModal() {
     this.IsShowenModal = false
   }
+
 }
 
 

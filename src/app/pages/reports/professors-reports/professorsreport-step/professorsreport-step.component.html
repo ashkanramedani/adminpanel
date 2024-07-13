@@ -112,7 +112,7 @@
         </tr>
       </thead>
       <tbody *ngIf="this.step==1">
-        <tr *ngFor="let item of response_fingerprint_report | filter: this.SearchValue; let i =index">
+        <tr *ngFor="let item of response_fingerprint_report | filter: this.SearchValue| filter: this.SearchValue; let i =index">
           <td class="border-b py-3 border-gray-200  text-center">
             <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
           </td>
@@ -128,7 +128,7 @@
         </tr>
       </tbody>
       <tbody *ngIf="this.step==2">
-        <tr *ngFor="let item of response_leave_request_report | filter: this.SearchValue; let i =index">
+        <tr *ngFor="let item of response_leave_request_report | filter: this.SearchValue| filter: this.SearchValue; let i =index">
           <td class="border-b py-3 border-gray-200  text-center">
             <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
           </td>
@@ -151,7 +151,7 @@
         </tr>
       </tbody>
       <tbody *ngIf="this.step==3">
-        <tr *ngFor="let item of response_business_trip_report | filter: this.SearchValue; let i =index">
+        <tr *ngFor="let item of response_business_trip_report | filter: this.SearchValue| filter: this.SearchValue; let i =index">
           <td class="border-b py-3 border-gray-200  text-center">
             <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
           </td>
@@ -174,7 +174,7 @@
         </tr>
       </tbody>
       <tbody *ngIf="this.step==4">
-        <tr *ngFor="let item of response_remote_request_report | filter: this.SearchValue; let i =index">
+        <tr *ngFor="let item of response_remote_request_report | filter: this.SearchValue| filter: this.SearchValue; let i =index">
           <td class="border-b py-3 border-gray-200  text-center">
             <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
           </td>

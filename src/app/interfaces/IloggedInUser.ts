@@ -1,8 +1,8 @@
 
 export interface IloggedInUser {
-  email?: string
-  fname?: string
-  lname?: string
+  email: string
+  fname: string
+  lname: string
   mobile_number: string
   image: string
   panel_image: string
