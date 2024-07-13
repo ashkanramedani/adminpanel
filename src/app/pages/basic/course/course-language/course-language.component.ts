@@ -50,8 +50,7 @@ export class CourseLanguageComponent implements OnInit {
     })
   }
   GetResponseData(page: number, limit: number, order: string) {
-    this.isLoading = true;
-    this.currentPage = page;
+ this.isLoading = true;
     this.http.getAll(`${Domain.GetCourseLanguageData}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       this.ResponseDataList = response;
       this.currentPage=page

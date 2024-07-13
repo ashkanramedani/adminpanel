@@ -47,11 +47,10 @@ export class TeacherReplacementComponent implements OnInit {
     // })
   }
   GetResponseData(page: number, limit: number, order: string) {
-    this.isLoading = true;
-    this.currentPage = page;
+ this.isLoading = true;
     this.http.getAll(`${this.get_all_route}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       this.ResponseDataList = response;
-      this.currentPage = page
+
       this.isLoading = false
       console.log(response)
     })

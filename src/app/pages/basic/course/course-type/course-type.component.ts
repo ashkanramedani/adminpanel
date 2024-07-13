@@ -52,11 +52,10 @@ export class CourseTypeComponent implements OnInit {
     })
   }
   GetResponseData(page: number, limit: number, order: string) {
-    this.isLoading = true;
-    this.currentPage = page;
+ this.isLoading = true;
     this.http.getAll(`${Domain.GetCourseType}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       this.ResponseDataList = response;
-      this.currentPage = page
+
       this.isLoading = false
       console.log(response)
     })

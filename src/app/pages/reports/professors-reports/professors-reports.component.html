@@ -15,8 +15,7 @@
           <div class="relative w-48">
             <select formControlName="year"
               class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-              <option value="1402">1402 </option>
-              <option value="1403">1403 </option>
+              <option *ngFor="let item of this.years" [value]="item">{{item}} </option>
             </select>
             <label
               class="absolute text-sm font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
@@ -91,7 +90,7 @@
             </button>
           </div>
         </div>
-        
+
       </div>
     </form>
   </div>

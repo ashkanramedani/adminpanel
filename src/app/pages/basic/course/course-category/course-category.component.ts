@@ -51,10 +51,10 @@ export class CourseCategoryComponent implements OnInit {
   }
   GetResponseData(page: number, limit: number, order: string) {
     this.isLoading = true;
-    this.currentPage = page;
+    
     this.http.getAll(`${Domain.GetCourseCategoryData}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       this.ResponseDataList = response;
-      this.currentPage = page
+
       this.isLoading = false
       console.log(response)
     })

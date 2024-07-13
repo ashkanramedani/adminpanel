@@ -37,6 +37,7 @@ export class ProfessorsReportsComponent implements OnInit {
   isShowenAlert: boolean = false
   year: number
   month: number
+  years:string[]=['1401','1402','1403','1404','1405','1406','1407','1408','1409']
   constructor(private http: HttpService, private route: ActivatedRoute, private router:Router,private formBuilder: FormBuilder, private alertServices: AlertifyService) {
 
   }

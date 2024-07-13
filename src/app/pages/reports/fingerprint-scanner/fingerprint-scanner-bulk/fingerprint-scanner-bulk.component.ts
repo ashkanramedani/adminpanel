@@ -77,7 +77,7 @@ export class FingerprintScannerBulkComponent implements OnInit {
       this.btnLoading = true
       this.http.create(`${Domain.CreateFingerScannerBulk}/${this.ReportForm.controls.created_fk_by.value}`, this.formData, null).subscribe((response) => {
         console.log(response)
-        if (response == 'File added') {
+        if (response.includes('added')) {
           this.alertServices.success("با موفقیت اضافه شد" );
           this.ReportForm.reset();
         }

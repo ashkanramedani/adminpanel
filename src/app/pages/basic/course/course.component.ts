@@ -45,7 +45,7 @@ export class CourseComponent implements OnInit {
     this.http.getAll(`${Domain.GetcourseData}?course_type=${course_type}&page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       this.ResponseDataList = response;
       console.log(response)
-      this.currentPage = page
+
       this.isLoading = false;
     })
   }
