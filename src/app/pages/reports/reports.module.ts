@@ -30,13 +30,19 @@ import { FingerprintScannerBulkComponent } from './fingerprint-scanner/fingerpri
 import { OnlyNumberDirective } from 'src/app/directive/only_number.directive';
 import { ProfessorsreportStepComponent } from './professors-reports/professorsreport-step/professorsreport-step.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { MatNativeDateTimeModule, MatTimepickerModule } from '@dhutaryan/ngx-mat-timepicker';
+import { BusinessTripStepComponent } from './professors-reports/business-trip-step/business-trip-step.component';
+import { FingerPrintStepComponent } from './professors-reports/finger-print-step/finger-print-step.component';
+import { LeaveRequestStepComponent } from './professors-reports/leave-request-step/leave-request-step.component';
+import { PaySlipStepComponent } from './professors-reports/pay-slip-step/pay-slip-step.component';
+import { RemoteRequestStepComponent } from './professors-reports/remote-request-step/remote-request-step.component';
 
 @NgModule({
   declarations: [BusinessTripComponent, BusinessTripAddComponent, CourseCancellationComponent, CourseCancellationAddComponent,
-    FingerprintScannerComponent, FingerprintScannerAddComponent,FingerprintScannerBulkComponent, LeaveFormsComponent, LeaveFormAddComponent, RemoteRequestComponent,
+    FingerprintScannerComponent, FingerprintScannerAddComponent, FingerprintScannerBulkComponent, LeaveFormsComponent, LeaveFormAddComponent, RemoteRequestComponent,
     RemoteRequestAddComponent, SalaryPolicyComponent, SalaryPolicyAddComponent, SurveyComponent, SurveyAddComponent, TardeyRequestComponent,
-    TardeyRequestAddComponent, TeacherReplacementComponent, TeacherReplacementAddComponent,ProfessorsReportsComponent,OnlyNumberDirective,ProfessorsreportStepComponent],
+    TardeyRequestAddComponent, TeacherReplacementComponent, TeacherReplacementAddComponent, ProfessorsReportsComponent, OnlyNumberDirective, ProfessorsreportStepComponent,
+    BusinessTripStepComponent, FingerPrintStepComponent, LeaveRequestStepComponent, PaySlipStepComponent, RemoteRequestStepComponent
+  ],
   imports: [
     CommonModule,
     ReportsRoutingModule,

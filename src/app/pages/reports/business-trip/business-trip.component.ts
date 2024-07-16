@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
 import { IBusinessTrip } from 'src/app/interfaces/IBusinessTrip';
-import { ILeaveRequest } from 'src/app/interfaces/ILeaveRequest';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -35,9 +34,7 @@ export class BusinessTripComponent implements OnInit {
   ngOnInit(): void {
     this.GetResponseData(0, 1000, this.order)
     this.GetResponseDataLenght()
-
   }
-
   GetResponseDataLenght() {
     this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
       this.totalCount = response
@@ -48,7 +45,6 @@ export class BusinessTripComponent implements OnInit {
  this.isLoading = true;
     this.http.getAll(`${this.get_all_route}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       this.ResponseDataList = response;
-
       this.isLoading = false
       console.log(response)
     })

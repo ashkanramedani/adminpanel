@@ -7,3 +7,13 @@ export interface ILeaveRequestForm {
     status:boolean
     leave_request_pk_id:string
 }
+export interface ILeaveRequestEditForm
+{
+  created_fk_by: string
+  description: string,
+  leave_type: string,
+  leave_request_pk_id:string
+  start: string,
+  end: string,
+  date: string
+}

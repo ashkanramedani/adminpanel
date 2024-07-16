@@ -9,6 +9,6 @@ export class HijriDatePipe implements PipeTransform {
 
   transform(date:string): string {
     if (!date)  return "";
-    return ( moment(date, 'YYYY-MM-DD').locale('fa').format('YYYY-MM-DD'))
+    return ( moment(date, 'YYYY-MM-DD').locale('fa').format('YYYY/MM/DD'))
    }
 }
