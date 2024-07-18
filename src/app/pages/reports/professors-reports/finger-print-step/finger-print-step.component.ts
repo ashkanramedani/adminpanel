@@ -36,7 +36,7 @@ export class FingerPrintStepComponent implements OnInit{
   }
   GetFingerScannerReport(){
     this.http.getAll(`${Domain.GetFingerScannerReport}/${this.id}?year=${this.year}&month=${this.month}`).subscribe((response) => {
-      this.response_fingerprint_report = response
+      this.response_fingerprint_report = response.Fingerprint_scanner_report
     })
   }
   OpenFingerEdit(id: string) {

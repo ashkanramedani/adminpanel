@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   }
   GetCount() {
     const $student_count = this.http.getAll(`${Domain.GetCount}?field=student`)
-    const $user_count = this.http.getAll(`${Domain.GetCount}?field=User`)
+    const $user_count = this.http.getAll(`${Domain.GetCount}?field=employee`)
     const $course_count = this.http.getAll(`${Domain.GetCount}?field=course`)
     const $role_count = this.http.getAll(`${Domain.GetCount}?field=Role`)
     forkJoin([$student_count, $user_count, $course_count, $role_count]).
