@@ -5,14 +5,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
 import * as moment from 'jalali-moment';
 import { IUsers } from 'src/app/interfaces/IUsers';
-import { IUsersForm } from 'src/app/interfaces/IUsersForm';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
-import { ISubCourseForm } from 'src/app/interfaces/IsubCourseForm';
-import { IClassDetails } from 'src/app/interfaces/IClassDetails';
-import { ICourse } from 'src/app/interfaces/ICourse';
 import { ISessionSignature } from 'src/app/interfaces/ISessionSignature';
+import { ISubCourseUpdate } from 'src/app/interfaces/ISubCourse';
+import { ICourseAll } from 'src/app/interfaces/ICourse';
 
 @Component({
   selector: 'app-sub-course-add',
@@ -22,13 +20,13 @@ export class SubCourseAddComponent implements OnInit {
   //#region change this information
   cancle_link: string = '/basic/sub-course'
   form_title:string="درس"
-  AuditForm: ISubCourseForm
+  AuditForm: ISubCourseUpdate
   get_Singel_route: string = Domain.GetSubCourseData
   put_route: string = Domain.PutSubCourseData
   create_route: string = Domain.CreateSubCourseData
   //#endregion
   page_title: string = "ایجاد"
-  ClassData: ICourse[] = []
+  ClassData: ICourseAll[] = []
   ReportForm: FormGroup;
   isOpenSearchRole: boolean = false
   RolesData: IRoles[] = []
@@ -55,8 +53,7 @@ export class SubCourseAddComponent implements OnInit {
     this.ReportForm = this.formBuilder.group(
       {
         created_fk_by: new FormControl('', [Validators.required]),
-        description: new FormControl(''),
-        status: new FormControl<number>(1,[Validators.required]),
+        description: new FormControl(''), 
         course_fk_id:new FormControl(this.course_id,[Validators.required]),
         sub_course_teacher_fk_id:new FormControl('',[Validators.required]),
         sub_course_name:new FormControl('',[Validators.required]),
@@ -74,7 +71,7 @@ export class SubCourseAddComponent implements OnInit {
   }
 
   GetClassData() {
-    this.http.getAll(Domain.GetAuditClass).subscribe((response) => {
+    this.http.getAll(Domain.GetcourseData).subscribe((response) => {
       this.ClassData = response;
       console.log(response)
     })
@@ -96,18 +93,17 @@ export class SubCourseAddComponent implements OnInit {
       });
   }
   FillFormData() {
-    this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
-    this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
-    this.ReportForm.controls["status"].patchValue(this.AuditForm.status);
-    this.ReportForm.controls["course_fk_id"].patchValue(this.AuditForm.course_fk_id);
-    this.ReportForm.controls["sub_course_teacher_fk_id"].patchValue(this.AuditForm.sub_course_teacher_fk_id)
-    this.ReportForm.controls["sub_course_name"].patchValue(this.AuditForm.sub_course_name)
-    this.ReportForm.controls["number_of_session"].patchValue(this.AuditForm.number_of_session);
-    this.ReportForm.controls["sub_course_teacher_fk_id"].patchValue(this.AuditForm.sub_course_teacher_fk_id)
-    this.ReportForm.controls["sub_course_name"].patchValue(this.AuditForm.sub_course_name)
-    this.ReportForm.controls["sub_course_starting_date"].patchValue(moment(this.AuditForm.sub_course_starting_date, 'YYYY-MM-DD').locale('fa').format('YYYY-MM-DD'));
-    this.ReportForm.controls["sub_course_ending_date"].patchValue(moment(this.AuditForm.sub_course_ending_date, 'YYYY-MM-DD').locale('fa').format('YYYY-MM-DD'));
-    this.ReportForm.controls["sub_request_threshold"].patchValue(this.AuditForm.sub_request_threshold)
+    // this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
+    // this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
+    // this.ReportForm.controls["course_fk_id"].patchValue(this.AuditForm.course_fk_id);
+    // this.ReportForm.controls["sub_course_teacher_fk_id"].patchValue(this.AuditForm.sub_course_teacher_fk_id)
+    // this.ReportForm.controls["sub_course_name"].patchValue(this.AuditForm.sub_course_name)
+    // this.ReportForm.controls["number_of_session"].patchValue(this.AuditForm.number_of_session);
+    // this.ReportForm.controls["sub_course_teacher_fk_id"].patchValue(this.AuditForm.sub_course_teacher_fk_id)
+    // this.ReportForm.controls["sub_course_name"].patchValue(this.AuditForm.sub_course_name)
+    // this.ReportForm.controls["sub_course_starting_date"].patchValue(moment(this.AuditForm.sub_course_starting_date, 'YYYY-MM-DD').locale('fa').format('YYYY-MM-DD'));
+    // this.ReportForm.controls["sub_course_ending_date"].patchValue(moment(this.AuditForm.sub_course_ending_date, 'YYYY-MM-DD').locale('fa').format('YYYY-MM-DD'));
+    // this.ReportForm.controls["sub_request_threshold"].patchValue(this.AuditForm.sub_request_threshold)
   }
   onSubmit() {
     if (this.ReportForm.invalid) {
@@ -115,21 +111,20 @@ export class SubCourseAddComponent implements OnInit {
       return;
     }
     this.btnLoading = true
-    let ReportFormValue: ISubCourseForm =
+    let ReportFormValue: ISubCourseUpdate =
     {
 
-      session_signature:this.session_signature_value,
+      //session_signature:this.session_signature_value,
       sub_course_pk_id: this.id,
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
-      status: this.ReportForm.controls.status.value,
-      course_fk_id: this.ReportForm.controls.course_fk_id.value,
+      //course_fk_id: this.ReportForm.controls.course_fk_id.value,
       sub_course_teacher_fk_id: this.ReportForm.controls.sub_course_teacher_fk_id.value,
       sub_course_name: this.ReportForm.controls.sub_course_name.value,
-      sub_request_threshold:this.ReportForm.controls.sub_request_threshold.value,
-      number_of_session: this.ReportForm.controls.number_of_session.value,
-      sub_course_starting_date: moment.from(this.ReportForm.controls.sub_course_starting_date.value, 'fa', 'YYYY-MM-DD').format('YYYY-MM-DD'),
-      sub_course_ending_date: moment.from(this.ReportForm.controls.sub_course_ending_date.value, 'fa', 'YYYY-MM-DD').format('YYYY-MM-DD'),
+      //sub_request_threshold:this.ReportForm.controls.sub_request_threshold.value,
+      //number_of_session: this.ReportForm.controls.number_of_session.value,
+      //sub_course_starting_date: moment.from(this.ReportForm.controls.sub_course_starting_date.value, 'fa', 'YYYY-MM-DD').format('YYYY-MM-DD'),
+      //sub_course_ending_date: moment.from(this.ReportForm.controls.sub_course_ending_date.value, 'fa', 'YYYY-MM-DD').format('YYYY-MM-DD'),
     }
     console.log(ReportFormValue)
     if (this.id != null) {

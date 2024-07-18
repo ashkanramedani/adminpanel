@@ -7,9 +7,6 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { IClassDetails } from 'src/app/interfaces/IClassDetails';
-import { ILeaveRequest } from 'src/app/interfaces/ILeaveRequest';
-import { ILeaveRequestForm } from 'src/app/interfaces/ILeaveRequestForm';
-import * as moment from 'jalali-moment';
 import { IPost } from 'src/app/interfaces/IPost';
 import { IPostWriter } from 'src/app/interfaces/IPostWriter';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -72,8 +69,7 @@ export class ContentAddComponent implements OnInit {
       post_content: new FormControl(''),
       post_image: new FormControl('', [Validators.required]),
       post_type: new FormControl(''),
-      post_priority: new FormControl('5'),
-      post_status: new FormControl(),
+      post_priority: new FormControl('5'), 
       post_direction: new FormControl('RTL'),
       visible: new FormControl(true),
       expier_date: new FormControl(''),

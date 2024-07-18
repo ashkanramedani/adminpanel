@@ -8,7 +8,7 @@ import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import * as moment from 'jalali-moment';
 import { IClassCancellationForm } from 'src/app/interfaces/IClassCancellationForm';
-import { ICourse } from 'src/app/interfaces/ICourse';
+import { ICourseAll } from 'src/app/interfaces/ICourse';
 
 @Component({
   selector: 'app-course-cancellation-add',
@@ -32,7 +32,7 @@ export class CourseCancellationAddComponent implements OnInit {
   ReportForm: FormGroup;
   isOpenSearchRole: boolean = false
   RolesData: IRoles[] = []
-  ClassData: ICourse [] = []
+  ClassData: ICourseAll [] = []
   id: any;
   EmployiesData: IUsers[] = []
   btnLoading: boolean = false
@@ -47,8 +47,7 @@ export class CourseCancellationAddComponent implements OnInit {
     this.ReportForm = this.formBuilder.group(
       {
         created_fk_by: new FormControl('', [Validators.required]),
-        description: new FormControl(''),
-        status: new FormControl('', [Validators.required]),
+        description: new FormControl(''), 
         course_fk_id: new FormControl('', [Validators.required]),
         teacher_fk_id: new FormControl('', [Validators.required]),
         replacement_date: new FormControl('', [Validators.required]),
@@ -81,7 +80,6 @@ export class CourseCancellationAddComponent implements OnInit {
   FillFormData() {
     this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
     this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
-    this.ReportForm.controls["status"].patchValue(this.AuditForm.status);
     this.ReportForm.controls["teacher_fk_id"].patchValue(this.AuditForm.teacher_fk_id);
     this.ReportForm.controls["replacement_date"].patchValue( moment(this.AuditForm.replacement_date, 'YYYY-MM-DD HH:mm:ss').locale('fa').format('YYYY-MM-DD HH:mm:ss'));
     this.ReportForm.controls["course_fk_id"].patchValue(this.AuditForm.course_fk_id)
@@ -98,7 +96,6 @@ export class CourseCancellationAddComponent implements OnInit {
     {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
-      status: this.ReportForm.controls.status.value,
       course_fk_id: this.ReportForm.controls.course_fk_id.value,
       teacher_fk_id: this.ReportForm.controls.teacher_fk_id.value,
       //replacement_date: this.ReportForm.controls.replacement_date.value,
@@ -128,7 +125,7 @@ export class CourseCancellationAddComponent implements OnInit {
   }
 
   GetClassData() {
-    this.http.getAll(Domain.GetAuditClass).subscribe((response) => {
+    this.http.getAll(Domain.GetcourseData).subscribe((response) => {
       this.ClassData = response;
       console.log(response)
     })

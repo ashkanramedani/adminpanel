@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { IBusinessTrip } from 'src/app/interfaces/IBusinessTrip';
-import { IRemoteRequest } from 'src/app/interfaces/IRemoteRequest';
+import { IRemoteRequestAll, IRemoteRequestSingle } from 'src/app/interfaces/IRemoteRequest';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -11,10 +10,10 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class RemoteRequestComponent implements OnInit {
   //#region change this informaion
-  ResponseDataList: IRemoteRequest[] = []
-  SingleData: IRemoteRequest
+  ResponseDataList: IRemoteRequestAll[] = []
+  SingleData: IRemoteRequestSingle
   form_title = "گزارشات /  دورکاری "
-  table_header: string[] = ["ردیف", " ایجاد کننده" ,"تاریخ شروع","تاریخ پایان", "پرسنل ","وضعیت","عملیات"]
+  table_header: string[] = ["ردیف" ,"تاریخ ","شروع"," پایان", "پرسنل ","وضعیت","عملیات"]
   field_count:string="Remote_Request"
   get_all_route:string=Domain.GetRemoteRequest
   delete_route:string=Domain.DeleteRemoteRequest

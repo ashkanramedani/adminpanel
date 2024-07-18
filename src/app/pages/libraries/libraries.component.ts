@@ -2,9 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
-import { IBusinessTrip } from 'src/app/interfaces/IBusinessTrip';
-import { ILibrary } from 'src/app/interfaces/ILibrary';
-import { IPost } from 'src/app/interfaces/IPost';
+import { ILibrary } from 'src/app/interfaces/ILibrary'; 
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 

@@ -3,8 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
-import { IRemoteRequestEditForm } from 'src/app/interfaces/IRemoteRequestForm';
-import { IRemoteRequestReport } from 'src/app/interfaces/IRemoteRequestReport';
+import { IRemoteRequestReport, IRemoteRequestSingle } from 'src/app/interfaces/IRemoteRequest';
+import { IRemoteRequestUpdate } from 'src/app/interfaces/IRemoteRequestForm';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -17,9 +17,9 @@ export class RemoteRequestStepComponent implements OnInit {
   @Input() year: number
   @Input() month: number
   table_header: string[] = []
-  response_remote_request_report: IRemoteRequestEditForm[] = []
+  response_remote_request_report: IRemoteRequestReport[] = []
   isOpenRemoteRequestEdit: boolean = false
-  RemoteRequestResponse: IRemoteRequestEditForm
+  RemoteRequestResponse: IRemoteRequestSingle
   RemoteRequestForm: FormGroup
 
   constructor(private http: HttpService, private alertServices: AlertifyService, private activateRoute: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) { }
@@ -77,21 +77,17 @@ export class RemoteRequestStepComponent implements OnInit {
       return;
     }
     if (this.RemoteRequestResponse != null) {
-      let BusinessTripForm: IRemoteRequestEditForm =
+      let RemoteRequestForm: IRemoteRequestUpdate =
       {
         created_fk_by: this.RemoteRequestResponse.created_fk_by,
         description: this.RemoteRequestResponse.description,
         remote_request_pk_id: this.RemoteRequestResponse.remote_request_pk_id,
-        note:this.RemoteRequestResponse.note,
-        duration:this.RemoteRequestResponse.duration,
-        user_fk_id:this.RemoteRequestResponse.user_fk_id,
         working_location: this.RemoteRequestForm.controls.working_location.value,
         start: this.RemoteRequestForm.controls.start.value,
         end: this.RemoteRequestForm.controls.end.value,
         date: this.RemoteRequestForm.controls.date.value,
-        status: this.RemoteRequestForm.status,
       }
-      this.http.put(Domain.PutRemoteRequest, BusinessTripForm, null).subscribe((response) => {
+      this.http.put(Domain.PutRemoteRequest, RemoteRequestForm, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت ویرایش شد");
         this.isOpenRemoteRequestEdit = false
@@ -106,5 +102,23 @@ export class RemoteRequestStepComponent implements OnInit {
   CLoseRemoteRequestEdit() {
     this.isOpenRemoteRequestEdit = false
   }
-
+  RemoveItem(id?: string) {
+    this.alertServices.confirm(
+      'حذف آیتم',
+      'آیا از حذف این آیتم اطمینان دارید؟',
+      () => {
+        this.http
+          .deleteWithQuery(`${Domain.DeleteRemoteRequest}/${id}`)
+          .subscribe((response) => {
+            console.log(response);
+            if (response == "Deleted") {
+              this.GetRemoteRequestReport()
+              this.alertServices.success('آیتم با موفقیت حذف شد');
+            }
+            else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
+          });
+      },
+      () => { }
+    );
+  }
 }

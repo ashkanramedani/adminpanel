@@ -3,7 +3,6 @@ export interface ITardeyRequestForm
 {
   created_fk_by: string
   description: string,
-  status: number,
   teacher_fk_id: string,
   course_fk_id: string,
   sub_course_fk_id: string,

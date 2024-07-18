@@ -7,10 +7,9 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { IClassDetails } from 'src/app/interfaces/IClassDetails';
-import { ILeaveRequest } from 'src/app/interfaces/ILeaveRequest';
-import { ILeaveRequestForm } from 'src/app/interfaces/ILeaveRequestForm';
 import * as moment from 'jalali-moment';
-import { IBusinessTripForm } from 'src/app/interfaces/IBusinessTripForm';
+import { IBusinessTripAdd, IBusinessTripUpdate } from 'src/app/interfaces/IBusinessTripForm';
+import { IBusinessTripSingle } from 'src/app/interfaces/IBusinessTrip';
 
 @Component({
   selector: 'app-business-trip-add',
@@ -19,19 +18,20 @@ import { IBusinessTripForm } from 'src/app/interfaces/IBusinessTripForm';
 export class BusinessTripAddComponent implements OnInit {
   //#region change this information
   cancle_link: string = '/reports/business_trip'
-  form_title:string=" ماموریت"
-  AuditForm: IBusinessTripForm
+  form_title: string = " ماموریت"
+  SingleResponse: IBusinessTripSingle
   get_Singel_route: string = Domain.GetBusinessTrip
   put_route: string = Domain.PutBusinessTrip
   create_route: string = Domain.CreateBusinessTrip
   //#endregion
   page_title: string = "ایجاد"
-  isOpenTab:number=1
-  OpenTab(value:number){
-    this.isOpenTab=value
+  isOpenTab: number = 1
+  OpenTab(value: number) {
+    this.isOpenTab = value
     //this.setValidation(value)
   }
   ReportForm: FormGroup;
+  EditForm: FormGroup
   isOpenSearchRole: boolean = false
   RolesData: IRoles[] = []
   ClassData: IClassDetails[] = []
@@ -39,7 +39,7 @@ export class BusinessTripAddComponent implements OnInit {
   EmployiesData: IUsers[] = []
   btnLoading: boolean = false
   isLoading: boolean = false
-  constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService,private router:Router) {
+  constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService, private router: Router) {
 
   }
   ngOnInit(): void {
@@ -52,8 +52,17 @@ export class BusinessTripAddComponent implements OnInit {
         user_fk_id: new FormControl('', [Validators.required]),
         start_date: new FormControl('', [Validators.required]),
         end_date: new FormControl('', [Validators.required]),
-        destination:new FormControl('',[Validators.required]),
-        status:new FormControl('',[Validators.required])
+        destination: new FormControl('', [Validators.required]),
+      }
+    )
+    this.EditForm = this.formBuilder.group(
+      {
+        created_fk_by: new FormControl('', [Validators.required]),
+        description: new FormControl(''),
+        date: new FormControl('', [Validators.required]),
+        start: new FormControl('', [Validators.required]),
+        end: new FormControl('', [Validators.required]),
+        destination: new FormControl('', [Validators.required]),
       }
     )
     if (this.id != null) {
@@ -74,39 +83,36 @@ export class BusinessTripAddComponent implements OnInit {
       .get(this.get_Singel_route, this.id)
       .subscribe((response) => {
         console.log(response)
-        this.AuditForm = response;
+        this.SingleResponse = response;
         this.FillFormData()
       });
   }
   FillFormData() {
-    this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
-    this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
-    this.ReportForm.controls["user_fk_id"].patchValue(this.AuditForm.user_fk_id);
-    this.ReportForm.controls["start_date"].patchValue( moment(this.AuditForm.start_date, 'YYYY/MM/DD HH:mm:ss').locale('fa').format('YYYY/MM/DD HH:mm:ss'));
-    this.ReportForm.controls["end_date"].patchValue( moment(this.AuditForm.end_date, 'YYYY/MM/DD HH:mm:ss').locale('fa').format('YYYY/MM/DD HH:mm:ss'));
-    this.ReportForm.controls["destination"].patchValue(this.AuditForm.destination)
-    this.ReportForm.controls["status"].patchValue(this.AuditForm.status)
+    this.EditForm.controls["created_fk_by"].patchValue(this.SingleResponse.created_fk_by);
+    this.EditForm.controls["description"].patchValue(this.SingleResponse.description);
+    this.EditForm.controls["date"].patchValue(this.SingleResponse.date);
+    this.EditForm.controls["start"].patchValue(this.SingleResponse.start);
+    this.EditForm.controls["end"].patchValue(this.SingleResponse.end);
+    this.EditForm.controls["destination"].patchValue(this.SingleResponse.destination)
   }
   onSubmit() {
-    if (this.ReportForm.invalid) {
-      this.ReportForm.markAllAsTouched();
-      return;
-    }
     this.btnLoading = true
-    let ReportFormValue: IBusinessTripForm =
-    {
-      created_fk_by: this.ReportForm.controls.created_fk_by.value,
-      description: this.ReportForm.controls.description.value,
-      user_fk_id: this.ReportForm.controls.user_fk_id.value,
-      end_date:moment.from(this.ReportForm.controls.end_date.value, 'fa', 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'),
-      start_date:moment.from(this.ReportForm.controls.start_date.value, 'fa', 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'),
-      destination:this.ReportForm.controls.destination.value,
-      status:this.ReportForm.controls.status.value,
-      business_trip_pk_id:this.id
-
-    }
     if (this.id != null) {
-      this.http.put(this.put_route, ReportFormValue, null).subscribe((response) => {
+      if (this.EditForm.invalid) {
+        this.EditForm.markAllAsTouched();
+        return;
+      }
+      let EditFormValue: IBusinessTripUpdate =
+      {
+        created_fk_by: this.EditForm.controls.created_fk_by.value,
+        description: this.EditForm.controls.description.value,
+        date: moment.from(this.EditForm.controls.date.value, 'fa', 'YYYY-MM-DD').format('YYYY-MM-DD'),
+        start: this.EditForm.controls.start.value,
+        end: this.EditForm.controls.end.value,
+        destination: this.EditForm.controls.destination.value,
+        business_trip_pk_id: this.id
+      }
+      this.http.put(this.put_route, EditFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت ویرایش شد");
         this.router.navigate([this.cancle_link])
@@ -114,6 +120,20 @@ export class BusinessTripAddComponent implements OnInit {
       )
     }
     else {
+      if (this.ReportForm.invalid) {
+        this.ReportForm.markAllAsTouched();
+        return;
+      }
+      let ReportFormValue: IBusinessTripAdd =
+      {
+        created_fk_by: this.ReportForm.controls.created_fk_by.value,
+        description: this.ReportForm.controls.description.value,
+        user_fk_id: this.ReportForm.controls.user_fk_id.value,
+        end_date: moment.from(this.ReportForm.controls.end_date.value, 'fa', 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'),
+        start_date: moment.from(this.ReportForm.controls.start_date.value, 'fa', 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'),
+        destination: this.ReportForm.controls.destination.value, 
+        business_trip_pk_id: this.id
+      }
       this.http.create(this.create_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت اضافه شد");

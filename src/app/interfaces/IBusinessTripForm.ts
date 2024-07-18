@@ -1,4 +1,4 @@
-export interface IBusinessTripForm
+export interface IBusinessTripAdd
 {
     created_fk_by: string
     description: string,
@@ -6,11 +6,10 @@ export interface IBusinessTripForm
     start_date: string
     end_date: string
     destination:string
-    business_trip_pk_id:string
-    status:number
+    business_trip_pk_id:string 
 }
 
-export interface IBusinessTripEditForm
+export interface IBusinessTripUpdate
 {
   created_fk_by: string
   description: string,
@@ -19,5 +18,4 @@ export interface IBusinessTripEditForm
   start: string,
   end: string,
   date: string
-  status:string
 }

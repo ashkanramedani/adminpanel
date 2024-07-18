@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { IFingerScanner } from 'src/app/interfaces/IFingerScanner';
+import { IFingerScannerAll, IFingerScannerSingle } from 'src/app/interfaces/IFingerScanner';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -10,8 +10,8 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class FingerprintScannerComponent implements OnInit {
   //#region change this informaion
-  ResponseDataList: IFingerScanner[] = []
-  SingleData: IFingerScanner
+  ResponseDataList: IFingerScannerAll[] = []
+  SingleData: IFingerScannerSingle
   form_title = "گزارشات /  وورد و خروج پرسنل "
   table_header: string[] = ["ردیف", "  تاریخ" ," ورود"," خروج","کاربر","وضعیت","عملیات"]
   field_count:string="Fingerprint_Scanner"

@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
 import { IClassDetails } from 'src/app/interfaces/IClassDetails';
-import { ICourseTag } from 'src/app/interfaces/ICourseTag';
-import { ICourseTagForm } from 'src/app/interfaces/ICourseTagForm';
-import { ICourseType } from 'src/app/interfaces/ICourseType';
-import { ICourseTypeForm } from 'src/app/interfaces/ICourseTypeForm';
+import { ICourseTypeAll, ICourseTypeSingle } from 'src/app/interfaces/ICourseType';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -14,7 +11,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class CourseTypeComponent implements OnInit {
 
-  ResponseDataList: ICourseType[] = []
+  ResponseDataList: ICourseTypeAll[] = []
   ResponseDataLenght: number[];
   totalCount: number = 0
   SearchValue: string
@@ -23,11 +20,11 @@ export class CourseTypeComponent implements OnInit {
   order: string = "desc"
   ShowMoreItem: string
   IsShowenModal: boolean = false
-  SingleData: ICourseTypeForm
+  SingleData: ICourseTypeSingle
   EmployiesData: string
   ClassData: IClassDetails
   form_title = "نوع دوره"
-  table_header: string[] = ["عنوان", "توضیحات", "وضعیت", "عملیات"]
+  table_header: string[] = ["عنوان", "سازنده", "وضعیت", "عملیات"]
   // page:number=1
   // limit:number=10
   currentPage: number = 1
@@ -46,7 +43,7 @@ export class CourseTypeComponent implements OnInit {
     }
   }
   GetResponseDataLenght() {
-    this.http.getAll(`${Domain.GetCount}?field=Tardy Request`).subscribe((response) => {
+    this.http.getAll(`${Domain.GetCount}?field=Course_Type`).subscribe((response) => {
       this.totalCount = response
       this.ResponseDataLenght = new Array(Math.ceil(response / 10))
     })

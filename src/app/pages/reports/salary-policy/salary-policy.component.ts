@@ -1,9 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
-import { Domain } from 'src/app/domain/doamin';
-import { IRolesForm } from 'src/app/interfaces/IRolesForm';
+import { Domain } from 'src/app/domain/doamin'; 
 import { ISalaryPolicy } from 'src/app/interfaces/ISalaryPolicy';
-import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 

@@ -47,8 +47,7 @@ export class PaymentAddComponent implements OnInit {
     this.ReportForm = this.formBuilder.group(
       {
         created_fk_by: new FormControl('', [Validators.required]),
-        description: new FormControl(''),
-        status: new FormControl('',[Validators.required]),
+        description: new FormControl(''), 
         user_fk_id: new FormControl(this.user_id,[Validators.required]),
         shaba: new FormControl<number |null>(null,[Validators.required,Validators.minLength(24),Validators.maxLength(24)]),
         card_number: new FormControl('',[Validators.required,Validators.minLength(16),Validators.maxLength(16)])
@@ -79,7 +78,6 @@ export class PaymentAddComponent implements OnInit {
   FillFormData() {
     this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
     this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
-    this.ReportForm.controls["status"].patchValue(this.AuditForm.status);
     this.ReportForm.controls["user_fk_id"].patchValue(this.AuditForm.user_fk_id);
     this.ReportForm.controls["shaba"].patchValue(this.AuditForm.shaba);
     this.ReportForm.controls["card_number"].patchValue(this.AuditForm.card_number);
@@ -96,7 +94,6 @@ export class PaymentAddComponent implements OnInit {
       payment_method_pk_id:this.id,
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
-      status: this.ReportForm.controls.status.value,
       user_fk_id: this.ReportForm.controls.user_fk_id.value,
       shaba: this.ReportForm.controls.shaba.value,
       card_number: this.ReportForm.controls.card_number.value,

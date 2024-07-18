@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { IBusinessTrip } from 'src/app/interfaces/IBusinessTrip';
+import { IBusinessTripAll, IBusinessTripSingle } from 'src/app/interfaces/IBusinessTrip';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -10,8 +10,8 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class BusinessTripComponent implements OnInit {
   //#region change this informaion
-  ResponseDataList: IBusinessTrip[] = []
-  SingleData: IBusinessTrip
+  ResponseDataList: IBusinessTripAll[] = []
+  SingleData: IBusinessTripSingle
   form_title = "گزارشات /   ثبت ماموریت"
   table_header: string[] = ["ردیف", " ایجاد کننده" , "پرسنل ","وضعیت","عملیات"]
   field_count:string="Business_Trip"

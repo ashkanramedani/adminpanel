@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import * as moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
-import { ILeaveRequest } from 'src/app/interfaces/ILeaveRequest';
-import { ISalaryPolicy } from 'src/app/interfaces/ISalaryPolicy';
-import { ITardeyRequest } from 'src/app/interfaces/ITardeyRequest';
+import { ILeaveRequestAll, ILeaveRequestSingle } from 'src/app/interfaces/ILeaveRequest';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -13,10 +10,10 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class LeaveFormsComponent implements OnInit {
   //#region change this informaion
-  ResponseDataList: ILeaveRequest[] = []
-  SingleData: ILeaveRequest
+  ResponseDataList: ILeaveRequestAll[] = []
+  SingleData: ILeaveRequestSingle
   form_title = "گزارشات /   ثبت مرخصی"
-  table_header: string[] = ["ردیف", "تاریخ","ساعت شروع", " ساعت پایان ", "پرسنل ","وضعیت","عملیات"]
+  table_header: string[] = ["ردیف", "تاریخ"," شروع", "  پایان ", "پرسنل ","مدت مرخصی","وضعیت","عملیات"]
   field_count:string="Leave_Request"
   get_all_route:string=Domain.GetLeaveRequest
   delete_route:string=Domain.DeleteLeaveRequest

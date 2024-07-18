@@ -6,13 +6,10 @@ import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
-import { ITardeyRequestForm } from 'src/app/interfaces/ITardeyRequestForm';
 import { IClassDetails } from 'src/app/interfaces/IClassDetails';
-import { ILeaveRequest } from 'src/app/interfaces/ILeaveRequest';
-import { ILeaveRequestForm } from 'src/app/interfaces/ILeaveRequestForm';
 import * as moment from 'jalali-moment';
-import { IRemoteRequest } from 'src/app/interfaces/IRemoteRequest';
-import { IRemoteRequestForm } from 'src/app/interfaces/IRemoteRequestForm';
+import { IRemoteRequestAdd, IRemoteRequestUpdate } from 'src/app/interfaces/IRemoteRequestForm';
+import { IRemoteRequestSingle } from 'src/app/interfaces/IRemoteRequest';
 
 @Component({
   selector: 'app-remote-request-add',
@@ -22,7 +19,7 @@ export class RemoteRequestAddComponent implements OnInit {
   //#region change this information
   cancle_link: string = '/reports/remote_request'
   form_title:string=" دورکاری"
-  AuditForm: IRemoteRequestForm
+  SingleResponse: IRemoteRequestSingle
   get_Singel_route: string = Domain.GetRemoteRequest
   put_route: string = Domain.PutRemoteRequest
   create_route: string = Domain.CreateRemoteRequest
@@ -34,6 +31,7 @@ export class RemoteRequestAddComponent implements OnInit {
     //this.setValidation(value)
   }
   ReportForm: FormGroup;
+  EditForm: FormGroup
   isOpenSearchRole: boolean = false
   RolesData: IRoles[] = []
   ClassData: IClassDetails[] = []
@@ -55,7 +53,16 @@ export class RemoteRequestAddComponent implements OnInit {
         start_date: new FormControl('', [Validators.required]),
         end_date: new FormControl('', [Validators.required]),
         working_location:new FormControl('',[Validators.required]),
-        status:new FormControl('',[Validators.required])
+      }
+    )
+    this.EditForm = this.formBuilder.group(
+      {
+        created_fk_by: new FormControl('', [Validators.required]),
+        description: new FormControl(''),
+        start: new FormControl('', [Validators.required]),
+        end: new FormControl('', [Validators.required]),
+        working_location:new FormControl('',[Validators.required]),
+        date:new FormControl('',[Validators.required])
       }
     )
     if (this.id != null) {
@@ -76,40 +83,39 @@ export class RemoteRequestAddComponent implements OnInit {
       .get(this.get_Singel_route, this.id)
       .subscribe((response) => {
         console.log(response)
-        this.AuditForm = response;
+        this.SingleResponse = response;
         this.FillFormData()
       });
   }
   FillFormData() {
-    this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
-    this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
-    this.ReportForm.controls["user_fk_id"].patchValue(this.AuditForm.user_fk_id);
-
-    this.ReportForm.controls["start_date"].patchValue( moment(this.AuditForm.start_date, 'YYYY-MM-DD HH:mm:ss').locale('fa').format('YYYY-MM-DD HH:mm:ss'));
-    this.ReportForm.controls["end_date"].patchValue( moment(this.AuditForm.end_date, 'YYYY-MM-DD HH:mm:ss').locale('fa').format('YYYY-MM-DD HH:mm:ss'));
-    this.ReportForm.controls["status"].patchValue(this.AuditForm.status)
-    this.ReportForm.controls["working_location"].patchValue(this.AuditForm.working_location)
+    this.EditForm.controls["created_fk_by"].patchValue(this.SingleResponse.created_fk_by);
+    this.EditForm.controls["description"].patchValue(this.SingleResponse.description);
+    this.EditForm.controls["working_location"].patchValue(this.SingleResponse.working_location);
+    this.EditForm.controls["date"].patchValue( moment(this.SingleResponse.date, 'YYYY-MM-DD').locale('fa').format('YYYY-MM-DD'));
+    this.EditForm.controls["start"].patchValue(this.SingleResponse.start)
+    this.EditForm.controls["end"].patchValue(this.SingleResponse.end)
   }
   onSubmit() {
-    if (this.ReportForm.invalid) {
-      this.ReportForm.markAllAsTouched();
-      return;
-    }
     this.btnLoading = true
-    let ReportFormValue: IRemoteRequestForm =
-    {
-      created_fk_by: this.ReportForm.controls.created_fk_by.value,
-      description: this.ReportForm.controls.description.value,
-      user_fk_id: this.ReportForm.controls.user_fk_id.value,
-      end_date:moment.from(this.ReportForm.controls.end_date.value, 'fa', 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'),
-      start_date:moment.from(this.ReportForm.controls.start_date.value, 'fa', 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'),
-      working_location:this.ReportForm.controls.working_location.value,
-      status:this.ReportForm.controls.status.value,
-      remote_request_pk_id:this.id
 
-    }
     if (this.id != null) {
-      this.http.put(this.put_route, ReportFormValue, null).subscribe((response) => {
+      if (this.EditForm.invalid) {
+        this.alertServices.error("مقادیر اجباری را وارد نمایید")
+        this.EditForm.markAllAsTouched();
+        return;
+      }
+      let EditFormValue: IRemoteRequestUpdate =
+      {
+        created_fk_by: this.EditForm.controls.created_fk_by.value,
+        description: this.EditForm.controls.description.value,
+        working_location:this.EditForm.controls.working_location.value,
+        date: moment.from(this.EditForm.controls.date.value, 'fa', 'YYYY-MM-DD').format('YYYY-MM-DD'),
+        end: this.EditForm.controls.end.value,
+        start: this.EditForm.controls.start.value,
+        remote_request_pk_id:this.id
+
+      }
+      this.http.put(this.put_route, EditFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت ویرایش شد");
         this.router.navigate([this.cancle_link])
@@ -117,6 +123,21 @@ export class RemoteRequestAddComponent implements OnInit {
       )
     }
     else {
+      if (this.ReportForm.invalid) {
+        this.alertServices.error("مقادیر اجباری را وارد نمایید")
+        this.ReportForm.markAllAsTouched();
+        return;
+      }
+      let ReportFormValue: IRemoteRequestAdd =
+      {
+        user_fk_id: this.ReportForm.controls.user_fk_id.value,
+        created_fk_by: this.ReportForm.controls.created_fk_by.value,
+        description: this.ReportForm.controls.description.value,
+        working_location:this.ReportForm.controls.working_location.value,
+        end_date: moment.from(this.ReportForm.controls.end_date.value, 'fa', 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'),
+        start_date: moment.from(this.ReportForm.controls.start_date.value, 'fa', 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'),
+
+      }
       this.http.create(this.create_route, ReportFormValue, null).subscribe((response) => {
         console.log(response)
         this.alertServices.success("با موفقیت اضافه شد");

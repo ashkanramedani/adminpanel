@@ -7,11 +7,6 @@ import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
-import { IClassDetails } from 'src/app/interfaces/IClassDetails';
-import * as moment from 'jalali-moment';
-import { IFingerScannerForm } from 'src/app/interfaces/IFingerScannerForm';
-import { IFingerScannerBulkForm } from 'src/app/interfaces/IFingerScannerBulkForm';
-
 @Component({
   selector: 'app-fingerprint-scanner-bulk',
   templateUrl: './fingerprint-scanner-bulk.component.html',
@@ -19,8 +14,7 @@ import { IFingerScannerBulkForm } from 'src/app/interfaces/IFingerScannerBulkFor
 export class FingerprintScannerBulkComponent implements OnInit {
   //#region change this information
   cancle_link: string = '/reports/finger_scanner'
-  form_title:string=" ورود خروج کارکنان"
-  AuditForm: IFingerScannerForm
+  form_title:string=" ورود خروج کارکنان" 
   get_Singel_route: string = Domain.GetFingerScanner
   put_route: string = Domain.PutFingerScanner
   create_route: string = Domain.CreateFingerScanner

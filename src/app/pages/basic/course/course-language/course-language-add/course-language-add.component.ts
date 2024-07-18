@@ -7,8 +7,7 @@ import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
-import { IRolesForm } from 'src/app/interfaces/IRolesForm';
-import { ICourseLanguageForm } from 'src/app/interfaces/ICourseLanguageForm';
+import { ICourseLanguageUpdate } from 'src/app/interfaces/ICourseLanguage';
 
 @Component({
   selector: 'app-course-language-add',
@@ -18,7 +17,7 @@ export class CourseLanguageAddComponent implements OnInit {
   //#region change this information
   cancle_link: string = '/basic/course-language'
   form_title:string="زبان دوره"
-  AuditForm: ICourseLanguageForm
+  AuditForm: ICourseLanguageUpdate
   get_Singel_route: string = Domain.GetCourseLanguageData
   put_route: string = Domain.PutCourseLanguageData
   create_route: string = Domain.CreateCourseLanguageData
@@ -44,7 +43,6 @@ export class CourseLanguageAddComponent implements OnInit {
       {
         created_fk_by: new FormControl('', [Validators.required]),
         description: new FormControl(''),
-        status: new FormControl('',[Validators.required]),
         language_name: new FormControl('',[Validators.required]),
       }
     )
@@ -73,9 +71,7 @@ export class CourseLanguageAddComponent implements OnInit {
   FillFormData() {
     this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
     this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
-    this.ReportForm.controls["status"].patchValue(this.AuditForm.status);
     this.ReportForm.controls["language_name"].patchValue(this.AuditForm.language_name);
-    this.ReportForm.controls["language_pk_id"].patchValue(this.id);
   }
   onSubmit() {
     if (this.ReportForm.invalid) {
@@ -83,12 +79,11 @@ export class CourseLanguageAddComponent implements OnInit {
       return;
     }
     this.btnLoading = true
-    let ReportFormValue: ICourseLanguageForm =
+    let ReportFormValue: ICourseLanguageUpdate =
     {
       language_pk_id:this.id,
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
-      status: this.ReportForm.controls.status.value,
       language_name: this.ReportForm.controls.language_name.value,
 
     }

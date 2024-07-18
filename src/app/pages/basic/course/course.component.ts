@@ -1,8 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { ICourse } from 'src/app/interfaces/ICourse';
-import { ICourseType } from 'src/app/interfaces/ICourseType';
+import { ICourseAll, ICourseSingle } from 'src/app/interfaces/ICourse';
+import { ICourseTypeAll } from 'src/app/interfaces/ICourseType';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -12,9 +12,9 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class CourseComponent implements OnInit {
   ShowMoreItem: string
-  ResponseDataList: ICourse[] = []
+  ResponseDataList: ICourseAll[] = []
   ResponseDataLenght: number[];
-  CourseTypeData:ICourseType[]=[]
+  CourseTypeData:ICourseTypeAll[]=[]
   SearchValue: string
   isCheckedStatus: number;
   isLoading: boolean = true
@@ -22,7 +22,7 @@ export class CourseComponent implements OnInit {
   isOpenSettins:boolean=false
   order: string = "desc"
   type_pk_id:string
-  SingleData: ICourse
+  SingleData: ICourseSingle
   IsShowenModal: boolean = false
   is_active_course_type:string=''
   constructor(private http: HttpService, private alertServices: AlertifyService) { }

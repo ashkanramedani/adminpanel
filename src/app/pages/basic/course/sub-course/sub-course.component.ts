@@ -1,10 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { IRolesForm } from 'src/app/interfaces/IRolesForm';
-import { ISubCourse } from 'src/app/interfaces/ISubCourse';
-import { IUsers } from 'src/app/interfaces/IUsers';
-import { IUsersForm } from 'src/app/interfaces/IUsersForm';
+import { ISubCourseAll, ISubCourseSingle } from 'src/app/interfaces/ISubCourse';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -16,8 +13,8 @@ export class SubCourseComponent implements OnInit {
 
 
   //#region change this informaion
-  ResponseDataList: ISubCourse[] = []
-  SingleData: ISubCourse
+  ResponseDataList: ISubCourseAll[] = []
+  SingleData: ISubCourseSingle
   form_title = "اطلاعات پایه /  دوره های درس"
   table_header: string[] = ["ردیف", "نام دوره", "درس اصلی ", "استاد","تعداد جلسات","وضعیت","عملیات"]
   field_count:string="Sub_Course"

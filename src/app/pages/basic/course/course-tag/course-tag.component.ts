@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
 import { IClassDetails } from 'src/app/interfaces/IClassDetails';
-import { ICourseLanguage } from 'src/app/interfaces/ICourseLanguage';
-import { ICourseLanguageForm } from 'src/app/interfaces/ICourseLanguageForm';
-import { ICourseTag } from 'src/app/interfaces/ICourseTag';
-import { ICourseTagForm } from 'src/app/interfaces/ICourseTagForm';
+import { ICourseTagAll, ICourseTagSingle } from 'src/app/interfaces/ICourseTag';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -14,7 +11,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class CourseTagComponent implements OnInit {
 
-  ResponseDataList: ICourseTag[] = []
+  ResponseDataList: ICourseTagAll[] = []
   ResponseDataLenght: number[];
   totalCount: number = 0
   add_url:string="/basic/course-tag/add"
@@ -25,11 +22,11 @@ export class CourseTagComponent implements OnInit {
   order: string = "desc"
   ShowMoreItem: string
   IsShowenModal: boolean = false
-  SingleData: ICourseTagForm
+  SingleData: ICourseTagSingle
   EmployiesData: string
   ClassData: IClassDetails
   form_title = "بر چسب ها"
-  table_header: string[] = ["عنوان", "توضیحات", "وضعیت", "عملیات"]
+  table_header: string[] = ["عنوان", "توضیحات", "سازنده", "عملیات"]
   // page:number=1
   // limit:number=10
   currentPage: number = 1
@@ -48,7 +45,7 @@ export class CourseTagComponent implements OnInit {
     }
   }
   GetResponseDataLenght() {
-    this.http.getAll(`${Domain.GetCount}?field=Tardy Request`).subscribe((response) => {
+    this.http.getAll(`${Domain.GetCount}?field=Tag`).subscribe((response) => {
       this.totalCount = response
       this.ResponseDataLenght = new Array(Math.ceil(response / 10))
     })

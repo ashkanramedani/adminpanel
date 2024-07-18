@@ -8,12 +8,13 @@ import { HijriDatePipe } from '../utilities/HijriDate.pipe';
 import { FloatingInputComponent } from './floating-input/floating-input.component';
 import { LoadingComponent } from './loading/loading.component';
 import { FormatTimePipe } from '../utilities/format-time.pipe';
+import { DayOfWeekPipe } from '../utilities/DayOfWeek.pipe';
 @NgModule({
-  declarations: [HeaderComponent,SidebarComponent,FilterPipe,HijriDatePipe,FormatTimePipe,FloatingInputComponent,LoadingComponent],
+  declarations: [HeaderComponent, SidebarComponent, FilterPipe, HijriDatePipe, FormatTimePipe, FloatingInputComponent, LoadingComponent, DayOfWeekPipe],
   imports: [
     CommonModule,
     RouterModule
   ],
-  exports:[HeaderComponent,SidebarComponent,FilterPipe,HijriDatePipe,FormatTimePipe,FloatingInputComponent,LoadingComponent]
+  exports: [HeaderComponent, SidebarComponent, FilterPipe, HijriDatePipe, FormatTimePipe, FloatingInputComponent, LoadingComponent, DayOfWeekPipe]
 })
 export class SharedModule { }

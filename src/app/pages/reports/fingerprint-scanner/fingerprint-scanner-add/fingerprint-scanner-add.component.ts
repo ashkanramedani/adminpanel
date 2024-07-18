@@ -8,7 +8,7 @@ import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { IClassDetails } from 'src/app/interfaces/IClassDetails';
 import * as moment from 'jalali-moment';
-import { IFingerScannerForm } from 'src/app/interfaces/IFingerScannerForm';
+import { IFingerScannerAdd } from 'src/app/interfaces/IFingerScannerForm';
 
 @Component({
   selector: 'app-fingerprint-scanner-add',
@@ -18,7 +18,7 @@ export class FingerprintScannerAddComponent implements OnInit {
   //#region change this information
   cancle_link: string = '/reports/finger_scanner'
   form_title:string=" ورود خروج کارکنان"
-  AuditForm: IFingerScannerForm
+  AuditForm: IFingerScannerAdd
   get_Singel_route: string = Domain.GetFingerScanner
   put_route: string = Domain.PutFingerScanner
   create_route: string = Domain.CreateFingerScanner
@@ -89,7 +89,7 @@ export class FingerprintScannerAddComponent implements OnInit {
       return;
     }
     this.btnLoading = true
-    let ReportFormValue: IFingerScannerForm =
+    let ReportFormValue: IFingerScannerAdd =
     {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
@@ -97,7 +97,6 @@ export class FingerprintScannerAddComponent implements OnInit {
       Date:moment.from(this.ReportForm.controls.Date.value, 'fa', 'YYYY-MM-DD').format('YYYY-MM-DD'),
       Enter:this.ReportForm.controls.Enter.value,
       Exit:this.ReportForm.controls.Exit.value,
-      fingerprint_scanner_pk_id:this.id
 
     }
     if (this.id != null) {

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Domain } from 'src/app/domain/doamin';
-import { IBusinessTrip } from 'src/app/interfaces/IBusinessTrip';
-import { IRemoteRequest } from 'src/app/interfaces/IRemoteRequest';
+import { Domain } from 'src/app/domain/doamin'; 
 import { ISurvey } from 'src/app/interfaces/ISurvey';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';

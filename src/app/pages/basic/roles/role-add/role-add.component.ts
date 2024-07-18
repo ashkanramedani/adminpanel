@@ -44,7 +44,6 @@ export class RoleAddComponent implements OnInit {
       {
         created_fk_by: new FormControl('', [Validators.required]),
         description: new FormControl(''),
-        status: new FormControl('',[Validators.required]),
         name: new FormControl('',[Validators.required]),
         cluster: new FormControl('')
       }
@@ -80,7 +79,6 @@ export class RoleAddComponent implements OnInit {
   FillFormData() {
     this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
     this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
-    this.ReportForm.controls["status"].patchValue(this.AuditForm.status);
     this.ReportForm.controls["name"].patchValue(this.AuditForm.name);
     this.ClusterInput=this.AuditForm.cluster
     //this.ReportForm.controls["cluster"].patchValue(this.AuditForm.cluster);
@@ -99,7 +97,6 @@ export class RoleAddComponent implements OnInit {
       role_pk_id:this.id,
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
-      status: this.ReportForm.controls.status.value,
       name: this.ReportForm.controls.name.value,
       cluster: this.ClusterInput
     }

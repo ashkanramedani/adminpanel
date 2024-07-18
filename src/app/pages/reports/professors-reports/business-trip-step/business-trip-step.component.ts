@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as moment from 'jalali-moment';
+import * as moment from 'jalali-moment'; 
 import { Domain } from 'src/app/domain/doamin';
-import { IBusinessTripEditForm } from 'src/app/interfaces/IBusinessTripForm';
+import { IBusinessTripReport, IBusinessTripSingle } from 'src/app/interfaces/IBusinessTrip';
+import { IBusinessTripUpdate } from 'src/app/interfaces/IBusinessTripForm';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -15,10 +16,10 @@ export class BusinessTripStepComponent implements OnInit {
   @Input() id: any
   @Input() year: number
   @Input() month: number
-  response_business_trip_report: IBusinessTripEditForm[] = []
+  response_business_trip_report: IBusinessTripReport[] = []
   table_header: string[] = []
   isOpenBusinessTripEdit: boolean = false
-  BusinessTripResponse: IBusinessTripEditForm
+  BusinessTripResponse: IBusinessTripSingle
   BusinessTripForm: FormGroup
 
   constructor(private http: HttpService, private alertServices: AlertifyService, private activateRoute: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) { }
@@ -77,7 +78,7 @@ export class BusinessTripStepComponent implements OnInit {
       return;
     }
     if (this.BusinessTripResponse != null) {
-      let BusinessTripForm: IBusinessTripEditForm =
+      let BusinessTripForm: IBusinessTripUpdate =
       {
         created_fk_by: this.BusinessTripResponse.created_fk_by,
         description: this.BusinessTripResponse.description,
@@ -86,7 +87,6 @@ export class BusinessTripStepComponent implements OnInit {
         start: this.BusinessTripForm.controls.start.value,
         end: this.BusinessTripForm.controls.end.value,
         date: this.BusinessTripForm.controls.date.value,
-        status:this.BusinessTripResponse.status,
       }
       this.http.put(Domain.PutBusinessTrip, BusinessTripForm, null).subscribe((response) => {
         console.log(response)
@@ -102,5 +102,24 @@ export class BusinessTripStepComponent implements OnInit {
   }
   CLoseBusinessTripEdit() {
     this.isOpenBusinessTripEdit = false
+  }
+  RemoveItem(id?: string) {
+    this.alertServices.confirm(
+      'حذف آیتم',
+      'آیا از حذف این آیتم اطمینان دارید؟',
+      () => {
+        this.http
+          .deleteWithQuery(`${Domain.DeleteBusinessTrip}/${id}`)
+          .subscribe((response) => {
+            console.log(response);
+            if (response == "Deleted") {
+              this.GetBusinessReport()
+              this.alertServices.success('آیتم با موفقیت حذف شد');
+            }
+            else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
+          });
+      },
+      () => { }
+    );
   }
 }

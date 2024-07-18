@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { IBusinessTrip } from 'src/app/interfaces/IBusinessTrip';
-import { ILeaveRequest } from 'src/app/interfaces/ILeaveRequest';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -11,8 +9,8 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class TicketsComponent implements OnInit {
   //#region change this informaion
-  ResponseDataList: IBusinessTrip[] = []
-  SingleData: IBusinessTrip
+  // ResponseDataList: IBusinessTrip[] = []
+  // SingleData: IBusinessTrip
   form_title = "پشتیبانی /    تیکت ها"
   table_header: string[] = ["ردیف", "  تاریخ" , "عنوان ","وضعیت","جزئیات"]
   field_count:string=""
@@ -44,60 +42,60 @@ export class TicketsComponent implements OnInit {
       this.ResponseDataLenght = new Array(Math.ceil(response / 10))
     })
   }
-  GetResponseData(page: number, limit: number, order: string) {
- this.isLoading = true;
-    this.http.getAll(`${this.get_all_route}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
-      this.ResponseDataList = response;
+//   GetResponseData(page: number, limit: number, order: string) {
+//  this.isLoading = true;
+//     this.http.getAll(`${this.get_all_route}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
+//       this.ResponseDataList = response;
 
-      this.isLoading = false
-      console.log(response)
-    })
-  }
+//       this.isLoading = false
+//       console.log(response)
+//     })
+//   }
 
-  RemoveItem(id?: string) {
-    this.alertServices.confirm(
-      'حذف آیتم',
-      'آیا از حذف این آیتم اطمینان دارید؟',
-      () => {
-        this.http
-          .deleteWithQuery(`${this.delete_route}/${id}`)
-          .subscribe((response) => {
-            console.log(response);
-            if (response == "Deleted") {
-              this.GetResponseData(0, 1000, this.order);
-              this.alertServices.success('آیتم با موفقیت حذف شد');
-            }
-            else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
-          });
-      },
-      () => { }
-    );
-  }
-  ChangeSort(value: any) {
-    this.order = value.target.value
-    this.GetResponseData(0, 1000, this.order);
-  }
+//   RemoveItem(id?: string) {
+//     this.alertServices.confirm(
+//       'حذف آیتم',
+//       'آیا از حذف این آیتم اطمینان دارید؟',
+//       () => {
+//         this.http
+//           .deleteWithQuery(`${this.delete_route}/${id}`)
+//           .subscribe((response) => {
+//             console.log(response);
+//             if (response == "Deleted") {
+//               this.GetResponseData(0, 1000, this.order);
+//               this.alertServices.success('آیتم با موفقیت حذف شد');
+//             }
+//             else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
+//           });
+//       },
+//       () => { }
+//     );
+//   }
+//   ChangeSort(value: any) {
+//     this.order = value.target.value
+//     this.GetResponseData(0, 1000, this.order);
+//   }
 
-  OpenModal(id: string) {
-    if (id == null) {
-      alert("رکورد وجود ندارد")
-      return;
-    }
-    this.http
-      .get(this.get_all_route, id)
-      .subscribe((response) => {
-        this.SingleData = response;
-        this.http.get(Domain.GetUsers, this.SingleData.created_fk_by).subscribe((emp) => {
-          console.log("emp: " + emp)
-          this.SingleData.created_fk_by = emp.name + " " + emp.last_name
-        })
-        this.http.get(Domain.GetUsers, this.SingleData.user_fk_id).subscribe((emp) => {
-          console.log("emp: " + emp)
-          this.SingleData.user_fk_id = emp.name + " " + emp.last_name
-        })
-        this.IsShowenModal = true
-      });
-  }
+//   OpenModal(id: string) {
+//     if (id == null) {
+//       alert("رکورد وجود ندارد")
+//       return;
+//     }
+//     this.http
+//       .get(this.get_all_route, id)
+//       .subscribe((response) => {
+//         this.SingleData = response;
+//         this.http.get(Domain.GetUsers, this.SingleData.created_fk_by).subscribe((emp) => {
+//           console.log("emp: " + emp)
+//           this.SingleData.created_fk_by = emp.name + " " + emp.last_name
+//         })
+//         this.http.get(Domain.GetUsers, this.SingleData.user_fk_id).subscribe((emp) => {
+//           console.log("emp: " + emp)
+//           this.SingleData.user_fk_id = emp.name + " " + emp.last_name
+//         })
+//         this.IsShowenModal = true
+//       });
+//   }
   CloseModal() {
     this.IsShowenModal = false
   }

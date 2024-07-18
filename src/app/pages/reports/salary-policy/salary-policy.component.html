@@ -42,16 +42,16 @@
             <span>{{item.created.name+ " "+item.created.last_name }}</span>
 
             <div class="flex items-center justify-center">
-              <span class="badge badge-ghost">{{item.status}}</span>
+              <span class="badge badge-accent badge-outline !text-cyan-600 pt-1">{{item.status}}</span>
             </div>
-            <div class="operation flex items-center justify-center gap-x-2">
-                <button (click)="OpenModal(item.salary_policy_pk_id)" title="نمایش">
+            <div class="operation flex items-center justify-center">
+                <button class="hover:bg-gray-200 p-1 rounded-lg"  (click)="OpenModal(item.salary_policy_pk_id)" title="نمایش">
                     <img src="/assets/images/icon/see-more.svg" class="w-4" alt="">
                 </button>
-                <a [routerLink]="[edit_url,item.salary_policy_pk_id]" title="ویرایش">
+                <a class="hover:bg-gray-200 p-1 rounded-lg"  [routerLink]="[edit_url,item.salary_policy_pk_id]" title="ویرایش">
                     <img src="/assets/images/icon/edit.svg" class="w-4" alt="">
                 </a>
-                <button title="حذف" (click)="RemoveItem(item.salary_policy_pk_id)">
+                <button class="hover:bg-gray-200 p-1 rounded-lg"  title="حذف" (click)="RemoveItem(item.salary_policy_pk_id)">
                     <img src="/assets/images/icon/trash.svg" class="w-4" alt="">
                 </button>
             </div>
@@ -80,12 +80,7 @@
               وضعیت
 
             </label>
-            <span *ngIf="SingleData.status==0"
-              class="inline-flex rounded-full bg-[#777777] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید
-              نشده </span>
-            <span *ngIf="SingleData.status==1"
-              class="inline-flex rounded-full bg-[#199173] px-2 py-1 text-xs font-medium text-white hover:bg-opacity-90">تایید
-              شده </span>
+            <span>{{SingleData.status}}</span>
 
           </div>
           <div>

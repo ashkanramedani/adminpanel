@@ -2,13 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
-import { ICourse } from 'src/app/interfaces/ICourse';
-import { ICourseCategory } from 'src/app/interfaces/ICourseCategory';
-import { ICourseCategoryForm } from 'src/app/interfaces/ICourseCategoryForm';
-import { ICourseForm } from 'src/app/interfaces/ICourseForm';
-import { ICourseLanguage } from 'src/app/interfaces/ICourseLanguage';
-import { ICourseTag } from 'src/app/interfaces/ICourseTag';
-import { ICourseType } from 'src/app/interfaces/ICourseType';
+import { ICourseCategoryAll, ICourseCategoryUpdate } from 'src/app/interfaces/ICourseCategory';
 import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
@@ -19,21 +13,17 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class CourseCategoryAddComponent implements OnInit {
   ReportForm: FormGroup;
-  RolesData: ICourse[] = []
   tagsInputArray: string[] = [];
-  CourseTagData: ICourseTag[] = []
-  CourseCategoryData: ICourseCategory[] = []
-  CourseLanguageData: ICourseLanguage[] = []
+  CourseCategoryData: ICourseCategoryAll[] = []
   id: any;
   TeacherInputArray: string[] = [];
   TeacherInputTitleArray: string[] = [];
   isOpenSearchTeacher: boolean = false;
   EmployiesData: IUsers[] = []
-  CourseTypeData: ICourseType[] = []
   page_title: string = "ایجاد دسته بندی دوره"
   btnLoading: boolean = false
-  AuditForm: ICourseCategory
-  cancle_link:string='/basic/course'
+  AuditForm: ICourseCategoryUpdate
+  cancle_link:string='/basic/course-category'
   isLoading: boolean = false
   isOpenSearchTag: boolean = false
   constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService,private router:Router) {
@@ -46,7 +36,6 @@ export class CourseCategoryAddComponent implements OnInit {
       {
         created_fk_by: new FormControl('', [Validators.required]),
         description: new FormControl(''),
-        status: new FormControl('', [Validators.required]),
         category_name: new FormControl('', [Validators.required]),
       }
     )
@@ -75,7 +64,6 @@ export class CourseCategoryAddComponent implements OnInit {
   FillFormData() {
     this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
     this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
-    this.ReportForm.controls["status"].patchValue(this.AuditForm.status);
     this.ReportForm.controls["category_name"].patchValue(this.AuditForm.category_name)
   }
   onSubmit() {
@@ -84,12 +72,11 @@ export class CourseCategoryAddComponent implements OnInit {
       return;
     }
     this.btnLoading = true
-    let ReportFormValue: ICourseCategoryForm =
+    let ReportFormValue: ICourseCategoryUpdate =
     {
       category_pk_id: this.id,
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
-      status: this.ReportForm.controls.status.value,
       category_name: this.ReportForm.controls.category_name.value,
     }
     if (this.id != null) {

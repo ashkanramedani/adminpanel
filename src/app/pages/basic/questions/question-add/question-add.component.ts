@@ -39,8 +39,7 @@ export class QuestionAddComponent implements OnInit {
     this.ReportForm = this.formBuilder.group(
       {
         created_fk_by: new FormControl('',[Validators.required]),
-        description: new FormControl(''),
-        status: new FormControl('',),
+        description: new FormControl(''), 
         text: new FormControl('',[Validators.required]),
         language: new FormControl('',[Validators.required]),
       }
@@ -70,7 +69,6 @@ export class QuestionAddComponent implements OnInit {
   FillFormData() {
     this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
     this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
-    this.ReportForm.controls["status"].patchValue(this.AuditForm.status);
     this.ReportForm.controls["text"].patchValue(this.AuditForm.text)
     this.ReportForm.controls["language"].patchValue(this.AuditForm.language)
   }
@@ -85,7 +83,6 @@ export class QuestionAddComponent implements OnInit {
       question_pk_id:this.id,
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
-      status: this.ReportForm.controls.status.value,
       text: this.ReportForm.controls.text.value,
       language: this.ReportForm.controls.language.value,
       create_date:''

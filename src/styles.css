@@ -62,7 +62,7 @@
 
 .datepicker-outer-container {
   z-index: 9999 !important;
-  /* position: absolute !important; */
+   /* position: absolute !important; */
   width: 100%;
 }
 

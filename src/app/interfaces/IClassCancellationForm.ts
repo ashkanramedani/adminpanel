@@ -2,7 +2,6 @@ export interface IClassCancellationForm
 {
     created_fk_by: string
     description: string,
-    status: number
     course_fk_id: string
     teacher_fk_id: string
     replacement_date: string

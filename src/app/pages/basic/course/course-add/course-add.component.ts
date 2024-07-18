@@ -3,14 +3,11 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Domain } from 'src/app/domain/doamin';
-import { ICourse } from 'src/app/interfaces/ICourse';
-import { ICourseCategory } from 'src/app/interfaces/ICourseCategory';
-import { ICourseEditForm } from 'src/app/interfaces/ICourseEditForm';
-import { ICourseForm } from 'src/app/interfaces/ICourseForm';
-import { ICourseFormTag } from 'src/app/interfaces/ICourseFormTag';
-import { ICourseLanguage } from 'src/app/interfaces/ICourseLanguage';
-import { ICourseTag } from 'src/app/interfaces/ICourseTag';
-import { ICourseType } from 'src/app/interfaces/ICourseType';
+import { ICourseUpdate } from 'src/app/interfaces/ICourse';
+import { ICourseCategoryAll } from 'src/app/interfaces/ICourseCategory';
+import { ICourseLanguageAll } from 'src/app/interfaces/ICourseLanguage';
+import { ICourseTagAll } from 'src/app/interfaces/ICourseTag';
+import { ICourseTypeAll } from 'src/app/interfaces/ICourseType';
 import { IUserFormRoles } from 'src/app/interfaces/IUserFormRoles';
 import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
@@ -22,23 +19,22 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class CourseAddComponent implements OnInit {
   ReportForm: FormGroup;
-  RolesData: ICourse[] = []
   tagsInputArray:IUserFormRoles[]=[]
   tagsInputTitleArray: {role_id:string,role_title:string}[]=[]
-  CourseTagData:ICourseTag[]=[]
-  CourseCategoryData:ICourseCategory[]=[]
-  CourseLanguageData:ICourseLanguage[]=[]
+  CourseTagData:ICourseTagAll[]=[]
+  CourseCategoryData:ICourseCategoryAll[]=[]
+  CourseLanguageData:ICourseLanguageAll[]=[]
   id: any;
   TeacherInputArray: string[] = [];
   TeacherInputTitleArray: string[] = [];
   isOpenSearchTeacher: boolean = false;
   cancle_link:string='/basic/course'
   EmployiesData: IUsers[] = []
-  CourseTypeData:ICourseType[]=[]
+  CourseTypeData:ICourseTypeAll[]=[]
   page_title: string = "افزودن"
   btnLoading: boolean = false
-  AuditForm: ICourseForm
-  EditForm:ICourseEditForm
+  AuditForm: ICourseUpdate
+  EditForm:ICourseUpdate
   isLoading:boolean=false
   isOpenSearchTag:boolean=false
   public editor:any = ClassicEditor;
@@ -55,8 +51,7 @@ export class CourseAddComponent implements OnInit {
     this.ReportForm = this.formBuilder.group(
       {
         created_fk_by: new FormControl('',[Validators.required]),
-        description: new FormControl(''),
-        status: new FormControl('',[Validators.required]),
+        description: new FormControl(''), 
         course_name: new FormControl('',[Validators.required]),
         starting_date: new FormControl('',[Validators.required]),
         ending_date: new FormControl('',[Validators.required]),
@@ -156,7 +151,6 @@ export class CourseAddComponent implements OnInit {
   FillFormData() {
     this.ReportForm.controls["created_fk_by"].patchValue(this.EditForm.created_fk_by);
     this.ReportForm.controls["description"].patchValue(this.EditForm.description);
-    this.ReportForm.controls["status"].patchValue(this.EditForm.status);
     this.ReportForm.controls["course_name"].patchValue(this.EditForm.course_name)
     this.ReportForm.controls["starting_date"].patchValue(this.EditForm.starting_date);
     this.ReportForm.controls["ending_date"].patchValue(this.EditForm.ending_date)
@@ -180,12 +174,12 @@ export class CourseAddComponent implements OnInit {
       return;
     }
     this.btnLoading = true
-    let ReportFormValue: ICourseForm =
+    let ReportFormValue: ICourseUpdate =
     {
+      categories:this.id,
       course_pk_id: this.id,
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
-      status: this.ReportForm.controls.status.value,
       course_name: this.ReportForm.controls.course_name.value,
       starting_date: this.ReportForm.controls.starting_date.value,
       ending_date: this.ReportForm.controls.ending_date.value,
@@ -225,12 +219,12 @@ export class CourseAddComponent implements OnInit {
       return;
     }
     this.btnLoading = true
-    let ReportFormValue: ICourseForm =
+    let ReportFormValue: ICourseUpdate =
     {
+      categories:this.id,
       course_pk_id: this.id,
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
-      status: this.ReportForm.controls.status.value,
       course_name: this.ReportForm.controls.course_name.value,
       starting_date: this.ReportForm.controls.starting_date.value,
       ending_date: this.ReportForm.controls.ending_date.value,

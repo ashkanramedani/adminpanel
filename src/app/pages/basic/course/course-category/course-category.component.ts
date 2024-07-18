@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
 import { IClassDetails } from 'src/app/interfaces/IClassDetails';
-import { ICourseCategory } from 'src/app/interfaces/ICourseCategory';
+import { ICourseCategoryAll, ICourseCategorySingle } from 'src/app/interfaces/ICourseCategory';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -11,7 +11,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class CourseCategoryComponent implements OnInit {
 
-  ResponseDataList: ICourseCategory[] = []
+  ResponseDataList: ICourseCategoryAll[] = []
   ResponseDataLenght: number[];
   totalCount: number = 0
   SearchValue: string
@@ -21,11 +21,11 @@ export class CourseCategoryComponent implements OnInit {
   order: string = "desc"
   ShowMoreItem: string
   IsShowenModal: boolean = false
-  SingleData: ICourseCategory
+  SingleData: ICourseCategorySingle
   EmployiesData: string
   ClassData: IClassDetails
   form_title = "دسته بندی دوره "
-  table_header: string[] = ["عنوان", "توضیحات", "وضعیت", "عملیات"]
+  table_header: string[] = ["عنوان", "توضیحات", "سازنده", "عملیات"]
   // page:number=1
   // limit:number=10
   currentPage: number = 1
@@ -44,14 +44,14 @@ export class CourseCategoryComponent implements OnInit {
     }
   }
   GetResponseDataLenght() {
-    this.http.getAll(`${Domain.GetCount}?field=Tardy Request`).subscribe((response) => {
+    this.http.getAll(`${Domain.GetCount}?field=Category`).subscribe((response) => {
       this.totalCount = response
       this.ResponseDataLenght = new Array(Math.ceil(response / 10))
     })
   }
   GetResponseData(page: number, limit: number, order: string) {
     this.isLoading = true;
-    
+
     this.http.getAll(`${Domain.GetCourseCategoryData}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       this.ResponseDataList = response;
 

@@ -34,12 +34,15 @@
         </td>
         <td class="border-b py-3 border-gray-200  text-center">
           <input type="checkbox" (change)="ChangeStatusLeaveRequest(item.leave_request_pk_id)"
-            [checked]="item.status=='submitted' " class="checkbox  checkbox-sm" />
+            [checked]="item.status=='submitted' " class="checkbox  checkbox-xs" />
         </td>
         <td>
           <button (click)="OpenleaveRequestEdit(item.leave_request_pk_id)" class="tooltip cursor-pointer p-1"
             data-tip="ویرایش">
-            <img src="/assets/images/icon/edit.svg" class="w-5" alt="">
+            <img src="/assets/images/icon/edit.svg" class="w-4" alt="">
+          </button>
+          <button (click)="RemoveItem(item.leave_request_pk_id)" class="tooltip cursor-pointer p-1 hover:bg-gray-200  rounded-lg" data-tip="حذف">
+            <img src="/assets/images/icon/trash.svg" class="w-4" alt="">
           </button>
         </td>
       </tr>
@@ -61,12 +64,15 @@
         </td>
         <td class="border-b py-3 border-gray-200  text-center">
           <input type="checkbox" (change)="ChangeStatusLeaveRequest(item.leave_request_pk_id)"
-            [checked]="item.status=='submitted' " class="checkbox  checkbox-sm" />
+            [checked]="item.status=='submitted' " class="checkbox  checkbox-xs" />
         </td>
         <td>
           <button (click)="OpenleaveRequestEdit(item.leave_request_pk_id)" class="tooltip cursor-pointer p-1"
             data-tip="ویرایش">
             <img src="/assets/images/icon/edit.svg" class="w-5" alt="">
+          </button>
+          <button (click)="RemoveItem(item.leave_request_pk_id)" class="tooltip cursor-pointer p-1 hover:bg-gray-200  rounded-lg" data-tip="حذف">
+            <img src="/assets/images/icon/trash.svg" class="w-4" alt="">
           </button>
         </td>
       </tr>

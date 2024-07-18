@@ -3,7 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
-import { ILeaveRequestEditForm } from 'src/app/interfaces/ILeaveRequestForm';
+import { ILeaveRequestSingle } from 'src/app/interfaces/ILeaveRequest';
+import { ILeaveRequestUpdate } from 'src/app/interfaces/ILeaveRequestForm';
 import { ILeaveRequestReport } from 'src/app/interfaces/ILeaveRequestReport';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
@@ -14,7 +15,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class LeaveRequestStepComponent implements OnInit {
   isOpenleaveRequestEdit: boolean = false
-  LeaveRequestResponse: ILeaveRequestEditForm
+  LeaveRequestResponse: ILeaveRequestSingle
   LeaveRequestForm: FormGroup
   table_header: string[] = []
   response_leave_request_report = {} as ILeaveRequestReport
@@ -63,7 +64,7 @@ export class LeaveRequestStepComponent implements OnInit {
       return;
     }
     if (this.LeaveRequestResponse != null) {
-      let leaveRequestForm: ILeaveRequestEditForm =
+      let leaveRequestForm: ILeaveRequestUpdate =
       {
         created_fk_by: this.LeaveRequestResponse.created_fk_by,
         description: this.LeaveRequestResponse.description,
@@ -100,5 +101,24 @@ export class LeaveRequestStepComponent implements OnInit {
       console.log(response)
       this.alertServices.success("تغییر وضعیت انجام شد")
     })
+  }
+  RemoveItem(id?: string) {
+    this.alertServices.confirm(
+      'حذف آیتم',
+      'آیا از حذف این آیتم اطمینان دارید؟',
+      () => {
+        this.http
+          .deleteWithQuery(`${Domain.DeleteLeaveRequest}/${id}`)
+          .subscribe((response) => {
+            console.log(response);
+            if (response == "Deleted") {
+              this.GetLeaveRequestReport()
+              this.alertServices.success('آیتم با موفقیت حذف شد');
+            }
+            else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
+          });
+      },
+      () => { }
+    );
   }
 }

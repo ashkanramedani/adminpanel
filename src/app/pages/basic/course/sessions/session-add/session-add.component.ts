@@ -6,11 +6,9 @@ import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
-import { IClassDetails } from 'src/app/interfaces/IClassDetails';
-import { ITeacherReplacementForm } from 'src/app/interfaces/ITeacherReplacementForm';
-import { ISubCourse } from 'src/app/interfaces/ISubCourse';
-import { ISessionForm } from 'src/app/interfaces/ISessionForm';
-import { ICourse } from 'src/app/interfaces/ICourse';
+import { ISessionUpdate } from 'src/app/interfaces/ISession';
+import { ISubCourseAll } from 'src/app/interfaces/ISubCourse';
+import { ICourseAll } from 'src/app/interfaces/ICourse';
 
 @Component({
   selector: 'app-session-add',
@@ -20,17 +18,17 @@ export class SessionAddComponent implements OnInit {
   //#region change this information
   cancle_link: string = '/basic/sessions'
   form_title: string = "  جلسه "
-  AuditForm: ISessionForm
+  AuditForm: ISessionUpdate
   get_Singel_route: string = Domain.GetSession
   put_route: string = Domain.PutSesssion
   create_route: string = Domain.CreateSession
   //#endregion
   page_title: string = "ایجاد"
-  SubCourseData: ISubCourse[]
+  SubCourseData: ISubCourseAll[]=[]
   ReportForm: FormGroup;
   isOpenSearchRole: boolean = false
   RolesData: IRoles[] = []
-  ClassData: ICourse [] = []
+  ClassData: ICourseAll [] = []
   id: any;
   EmployiesData: IUsers[] = []
   btnLoading: boolean = false
@@ -81,16 +79,16 @@ export class SessionAddComponent implements OnInit {
       });
   }
   FillFormData() {
-    this.ReportForm.controls["course_fk_id"].patchValue(this.AuditForm.course_fk_id);
-    this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
-    this.ReportForm.controls["sub_course_fk_id"].patchValue(this.AuditForm.sub_course_fk_id);
-    this.ReportForm.controls["session_teacher_fk_id"].patchValue(this.AuditForm.session_teacher_fk_id);
-    this.ReportForm.controls["is_sub"].patchValue(this.AuditForm.is_sub);
-    this.ReportForm.controls["session_date"].patchValue(this.AuditForm.session_date)
-    this.ReportForm.controls["session_starting_time"].patchValue(this.AuditForm.session_starting_time)
-    this.ReportForm.controls["session_ending_time"].patchValue(this.AuditForm.session_ending_time)
-    this.ReportForm.controls["session_duration"].patchValue(this.AuditForm.session_duration)
-    this.ReportForm.controls["days_of_week"].patchValue(this.AuditForm.days_of_week)
+    // this.ReportForm.controls["course_fk_id"].patchValue(this.AuditForm.course_fk_id);
+    // this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
+    // this.ReportForm.controls["sub_course_fk_id"].patchValue(this.AuditForm.sub_course_fk_id);
+    // this.ReportForm.controls["session_teacher_fk_id"].patchValue(this.AuditForm.session_teacher_fk_id);
+    // this.ReportForm.controls["is_sub"].patchValue(this.AuditForm.is_sub);
+    // this.ReportForm.controls["session_date"].patchValue(this.AuditForm.session_date)
+    // this.ReportForm.controls["session_starting_time"].patchValue(this.AuditForm.session_starting_time)
+    // this.ReportForm.controls["session_ending_time"].patchValue(this.AuditForm.session_ending_time)
+    // this.ReportForm.controls["session_duration"].patchValue(this.AuditForm.session_duration)
+    // this.ReportForm.controls["days_of_week"].patchValue(this.AuditForm.days_of_week)
   }
   onSubmit() {
     if (this.ReportForm.invalid) {
@@ -98,18 +96,20 @@ export class SessionAddComponent implements OnInit {
       return;
     }
     this.btnLoading = true
-    let ReportFormValue: ISessionForm =
+    let ReportFormValue: ISessionUpdate =
     {
-      course_fk_id: this.ReportForm.controls.course_fk_id.value,
+      description:this.ReportForm.controls.description.value,
+      sub_request_threshold:this.ReportForm.controls.sub_request_threshold.value,
+      //course_fk_id: this.ReportForm.controls.course_fk_id.value,
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
-      sub_course_fk_id: this.ReportForm.controls.sub_course_fk_id.value,
+      //sub_course_fk_id: this.ReportForm.controls.sub_course_fk_id.value,
       session_teacher_fk_id: this.ReportForm.controls.session_teacher_fk_id.value,
-      is_sub: this.ReportForm.controls.is_sub.value,
+      //is_sub: this.ReportForm.controls.is_sub.value,
       session_date: this.ReportForm.controls.session_date.value,
       session_starting_time: this.ReportForm.controls.session_starting_time.value,
-      session_ending_time: this.ReportForm.controls.session_ending_time.value,
+      //session_ending_time: this.ReportForm.controls.session_ending_time.value,
       session_duration: this.ReportForm.controls.session_duration.value,
-      days_of_week: this.ReportForm.controls.days_of_week.value,
+      //days_of_week: this.ReportForm.controls.days_of_week.value,
       session_pk_id: this.id
     }
     if (this.id != null) {
@@ -137,7 +137,7 @@ export class SessionAddComponent implements OnInit {
     })
   }
   GetCourseData() {
-    this.http.getAll(Domain.GetAuditClass).subscribe((response) => {
+    this.http.getAll(Domain.GetcourseData).subscribe((response) => {
       this.ClassData = response;
       console.log(response)
     })

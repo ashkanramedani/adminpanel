@@ -6,9 +6,7 @@ import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
-import { IRolesForm } from 'src/app/interfaces/IRolesForm';
-import { ICourseLanguageForm } from 'src/app/interfaces/ICourseLanguageForm';
-import { ICourseTypeForm } from 'src/app/interfaces/ICourseTypeForm';
+import { ICourseTypeUpdate } from 'src/app/interfaces/ICourseType';
 
 @Component({
   selector: 'app-course-type-add',
@@ -17,8 +15,8 @@ import { ICourseTypeForm } from 'src/app/interfaces/ICourseTypeForm';
 export class CourseTypeAddComponent implements OnInit {
   //#region change this information
   cancle_link: string = '/basic/course-type'
-  form_title:string="نوع دوره"
-  AuditForm: ICourseTypeForm
+  form_title: string = "نوع دوره"
+  AuditForm: ICourseTypeUpdate
   get_Singel_route: string = Domain.GetCourseType
   put_route: string = Domain.PutCourseType
   create_route: string = Domain.CreateCourseType
@@ -33,7 +31,7 @@ export class CourseTypeAddComponent implements OnInit {
   EmployiesData: IUsers[] = []
   btnLoading: boolean = false
   isLoading: boolean = false
-  constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService,private router:Router) {
+  constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService, private router: Router) {
 
   }
   ngOnInit(): void {
@@ -44,8 +42,7 @@ export class CourseTypeAddComponent implements OnInit {
       {
         created_fk_by: new FormControl('', [Validators.required]),
         description: new FormControl(''),
-        status: new FormControl('',[Validators.required]),
-        course_type_name: new FormControl('',[Validators.required]),
+        course_type_name: new FormControl('', [Validators.required]),
       }
     )
     if (this.id != null) {
@@ -73,7 +70,6 @@ export class CourseTypeAddComponent implements OnInit {
   FillFormData() {
     this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
     this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
-    this.ReportForm.controls["status"].patchValue(this.AuditForm.status);
     this.ReportForm.controls["course_type_name"].patchValue(this.AuditForm.course_type_name);
     this.ReportForm.controls["language_pk_id"].patchValue(this.id);
   }
@@ -83,12 +79,11 @@ export class CourseTypeAddComponent implements OnInit {
       return;
     }
     this.btnLoading = true
-    let ReportFormValue: ICourseTypeForm=
+    let ReportFormValue: ICourseTypeUpdate =
     {
-      course_type_pk_id:this.id,
+      course_type_pk_id: this.id,
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
-      status: this.ReportForm.controls.status.value,
       course_type_name: this.ReportForm.controls.course_type_name.value,
 
     }

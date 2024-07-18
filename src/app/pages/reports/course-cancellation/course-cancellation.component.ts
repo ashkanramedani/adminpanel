@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { IClassCancellation } from 'src/app/interfaces/IClassCancellation';
-import { IFingerScanner } from 'src/app/interfaces/IFingerScanner';
-import { IRemoteRequest } from 'src/app/interfaces/IRemoteRequest';
+import { IClassCancellation } from 'src/app/interfaces/IClassCancellation'; 
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 

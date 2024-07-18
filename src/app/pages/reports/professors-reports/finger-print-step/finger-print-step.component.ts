@@ -3,7 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
-import { IFingerScannerForm } from 'src/app/interfaces/IFingerScannerForm';
+import { IFingerScannerSingle } from 'src/app/interfaces/IFingerScanner';
+import { IFingerScannerUpdate } from 'src/app/interfaces/IFingerScannerForm';
 import { IFingerScannerReport } from 'src/app/interfaces/IFingerScannerReport';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
@@ -13,10 +14,10 @@ import { HttpService } from 'src/app/services/http.service';
   templateUrl: './finger-print-step.component.html',
 })
 export class FingerPrintStepComponent implements OnInit{
-  response_fingerprint_report: IFingerScannerReport[] = []
+  response_fingerprint_report={} as IFingerScannerReport
   isOpenFingerEdit: boolean = false
   FingerprintForm: FormGroup
-  FingerScannerResponse: IFingerScannerForm
+  FingerScannerResponse: IFingerScannerSingle
   table_header:string[]=[]
   @Input() id: any
   @Input() year: number
@@ -64,11 +65,10 @@ export class FingerPrintStepComponent implements OnInit{
       return;
     }
     if (this.FingerScannerResponse != null) {
-      let FingerScannerForm: IFingerScannerForm =
+      let FingerScannerForm: IFingerScannerUpdate =
       {
         created_fk_by: this.FingerScannerResponse.created_fk_by,
         description: this.FingerScannerResponse.description,
-        user_fk_id: this.FingerScannerResponse.user_fk_id,
         Date: moment.from(this.FingerprintForm.controls.Date.value, 'fa', 'YYYY-MM-DD').format('YYYY-MM-DD'),
         Enter: this.FingerprintForm.controls.Enter.value,
         Exit: this.FingerprintForm.controls.Exit.value,
@@ -85,6 +85,25 @@ export class FingerPrintStepComponent implements OnInit{
     else {
       this.alertServices.error("متاسفانه خطایی رخ داده است")
     }
+  }
+  RemoveItem(id?: string) {
+    this.alertServices.confirm(
+      'حذف آیتم',
+      'آیا از حذف این آیتم اطمینان دارید؟',
+      () => {
+        this.http
+          .deleteWithQuery(`${Domain.DeleteFingerScanner}/${id}`)
+          .subscribe((response) => {
+            console.log(response);
+            if (response == "Deleted") {
+              this.GetFingerScannerReport()
+              this.alertServices.success('آیتم با موفقیت حذف شد');
+            }
+            else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
+          });
+      },
+      () => { }
+    );
   }
 
 }

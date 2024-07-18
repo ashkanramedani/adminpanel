@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
 import { IClassDetails } from 'src/app/interfaces/IClassDetails';
-import { ICourseLanguage } from 'src/app/interfaces/ICourseLanguage';
-import { ICourseLanguageForm } from 'src/app/interfaces/ICourseLanguageForm';
+import { ICourseLanguageAll, ICourseLanguageSingle } from 'src/app/interfaces/ICourseLanguage';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -12,7 +11,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class CourseLanguageComponent implements OnInit {
 
-  ResponseDataList: ICourseLanguage[] = []
+  ResponseDataList: ICourseLanguageAll[] = []
   ResponseDataLenght: number[];
   totalCount: number = 0
   SearchValue: string
@@ -21,11 +20,11 @@ export class CourseLanguageComponent implements OnInit {
   order: string = "desc"
   ShowMoreItem:string
   IsShowenModal: boolean = false
-  SingleData: ICourseLanguageForm
+  SingleData: ICourseLanguageSingle
   EmployiesData: string
   ClassData: IClassDetails
   form_title="زبان های دوره"
-  table_header:string[]=["عنوان","توضیحات","وضعیت","عملیات"]
+  table_header:string[]=["عنوان","سازنده","وضعیت","عملیات"]
   // page:number=1
   // limit:number=10
   currentPage: number = 1
@@ -44,7 +43,7 @@ export class CourseLanguageComponent implements OnInit {
     }
   }
   GetResponseDataLenght() {
-    this.http.getAll(`${Domain.GetCount}?field=Tardy Request`).subscribe((response) => {
+    this.http.getAll(`${Domain.GetCount}?field=Language`).subscribe((response) => {
       this.totalCount = response
       this.ResponseDataLenght = new Array(Math.ceil(response / 10))
     })

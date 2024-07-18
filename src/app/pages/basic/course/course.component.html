@@ -15,29 +15,20 @@
     <div class="icon flex items-center gap-x-2 py-2">
         <a [routerLink]="['/basic/course/add']"
             class="text-cyan-600 border border-cyan-600 px-4 py-2 rounded-md p-2  bg-white  ">افزودن</a>
-        <button (click)="OpenSettins()" class="relative text-cyan-600  px-3 py-2 rounded-md  p-2  bg-white ">
-            <img src="/assets/images/icon/setting.svg" class="w-5" alt="">
-            <div *ngIf="isOpenSettins"  class="fixed shadow-lg top-32 left-5  h-max p-2 text-gray-800 bg-white border border-zinc-200 rounded-lg flex flex-col gap-2">
-                <a [routerLink]="['/basic/course-tag']" class=" hover:bg-zinc-100 rounded-lg p-2 w-44">
-                    برچسب
-                </a>
-                <a [routerLink]="['/basic/course-category']" class=" hover:bg-zinc-100 rounded-lg p-2 w-44">
-                    دسته بندی
-                </a>
-                <a [routerLink]="['/basic/course-language']" class=" hover:bg-zinc-100 rounded-lg p-2 w-44">
-                    زبان
-                </a>
-                <a [routerLink]="['/basic/course-type']" class=" hover:bg-zinc-100 rounded-lg p-2 w-44">
-                    نوع دوره
-                </a>
-                <a [routerLink]="['/basic/sub-course']" class=" hover:bg-zinc-100 rounded-lg p-2 w-44">
-                   دروس
-              </a>
-              <a [routerLink]="['/basic/sessions']" class=" hover:bg-zinc-100 rounded-lg p-2 w-44">
-                 جلسات
-            </a>
+
+            <div class="dropdown dropdown-end">
+              <div tabindex="0" role="button" class="btn btn-ghost">
+                <img src="/assets/images/icon/setting.svg" class="w-5" alt="">
+              </div>
+              <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-40 w-40 p-2 shadow border">
+                <li><a [routerLink]="['/basic/course-tag']">برچسب</a></li>
+                <li><a [routerLink]="['/basic/course-category']">دسته بندی</a></li>
+                <li><a [routerLink]="['/basic/course-language']">زبان</a></li>
+                <li><a [routerLink]="['/basic/course-type']">نوع دوره</a></li>
+                <li><a [routerLink]="['/basic/sub-course']">دروس</a></li>
+                <li><a [routerLink]="['/basic/sessions']">جلسات</a></li>
+              </ul>
             </div>
-        </button>
     </div>
 </div>
 <app-loading *ngIf="isLoading;else otherContent" ></app-loading>
@@ -48,7 +39,7 @@
         <span class="text-lg font-semibold">در حال حاضر رکوردی ثبت نشده است</span>
 </div>
     <div class="courses flex flex-col gap-y-4 text-sm">
-        <div *ngFor="let item of ResponseDataList" class="course-item rounded-lg  bg-white p-5 flex flex-col">
+        <div *ngFor="let item of ResponseDataList | paginate: { itemsPerPage: 10,currentPage: currentPage }" class="course-item rounded-lg  bg-white px-10 py-1 flex flex-col">
             <div class="flex items-center justify-between border-b py-4">
                 <div class="flex items-center gap-x-3">
                     <img src="/assets/images/sample/course.svg" class="w-16" alt="">
@@ -59,69 +50,83 @@
                 </div>
                 <div class="flex items-center gap-x-4">
                     <span class="bg-gray-200 px-2 py-1 flex items-center gap-x-2 rounded-md">
-                        <span class="pt-1 font-medium">italy</span>
-                        <img src="/assets/images/icon/italy.svg" class="w-4" alt="">
+                        <span class="pt-1 font-medium">{{item.language.language_name}}</span>
+                         <img src="/assets/images/icon/language.svg" class="w-4" alt="">
                     </span>
-                    <div *ngIf="item.status==0" class="flex items-center gap-x-2">
-                        <img src="/assets/images/icon/folder.svg" class="w-5" alt="">
-                        <span class="pt-1 font-medium">پیشنویس</span>
-                    </div>
-                    <div *ngIf="item.status==1" class="flex items-center gap-x-2">
-                        <img src="/assets/images/icon/clock.svg" class="w-5" alt="">
-                        <span class="pt-1 font-medium text-amber-500">در انتظار تایید</span>
-                    </div>
-                    <div *ngIf="item.status==2" class="flex items-center gap-x-2">
-                        <img src="/assets/images/icon/clock2.svg" class="w-5 fill-blue-600" alt="">
-                        <span class="pt-1 font-medium text-blue-600">در حال ثبت نام</span>
-                    </div>
-                    <img (click)="OpenShowMore(item.course_pk_id)" src="/assets/images/icon/show-more.svg"
-                        class="w-6 cursor-pointer">
-                    <div *ngIf="ShowMoreItem==item.course_pk_id"
-                        class="absolute left-[4.7rem] z-10 mt-[9.8rem]   origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                        <div class="py-1 text-xs font-semibold text-gray-800" role="none">
-                            <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-                            <a [routerLink]="['/basic/course/edit',item.course_pk_id]" class="block px-4 py-2 cursor-pointer">ویرایش</a>
-                            <a (click)="OpenModal(item.course_pk_id)" class="block px-4 py-2 cursor-pointer">مشاهده</a>
-                            <a (click)="RemoveItem(item.course_pk_id)"
-                                class="text-red-600 block px-4 py-2 cursor-pointer">حذف</a>
+                        <span class="pt-1 font-medium text-blue-600">{{item.status}}</span>
+
+                        <div class="dropdown dropdown-end">
+                          <div tabindex="0" role="button" class="p-1 hover:bg-gray-200 rounded-md">
+                            <img src="/assets/images/icon/show-more.svg" class="w-6" alt="">
+                          </div>
+                          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-40 w-36 p-2 shadow border">
+                            <li><a [routerLink]="['/basic/course/edit',item.course_pk_id]">ویرایش</a></li>
+                            <li><a (click)="OpenModal(item.course_pk_id)">مشاهده</a></li>
+                            <li><a (click)="RemoveItem(item.course_pk_id)">حذف</a></li>
+                          </ul>
                         </div>
-                    </div>
                 </div>
             </div>
-            <div class="flex items-center justify-between border-b py-4 font-medium">
+            <div class="flex items-center justify-between py-4  font-medium border-b ">
+              <div class="flex items-center  w-full gap-x-8">
                 <div class="flex items-center gap-x-3">
-                    <img src="/assets/images/icon/video.svg" class="w-5" alt="">
-                    <span>تعداد جلسات</span>
+                    <img src="/assets/images/icon/video.svg" class="w-5 pb-1" alt="">
+                    <span>تعداد جلسات:</span>
                 </div>
-                <span> <span>14</span> جلسه</span>
+                <span> <span class="font-semibold text-base pl-1">14</span> جلسه</span>
             </div>
-            <div class="flex items-center justify-between border-b py-4 font-medium">
+              <div class="flex items-center  w-full gap-x-8 justify-end">
+                <div class="flex items-center gap-x-3">
+                    <img src="/assets/images/icon/users.svg" class="w-5 pb-1" alt="">
+                    <span> ظرفیت دوره:</span>
+                </div>
+                <span> <span class="font-semibold text-base pl-1">{{item.course_capacity}}</span> نفر</span>
+            </div>
+            </div>
+
+            <div class="flex items-center justify-between  pb-2 font-medium">
                 <div class="flex items-center gap-x-3">
                     <img src="/assets/images/icon/calendar.svg" class="w-5" alt="">
                     <span> روزهای کلاس</span>
                 </div>
-                <div class="flex items-center gap-x-3">
-                    <span>شنبه: 12:00</span>
-                    <img src="/assets/images/icon/line.svg" class="fill-gray-500">
-                    <span>دوشنبه: 14:00</span>
-                    <img src="/assets/images/icon/line.svg" class="fill-gray-500">
-                    <span>چهارشنبه: 14:00</span>
-                </div>
+                <ul class="timeline">
+                  <li *ngFor="let item2 of item.course_signature;let i=index">
+                    <hr *ngIf="i!=0" />
+                    <div class="timeline-start">{{item2.days_of_week|DayOfWeek}} </div>
+                    <div class="timeline-middle">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        class="h-5 w-5">
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </div>
+                    <div class="timeline-end timeline-box">{{item2.session_date|HijriDate}}</div>
+                    <hr *ngIf="(i+1)<(item.course_signature.length)" />
+                  </li>
+                </ul>
+                <!-- <div class="flex items-center gap-x-4">
+                  <div class="flex items-center gap-x-1" *ngFor="let item2 of item.course_signature">
+                    <span>{{item2.days_of_week|DayOfWeek}}</span> : <span>{{item2.session_date}}</span>
+                    <img src="/assets/images/icon/line.svg" class="w-[3px]">
+                  </div>
+                </div> -->
             </div>
-            <div class="flex items-center justify-between  pt-4 pb-1 font-medium">
-                <div class="flex items-center gap-x-3">
-                    <img src="/assets/images/icon/user.svg" class="w-5" alt="">
-                    <span> ظرفیت دوره</span>
-                </div>
-                <span> <span>{{item.course_capacity}}</span> نفر</span>
-            </div>
+
         </div>
         <!-- <a href="/basic/course/add" class="bg-teal-500 p-2 rounded-full w-14 h-14 text-center shadow-md items-center justify-center flex fixed bottom-0 right-4">
             <img src="/assets/images/icon/plus.svg" class="w-8 fill-white" alt="">
         </a> -->
+        <div *ngIf="ResponseDataList.length>0" class="paging flex items-center justify-center my-8 flex-wrap">
+          <pagination-controls (pageChange)="currentPage= $event" previousLabel="قبلی" nextLabel="بعدی" ></pagination-controls>
+        </div>
     </div>
     <div *ngIf="IsShowenModal==true"
-        class="fixed left-0 top-0 z-999999 flex h-full min-h-screen w-full items-center justify-center bg-black/60 px-4 py-5 text-graydark dark:text-white">
+        class="fixed left-0 top-0 z-50 flex h-full min-h-screen w-full items-center justify-center bg-black/60 px-4 py-5 text-graydark dark:text-white">
         <div class="flex flex-col w-full mx-12 lg:mr-[19rem]  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
             <div class="header flex items-center justify-between text-lg font-semibold">
               <span>{{SingleData.course_name }}</span>

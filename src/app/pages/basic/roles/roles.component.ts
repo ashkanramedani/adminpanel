@@ -1,10 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { IRoles } from 'src/app/interfaces/IRoles';
-import { IRolesForm } from 'src/app/interfaces/IRolesForm';
-import { IUsers } from 'src/app/interfaces/IUsers';
-import { IUsersForm } from 'src/app/interfaces/IUsersForm';
+import { IRoles } from 'src/app/interfaces/IRoles'; 
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -17,7 +14,7 @@ export class RolesComponent implements OnInit {
 
   //#region change this informaion
   ResponseDataList: IRoles[] = []
-  SingleData: IRolesForm
+  SingleData: IRoles
   form_title = "اطلاعات پایه / نقش ها"
   table_header: string[] = ["ردیف", "نام", "خوشه", "وضعیت", "عملیات"]
   field_count: string = "Role"
