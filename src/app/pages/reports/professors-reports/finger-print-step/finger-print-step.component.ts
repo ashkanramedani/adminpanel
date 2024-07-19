@@ -26,7 +26,6 @@ export class FingerPrintStepComponent implements OnInit{
   constructor(private http: HttpService, private alertServices: AlertifyService, private activateRoute: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) { }
   ngOnInit(): void {
     this.FingerprintForm = this.formBuilder.group({
-      Date: new FormControl('', [Validators.required]),
       Enter: new FormControl('', [Validators.required]),
       Exit: new FormControl('', [Validators.required])
     })
@@ -36,7 +35,7 @@ export class FingerPrintStepComponent implements OnInit{
   }
   GetFingerScannerReport(){
     this.http.getAll(`${Domain.GetFingerScannerReport}/${this.id}?year=${this.year}&month=${this.month}`).subscribe((response) => {
-      this.response_fingerprint_report = response.Fingerprint_scanner_report
+      this.response_fingerprint_report = response
     })
   }
   OpenFingerEdit(id: string) {
@@ -46,8 +45,7 @@ export class FingerPrintStepComponent implements OnInit{
         next: (response) => {
           console.log(response)
           this.isOpenFingerEdit = true
-          this.FingerScannerResponse = response;
-          this.FingerprintForm.controls["Date"].patchValue(moment(this.FingerScannerResponse.Date, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
+          this.FingerScannerResponse = response; 
           this.FingerprintForm.controls["Enter"].patchValue(this.FingerScannerResponse.Enter);
           this.FingerprintForm.controls["Exit"].patchValue(this.FingerScannerResponse.Exit);
         },
@@ -69,7 +67,7 @@ export class FingerPrintStepComponent implements OnInit{
       {
         created_fk_by: this.FingerScannerResponse.created_fk_by,
         description: this.FingerScannerResponse.description,
-        Date: moment.from(this.FingerprintForm.controls.Date.value, 'fa', 'YYYY-MM-DD').format('YYYY-MM-DD'),
+        Date:this.FingerScannerResponse.Date,
         Enter: this.FingerprintForm.controls.Enter.value,
         Exit: this.FingerprintForm.controls.Exit.value,
         fingerprint_scanner_pk_id: this.FingerScannerResponse.fingerprint_scanner_pk_id

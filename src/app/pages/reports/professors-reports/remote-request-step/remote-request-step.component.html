@@ -31,10 +31,12 @@
         <span>{{item.end}}</span>
       </td>
       <td class="border-b py-3 border-gray-200  text-center">
-        <input type="checkbox" (change)="ChangeStatusRemoteRequest(item.remote_request_pk_id)"
+        <input *ngIf="this.have_Permission" type="checkbox" (change)="ChangeStatusRemoteRequest(item.remote_request_pk_id)"
+          [checked]="item.status=='submitted' " class="checkbox  checkbox-xs" />
+          <input type="checkbox" *ngIf="!this.have_Permission"
           [checked]="item.status=='submitted' " class="checkbox  checkbox-xs" />
       </td>
-      <td>
+      <td *ngIf="this.have_Permission">
         <button (click)="OpenRemoteRequestEdit(item.remote_request_pk_id)" class="tooltip cursor-pointer p-1"
           data-tip="ویرایش">
           <img src="/assets/images/icon/edit.svg" class="w-5" alt="">

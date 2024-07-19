@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as moment from 'jalali-moment'; 
+import * as moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
 import { IBusinessTripReport, IBusinessTripSingle } from 'src/app/interfaces/IBusinessTrip';
 import { IBusinessTripUpdate } from 'src/app/interfaces/IBusinessTripForm';
@@ -21,12 +21,14 @@ export class BusinessTripStepComponent implements OnInit {
   isOpenBusinessTripEdit: boolean = false
   BusinessTripResponse: IBusinessTripSingle
   BusinessTripForm: FormGroup
+  have_Permission:boolean=false
 
   constructor(private http: HttpService, private alertServices: AlertifyService, private activateRoute: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.table_header = ["ردیف", " تاریخ ", "شروع", "پایان", "محل ماموریت", " وضعیت", ""]
     this.GetBusinessReport()
+    this.GetPermision()
     this.BusinessTripForm = this.formBuilder.group({
       start: new FormControl('', [Validators.required]),
       end: new FormControl('', [Validators.required]),
@@ -34,6 +36,13 @@ export class BusinessTripStepComponent implements OnInit {
       destination:new FormControl('', [Validators.required])
     })
 
+  }
+  GetPermision(){
+    this.http.get(Domain.GetSalaryPermision,this.id).subscribe((response)=>
+      {
+        if(response.business_trip_permission)
+          this.have_Permission=true
+      })
   }
   GetBusinessReport() {
     this.http.getAll(`${Domain.GetBusinessReport}/${this.id}?year=${this.year}&month=${this.month}`).subscribe((response) => {

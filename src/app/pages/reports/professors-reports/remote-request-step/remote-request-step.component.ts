@@ -21,11 +21,12 @@ export class RemoteRequestStepComponent implements OnInit {
   isOpenRemoteRequestEdit: boolean = false
   RemoteRequestResponse: IRemoteRequestSingle
   RemoteRequestForm: FormGroup
-
+  have_Permission:boolean=false
   constructor(private http: HttpService, private alertServices: AlertifyService, private activateRoute: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.table_header = ["ردیف", " تاریخ  ", "شروع",  " پایان  ", " وضعیت",""]
+    this.GetPermision()
     this.RemoteRequestForm = this.formBuilder.group({
       working_location: new FormControl('', [Validators.required]),
       start: new FormControl('', [Validators.required]),
@@ -34,6 +35,14 @@ export class RemoteRequestStepComponent implements OnInit {
     })
     this.GetRemoteRequestReport()
   }
+  GetPermision(){
+    this.http.get(Domain.GetSalaryPermision,this.id).subscribe((response)=>
+      {
+        if(response.remote_permission)
+          this.have_Permission=true
+      })
+  }
+
   GetRemoteRequestReport() {
     this.http.getAll(`${Domain.GetRemoteRequestReport}/${this.id}?year=${this.year}&month=${this.month}`).subscribe((response) => {
       this.response_remote_request_report = response

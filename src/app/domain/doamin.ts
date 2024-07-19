@@ -147,6 +147,7 @@ export const Domain =
     "GetRoleCluster" :`${environment.apiUrl}/api/v1/form/role/cluster`,
 
   "GetSalaryEmployee":`${environment.apiUrl}/api/v1/form/salary/employee`,
+  "GetSalaryPermision" : `${environment.apiUrl}/api/v1/form/salary/permissions`,
 
   "SingIn":`https://api.ieltsdaily.ir/api/v1/auth/signin`,
   "OTP":`https://api.ieltsdaily.ir/api/v1/auth/otp`,

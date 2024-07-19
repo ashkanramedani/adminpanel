@@ -37,8 +37,8 @@ export class ProfessorsReportsComponent implements OnInit {
   isShowenAlert: boolean = false
   year: number
   month: number
-  years:string[]=['1401','1402','1403','1404','1405','1406','1407','1408','1409']
-  constructor(private http: HttpService, private route: ActivatedRoute, private router:Router,private formBuilder: FormBuilder, private alertServices: AlertifyService) {
+  years: string[] = ['1401', '1402', '1403', '1404', '1405', '1406', '1407', '1408', '1409']
+  constructor(private http: HttpService, private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, private alertServices: AlertifyService) {
 
   }
   ngOnInit(): void {
@@ -85,10 +85,15 @@ export class ProfessorsReportsComponent implements OnInit {
       this.alertServices.error("متاسفانه خطایی رخ داده است")
       return
     }
-    this.router.navigate(['/reports/professorsreport/'+user_id], { queryParams: { step: "1",year:this.year,month:this.month}})
-    // this.http.getAll(`${Domain.GetSalaryEmployee}/${user_id}?year=${this.year}&month=${this.month}`).subscribe((response) => {
-    //   console.log(response)
-    // })
+    this.http.get(Domain.GetSalaryPermision, user_id).subscribe((response) => {
+      if (response.salary_Policy) {
+        this.router.navigate(['/reports/professorsreport/' + user_id], { queryParams: { step: "1", year: this.year, month: this.month } })
+      }
+      else {
+        this.alertServices.error(" برای این پرسنل قراردادی ثبت نشده است")
+        return
+      }
+    })
   }
 }
 
