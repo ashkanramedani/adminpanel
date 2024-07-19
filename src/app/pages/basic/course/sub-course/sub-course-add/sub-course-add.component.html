@@ -7,7 +7,7 @@
     </ol>
   </nav>
   <div class="icon flex items-center gap-x-3 py-2">
-    <button [disabled]="this.ReportForm.invalid || btnLoading" (click)="onSubmit()"
+    <button (click)="onSubmit()"
       class="border border-cyan-600 px-4 py-2 rounded-md bg-cyan-600 text-white disabled:bg-cyan-400 disabled:border-cyan-400">
       ذخیره
     </button>
@@ -16,7 +16,7 @@
 </div>
 <main>
   <div class="p-5 mb-3 bg-white rounded-lg">
-    <form [formGroup]="ReportForm">
+    <form [formGroup]="ReportForm" *ngIf="this.id==null;else otherContent">
       <div class="grid grid-cols-2 gap-x-3 gap-y-8 w-full py-4">
         <div class="relative">
           <select formControlName="created_fk_by"
@@ -27,7 +27,7 @@
           <label
             class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">سازنده
           </label>
-        </div> 
+        </div>
         <div class="relative">
           <select formControlName="course_fk_id"
             class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
@@ -91,9 +91,125 @@
             class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
             تاریخ پایان </label>
         </div>
-
+        <div
+          class="flex flex-col items-center gap-y-2 justify-between rounded-lg border border-gray-300 py-5 px-2 col-span-2">
+          <div class="flex items-center gap-x-2 justify-between w-full">
+            <div class="relative w-full">
+              <select formControlName="days_of_week"
+                class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+                <option value="0">شنبه</option>
+                <option value="1">یکشنبه</option>
+                <option value="3">دوشنبه</option>
+                <option value="4">سه شنبه</option>
+                <option value="5">چهارشنبه</option>
+                <option value="6">پنجشنبه</option>
+                <option value="7">جمعه</option>
+              </select>
+              <label
+                class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                روز هفته
+              </label>
+            </div>
+            <div class="relative w-full">
+              <input type="text" formControlName="starting_time"
+                class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+              <label
+                class="absolute text-sm font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                زمان شروع
+              </label>
+            </div>
+            <div class="relative w-full">
+              <input type="number" formControlName="duration"
+                class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+              <label
+                class="absolute text-sm font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                مدت درس
+              </label>
+            </div>
+            <button (click)="add_session_signature()" class="btn border border-gray-300">افزودن</button>
+          </div>
+          <div *ngIf="this.session_signature_array.length>0" class="overflow-x-auto w-full mt-5">
+            <table class="table">
+              <!-- head -->
+              <thead>
+                <tr>
+                  <th>ردیف</th>
+                  <th>روز هفته</th>
+                  <th>زمان شروع</th>
+                  <th>مدت </th>
+                  <th>عملیات </th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- row 1 -->
+                <tr *ngFor="let item of session_signature_array;let i=index">
+                  <th>{{i+1}}</th>
+                  <td>{{item.days_of_week}}</td>
+                  <td>{{item.starting_time}}</td>
+                  <td>{{item.duration}}</td>
+                  <td>
+                    <button (click)="remove_session_signature(i)" class="hover:bg-gray-200 p-1 rounded-lg" title="حذف">
+                      <img src="/assets/images/icon/trash.svg" class="w-4" alt="">
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="relative col-span-2">
+          <input type="text" formControlName="description"
+            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" " />
+          <label
+            class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+            توضیحات </label>
+        </div>
 
       </div>
     </form>
+    <ng-template #otherContent>
+      <form [formGroup]="this.UpdateForm">
+        <div class="grid grid-cols-2 gap-x-3 gap-y-8 w-full py-4">
+          <div class="relative">
+            <select formControlName="created_fk_by"
+              class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+              <option *ngFor="let item of EmployiesData" [value]="item.user_pk_id">{{item.name+" "+item.last_name}}
+              </option>
+            </select>
+            <label
+              class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">سازنده
+            </label>
+          </div>
+          <div class="relative">
+            <select formControlName="sub_course_teacher_fk_id"
+              class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+              <option *ngFor="let item of EmployiesData" [value]="item.user_pk_id">{{item.name+" "+item.last_name}}
+              </option>
+            </select>
+            <label
+              class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+              استاد
+            </label>
+          </div>
+          <div class="relative">
+            <input type="text" formControlName="sub_course_name"
+              class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" " />
+            <label
+              class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">عنوان
+              درس </label>
+          </div>
+          <div class="relative">
+            <input type="text" formControlName="description"
+              class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" " />
+            <label
+              class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+              توضیحات </label>
+          </div>
+        </div>
+      </form>
+    </ng-template>
   </div>
 </main>

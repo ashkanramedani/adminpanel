@@ -4,9 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
 import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
-import { HttpService } from 'src/app/services/http.service';
-import { IRoles } from 'src/app/interfaces/IRoles';
-import { IRolesForm } from 'src/app/interfaces/IRolesForm';
+import { HttpService } from 'src/app/services/http.service'; 
 import { Ipayment_methodForm } from 'src/app/interfaces/Ipayment_methodForm';
 
 @Component({
@@ -26,10 +24,6 @@ export class PaymentAddComponent implements OnInit {
   user_id:string
   EmployeName:string
   ReportForm: FormGroup;
-  isOpenSearchRole: boolean = false
-  RolesData: IRoles[] = []
-  RolesInputArray: string[] = []
-  RolesInputTitleArray: string[] = []
   id: any;
   EmployiesData: IUsers[] = []
   btnLoading: boolean = false
@@ -47,7 +41,7 @@ export class PaymentAddComponent implements OnInit {
     this.ReportForm = this.formBuilder.group(
       {
         created_fk_by: new FormControl('', [Validators.required]),
-        description: new FormControl(''), 
+        description: new FormControl(''),
         user_fk_id: new FormControl(this.user_id,[Validators.required]),
         shaba: new FormControl<number |null>(null,[Validators.required,Validators.minLength(24),Validators.maxLength(24)]),
         card_number: new FormControl('',[Validators.required,Validators.minLength(16),Validators.maxLength(16)])

@@ -99,6 +99,7 @@ interface Note {
 
 export interface ICourseAdd {
   created_fk_by: string;
+  Course_price:number
   description: string;
   course_name: string;
   starting_date: string;
@@ -115,7 +116,8 @@ export interface ICourseAdd {
 }
 export interface ICourseUpdate {
   created_fk_by: string;
-  description: string; 
+  Course_price:number
+  description: string;
   course_name: string;
   starting_date: string;
   ending_date: string;

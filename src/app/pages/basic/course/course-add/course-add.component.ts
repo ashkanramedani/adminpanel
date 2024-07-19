@@ -25,8 +25,8 @@ export class CourseAddComponent implements OnInit {
   CourseCategoryData:ICourseCategoryAll[]=[]
   CourseLanguageData:ICourseLanguageAll[]=[]
   id: any;
+  imageUrl: any;
   TeacherInputArray: string[] = [];
-  TeacherInputTitleArray: string[] = [];
   isOpenSearchTeacher: boolean = false;
   cancle_link:string='/basic/course'
   EmployiesData: IUsers[] = []
@@ -51,7 +51,7 @@ export class CourseAddComponent implements OnInit {
     this.ReportForm = this.formBuilder.group(
       {
         created_fk_by: new FormControl('',[Validators.required]),
-        description: new FormControl(''), 
+        description: new FormControl(''),
         course_name: new FormControl('',[Validators.required]),
         starting_date: new FormControl('',[Validators.required]),
         ending_date: new FormControl('',[Validators.required]),
@@ -64,6 +64,7 @@ export class CourseAddComponent implements OnInit {
         course_image: new FormControl('',),
         course_level: new FormControl('',[Validators.required]),
         package_discount: new FormControl('',[Validators.required]),
+        Course_price: new FormControl('',[Validators.required]),
       }
     )
     if (this.id != null) {
@@ -74,40 +75,20 @@ export class CourseAddComponent implements OnInit {
   OpenSearchTag(){
     this.isOpenSearchTag=!this.isOpenSearchTag;
   }
-  AddTeacherInput(id: string, name: string, last_name: string) {
-    if (id != '') {
-      this.TeacherInputArray.push(id);
-      this.TeacherInputTitleArray.push(name + " " + last_name)
-    }
-  }
+
   AddTagInput(id: string, name: string) {
-    if (id != '') {
+    if ((id != '') && (this.tagsInputArray.filter(x=>x.new_id===id).length<1)) {
       let newRole={old_id:'',  new_id:id}
       this.tagsInputArray.push(newRole);
       this.tagsInputTitleArray. push( {role_id:id,role_title:name})
     }
   }
 
+  RemoveTagInput(id: string,index:number) {
+    this.tagsInputTitleArray.splice(index,1)
+    this.tagsInputArray.splice(this.tagsInputArray.findIndex(x=>x.new_id===id), 1);
+  }
 
-  RemoveTagInput(index: number) {
-    this.tagsInputArray.splice(index, 1);
-  }
-  RemoveTeacherInput(index: number) {
-    this.TeacherInputArray.splice(index, 1);
-    this.TeacherInputTitleArray.splice(index, 1);
-    console.log("TeacherInputArray" + this.TeacherInputArray)
-    console.log("TeacherInputTitleArray" + this.TeacherInputTitleArray)
-
-  }
-  AddTagInputManually() {
-    if (this.ReportForm.controls.tags.value.length > 0) {
-      this.tagsInputArray.push(this.ReportForm.controls.tags.value);
-      this.ReportForm.controls.tags.setValue('');
-    }
-  }
-  OpenSearchTeacher() {
-    this.isOpenSearchTeacher = !this.isOpenSearchTeacher;
-  }
   GetCourseCategoryData(){
     this.http.getAll(Domain.GetCourseCategoryData).subscribe((response) => {
       this.CourseCategoryData = response;
@@ -161,6 +142,7 @@ export class CourseAddComponent implements OnInit {
     this.ReportForm.controls["course_image"].patchValue(this.EditForm.course_image);
     this.ReportForm.controls["course_level"].patchValue(this.EditForm.course_level);
     this.ReportForm.controls["package_discount"].patchValue(this.EditForm.package_discount)
+    this.ReportForm.controls["Course_price"].patchValue(this.EditForm.Course_price)
     this.EditForm.tags.forEach((item, index) => {
       this.tagsInputTitleArray.push({role_id:item.tag_pk_id,role_title:item.tag_name})
     })
@@ -176,7 +158,6 @@ export class CourseAddComponent implements OnInit {
     this.btnLoading = true
     let ReportFormValue: ICourseUpdate =
     {
-      categories:this.id,
       course_pk_id: this.id,
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
@@ -186,8 +167,9 @@ export class CourseAddComponent implements OnInit {
       course_capacity: this.ReportForm.controls.course_capacity.value,
       course_language: this.ReportForm.controls.course_language.value,
       course_type: this.ReportForm.controls.course_type.value,
+      Course_price: this.ReportForm.controls.Course_price.value,
        tags: this.tagsInputArray.length <= 0 ? new Array({old_id:'',  new_id:''}) : this.tagsInputArray,
-      // categories: [],
+       categories: new Array(),
       course_code: this.ReportForm.controls.course_code.value,
       course_image: this.ReportForm.controls.course_image.value,
       course_level: this.ReportForm.controls.course_level.value,
@@ -221,7 +203,8 @@ export class CourseAddComponent implements OnInit {
     this.btnLoading = true
     let ReportFormValue: ICourseUpdate =
     {
-      categories:this.id,
+      categories:new Array(),
+      Course_price: this.ReportForm.controls.Course_price.value,
       course_pk_id: this.id,
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
@@ -232,7 +215,6 @@ export class CourseAddComponent implements OnInit {
       course_language: this.ReportForm.controls.course_language.value,
       course_type: this.ReportForm.controls.course_type.value,
        tags: this.tagsInputArray.length <= 0 ? new Array({old_id:'',  new_id:''}) : this.tagsInputArray,
-      // categories: [],
       course_code: this.ReportForm.controls.course_code.value,
       course_image: this.ReportForm.controls.course_image.value,
       course_level: this.ReportForm.controls.course_level.value,
@@ -256,6 +238,26 @@ export class CourseAddComponent implements OnInit {
       )
     }
     this.btnLoading = false
+  }
+  UploadImage(event: any) {
+    if (event && event.target && event.target.files) {
+      let image: any = event.target.files[0];
+      let fr = new FileReader();
+      fr.onload = (e: any) => {
+        // when file has loaded
+        var img = new Image();
+        img.onload = () => {
+          if (img.height != 500 && img.height != 500)
+            this.alertServices.error(' سایز عکس مجاز 500*500  می باشد');
+          else this.imageUrl = e.target.result;
+        };
+        img.src = e.target.result; // The data URL
+      };
+      fr.readAsDataURL(image);
+    }
+  }
+  RemoveImage() {
+    this.imageUrl = '';
   }
 }
 

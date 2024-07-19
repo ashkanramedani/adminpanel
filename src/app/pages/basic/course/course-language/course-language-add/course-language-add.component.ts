@@ -5,8 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
 import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
-import { HttpService } from 'src/app/services/http.service';
-import { IRoles } from 'src/app/interfaces/IRoles';
+import { HttpService } from 'src/app/services/http.service'; 
 import { ICourseLanguageUpdate } from 'src/app/interfaces/ICourseLanguage';
 
 @Component({
@@ -24,10 +23,6 @@ export class CourseLanguageAddComponent implements OnInit {
   //#endregion
   page_title: string = "ایجاد"
   ReportForm: FormGroup;
-  isOpenSearchRole: boolean = false
-  RolesData: IRoles[] = []
-  RolesInputArray: string[] = []
-  RolesInputTitleArray: string[] = []
   id: any;
   EmployiesData: IUsers[] = []
   btnLoading: boolean = false
@@ -38,7 +33,6 @@ export class CourseLanguageAddComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot?.paramMap.get('id');
     this.GetEmployeeData()
-    this.GetRolesData()
     this.ReportForm = this.formBuilder.group(
       {
         created_fk_by: new FormControl('', [Validators.required]),
@@ -106,24 +100,5 @@ export class CourseLanguageAddComponent implements OnInit {
     this.btnLoading = false
   }
 
-  GetRolesData() {
-    this.http.getAll(`${Domain.GetRolesData}?page=1&limit=1000&order=desc`).subscribe((response) => {
-      this.RolesData = response;
-    })
-  }
-
-  OpenSearchRole() {
-    this.isOpenSearchRole = !this.isOpenSearchRole;
-  }
-  AddRoleInput(id: string, name: string) {
-    if (id != '') {
-      this.RolesInputArray.push(id);
-      this.RolesInputTitleArray.push(name)
-    }
-  }
-  RemoveRoleInput(index: number) {
-    this.RolesInputArray.splice(index, 1);
-    this.RolesInputTitleArray.splice(index, 1);
-  }
 }
 

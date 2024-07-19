@@ -16,7 +16,7 @@ export class SubCourseComponent implements OnInit {
   ResponseDataList: ISubCourseAll[] = []
   SingleData: ISubCourseSingle
   form_title = "اطلاعات پایه /  دوره های درس"
-  table_header: string[] = ["ردیف", "نام دوره", "درس اصلی ", "استاد","تعداد جلسات","وضعیت","عملیات"]
+  table_header: string[] = ["ردیف", "نام دوره", "درس اصلی ", "استاد","تعداد جلسات","عملیات"]
   field_count:string="Sub_Course"
   get_all_route:string=Domain.GetSubCourseData
   delete_route:string=Domain.DeleteSubCourseData

@@ -16,7 +16,7 @@ export class SessionsComponent implements OnInit {
   ResponseDataList: ISessionAll[] = []
   SingleData: ISessionSingle
   form_title = "اطلاعات پایه /  جلسات کلاس"
-  table_header: string[] = ["ردیف", "نام دوره", " نام کلاس ", "استاد","مدت جلسه","وضعیت","عملیات"]
+  table_header: string[] = ["ردیف", "نام دوره", "نام درس", "استاد","وضعیت","عملیات"]
   field_count:string="Session"
   get_all_route:string=Domain.GetSession
   delete_route:string=Domain.DeleteSession
@@ -90,6 +90,15 @@ export class SessionsComponent implements OnInit {
       .get(this.get_all_route, id)
       .subscribe((response) => {
         this.SingleData = response;
+        this.http.get(Domain.GetUsers, this.SingleData.created_fk_by).subscribe((emp) => {
+          this.SingleData.created_fk_by = emp.name + " " + emp.last_name
+        })
+        this.http.get(Domain.GetcourseData, this.SingleData.course_fk_id).subscribe((x) => {
+          this.SingleData.course_fk_id = x.course_name
+        })
+        this.http.get(Domain.GetUsers, this.SingleData.session_teacher_fk_id).subscribe((x) => {
+          this.SingleData.session_teacher_fk_id = x.name + " " + x.last_name
+        })
         this.IsShowenModal = true
       });
   }
