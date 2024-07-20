@@ -1,8 +1,0 @@
-<div  *ngFor="let user of users">
-  <ul>
-    <li *ngFor="let qualifica of users | paginate: { itemsPerPage: 2,currentPage: q }">
-          {{ qualifica.name }}
-        </li>
-  </ul>
-<pagination-controls (pageChange)="q= $event"></pagination-controls>
-</div>

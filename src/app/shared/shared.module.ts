@@ -9,12 +9,15 @@ import { FloatingInputComponent } from './floating-input/floating-input.componen
 import { LoadingComponent } from './loading/loading.component';
 import { FormatTimePipe } from '../utilities/format-time.pipe';
 import { DayOfWeekPipe } from '../utilities/DayOfWeek.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { PaginationComponent } from './pagination/pagination.component';
 @NgModule({
-  declarations: [HeaderComponent, SidebarComponent, FilterPipe, HijriDatePipe, FormatTimePipe, FloatingInputComponent, LoadingComponent, DayOfWeekPipe],
+  declarations: [HeaderComponent, SidebarComponent,PaginationComponent, FilterPipe, HijriDatePipe, FormatTimePipe, FloatingInputComponent, LoadingComponent, DayOfWeekPipe],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    NgxPaginationModule
   ],
-  exports: [HeaderComponent, SidebarComponent, FilterPipe, HijriDatePipe, FormatTimePipe, FloatingInputComponent, LoadingComponent, DayOfWeekPipe]
+  exports: [HeaderComponent, SidebarComponent,PaginationComponent, FilterPipe, HijriDatePipe, FormatTimePipe, FloatingInputComponent, LoadingComponent, DayOfWeekPipe]
 })
 export class SharedModule { }

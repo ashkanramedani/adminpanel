@@ -21,16 +21,16 @@ export class AuthenticationService {
     return headers;
   }
   login(MobileNumber: string,): Observable<any> {
-    return this.http.create(`${Domain.OTP}?mobile_number=${MobileNumber}` );
+    return this.http.create(`${Domain.Auth.OTP}?mobile_number=${MobileNumber}` );
   }
   loginWithPassword(username: string,password:string): Observable<any> {
-    return this.http.create(`${Domain.SingIn}`,{username:username,password:password} );
+    return this.http.create(`${Domain.Auth.SingIn}`,{username:username,password:password} );
   }
   VerifyOTP(code: string,): Observable<any> {
-    return this.http.create(`${Domain.VerifyOTP}?code=${code}` );
+    return this.http.create(`${Domain.Auth.VerifyOTP}?code=${code}` );
   }
   SignUp(data: IsignUpForm,): Observable<any> {
-    return this.http.put(`${Domain.SingUp}`,data,null );
+    return this.http.put(`${Domain.Auth.SingUp}`,data,null );
   }
   // twoStepSubmit(mobile: string, code: string): Observable<any> {
   //   return this.http.create(Domain.validateCode, {

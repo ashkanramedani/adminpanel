@@ -169,7 +169,7 @@
           </label>
         </div>
         <div class="relative">
-          <input formControlName="Course_price" type="number"
+          <input formControlName="Course_price" type="text" InputWithComma
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" " />
           <label
@@ -207,7 +207,7 @@
           <div *ngIf="this.CourseTagData.length<1"
             class="flex items-center justify-between pr-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 ">
             <span>هیچ برچسبی افزوده نشده است</span>
-            <a target="_blank" class="btn rounded-r-none" [routerLink]="['/basic/course-tag']">افزودن برچسب</a>
+            <a  class="btn rounded-r-none" [routerLink]="['/basic/course-tag']">افزودن برچسب</a>
           </div>
           <input *ngIf="this.CourseTagData.length>0" type="text" formControlName="tags" (click)="OpenSearchTag()"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600">
