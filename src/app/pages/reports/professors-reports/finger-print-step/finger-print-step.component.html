@@ -10,7 +10,7 @@
   <div class="flex items-center w-max gap-x-8 border border-gray-200 p-2 rounded-md mb-4 font-medium">
     <div class="flex items-center gap-x-2">
       <span class="border-l pl-2 border-gray-200">مدت کارکرد</span>
-      <span>{{response_fingerprint_report.TotalHour}}</span>
+      <span> ( {{response_fingerprint_report.TotalHour}} دقیقه ) {{ math.floor(response_fingerprint_report.TotalHour / 60) | number: '2.'}}:{{response_fingerprint_report.TotalHour % 60 | number: '2.'}}</span>
     </div>
     <div class="flex items-center gap-x-2">
       <span class="text-red-400">تردد ناقص</span>

@@ -14,6 +14,7 @@ import { HttpService } from 'src/app/services/http.service';
   templateUrl: './finger-print-step.component.html',
 })
 export class FingerPrintStepComponent implements OnInit{
+  math = Math;
   response_fingerprint_report={} as IFingerScannerReport
   isOpenFingerEdit: boolean = false
   FingerprintForm: FormGroup

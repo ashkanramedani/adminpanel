@@ -9,7 +9,6 @@ export class DayOfWeekPipe implements PipeTransform {
     let day_title: string = "" 
     switch (day) {
       case 0:
-        alert(day)
         day_title = "شنبه"
         break;
       case 1:
