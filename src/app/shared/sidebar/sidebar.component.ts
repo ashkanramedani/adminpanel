@@ -34,7 +34,7 @@ export class SidebarComponent implements OnInit {
     if (this.authService.IsAuthenticated()) {
       const user_pk_id = localStorage.getItem('user_pk_id')
       if (user_pk_id != null) {
-        this.http.get(Domain.GetloggedInUser, user_pk_id).subscribe((response: IloggedInUser) => {
+        this.http.get(Domain.Auth.GetloggedInUser, user_pk_id).subscribe((response: IloggedInUser) => {
           this.loggedInUser = response
         })
       }

@@ -142,7 +142,7 @@ export class CourseAddComponent implements OnInit {
     this.ReportForm.controls["course_image"].patchValue(this.EditForm.course_image);
     this.ReportForm.controls["course_level"].patchValue(this.EditForm.course_level);
     this.ReportForm.controls["package_discount"].patchValue(this.EditForm.package_discount)
-    this.ReportForm.controls["Course_price"].patchValue(this.EditForm.Course_price)
+    this.ReportForm.controls["Course_price"].patchValue(this.EditForm.Course_price.toLocaleString())
     this.EditForm.tags.forEach((item, index) => {
       this.tagsInputTitleArray.push({role_id:item.tag_pk_id,role_title:item.tag_name})
     })
@@ -167,7 +167,7 @@ export class CourseAddComponent implements OnInit {
       course_capacity: this.ReportForm.controls.course_capacity.value,
       course_language: this.ReportForm.controls.course_language.value,
       course_type: this.ReportForm.controls.course_type.value,
-      Course_price: this.ReportForm.controls.Course_price.value,
+      Course_price: this.ReportForm.controls.Course_price.value.replace(/,/g, ""),
        tags: this.tagsInputArray.length <= 0 ? new Array({old_id:'',  new_id:''}) : this.tagsInputArray,
        categories: new Array(),
       course_code: this.ReportForm.controls.course_code.value,
@@ -204,7 +204,7 @@ export class CourseAddComponent implements OnInit {
     let ReportFormValue: ICourseUpdate =
     {
       categories:new Array(),
-      Course_price: this.ReportForm.controls.Course_price.value,
+      Course_price: this.ReportForm.controls.Course_price.value.replace(/,/g, ""),
       course_pk_id: this.id,
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
@@ -248,7 +248,7 @@ export class CourseAddComponent implements OnInit {
         var img = new Image();
         img.onload = () => {
           if (img.height != 500 && img.height != 500)
-            this.alertServices.error(' سایز عکس مجاز 500*500  می باشد');
+            this.alertServices.error(' اندازه عکس مجاز 500*500  می باشد');
           else this.imageUrl = e.target.result;
         };
         img.src = e.target.result; // The data URL

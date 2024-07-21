@@ -34,8 +34,7 @@ import { BusinessTripStepComponent } from './professors-reports/business-trip-st
 import { FingerPrintStepComponent } from './professors-reports/finger-print-step/finger-print-step.component';
 import { LeaveRequestStepComponent } from './professors-reports/leave-request-step/leave-request-step.component';
 import { PaySlipStepComponent } from './professors-reports/pay-slip-step/pay-slip-step.component';
-import { RemoteRequestStepComponent } from './professors-reports/remote-request-step/remote-request-step.component';
-
+import { RemoteRequestStepComponent } from './professors-reports/remote-request-step/remote-request-step.component'; 
 @NgModule({
   declarations: [BusinessTripComponent, BusinessTripAddComponent, CourseCancellationComponent, CourseCancellationAddComponent,
     FingerprintScannerComponent, FingerprintScannerAddComponent, FingerprintScannerBulkComponent, LeaveFormsComponent, LeaveFormAddComponent, RemoteRequestComponent,
