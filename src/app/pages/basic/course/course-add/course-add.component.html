@@ -141,7 +141,7 @@
             تخفیف </label>
         </div>
         <div class="relative">
-          <ng-persian-datepicker dir="ltr" [dateFormat]="'YYYY-MM-DD'" [dateInitValue]="true">
+          <ng-persian-datepicker dir="ltr" [dateFormat]="'YYYY/MM/DD'" [dateInitValue]="true">
             <input type="text" formControlName="starting_date"
               class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer">
           </ng-persian-datepicker>
@@ -150,7 +150,7 @@
             تاریخ شروع </label>
         </div>
         <div class="relative">
-          <ng-persian-datepicker dir="ltr" [dateFormat]="'YYYY-MM-DD'" [dateInitValue]="true">
+          <ng-persian-datepicker dir="ltr" [dateFormat]="'YYYY/MM/DD'" [dateInitValue]="true">
             <input type="text" formControlName="ending_date"
               class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer">
           </ng-persian-datepicker>
@@ -204,13 +204,19 @@
           <label class="mb-3 block text-base text-graydark dark:text-white">
             برچسب
           </label>
-          <div *ngIf="this.CourseTagData.length<1"
+          <div
             class="flex items-center justify-between pr-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 ">
-            <span>هیچ برچسبی افزوده نشده است</span>
-            <a  class="btn rounded-r-none" [routerLink]="['/basic/course-tag']">افزودن برچسب</a>
+            <span *ngIf="this.CourseTagData.length<1">هیچ برچسبی افزوده نشده است</span>
+            <input *ngIf="this.CourseTagData.length>0" type="text" formControlName="tags" (click)="OpenSearchTag()"
+            class="text-gray-900 bg-transparent py-2 w-3/4 cursor-pointer  focus:outline-none focus:ring-0 focus:border-blue-600">
+            <div class="flex items-center justify-end w-1/4">
+              <button class="btn rounded-none border-l border-gray-300" (click)="GetCourseTagData()"><img class="w-4" src="/assets/images/icon/refresh.svg"
+                alt=""></button>
+              <a target="_blank" class="btn rounded-r-none" [routerLink]="['/basic/course-tag/add']">افزودن برچسب</a>
+
+            </div>
           </div>
-          <input *ngIf="this.CourseTagData.length>0" type="text" formControlName="tags" (click)="OpenSearchTag()"
-            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600">
+
           <div *ngIf="(isOpenSearchTag) && (this.CourseTagData.length>0)"
             class="search-tag  bg-white dark:bg-form-input dark:text-bodydark1 text-black  border border-t-0 border-gray-300 rounded-br-lg rounded-bl-lg shadow-md max-h-34 overflow-y-auto">
             <div (click)="AddTagInput(item.tag_pk_id,item.tag_name)"

@@ -22,8 +22,7 @@
     </div>
   </div>
     <div class="icon flex items-center gap-x-2 py-2">
-        <a [routerLink]="[add_url]"
-            class="relative text-cyan-600 border border-cyan-600 px-4 py-1 rounded-md group transition-all duration-200 focus:overflow-visible w-max h-max p-2 overflow-hidden flex flex-row items-center justify-center bg-white gap-x-2 ">افزودن</a>
+      <n-link-button [link]="add_url"  [title]="'افزودن'" ></n-link-button>
     </div>
 </div>
 <app-loading *ngIf="isLoading"></app-loading>

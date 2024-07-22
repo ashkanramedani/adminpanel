@@ -6,8 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class DayOfWeekPipe implements PipeTransform {
 
   transform(day: number): string {
-    let day_title: string = "" 
-    switch (day) {
+    let day_title: string = ""
+    switch (Number(day)) {
       case 0:
         day_title = "شنبه"
         break;

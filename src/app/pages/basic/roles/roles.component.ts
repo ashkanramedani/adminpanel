@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { IRoles } from 'src/app/interfaces/IRoles'; 
+import { IRoles } from 'src/app/interfaces/IRoles';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -35,7 +35,7 @@ export class RolesComponent implements OnInit {
   currentPage: number = 1
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
-    this.GetResponseData(0, 1000, this.order)
+    this.GetResponseData(1, 10, this.order)
     this.GetResponseDataLenght()
 
   }
@@ -66,7 +66,7 @@ export class RolesComponent implements OnInit {
           .subscribe((response) => {
             console.log(response);
             if (response == "Deleted") {
-              this.GetResponseData(0, 1000, this.order);
+              this.GetResponseData(10, 10, this.order);
               this.alertServices.success('آیتم با موفقیت حذف شد');
             }
             else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
@@ -77,7 +77,7 @@ export class RolesComponent implements OnInit {
   }
   ChangeSort(value: any) {
     this.order = value.target.value
-    this.GetResponseData(0, 1000, this.order);
+    this.GetResponseData(1, 10, this.order);
   }
 
   OpenModal(id: string) {

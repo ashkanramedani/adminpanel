@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
@@ -35,6 +35,7 @@ export class SubCourseAddComponent implements OnInit {
   btnLoading: boolean = false
   isLoading: boolean = false
   course_id: string
+  @Input() course_fk_id:string
   constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService, private router: Router) {
 
   }
@@ -159,7 +160,12 @@ export class SubCourseAddComponent implements OnInit {
     let days_of_week = this.ReportForm.controls.days_of_week.value
     let starting_time = this.ReportForm.controls.starting_time.value
     let duration = this.ReportForm.controls.duration.value
+    if(days_of_week=='' || starting_time=='' || duration =='')
+      return
     this.session_signature_array.push({ days_of_week: days_of_week, starting_time: starting_time, duration: duration });
+    this.ReportForm.controls.days_of_week.setValue('');
+    this.ReportForm.controls.starting_time.setValue('');
+    this.ReportForm.controls.duration.setValue('');
   }
   remove_session_signature(index: number) {
     this.session_signature_array.splice(index, 1);

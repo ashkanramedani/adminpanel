@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
-import { ILibrary } from 'src/app/interfaces/ILibrary'; 
+import { ILibrary } from 'src/app/interfaces/ILibrary';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -40,7 +40,7 @@ export class LibrariesComponent implements OnInit {
       console.log(res)
     this.content_type = res.type;
     this.GetTitle();
-    this.GetResponseData(0, 1000, this.order)
+    this.GetResponseData(1, 10, this.order)
     this.GetResponseDataLenght()
   });
 
@@ -109,7 +109,7 @@ export class LibrariesComponent implements OnInit {
           .subscribe((response) => {
             console.log(response);
             if (response == "Deleted") {
-              this.GetResponseData(0, 1000, this.order);
+              this.GetResponseData(1, 10, this.order);
               this.alertServices.success('آیتم با موفقیت حذف شد');
             }
             else { this.alertServices.error('متاسفانه خطایی رخ داده است'); }
@@ -120,7 +120,7 @@ export class LibrariesComponent implements OnInit {
   }
   ChangeSort(value: any) {
     this.order = value.target.value
-    this.GetResponseData(0, 1000, this.order);
+    this.GetResponseData(1, 10, this.order);
   }
 
   OpenModal(id: string) {
