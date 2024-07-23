@@ -171,3 +171,6 @@
     transform: rotate(40deg);
   }
 }
+
+
+tr:hover {background-color: #238b83b0;}
