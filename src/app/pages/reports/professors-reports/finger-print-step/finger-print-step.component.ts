@@ -30,7 +30,7 @@ export class FingerPrintStepComponent implements OnInit{
       Enter: new FormControl('', [Validators.required]),
       Exit: new FormControl('', [Validators.required])
     })
-    this.table_header = ["ردیف", " تاریخ ", "ساعت ورود  ", "ساعت خروج", ""]
+    this.table_header = ["ردیف", " تاریخ ", "ساعت ورود  ", "ساعت خروج", "زمان (دقیقه)", "امکانات"]
     this.GetFingerScannerReport()
 
   }

@@ -40,7 +40,10 @@
         <td class="border-b py-3 border-gray-200  text-center">
           <span>{{item.Exit}}</span>
         </td>
-        <td>
+        <td class="border-b py-3 border-gray-200  text-center">
+          <span>{{ math.floor(item.duration / 60) | number: '2.'}}:{{item.duration % 60 | number: '2.'}} ( {{item.duration}} دقیقه ) </span>
+        </td>
+        <td class="border-b py-3 border-gray-200  text-center">
           <button (click)="OpenFingerEdit(item.fingerprint_scanner_pk_id)"
             class="tooltip cursor-pointer p-1 hover:bg-gray-200  rounded-lg" data-tip="ویرایش">
             <img src="/assets/images/icon/edit.svg" class="w-4" alt="">
