@@ -38,7 +38,7 @@
             <span>{{ item.name}}</span>
             <span>{{item.cluster}}</span>
             <div class="flex items-center justify-center">
-              <span class="badge badge-accent badge-outline !text-cyan-600 pt-1">{{item.status}}</span>
+              <n-badge [title]="item.status"></n-badge>
             </div>
             <div class="operation flex items-center justify-center ">
                 <button class="hover:bg-gray-200 p-1 rounded-lg"  (click)="OpenModal(item.role_pk_id)" title="نمایش">

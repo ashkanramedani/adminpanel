@@ -14,7 +14,7 @@ export class PaySlipStepComponent implements OnInit {
   @Input() id: any
   @Input() year: number
   @Input() month: number
-  response_salary_receipt_report: ISalaryReceiptReport
+  response_salary_receipt_report={} as ISalaryReceiptReport
 
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
 

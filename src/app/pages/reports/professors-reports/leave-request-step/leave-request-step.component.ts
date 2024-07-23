@@ -22,6 +22,7 @@ export class LeaveRequestStepComponent implements OnInit {
   @Input() id: any
   @Input() year: number
   @Input() month: number
+  math = Math;
 
   constructor(private http: HttpService, private alertServices: AlertifyService, private activateRoute: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) { }
   ngOnInit(): void {
@@ -32,7 +33,7 @@ export class LeaveRequestStepComponent implements OnInit {
         end: new FormControl('', [Validators.required]),
         date: new FormControl('', [Validators.required])
       })
-    this.table_header = ["ردیف", " تاریخ مرخصی", " ثبت مرخصی ساعتی ", " ثبت مرخصی روزانه  ", "نوع", " وضعیت", ""]
+    this.table_header = ["ردیف", " تاریخ مرخصی", " ثبت مرخصی ساعتی ", " ثبت مرخصی روزانه  ", "نوع","زمان (دقیقه)" ," وضعیت", ""]
     this.GetLeaveRequestReport()
   }
   GetLeaveRequestReport() {

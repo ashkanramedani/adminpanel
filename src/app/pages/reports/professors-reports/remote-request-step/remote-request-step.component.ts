@@ -22,10 +22,11 @@ export class RemoteRequestStepComponent implements OnInit {
   RemoteRequestResponse: IRemoteRequestSingle
   RemoteRequestForm: FormGroup
   have_Permission:boolean=false
+  math = Math;
   constructor(private http: HttpService, private alertServices: AlertifyService, private activateRoute: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.table_header = ["ردیف", " تاریخ  ", "شروع",  " پایان  ", " وضعیت",""]
+    this.table_header = ["ردیف", " تاریخ  ", "شروع",  " پایان  ", "زمان (دقیقه)", " وضعیت",""]
     this.GetPermision()
     this.RemoteRequestForm = this.formBuilder.group({
       working_location: new FormControl('', [Validators.required]),

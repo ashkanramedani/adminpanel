@@ -64,7 +64,7 @@ export class CourseAddComponent implements OnInit {
         course_code: new FormControl('',[Validators.required]),
         course_image: new FormControl('',),
         course_level: new FormControl('',[Validators.required]),
-        package_discount: new FormControl('',[Validators.required]),
+        package_discount: new FormControl<number>(0,[Validators.required]),
         Course_price: new FormControl('',[Validators.required]),
       }
     )
@@ -125,7 +125,7 @@ export class CourseAddComponent implements OnInit {
     this.http
       .get(Domain.GetcourseData, this.id)
       .subscribe((response) => {
-        console.log(response)
+        console.log("EditForm:",response)
         this.EditForm = response;
         this.FillFormData()
       });
@@ -134,8 +134,8 @@ export class CourseAddComponent implements OnInit {
     this.ReportForm.controls["created_fk_by"].patchValue(this.EditForm.created_fk_by);
     this.ReportForm.controls["description"].patchValue(this.EditForm.description);
     this.ReportForm.controls["course_name"].patchValue(this.EditForm.course_name)
-    this.ReportForm.controls["starting_date"].patchValue(moment(this.AuditForm.starting_date, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
-    this.ReportForm.controls["ending_date"].patchValue(moment(this.AuditForm.ending_date, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
+    this.ReportForm.controls["starting_date"].patchValue(moment(this.EditForm.starting_date, 'YYYY-MM-DD').locale('fa').format('YYYY/MM/DD'));
+    this.ReportForm.controls["ending_date"].patchValue(moment(this.EditForm.ending_date, 'YYYY-MM-DD').locale('fa').format('YYYY/MM/DD'));
     this.ReportForm.controls["course_capacity"].patchValue(this.EditForm.course_capacity);
     this.ReportForm.controls["course_language"].patchValue(this.EditForm.course_language)
     this.ReportForm.controls["course_type"].patchValue(this.EditForm.course_type);

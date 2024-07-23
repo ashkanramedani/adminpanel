@@ -12,13 +12,14 @@ import { DayOfWeekPipe } from '../utilities/DayOfWeek.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { LinkButtonComponent } from './components/link-button/link-button.component';
+import { BadgeComponent } from './components/badge/badge.component';
 @NgModule({
-  declarations: [HeaderComponent, LinkButtonComponent,SidebarComponent,PaginationComponent, FilterPipe, HijriDatePipe, FormatTimePipe, FloatingInputComponent, LoadingComponent, DayOfWeekPipe],
+  declarations: [HeaderComponent, BadgeComponent,LinkButtonComponent,SidebarComponent,PaginationComponent, FilterPipe, HijriDatePipe, FormatTimePipe, FloatingInputComponent, LoadingComponent, DayOfWeekPipe],
   imports: [
     CommonModule,
     RouterModule,
     NgxPaginationModule
   ],
-  exports: [HeaderComponent,LinkButtonComponent, SidebarComponent,PaginationComponent, FilterPipe, HijriDatePipe, FormatTimePipe, FloatingInputComponent, LoadingComponent, DayOfWeekPipe]
+  exports: [HeaderComponent,LinkButtonComponent,BadgeComponent ,SidebarComponent,PaginationComponent, FilterPipe, HijriDatePipe, FormatTimePipe, FloatingInputComponent, LoadingComponent, DayOfWeekPipe]
 })
 export class SharedModule { }

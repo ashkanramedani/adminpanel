@@ -31,6 +31,10 @@
         <span>{{item.end}}</span>
       </td>
       <td class="border-b py-3 border-gray-200  text-center">
+        <div >{{ math.floor(item.duration / 60) | number: '2.'}}:{{item.duration % 60 | number: '2.'}}</div>
+          <div class="text-xs">{{item.duration}} دقیقه </div>
+      </td>
+      <td class="border-b py-3 border-gray-200  text-center">
         <input *ngIf="this.have_Permission" type="checkbox" (change)="ChangeStatusRemoteRequest(item.remote_request_pk_id)"
           [checked]="item.status=='submitted' " class="checkbox  checkbox-xs" />
           <input type="checkbox" *ngIf="!this.have_Permission"

@@ -53,8 +53,7 @@
                         <span class="pt-1 font-medium">{{item.language.language_name}}</span>
                          <img src="/assets/images/icon/language.svg" class="w-4" alt="">
                     </span>
-                        <span class="pt-1 font-medium text-blue-600">{{item.status}}</span>
-
+                        <n-badge [title]="item.status"></n-badge>
                         <div class="dropdown dropdown-end">
                           <div tabindex="0" role="button" class="p-1 hover:bg-gray-200 rounded-md">
                             <img src="/assets/images/icon/show-more.svg" class="w-6" alt="">

@@ -40,9 +40,9 @@
         <td class="border-b py-3 border-gray-200  text-center">
           <span>{{item.Exit}}</span>
         </td>
-        <td class="border-b py-3 border-gray-200  text-center">
-          <div style="width: 100%;">{{ math.floor(item.duration / 60) | number: '2.'}}:{{item.duration % 60 | number: '2.'}}</div>
-            <div style="width: 100%; font-size: 11.5px;">{{item.duration}} دقیقه </div>
+        <td class="border-b py-3 border-gray-200  text-center flex flex-col">
+          <div >{{ math.floor(item.duration / 60) | number: '2.'}}:{{item.duration % 60 | number: '2.'}}</div>
+            <div class="text-xs">{{item.duration}} دقیقه </div>
         </td>
         <td class="border-b py-3 border-gray-200  text-center">
           <button (click)="OpenFingerEdit(item.fingerprint_scanner_pk_id)"

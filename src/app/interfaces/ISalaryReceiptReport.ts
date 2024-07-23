@@ -1,42 +1,52 @@
 
 
 export interface ISalaryReceiptReport {
-  update_date: string,
-  month: number,
-  Overtime_earning: number,
-  medical_leave: number,
-  delete_date: string,
-  fingerprint_scanner_user_id: string,
-  Undertime_earning: number,
-  medical_leave_earning: number,
-  visible: boolean,
-  expire_date: string,
-  present_time: number,
-  Off_Day_earning: number,
-  business_trip: number,
-  priority: number,
-  description: string,
-  regular_work_time: number,
-  business_trip_earning: number,
-  total_earning: number
-  deleted: boolean,
-  status: number,
-  overtime: number,
-  remote: number,
-  Salary_Policy: ISalaryPolicyReceip
-  can_update: boolean,
-  employee_salary_pk_id: string
-  undertime: number,
-  remote_earning: number,
-  Days: ISalaryDays[]
-  can_deleted: true,
-  user_fk_id: string
-  off_Day_work_time: number,
-  vacation_leave: number,
-  create_date: string
-  year: number,
-  Regular_earning: number
-  vacation_leave_earning: number
+  created: Created;
+  description: string;
+  status: string;
+  priority: number;
+  employee_salary_pk_id: string;
+  employee: Employee;
+  fingerprint_scanner_user_id: number;
+  present_time: number;
+  Regular_hours: number;
+  Overtime: number;
+  Undertime: number;
+  off_Day_Overtime: number;
+  delay: number;
+  haste: number;
+  attendance_points: number;
+  Regular_earning: number;
+  Overtime_earning: number;
+  Off_Day_earning: number;
+  Undertime_deductions: number;
+  insurance_deductions: number;
+  tax_deductions: number;
+  remote: number;
+  vacation_leave: number;
+  medical_leave: number;
+  business_trip: number;
+  remote_earning: number;
+  vacation_leave_earning: number;
+  medical_leave_earning: number;
+  business_trip_earning: number;
+  total_earning: number;
+  total_deduction: number;
+  total_income: number;
+}
+interface Employee {
+  name: string;
+  last_name: string;
+  email: string;
+  level: string;
+  address?: any;
+  id_card_number: string;
+  mobile_number: string;
+  day_of_birth: string;
+  user_pk_id: string;
+}
+interface Created {
+
 }
 
 export interface ISalaryPolicyReceip {

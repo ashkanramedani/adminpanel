@@ -22,11 +22,11 @@ export class BusinessTripStepComponent implements OnInit {
   BusinessTripResponse: IBusinessTripSingle
   BusinessTripForm: FormGroup
   have_Permission:boolean=false
-
+  math = Math;
   constructor(private http: HttpService, private alertServices: AlertifyService, private activateRoute: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.table_header = ["ردیف", " تاریخ ", "شروع", "پایان", "محل ماموریت", " وضعیت", ""]
+    this.table_header = ["ردیف", " تاریخ ", "شروع", "پایان", "محل ماموریت", "زمان (دقیقه)" ," وضعیت", ""]
     this.GetBusinessReport()
     this.GetPermision()
     this.BusinessTripForm = this.formBuilder.group({

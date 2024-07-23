@@ -1,8 +1,8 @@
 <div  class="flex flex-col" id="ContentToPdf">
   <div class="flex items-center justify-between border border-gray-300 bg-gray-100 p-3">
-    <div class="flex flex-col gap-y-3 items-center"><b>نام:</b><span>{{UserInfo.name}}</span></div>
-    <div class="flex flex-col gap-y-3 items-center"><b>نام خانوادگی:</b><span>{{UserInfo.last_name}}</span></div>
-    <div class="flex flex-col gap-y-3 items-center"><b>کدملی:</b><span>{{UserInfo.id_card_number}}</span></div>
+    <div class="flex flex-col gap-y-3 items-center"><b>نام:</b><span>{{response_salary_receipt_report.employee.name}}</span></div>
+    <div class="flex flex-col gap-y-3 items-center"><b>نام خانوادگی:</b><span>{{response_salary_receipt_report.employee.last_name}}</span></div>
+    <div class="flex flex-col gap-y-3 items-center"><b>کدملی:</b><span>{{response_salary_receipt_report.employee.id_card_number}}</span></div>
     <div class="flex flex-col gap-y-3 items-center"><b>سمت:</b><span>پرسنل</span></div>
     <div class="flex flex-col gap-y-3 items-center"><b>تاریخ صدور فیش:</b><span>-----</span></div>
   </div>
@@ -10,10 +10,10 @@
     <div class="flex justify-center items-center w-full border-l border-gray-300 p-3"><b>سایر</b></div>
     <div class="flex justify-center items-center w-full p-3"><b>کسورات</b></div>
   </div>
-  <!-- <div class="flex justify-between border border-gray-300 border-y-0">
+  <div class="flex justify-between border border-gray-300 border-y-0">
     <div class="flex justify-center flex-col gap-y-3 w-full border-l border-gray-300 p-4">
       <div class="flex justify-between"><span>اضافه کاری</span>
-        <span>{{response_salary_receipt_report.overtime}}</span>
+        <span>{{response_salary_receipt_report.Overtime}}</span>
       </div>
       <div class="flex justify-between"><span>دور کاری</span>
         <span>{{response_salary_receipt_report.remote}}</span>
@@ -27,19 +27,19 @@
     </div>
     <div class="flex justify-center flex-col gap-y-3 w-full p-4">
       <div class="flex justify-between"><span> مرخصی</span>
-        <span>{{response_salary_receipt_report.vacation_leave}}</span>
+        <span>{{(response_salary_receipt_report.vacation_leave)+(response_salary_receipt_report.medical_leave)}}</span>
       </div>
       <div class="flex justify-between"><span> تاخیر</span>
-        <span>{{response_salary_receipt_report.Undertime_earning}}</span>
+        <span>{{response_salary_receipt_report.Undertime}}</span>
       </div>
-      <div class="flex justify-between"><span> بیمه</span> <span>----</span></div>
-      <div class="flex justify-between"><span> مالیات</span> <span>----</span></div>
+      <div class="flex justify-between"><span> بیمه</span> <span>{{response_salary_receipt_report.insurance_deductions}}</span></div>
+      <div class="flex justify-between"><span> مالیات</span> <span>{{response_salary_receipt_report.tax_deductions}}</span></div>
     </div>
-  </div> -->
+  </div>
   <div class="flex items-center justify-between border border-gray-300 bg-gray-100 py-3 px-6">
-    <div class="flex flex-col gap-y-3 items-center"><b> جمع کسورات:</b><span>----</span></div>
-    <div class="flex flex-col gap-y-3 items-center"><b>مبلغ ناخالص دریافتی:</b><span>--------</span></div>
-    <div class="flex flex-col gap-y-3 items-center"><b> مبلغ قابل پرداخت:</b><span>---</span></div>
+    <div class="flex flex-col gap-y-3 items-center"><b> جمع کسورات:</b><span>{{response_salary_receipt_report.total_deduction}}</span></div>
+    <div class="flex flex-col gap-y-3 items-center"><b>مبلغ ناخالص دریافتی:</b><span>{{response_salary_receipt_report.total_income}}</span></div>
+    <div class="flex flex-col gap-y-3 items-center"><b> مبلغ قابل پرداخت:</b><span>{{response_salary_receipt_report.total_income }}</span></div>
   </div>
 </div>
 

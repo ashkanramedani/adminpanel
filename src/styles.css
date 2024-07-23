@@ -62,7 +62,7 @@
 
 .datepicker-outer-container {
   z-index: 9999 !important;
-   /* position: absolute !important; */
+  /* position: absolute !important; */
   width: 100%;
 }
 
@@ -155,6 +155,10 @@
   animation: lineMove infinite 8s ease-in-out;
 }
 
+tr:hover {
+  @apply bg-gray-100
+}
+
 .bg-login {
   max-width: none;
   width: 120%;
@@ -163,14 +167,13 @@
   animation: lineMove infinite 5s ease-in-out;
   top: -180px;
 }
+
 @keyframes lineMove {
   0% {
     transform: rotate(0deg);
   }
+
   50% {
     transform: rotate(40deg);
   }
 }
-
-
-tr:hover {background-color: #238b83b0;}

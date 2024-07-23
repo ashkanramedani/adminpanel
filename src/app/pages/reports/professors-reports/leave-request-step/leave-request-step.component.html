@@ -35,6 +35,10 @@
             <span>استعلاجی</span>
           </ng-template>
         </td>
+        <td class="border-b py-3 border-gray-200  text-center flex flex-col">
+          <div >{{ math.floor(item.duration / 60) | number: '2.'}}:{{item.duration % 60 | number: '2.'}}</div>
+            <div class="text-xs">{{item.duration}} دقیقه </div>
+        </td>
         <td class="border-b py-3 border-gray-200  text-center">
           <input type="checkbox" (change)="ChangeStatusLeaveRequest(item.leave_request_pk_id)"
             [checked]="item.status=='submitted' " class="checkbox  checkbox-xs" />
