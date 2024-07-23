@@ -27,7 +27,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of response_fingerprint_report.Fingerprint_scanner_report; let i =index">
+      <tr *ngFor="let item of sortData; let i =index">
         <td class="border-b py-3 border-gray-200  text-center">
           <span>{{ i+1}}</span>
         </td>
@@ -41,7 +41,8 @@
           <span>{{item.Exit}}</span>
         </td>
         <td class="border-b py-3 border-gray-200  text-center">
-          <span>{{ math.floor(item.duration / 60) | number: '2.'}}:{{item.duration % 60 | number: '2.'}} ( {{item.duration}} دقیقه ) </span>
+          <div style="width: 100%;">{{ math.floor(item.duration / 60) | number: '2.'}}:{{item.duration % 60 | number: '2.'}}</div>
+            <div style="width: 100%; font-size: 11.5px;">{{item.duration}} دقیقه </div>
         </td>
         <td class="border-b py-3 border-gray-200  text-center">
           <button (click)="OpenFingerEdit(item.fingerprint_scanner_pk_id)"

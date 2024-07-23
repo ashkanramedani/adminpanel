@@ -104,5 +104,9 @@ export class FingerPrintStepComponent implements OnInit{
       () => { }
     );
   }
-
+  get sortData() {
+    return this.response_fingerprint_report.Fingerprint_scanner_report.sort((a, b) => {
+      return <any>new Date(a.Date) - <any>new Date(b.Date);
+    });
+  }
 }
