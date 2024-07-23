@@ -16,7 +16,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of response_leave_request_report.Vacation; let i =index">
+      <tr *ngFor="let item of response_leave_request_report; let i =index">
         <td class="border-b py-3 border-gray-200  text-center">
           <span>{{ i+1}}</span>
         </td>
@@ -30,7 +30,10 @@
           <span>{{item.start}}</span>
         </td>
         <td class="border-b py-3 border-gray-200  text-center">
-          <span>استحقاقی</span>
+          <span *ngIf="item.leave_type=='vacation';else other">استحقاقی</span>
+          <ng-template #other>
+            <span>استعلاجی</span>
+          </ng-template>
         </td>
         <td class="border-b py-3 border-gray-200  text-center">
           <input type="checkbox" (change)="ChangeStatusLeaveRequest(item.leave_request_pk_id)"
@@ -46,36 +49,7 @@
           </button>
         </td>
       </tr>
-      <tr *ngFor="let item of response_leave_request_report.Medical; let i =index">
-        <td class="border-b py-3 border-gray-200  text-center">
-          <span>{{ i+1}}</span>
-        </td>
-        <td class="border-b py-3 border-gray-200  text-center">
-          <span>{{item.date|HijriDate}}</span>
-        </td>
-        <td class="border-b py-3 border-gray-200  text-center">
-          <span>{{item.start}}</span>
-        </td>
-        <td class="border-b py-3 border-gray-200  text-center">
-          <span>{{item.start}}</span>
-        </td>
-        <td class="border-b py-3 border-gray-200  text-center">
-          <span>استعلاجی</span>
-        </td>
-        <td class="border-b py-3 border-gray-200  text-center">
-          <input type="checkbox" (change)="ChangeStatusLeaveRequest(item.leave_request_pk_id)"
-            [checked]="item.status=='submitted' " class="checkbox  checkbox-xs" />
-        </td>
-        <td>
-          <button (click)="OpenleaveRequestEdit(item.leave_request_pk_id)" class="tooltip cursor-pointer p-1"
-            data-tip="ویرایش">
-            <img src="/assets/images/icon/edit.svg" class="w-5" alt="">
-          </button>
-          <button (click)="RemoveItem(item.leave_request_pk_id)" class="tooltip cursor-pointer p-1 hover:bg-gray-200  rounded-lg" data-tip="حذف">
-            <img src="/assets/images/icon/trash.svg" class="w-4" alt="">
-          </button>
-        </td>
-      </tr>
+
     </tbody>
   </table>
   <!-- edit leave request -->

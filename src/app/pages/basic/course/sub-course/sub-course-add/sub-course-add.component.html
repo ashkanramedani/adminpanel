@@ -126,7 +126,7 @@
                 مدت درس
               </label>
             </div>
-            <button (click)="add_session_signature()" class="btn border border-gray-300">افزودن</button>
+            <button [disabled]="(this.ReportForm.controls.days_of_week.value=='') || ( this.ReportForm.controls.starting_time.value=='') || (this.ReportForm.controls.duration.value=='')  " (click)="add_session_signature()" class="btn border border-gray-300">افزودن</button>
           </div>
           <div *ngIf="this.session_signature_array.length>0" class="overflow-x-auto w-full mt-5">
             <table class="table">
@@ -142,8 +142,8 @@
               </thead>
               <tbody>
                 <tr *ngFor="let item of session_signature_array;let i=index">
-                  <th>{{i+1}}</th>
-                  <td>{{item.days_of_week}}</td>
+                  <th>{{i+1 }}</th>
+                  <td>{{item.days_of_week|DayOfWeek}}</td>
                   <td>{{item.starting_time}}</td>
                   <td>{{item.duration}}</td>
                   <td>

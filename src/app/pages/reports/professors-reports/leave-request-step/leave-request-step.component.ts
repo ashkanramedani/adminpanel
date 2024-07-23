@@ -18,7 +18,7 @@ export class LeaveRequestStepComponent implements OnInit {
   LeaveRequestResponse: ILeaveRequestSingle
   LeaveRequestForm: FormGroup
   table_header: string[] = []
-  response_leave_request_report = {} as ILeaveRequestReport
+  response_leave_request_report : ILeaveRequestReport[]=[]
   @Input() id: any
   @Input() year: number
   @Input() month: number
@@ -37,8 +37,8 @@ export class LeaveRequestStepComponent implements OnInit {
   }
   GetLeaveRequestReport() {
     this.http.getAll(`${Domain.GetLeaveRequestReport}/${this.id}?year=${this.year}&month=${this.month}`).subscribe((response) => {
-      this.response_leave_request_report = response
-      console.log("leave request response: ", response)
+      this.response_leave_request_report = response.Vacation.concat(response.Medical)
+      console.log("leave request response: ", this.response_leave_request_report)
     })
   }
   OpenleaveRequestEdit(id: string) {

@@ -35,7 +35,7 @@ export class SubCourseComponent implements OnInit {
   currentPage: number = 1
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
-    this.GetResponseData(0, 1000, this.order)
+    this.GetResponseData(1, 10, this.order)
     this.GetResponseDataLenght()
 
   }
@@ -65,7 +65,7 @@ export class SubCourseComponent implements OnInit {
           .deleteWithQuery(`${this.delete_route}/${id}?course_id=${course_id}`)
           .subscribe((response) => {
             console.log(response);
-              this.GetResponseData(0, 1000, this.order);
+              this.GetResponseData(1, 10, this.order);
               this.alertServices.success('آیتم با موفقیت حذف شد');
           });
       },
@@ -74,7 +74,7 @@ export class SubCourseComponent implements OnInit {
   }
   ChangeSort(value: any) {
     this.order = value.target.value
-    this.GetResponseData(0, 1000, this.order);
+    this.GetResponseData(1, 10, this.order);
   }
 
   OpenModal(id: string) {

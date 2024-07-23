@@ -32,8 +32,7 @@ import { SubCourseComponent } from './course/sub-course/sub-course.component';
 import { SubCourseAddComponent } from './course/sub-course/sub-course-add/sub-course-add.component';
 import { SessionAddComponent } from './course/sessions/session-add/session-add.component';
 import { SessionsComponent } from './course/sessions/sessions.component';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { MatNativeDateTimeModule, MatTimepickerModule } from '@dhutaryan/ngx-mat-timepicker';
+import { NgxPaginationModule } from 'ngx-pagination'; 
 import { InputWithCommaDirective } from 'src/app/directive/input-with-comma.directive';
 
 @NgModule({

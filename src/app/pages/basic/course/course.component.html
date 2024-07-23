@@ -63,11 +63,12 @@
                             <li><a [routerLink]="['/basic/course/edit',item.course_pk_id]">ویرایش</a></li>
                             <li><a (click)="OpenModal(item.course_pk_id)">مشاهده</a></li>
                             <li><a (click)="RemoveItem(item.course_pk_id)">حذف</a></li>
+                            <li><a (click)="OpenSubCourseAdd(item.course_pk_id)">افزودن درس</a></li>
                           </ul>
                         </div>
                 </div>
             </div>
-            <div class="flex items-center justify-between py-4  font-medium border-b ">
+            <div class="flex items-center justify-between py-4  font-medium  ">
               <div class="flex items-center  w-full gap-x-8">
                 <div class="flex items-center gap-x-3">
                     <img src="/assets/images/icon/video.svg" class="w-5 pb-1" alt="">
@@ -84,7 +85,7 @@
             </div>
             </div>
 
-            <div class="flex items-center justify-between  pb-2 font-medium">
+            <div *ngIf="item.course_signature.length>0" class="flex items-center justify-between  pb-2 font-medium border-t">
                 <div class="flex items-center gap-x-3">
                     <img src="/assets/images/icon/calendar.svg" class="w-5" alt="">
                     <span> روزهای کلاس</span>
@@ -92,7 +93,7 @@
                 <ul class="timeline">
                   <li *ngFor="let item2 of item.course_signature;let i=index">
                     <hr *ngIf="i!=0" />
-                    <div class="timeline-start">{{item2.days_of_week|DayOfWeek}} </div>
+                    <!-- <div class="timeline-start">{{item2.days_of_week|DayOfWeek}} </div> -->
                     <div class="timeline-middle">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +106,7 @@
                           clip-rule="evenodd" />
                       </svg>
                     </div>
-                    <div class="timeline-end timeline-box">{{item2.session_date|HijriDate}}</div>
+                    <div class="timeline-end timeline-box">{{item2.days_of_week|DayOfWeek}}</div>
                     <hr *ngIf="(i+1)<(item.course_signature.length)" />
                   </li>
                 </ul>
@@ -130,7 +131,7 @@
         <div class="flex flex-col w-full mx-12 lg:mr-[19rem]  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
             <div class="header flex items-center justify-between text-lg font-semibold">
               <span>{{SingleData.course_name }}</span>
-              <span class="text-teal-700">شروع شده</span>
+              <span class="text-teal-700"> {{SingleData.status}}</span>
             </div>
             <div class="main mt-4">
               <div class="flex items-center justify-between gap-x-2">
@@ -138,7 +139,7 @@
                   <div class="flex items-center gap-x-4">
                     <img src="/assets/images/icon/course_users.svg" alt="">
                     <div class="flex flex-col gap-y-2">
-                      <span class="font-semibold text-rose-600"> <span class="pl-1">14</span>نفر</span>
+                      <span class="font-semibold text-rose-600"> <span class="pl-1">{{SingleData.course_capacity}}</span>نفر</span>
                       <span>ثبت نام کرده ها</span>
                     </div>
                   </div>
@@ -221,7 +222,7 @@
                     </div>
                     <div class="flex items-center justify-between border-b pb-3">
                         <span> قیمت دوره</span>
-                        <span>580000 تومان</span>
+                        <span>{{SingleData.Course_price}} تومان</span>
                     </div>
                     <div class="flex items-center justify-between border-b pb-3">
                         <span>ظرفیت دوره</span>
@@ -237,7 +238,7 @@
                     </div>
                     <div class="flex items-center justify-between ">
                         <span> مدرسین</span>
-                        <span>3 نفر</span>
+                        <span>{{SingleData.teachers.length}} نفر</span>
                     </div>
                   </div>
                 </div>
@@ -265,5 +266,15 @@
             </div>
         </div>
     </div>
+
+    <dialog class="modal " [ngClass]="{'modal-open' : (isOpenSubCourseAdd)}">
+      <div class="modal-box  w-11/12 max-w-5xl">
+        <app-sub-course-add [course_fk_id]="this.course_fk_id"></app-sub-course-add>
+        <div class="flex justify-end mt-6 gap-x-6">
+          <button (click)="CLoseSubCourseAdd()" class="btn">بستن</button>
+        </div>
+      </div>
+
+    </dialog>
 </main>
 </ng-template>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
 import { ICourseUpdate } from 'src/app/interfaces/ICourse';
 import { ICourseCategoryAll } from 'src/app/interfaces/ICourseCategory';
@@ -133,8 +134,8 @@ export class CourseAddComponent implements OnInit {
     this.ReportForm.controls["created_fk_by"].patchValue(this.EditForm.created_fk_by);
     this.ReportForm.controls["description"].patchValue(this.EditForm.description);
     this.ReportForm.controls["course_name"].patchValue(this.EditForm.course_name)
-    this.ReportForm.controls["starting_date"].patchValue(this.EditForm.starting_date);
-    this.ReportForm.controls["ending_date"].patchValue(this.EditForm.ending_date)
+    this.ReportForm.controls["starting_date"].patchValue(moment(this.AuditForm.starting_date, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
+    this.ReportForm.controls["ending_date"].patchValue(moment(this.AuditForm.ending_date, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
     this.ReportForm.controls["course_capacity"].patchValue(this.EditForm.course_capacity);
     this.ReportForm.controls["course_language"].patchValue(this.EditForm.course_language)
     this.ReportForm.controls["course_type"].patchValue(this.EditForm.course_type);
@@ -162,8 +163,8 @@ export class CourseAddComponent implements OnInit {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
       course_name: this.ReportForm.controls.course_name.value,
-      starting_date: this.ReportForm.controls.starting_date.value,
-      ending_date: this.ReportForm.controls.ending_date.value,
+      starting_date: moment.from(this.ReportForm.controls.starting_date.value, 'fa', 'YYYY/MM/DD').format('YYYY-MM-DD'),
+      ending_date: moment.from(this.ReportForm.controls.ending_date.value, 'fa', 'YYYY/MM/DD').format('YYYY-MM-DD'),
       course_capacity: this.ReportForm.controls.course_capacity.value,
       course_language: this.ReportForm.controls.course_language.value,
       course_type: this.ReportForm.controls.course_type.value,
@@ -209,8 +210,8 @@ export class CourseAddComponent implements OnInit {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
       course_name: this.ReportForm.controls.course_name.value,
-      starting_date: this.ReportForm.controls.starting_date.value,
-      ending_date: this.ReportForm.controls.ending_date.value,
+      starting_date: moment.from(this.ReportForm.controls.starting_date.value, 'fa', 'YYYY/MM/DD').format('YYYY-MM-DD'),
+      ending_date: moment.from(this.ReportForm.controls.ending_date.value, 'fa', 'YYYY/MM/DD').format('YYYY-MM-DD'),
       course_capacity: this.ReportForm.controls.course_capacity.value,
       course_language: this.ReportForm.controls.course_language.value,
       course_type: this.ReportForm.controls.course_type.value,
