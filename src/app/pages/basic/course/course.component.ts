@@ -14,6 +14,7 @@ export class CourseComponent implements OnInit {
   ShowMoreItem: string
   ResponseDataList: ICourseAll[] = []
   ResponseDataLenght: number[];
+  totalCount: number = 0
   CourseTypeData:ICourseTypeAll[]=[]
   SearchValue: string
   isCheckedStatus: number;
@@ -35,6 +36,7 @@ export class CourseComponent implements OnInit {
   }
   GetResponseDataLenght() {
     this.http.getAll(`${Domain.GetCount}?field=course`).subscribe((response) => {
+      this.totalCount = response
       this.ResponseDataLenght = new Array(Math.ceil(response / 10))
     })
   }
@@ -125,5 +127,9 @@ export class CourseComponent implements OnInit {
     this.course_fk_id=id
     this.isOpenSubCourseAdd = true
   }
+  changePage(event :number){
+    this.currentPage=event
+    this.GetResponseData(this.currentPage,10,this.order,"")
+    }
 }
 

@@ -33,7 +33,7 @@
       <span *ngFor="let item of table_header">{{item}}</span>
     </div>
     <div
-      *ngFor="let item of ResponseDataList| paginate: { itemsPerPage: 10,currentPage: currentPage }| filter: this.SearchValue; let i =index"
+      *ngFor="let item of ResponseDataList| paginate: {itemsPerPage: 10,currentPage: this.currentPage,totalItems: totalCount }| filter: this.SearchValue; let i =index"
       class="body grid grid-cols-8 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
       <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
       <span>{{item.date|HijriDate}}</span>
@@ -57,8 +57,7 @@
       </div>
     </div>
     <div class="paging flex items-center justify-center mt-16 flex-wrap ">
-      <pagination-controls (pageChange)="currentPage= $event" previousLabel="قبلی"
-        nextLabel="بعدی"></pagination-controls>
+      <pagination-controls (pageChange)="changePage($event)" previousLabel="قبلی" nextLabel="بعدی" ></pagination-controls>
     </div>
   </div>
 

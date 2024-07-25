@@ -32,7 +32,7 @@
             class="header grid grid-cols-{{table_header.length}} text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6">
             <span *ngFor="let item of table_header">{{item}}</span>
         </div>
-        <div *ngFor="let item of ResponseDataList | paginate: { itemsPerPage: 10,currentPage: currentPage }| filter: this.SearchValue; let i =index"
+        <div *ngFor="let item of ResponseDataList | paginate: { itemsPerPage: 10,currentPage: this.currentPage,totalItems: totalCount }| filter: this.SearchValue; let i =index"
             class="body grid grid-cols-{{table_header.length}} text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
             <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
             <span class="overflow-hidden text-ellipsis whitespace-nowrap w-50 inline-block">{{ item.text}}</span>
@@ -52,7 +52,7 @@
             </div>
         </div>
         <div class="paging flex items-center justify-center mt-16 flex-wrap ">
-          <pagination-controls (pageChange)="currentPage= $event" previousLabel="قبلی" nextLabel="بعدی" ></pagination-controls>
+          <pagination-controls (pageChange)="changePage($event)" previousLabel="قبلی" nextLabel="بعدی" ></pagination-controls>
         </div>
     </div>
 

@@ -102,5 +102,9 @@ export class RemoteRequestComponent implements OnInit {
   CloseModal() {
     this.IsShowenModal = false
   }
+  changePage(event :number){
+    this.currentPage=event
+    this.GetResponseData(this.currentPage,10,this.order)
+    }
 }
 

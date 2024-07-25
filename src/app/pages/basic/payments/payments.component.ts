@@ -121,4 +121,8 @@ export class PaymentsComponent implements OnInit {
         document.body.removeChild(selBox);
         this.alertServices.success("اطلاعات در حافظه کپی شد")
       }
+      changePage(event :number){
+        this.currentPage=event
+        this.GetResponseData(this.currentPage,10,this.order)
+        }
 }
