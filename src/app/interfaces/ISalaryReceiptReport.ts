@@ -12,7 +12,6 @@ export interface ISalaryReceiptReport {
   Regular_hours: number;
   Overtime: number;
   Undertime: number;
-  off_Day_Overtime: number;
   delay: number;
   haste: number;
   attendance_points: number;
@@ -33,6 +32,8 @@ export interface ISalaryReceiptReport {
   total_earning: number;
   total_deduction: number;
   total_income: number;
+  Off_Day: number;
+  Fix_pay: number;
 }
 interface Employee {
   name: string;
