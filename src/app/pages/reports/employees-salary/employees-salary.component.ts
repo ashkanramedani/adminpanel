@@ -1,25 +1,20 @@
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
-import { IUsers } from 'src/app/interfaces/IUsers';
+import { IEmployeesSalary } from 'src/app/interfaces/IEmployeesSalary';
+import { IReportEmployee } from 'src/app/interfaces/IReportEmployee';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
-import { IRoles } from 'src/app/interfaces/IRoles';
-import { IRolesForm } from 'src/app/interfaces/IRolesForm';
-import { IProfessorsReports } from 'src/app/interfaces/IProfessorsReports';
-import { IReportEmployee } from 'src/app/interfaces/IReportEmployee';
 
 @Component({
-  selector: 'app-professors-reports',
-  templateUrl: './professors-reports.component.html',
+  selector: 'app-employees-salary',
+  templateUrl: './employees-salary.component.html', 
 })
-export class ProfessorsReportsComponent implements OnInit {
+export class EmployeesSalaryComponent implements OnInit {
   //#region change this information
 
   form_title: string = "گزارشات/ مالی /   محاسبات حقوقی پرسنل"
-  AuditForm: IRolesForm
   table_header: string[] = ["پرسنل", " موقعیت ", "وضعیت "]
   ResponseDataList: IReportEmployee[] = []
   //#endregion
@@ -28,10 +23,8 @@ export class ProfessorsReportsComponent implements OnInit {
   ResponseDataLenght: number[];
   ReportForm: FormGroup;
   isOpenSearchRole: boolean = false
-  RolesData: IRoles[] = []
   RolesInputArray: string[] = []
   RolesInputTitleArray: string[] = []
-  EmployiesData: IUsers[] = []
   btnLoading: boolean = false
   isLoading: boolean = false
   isShowenAlert: boolean = false
@@ -56,12 +49,12 @@ export class ProfessorsReportsComponent implements OnInit {
       this.ReportForm.markAllAsTouched();
       return;
     }
-    let ReportFormValue: IProfessorsReports =
+    let ReportFormValue: IEmployeesSalary =
     {
       year: this.ReportForm.controls.year.value,
       month: this.ReportForm.controls.month.value,
     }
-    this.http.create(Domain.PostProfessorsReports, ReportFormValue, null).subscribe((response) => {
+    this.http.create(Domain.PostEmployeesSalary, ReportFormValue, null).subscribe((response) => {
       console.log(response)
       this.ResponseDataList = response
       this.year = this.ReportForm.controls.year.value,

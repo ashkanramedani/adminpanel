@@ -6,18 +6,18 @@ import { ILibrary } from 'src/app/interfaces/ILibrary';
 import { IuserEditForm } from 'src/app/interfaces/IuserEditForm';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
+
 @Component({
-  selector: 'app-professorsreport-step',
-  templateUrl: './professorsreport-step.component.html',
+  selector: 'app-employees-salary-steps', 
+  templateUrl: './employees-salary-steps.component.html',
 })
-export class ProfessorsreportStepComponent implements OnInit {
+export class EmployeesSalaryStepsComponent implements OnInit {
   //#region change this informaion
   SingleData: ILibrary
   title: string = '';
   form_title: string = "گزارشات / مالی /   محاسبات حقوقی پرسنل"
-  get_all_route: string = Domain.GetLibrary
+
   step: number
-  delete_route: string = Domain.DeleteLibrary
   add_url: string = ""
   edit_url: string = ""
   table_header: string[] = []
@@ -58,7 +58,6 @@ export class ProfessorsreportStepComponent implements OnInit {
   PrintPage() {
     window.print()
   }
- 
+
 
 }
-

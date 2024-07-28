@@ -47,7 +47,7 @@ export class CourseCancellationAddComponent implements OnInit {
     this.ReportForm = this.formBuilder.group(
       {
         created_fk_by: new FormControl('', [Validators.required]),
-        description: new FormControl(''), 
+        description: new FormControl(''),
         course_fk_id: new FormControl('', [Validators.required]),
         teacher_fk_id: new FormControl('', [Validators.required]),
         replacement_date: new FormControl('', [Validators.required]),
@@ -62,7 +62,7 @@ export class CourseCancellationAddComponent implements OnInit {
   }
 
   GetEmployeeData() {
-    this.http.getAll(`${Domain.GetUsers}?page=1&limit=1000&order=desc`).subscribe((response) => {
+    this.http.getAll(`${Domain.GetDropDowUser}?order=desc&SortKey=name&employee=true`).subscribe((response) => {
       this.EmployiesData = response;
       console.log(response)
     })

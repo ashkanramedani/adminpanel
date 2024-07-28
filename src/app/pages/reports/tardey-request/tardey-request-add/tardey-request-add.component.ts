@@ -9,6 +9,7 @@ import { IRoles } from 'src/app/interfaces/IRoles';
 import { ITardeyRequestForm } from 'src/app/interfaces/ITardeyRequestForm';
 import { IClassDetails } from 'src/app/interfaces/IClassDetails';
 import { ISubCourseAll } from 'src/app/interfaces/ISubCourse';
+import { IuserEditForm } from 'src/app/interfaces/IuserEditForm';
 
 @Component({
   selector: 'app-tardey-request-add',
@@ -22,6 +23,7 @@ export class TardeyRequestAddComponent implements OnInit {
   get_Singel_route: string = Domain.GetTardeyRequest
   put_route: string = Domain.PutTardeyRequest
   create_route: string = Domain.CreateTardeyRequest
+  Creators:IUsers[]=[]
   //#endregion
   page_title: string = "ایجاد"
   isOpenTab:number=1
@@ -38,15 +40,14 @@ export class TardeyRequestAddComponent implements OnInit {
   EmployiesData={} as IUsers |undefined
   btnLoading: boolean = false
   isLoading: boolean = false
-  Creators: IUsers[] = []
   constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService,private router:Router) {
 
   }
   ngOnInit(): void {
     //this.GetSubCourseData()
+    this.GetEmployeeData()
     this.id = this.route.snapshot?.paramMap.get('id');
     this.GetClassData()
-    this.GetEmployeeData()
     this.ReportForm = this.formBuilder.group(
       {
 
@@ -130,12 +131,7 @@ export class TardeyRequestAddComponent implements OnInit {
   //     console.log(response)
   //   })
   // }
-  GetEmployeeData() {
-    this.http.getAll(`${Domain.GetUsers}?page=1&limit=1000&order=desc`).subscribe((response) => {
-      this.Creators = response;
-      console.log(response)
-    })
-  }
+
   ChangeCourse(value:any){
     this.http.get(Domain.GetSubCourseByCourseId,value.target.value).subscribe((response)=>{
       console.log("sub is : " ,response)
@@ -146,5 +142,11 @@ export class TardeyRequestAddComponent implements OnInit {
 }
 ChangeSubCourse(event:any){
   this.EmployiesData=this.sub_course_data.find((x)=>x.sub_course_pk_id==event.target.value)?.teacher
+  }
+  GetEmployeeData() {
+    this.http.getAll(`${Domain.GetDropDowUser}?order=desc&SortKey=name&employee=true`).subscribe((response) => {
+      this.Creators = response;
+      console.log(response)
+    })
   }
 }

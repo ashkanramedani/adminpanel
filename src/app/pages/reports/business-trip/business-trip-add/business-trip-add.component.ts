@@ -72,7 +72,7 @@ export class BusinessTripAddComponent implements OnInit {
   }
 
   GetEmployeeData() {
-    this.http.getAll(`${Domain.GetUsers}?page=1&limit=1000&order=desc`).subscribe((response) => {
+    this.http.getAll(`${Domain.GetDropDowUser}?order=desc&SortKey=name&employee=true`).subscribe((response) => {
       this.EmployiesData = response;
       console.log(response)
     })
@@ -131,7 +131,7 @@ export class BusinessTripAddComponent implements OnInit {
         user_fk_id: this.ReportForm.controls.user_fk_id.value,
         end_date: moment.from(this.ReportForm.controls.end_date.value, 'fa', 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'),
         start_date: moment.from(this.ReportForm.controls.start_date.value, 'fa', 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'),
-        destination: this.ReportForm.controls.destination.value, 
+        destination: this.ReportForm.controls.destination.value,
         business_trip_pk_id: this.id
       }
       this.http.create(this.create_route, ReportFormValue, null).subscribe((response) => {

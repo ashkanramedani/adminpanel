@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
 import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
-import { HttpService } from 'src/app/services/http.service'; 
+import { HttpService } from 'src/app/services/http.service';
 import { ICourseLanguageUpdate } from 'src/app/interfaces/ICourseLanguage';
 
 @Component({
@@ -47,7 +47,7 @@ export class CourseLanguageAddComponent implements OnInit {
   }
 
   GetEmployeeData() {
-    this.http.getAll(`${Domain.GetUsers}?page=1&limit=1000&order=desc`).subscribe((response) => {
+    this.http.getAll(`${Domain.GetDropDowUser}?order=desc&SortKey=name&employee=true`).subscribe((response) => {
       this.EmployiesData = response;
       console.log(response)
     })

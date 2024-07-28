@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
   UsersCount: number
   RolesCount: number
   CourseCount: number
-
+  loading:boolean=true
   constructor(private http: HttpService) { }
   ngOnInit(): void {
     this.GetCount()
@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit {
         this.UsersCount = user_count
         this.RolesCount = role_count
         this.CourseCount = course_count
+        this.loading=false
       });
   }
 }

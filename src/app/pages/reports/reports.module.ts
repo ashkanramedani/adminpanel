@@ -25,22 +25,24 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ProfessorsReportsComponent } from './professors-reports/professors-reports.component';
 import { FingerprintScannerBulkComponent } from './fingerprint-scanner/fingerprint-scanner-bulk/fingerprint-scanner-bulk.component';
 import { OnlyNumberDirective } from 'src/app/directive/only_number.directive';
-import { ProfessorsreportStepComponent } from './professors-reports/professorsreport-step/professorsreport-step.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { BusinessTripStepComponent } from './professors-reports/business-trip-step/business-trip-step.component';
-import { FingerPrintStepComponent } from './professors-reports/finger-print-step/finger-print-step.component';
-import { LeaveRequestStepComponent } from './professors-reports/leave-request-step/leave-request-step.component';
-import { PaySlipStepComponent } from './professors-reports/pay-slip-step/pay-slip-step.component';
-import { RemoteRequestStepComponent } from './professors-reports/remote-request-step/remote-request-step.component'; 
+import { BusinessTripStepComponent } from './employees-salary/business-trip-step/business-trip-step.component';
+import { FingerPrintStepComponent } from './employees-salary/finger-print-step/finger-print-step.component';
+import { LeaveRequestStepComponent } from './employees-salary/leave-request-step/leave-request-step.component';
+import { PaySlipStepComponent } from './employees-salary/pay-slip-step/pay-slip-step.component';
+import { RemoteRequestStepComponent } from './employees-salary/remote-request-step/remote-request-step.component';
+import { EmployeesSalaryComponent } from './employees-salary/employees-salary.component';
+import { EmployeesSalaryStepsComponent } from './employees-salary/employees-salary-steps/employees-salary-steps.component';
+import { TeachersSalaryComponent } from './teachers-salary/teachers-salary.component';
+import { TeacherSubCourseComponent } from './teachers-salary/teacher-sub-course/teacher-sub-course.component';
 @NgModule({
   declarations: [BusinessTripComponent, BusinessTripAddComponent, CourseCancellationComponent, CourseCancellationAddComponent,
     FingerprintScannerComponent, FingerprintScannerAddComponent, FingerprintScannerBulkComponent, LeaveFormsComponent, LeaveFormAddComponent, RemoteRequestComponent,
     RemoteRequestAddComponent, SalaryPolicyComponent, SalaryPolicyAddComponent, SurveyComponent, SurveyAddComponent, TardeyRequestComponent,
-    TardeyRequestAddComponent, TeacherReplacementComponent, TeacherReplacementAddComponent, ProfessorsReportsComponent, OnlyNumberDirective, ProfessorsreportStepComponent,
-    BusinessTripStepComponent, FingerPrintStepComponent, LeaveRequestStepComponent, PaySlipStepComponent, RemoteRequestStepComponent
+    TardeyRequestAddComponent,TeachersSalaryComponent, TeacherReplacementComponent, TeacherReplacementAddComponent, EmployeesSalaryComponent, OnlyNumberDirective, EmployeesSalaryStepsComponent,
+    BusinessTripStepComponent, FingerPrintStepComponent,TeacherSubCourseComponent , LeaveRequestStepComponent, PaySlipStepComponent, RemoteRequestStepComponent
   ],
   imports: [
     CommonModule,

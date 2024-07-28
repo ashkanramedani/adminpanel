@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SalaryPolicyComponent } from './salary-policy/salary-policy.component';
 import { SalaryPolicyAddComponent } from './salary-policy/salary-policy-add/salary-policy-add.component';
-import { ProfessorsReportsComponent } from './professors-reports/professors-reports.component';
 import { TardeyRequestComponent } from './tardey-request/tardey-request.component';
 import { TardeyRequestAddComponent } from './tardey-request/tardey-request-add/tardey-request-add.component';
 import { LeaveFormsComponent } from './leave-forms/leave-forms.component';
@@ -20,7 +19,10 @@ import { CourseCancellationAddComponent } from './course-cancellation/course-can
 import { SurveyComponent } from './survey/survey.component';
 import { SurveyAddComponent } from './survey/survey-add/survey-add.component';
 import { FingerprintScannerBulkComponent } from './fingerprint-scanner/fingerprint-scanner-bulk/fingerprint-scanner-bulk.component';
-import { ProfessorsreportStepComponent } from './professors-reports/professorsreport-step/professorsreport-step.component';
+import { EmployeesSalaryComponent } from './employees-salary/employees-salary.component';
+import { EmployeesSalaryStepsComponent } from './employees-salary/employees-salary-steps/employees-salary-steps.component';
+import { TeachersSalaryComponent } from './teachers-salary/teachers-salary.component';
+import { TeacherSubCourseComponent } from './teachers-salary/teacher-sub-course/teacher-sub-course.component';
 
 const routes: Routes = [
   {path:'salarypolicy',component:SalaryPolicyComponent},
@@ -61,8 +63,11 @@ const routes: Routes = [
 {path:'survey/edit/:id',component:SurveyAddComponent},
 
 
-{path:'professorsreports',component:ProfessorsReportsComponent},
-{path:'professorsreport/:id',component:ProfessorsreportStepComponent}
+{path:'employees-salary',component:EmployeesSalaryComponent},
+{path:'employees-salary/:id',component:EmployeesSalaryStepsComponent},
+
+{path:'teachers-salary',component:TeachersSalaryComponent},
+{path:'teachers-salary/sub-course/:id',component:TeacherSubCourseComponent}
 ];
 
 @NgModule({

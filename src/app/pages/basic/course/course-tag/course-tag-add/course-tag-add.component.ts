@@ -51,7 +51,7 @@ export class CourseTagAddComponent implements OnInit {
   }
 
   GetEmployeeData() {
-    this.http.getAll(`${Domain.GetUsers}?page=1&limit=1000&order=desc`).subscribe((response) => {
+    this.http.getAll(`${Domain.GetDropDowUser}?order=desc&SortKey=name&employee=true`).subscribe((response) => {
       this.EmployiesData = response;
       console.log(response)
     })
@@ -69,7 +69,7 @@ export class CourseTagAddComponent implements OnInit {
   FillFormData() {
     this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
     this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
-    this.ReportForm.controls["tag_name"].patchValue(this.AuditForm.tag_name); 
+    this.ReportForm.controls["tag_name"].patchValue(this.AuditForm.tag_name);
   }
   onSubmit() {
     if (this.ReportForm.invalid) {

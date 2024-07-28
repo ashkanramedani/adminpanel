@@ -31,7 +31,7 @@ export class CourseTypeAddComponent implements OnInit {
   }
   ngOnInit(): void {
     this.id = this.route.snapshot?.paramMap.get('id');
-    this.GetEmployeeData() 
+    this.GetEmployeeData()
     this.ReportForm = this.formBuilder.group(
       {
         created_fk_by: new FormControl('', [Validators.required]),
@@ -46,7 +46,7 @@ export class CourseTypeAddComponent implements OnInit {
   }
 
   GetEmployeeData() {
-    this.http.getAll(`${Domain.GetUsers}?page=1&limit=1000&order=desc`).subscribe((response) => {
+    this.http.getAll(`${Domain.GetDropDowUser}?order=desc&SortKey=name&employee=true`).subscribe((response) => {
       this.EmployiesData = response;
       console.log(response)
     })

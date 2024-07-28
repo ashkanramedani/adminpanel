@@ -13,13 +13,19 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { LinkButtonComponent } from './components/link-button/link-button.component';
 import { BadgeComponent } from './components/badge/badge.component';
+import { DropDownUsersComponent } from './components/drop-down-users/drop-down-users.component';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
-  declarations: [HeaderComponent, BadgeComponent,LinkButtonComponent,SidebarComponent,PaginationComponent, FilterPipe, HijriDatePipe, FormatTimePipe, FloatingInputComponent, LoadingComponent, DayOfWeekPipe],
+  declarations: [HeaderComponent, DropDownUsersComponent, BadgeComponent,LinkButtonComponent,SidebarComponent,PaginationComponent, FilterPipe, HijriDatePipe, FormatTimePipe, FloatingInputComponent, LoadingComponent, DayOfWeekPipe],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgSelectModule,
+    FormsModule
   ],
-  exports: [HeaderComponent,LinkButtonComponent,BadgeComponent ,SidebarComponent,PaginationComponent, FilterPipe, HijriDatePipe, FormatTimePipe, FloatingInputComponent, LoadingComponent, DayOfWeekPipe]
+  exports: [HeaderComponent,DropDownUsersComponent,LinkButtonComponent,BadgeComponent ,SidebarComponent,PaginationComponent, FilterPipe, HijriDatePipe, FormatTimePipe, FloatingInputComponent, LoadingComponent, DayOfWeekPipe]
 })
 export class SharedModule { }

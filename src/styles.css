@@ -4,6 +4,7 @@
 
 @import "~alertifyjs/build/css/alertify.min.css";
 @import "~alertifyjs/build/css/themes/bootstrap.rtl.min.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 @font-face {
   font-family: iran;
@@ -176,4 +177,11 @@ tr:hover {
   50% {
     transform: rotate(40deg);
   }
+}
+.ng-select-container{
+  border: none !important;
+}
+.ng-select-container:hover
+{
+  box-shadow: none !important;
 }

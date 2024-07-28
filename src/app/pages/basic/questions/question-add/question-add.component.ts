@@ -39,7 +39,7 @@ export class QuestionAddComponent implements OnInit {
     this.ReportForm = this.formBuilder.group(
       {
         created_fk_by: new FormControl('',[Validators.required]),
-        description: new FormControl(''), 
+        description: new FormControl(''),
         text: new FormControl('',[Validators.required]),
         language: new FormControl('',[Validators.required]),
       }
@@ -51,7 +51,7 @@ export class QuestionAddComponent implements OnInit {
   }
 
   GetEmployeeData() {
-    this.http.getAll(`${Domain.GetUsers}?page=1&limit=1000&order=desc`).subscribe((response) => {
+    this.http.getAll(`${Domain.GetDropDowUser}?order=desc&SortKey=name&employee=true`).subscribe((response) => {
       this.EmployiesData = response;
       console.log(response)
     })

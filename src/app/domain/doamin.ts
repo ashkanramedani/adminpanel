@@ -23,6 +23,7 @@ export const Domain =
   "GetSingleLibrary": `${environment.apiUrl}/api/v1/form/library/{topic}`,
 
   "GetEmployees": `${environment.apiUrl}/api/v1/user/employees`,
+  "GetDropDowUser": `${environment.apiUrl}/api/v1/deopdown/user`,
   "GroupDeletePost": `${environment.apiUrl}/api/v1/form/post`,
 
 
@@ -60,7 +61,7 @@ export const Domain =
   "CreateBusinessTrip": `${environment.apiUrl}/api/v1/form/business_trip/add`,
   "GetBusinessReport": `${environment.apiUrl}/api/v1/form/business_trip/report`,
 
-  "PostProfessorsReports": `${environment.apiUrl}/api/v1/form/salary/employee`,
+  "PostEmployeesSalary": `${environment.apiUrl}/api/v1/form/salary/employee`,
 
   "GetRemoteRequest": `${environment.apiUrl}/api/v1/form/remote_request/search`,
   "CreateRemoteRequest": `${environment.apiUrl}/api/v1/form/remote_request/add`,
@@ -148,6 +149,9 @@ export const Domain =
 
   "GetSalaryEmployee": `${environment.apiUrl}/api/v1/form/salary/employee`,
   "GetSalaryPermision": `${environment.apiUrl}/api/v1/form/salary/permissions`,
+
+  "GetTeacherCourse": `${environment.apiUrl}/api/v1/form/salary/teacher/courses`,
+  "GetTeacherSubCourse": `${environment.apiUrl}/api/v1/form/salary/teacher/sub_courses`,
 
   "Auth":{
     "SingIn": `${environment.IeltsdailyApi}/api/v1/auth/signin`,

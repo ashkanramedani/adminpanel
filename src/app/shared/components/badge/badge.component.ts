@@ -6,8 +6,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BadgeComponent  {
   @Input() title: string
-
-
   setColor(title: string) {
     let color: string = ""
     switch (title) {
@@ -35,4 +33,6 @@ export class BadgeComponent  {
     }
     return (color)
   }
+
+
 }
