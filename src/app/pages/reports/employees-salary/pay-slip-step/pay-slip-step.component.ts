@@ -10,6 +10,7 @@ import { HttpService } from 'src/app/services/http.service';
   templateUrl: './pay-slip-step.component.html',
 })
 export class PaySlipStepComponent implements OnInit {
+  math = Math;
   @Input() UserInfo={} as IuserEditForm
   @Input() id: any
   @Input() year: number
