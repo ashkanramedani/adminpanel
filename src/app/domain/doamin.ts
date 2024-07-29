@@ -149,6 +149,7 @@ export const Domain =
 
   "GetSalaryEmployee": `${environment.apiUrl}/api/v1/form/salary/employee`,
   "GetSalaryPermision": `${environment.apiUrl}/api/v1/form/salary/permissions`,
+  "PutSalaryEmployeeUpdate": `${environment.apiUrl}/api/v1/form/salary/employee/update`,
 
   "GetTeacherCourse": `${environment.apiUrl}/api/v1/form/salary/teacher/courses`,
   "GetTeacherSubCourse": `${environment.apiUrl}/api/v1/form/salary/teacher/sub_courses`,

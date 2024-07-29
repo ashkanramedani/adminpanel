@@ -16,8 +16,9 @@ import { BadgeComponent } from './components/badge/badge.component';
 import { DropDownUsersComponent } from './components/drop-down-users/drop-down-users.component';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { InputWithCommaDirective } from '../directive/input-with-comma.directive';
 @NgModule({
-  declarations: [HeaderComponent, DropDownUsersComponent, BadgeComponent,LinkButtonComponent,SidebarComponent,PaginationComponent, FilterPipe, HijriDatePipe, FormatTimePipe, FloatingInputComponent, LoadingComponent, DayOfWeekPipe],
+  declarations: [HeaderComponent, InputWithCommaDirective,DropDownUsersComponent, BadgeComponent,LinkButtonComponent,SidebarComponent,PaginationComponent, FilterPipe, HijriDatePipe, FormatTimePipe, FloatingInputComponent, LoadingComponent, DayOfWeekPipe],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -26,6 +27,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
     NgSelectModule,
     FormsModule
   ],
-  exports: [HeaderComponent,DropDownUsersComponent,LinkButtonComponent,BadgeComponent ,SidebarComponent,PaginationComponent, FilterPipe, HijriDatePipe, FormatTimePipe, FloatingInputComponent, LoadingComponent, DayOfWeekPipe]
+  exports: [HeaderComponent,DropDownUsersComponent,InputWithCommaDirective,LinkButtonComponent,BadgeComponent ,SidebarComponent,PaginationComponent, FilterPipe, HijriDatePipe, FormatTimePipe, FloatingInputComponent, LoadingComponent, DayOfWeekPipe]
 })
 export class SharedModule { }

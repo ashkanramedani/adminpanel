@@ -15,6 +15,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class FingerPrintStepComponent implements OnInit{
   math = Math;
+  isLoading:boolean=false
   response_fingerprint_report={} as IFingerScannerReport
   isOpenFingerEdit: boolean = false
   FingerprintForm: FormGroup
@@ -35,8 +36,10 @@ export class FingerPrintStepComponent implements OnInit{
 
   }
   GetFingerScannerReport(){
+    this.isLoading=true
     this.http.getAll(`${Domain.GetFingerScannerReport}/${this.id}?year=${this.year}&month=${this.month}`).subscribe((response) => {
       this.response_fingerprint_report = response
+      this.isLoading=false
     })
   }
   OpenFingerEdit(id: string) {
@@ -46,7 +49,7 @@ export class FingerPrintStepComponent implements OnInit{
         next: (response) => {
           console.log(response)
           this.isOpenFingerEdit = true
-          this.FingerScannerResponse = response; 
+          this.FingerScannerResponse = response;
           this.FingerprintForm.controls["Enter"].patchValue(this.FingerScannerResponse.Enter);
           this.FingerprintForm.controls["Exit"].patchValue(this.FingerScannerResponse.Exit);
         },

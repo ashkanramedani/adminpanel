@@ -50,8 +50,9 @@
           شروع فرآیند محاسبات حقوقی
         </button>
       </div>
-      <div *ngIf="isShowenAlert && ResponseDataList.length<1" class="flex bg-blue-100 rounded-lg p-4 my-4 text-md text-blue-700 gap-x-2"
-        role="alert">
+      <app-loading *ngIf="isLoading"></app-loading>
+      <div *ngIf="isShowenAlert && !isLoading &&ResponseDataList.length<1"
+        class="flex bg-blue-100 rounded-lg p-4 my-4 text-md text-blue-700 gap-x-2" role="alert">
         <svg class="w-6 h-6 inline " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd"
             d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
@@ -68,30 +69,35 @@
           <span>موقعیت</span>
           <span>وضعیت</span>
         </div>
-        <div *ngFor="let item of ResponseDataList"
-          class="body grid grid-cols-3 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
-          <div class="flex items-center justify-start pr-4 gap-x-2">
-            <img src="/assets/images/user.svg" class="w-7" alt="">
-            <span>{{ item.name + '&nbsp; &nbsp;'+ item.last_name}}</span>
-          </div>
-          <span>{{item.role}}</span>
-          <div class="operation flex items-center justify-center gap-x-4">
-            <span *ngIf="item.Does_Have_Salary_Record==true " class="border-l pl-3 border-gray-300">
-              محاسبه شده
-            </span>
-            <span *ngIf="item.Does_Have_Salary_Record==false" class="border-l pl-3 border-gray-300 text-red-500">
-              محاسبه نشده
-            </span>
-            <button *ngIf="item.Does_Have_Salary_Record==true" (click)="SalaryCheck(item.user_pk_id)"
-              class="bg-cyan-600  text-white px-5 py-2 rounded-lg font-semibold">
-              بررسی
-            </button>
-            <button *ngIf="item.Does_Have_Salary_Record==false" (click)="SalaryCalculation(item.user_pk_id)"
-              class="bg-cyan-600  text-white px-5 py-2 rounded-lg font-semibold">
-              محاسبه
-            </button>
-          </div>
+        @for (item of ResponseDataList; track item.user_pk_id;let i=$index;let odd=$odd) {
+        <div class="body grid grid-cols-3 text-center text-gray-900 font-medium text-sm mb-5 py-3 rounded-md "  [ngClass]="{'bg-gray-100': odd}">
+          <span class="col-span-3 text-center  blur-none" *ngIf="!item.Does_Have_Salary_Policy;else other">کاربر دسترسی ندارد</span>
+          <ng-template #other>
+            <div class="flex items-center justify-start pr-4 gap-x-2">
+              <img src="/assets/images/user.svg" class="w-7" alt="">
+              <span>{{ item.name + '&nbsp; &nbsp;'+ item.last_name}}</span>
+            </div>
+            <span>{{item.role}}</span>
+            <div class="operation flex items-center justify-center gap-x-4">
+              <span *ngIf="item.Does_Have_Salary_Record==true " class="border-l pl-3 border-gray-300">
+                محاسبه شده
+              </span>
+              <span *ngIf="item.Does_Have_Salary_Record==false" class="border-l pl-3 border-gray-300 text-red-500">
+                محاسبه نشده
+              </span>
+              <button *ngIf="item.Does_Have_Salary_Record==true" (click)="SalaryCheck(item.user_pk_id)"
+                class="bg-cyan-600  text-white px-5 py-2 rounded-lg font-semibold">
+                بررسی
+              </button>
+              <button *ngIf="item.Does_Have_Salary_Record==false" (click)="SalaryCalculation(item.user_pk_id)"
+                class="bg-cyan-600  text-white px-5 py-2 rounded-lg font-semibold">
+                محاسبه
+              </button>
+            </div>
+          </ng-template>
+
         </div>
+        }
 
       </div>
     </form>

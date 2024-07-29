@@ -23,7 +23,7 @@ export class LeaveRequestStepComponent implements OnInit {
   @Input() year: number
   @Input() month: number
   math = Math;
-
+  isLoading:boolean=false
   constructor(private http: HttpService, private alertServices: AlertifyService, private activateRoute: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) { }
   ngOnInit(): void {
     this.LeaveRequestForm = this.formBuilder.group(
@@ -37,9 +37,11 @@ export class LeaveRequestStepComponent implements OnInit {
     this.GetLeaveRequestReport()
   }
   GetLeaveRequestReport() {
+    this.isLoading=true
     this.http.getAll(`${Domain.GetLeaveRequestReport}/${this.id}?year=${this.year}&month=${this.month}`).subscribe((response) => {
       this.response_leave_request_report = response.Vacation.concat(response.Medical)
       console.log("leave request response: ", this.response_leave_request_report)
+      this.isLoading=false
     })
   }
   OpenleaveRequestEdit(id: string) {

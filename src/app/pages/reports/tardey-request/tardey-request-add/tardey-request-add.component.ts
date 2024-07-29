@@ -94,7 +94,7 @@ export class TardeyRequestAddComponent implements OnInit {
       description: this.ReportForm.controls.description.value,
       course_fk_id: this.ReportForm.controls.course_fk_id.value,
       teacher_fk_id: this.ReportForm.controls.teacher_fk_id.value,
-      delay: this.ReportForm.controls.delay.value,
+      delay: this.ReportForm.controls.delay.value.replace(/,/g, ""),
       teacher_tardy_reports_pk_id:this.id,
       sub_course_fk_id:this.ReportForm.controls.sub_course_fk_id.value,
 

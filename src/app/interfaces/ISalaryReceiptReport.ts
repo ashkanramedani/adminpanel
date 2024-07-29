@@ -36,7 +36,7 @@ export interface ISalaryReceiptReport {
   Fix_pay: number;
 }
 interface Employee {
-  name: string;
+  name?: string;
   last_name: string;
   email: string;
   level: string;
@@ -101,4 +101,11 @@ export interface ISalaryDays {
   IsValid: boolean,
   EnterExit: string
   msg: string
+}
+export interface ISalaryEmployeeUpdate{
+  rewards_earning:number
+  punishment_deductions: number
+  loan_installment : number
+  payment?:string,
+  payment_date?:string
 }

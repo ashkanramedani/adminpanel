@@ -100,7 +100,7 @@ export class CourseCancellationAddComponent implements OnInit {
       teacher_fk_id: this.ReportForm.controls.teacher_fk_id.value,
       //replacement_date: this.ReportForm.controls.replacement_date.value,
       replacement_date:moment.from(this.ReportForm.controls.replacement_date.value, 'fa', 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'),
-      course_duration: this.ReportForm.controls.course_duration.value,
+      course_duration: this.ReportForm.controls.course_duration.value.replace(/,/g, ""),
       course_location: this.ReportForm.controls.course_location.value,
       course_cancellation_pk_id:this.id
 

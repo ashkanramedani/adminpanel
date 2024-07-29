@@ -9,7 +9,7 @@ import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-employees-salary',
-  templateUrl: './employees-salary.component.html', 
+  templateUrl: './employees-salary.component.html',
 })
 export class EmployeesSalaryComponent implements OnInit {
   //#region change this information
@@ -41,10 +41,31 @@ export class EmployeesSalaryComponent implements OnInit {
         month: new FormControl<number>(1, [Validators.required]),
       }
     )
+    this.route.queryParams.subscribe((res) => {
+      console.log("res:", res)
+      this.year =Number (res.year);
+      this.month =Number(res.month);
+    });
+    if(this.year>0 && this.month>0)
+    {
+      let Value: any =
+    {
+      year: this.year,
+      month: this.month,
+    }
+    this.ReportForm.controls["year"].patchValue(this.year);
+    this.ReportForm.controls["month"].patchValue(this.month);
+      this.http.create(Domain.PostEmployeesSalary, Value, null).subscribe((response) => {
+        console.log(response)
+        this.ResponseDataList = response
+
+      })
+    }
   }
 
 
   onSubmit() {
+    this.isLoading=true
     if (this.ReportForm.invalid) {
       this.ReportForm.markAllAsTouched();
       return;
@@ -63,12 +84,14 @@ export class EmployeesSalaryComponent implements OnInit {
 
     }
     )
+    this.isLoading=false
   }
   SalaryCheck(user_id: string) {
     if (user_id == null) {
       this.alertServices.error("متاسفانه خطایی رخ داده است")
       return
     }
+    this.router.navigate(['/reports/employees-salary/' + user_id], { queryParams: { step: "5", year: this.year, month: this.month } })
     // this.http.getAll(`${Domain.GetSalaryEmployee}/${user_id}?year=${this.year}&month=${this.month}`).subscribe((response) => {
     //   console.log(response)
     // })
@@ -78,7 +101,7 @@ export class EmployeesSalaryComponent implements OnInit {
       this.alertServices.error("متاسفانه خطایی رخ داده است")
       return
     }
-    this.http.get(Domain.GetSalaryPermision, user_id).subscribe((response) => {      
+    this.http.get(Domain.GetSalaryPermision, user_id).subscribe((response) => {
       if (response.salary_Policy) {
         this.router.navigate(['/reports/employees-salary/' + user_id], { queryParams: { step: "1", year: this.year, month: this.month } })
       }

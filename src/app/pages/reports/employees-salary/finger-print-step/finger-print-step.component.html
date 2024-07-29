@@ -1,3 +1,4 @@
+<app-loading *ngIf="isLoading"></app-loading>
 <div role="alert" class="alert" *ngIf="(response_fingerprint_report | json) == '{}';else otherContent">
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info h-6 w-6 shrink-0">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

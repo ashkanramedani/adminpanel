@@ -8,7 +8,7 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
-  selector: 'app-employees-salary-steps', 
+  selector: 'app-employees-salary-steps',
   templateUrl: './employees-salary-steps.component.html',
 })
 export class EmployeesSalaryStepsComponent implements OnInit {
@@ -55,9 +55,7 @@ export class EmployeesSalaryStepsComponent implements OnInit {
       this.UserInfo = response
     })
   }
-  PrintPage() {
-    window.print()
-  }
+
 
 
 }

@@ -69,7 +69,8 @@ export class SalaryPolicyAddComponent implements OnInit {
         vacation_leave_cap: new FormControl('',[Validators.required]),
         business_trip_permission: new FormControl('',[Validators.required]),
         business_trip_factor: new FormControl('',[Validators.required]),
-        business_trip_cap: new FormControl('',[Validators.required])
+        business_trip_cap: new FormControl('',[Validators.required]),
+        Fix_pay:new FormControl<number>(0,[Validators.required])
       }
     )
     if (this.id != null) {
@@ -121,6 +122,7 @@ export class SalaryPolicyAddComponent implements OnInit {
     this.ReportForm.controls["business_trip_permission"].patchValue(this.AuditForm.business_trip_permission);
     this.ReportForm.controls["business_trip_factor"].patchValue(this.AuditForm.business_trip_factor);
     this.ReportForm.controls["business_trip_cap"].patchValue(this.AuditForm.business_trip_cap);
+     this.ReportForm.controls["Fix_pay"].patchValue(this.AuditForm.Fix_pay);
   }
   onSubmit() {
     if (this.ReportForm.invalid) {
@@ -132,7 +134,7 @@ export class SalaryPolicyAddComponent implements OnInit {
     let ReportFormValue: ISalaryPolicyForms =
     {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
-      Base_salary:this.ReportForm.controls.Base_salary.value,
+      Base_salary:this.ReportForm.controls.Base_salary.value.replace(/,/g, ""),
       user_fk_id: this.ReportForm.controls.user_fk_id.value,
       day_starting_time: this.ReportForm.controls.day_starting_time.value,
       day_ending_time: this.ReportForm.controls.day_ending_time.value,
@@ -157,6 +159,7 @@ export class SalaryPolicyAddComponent implements OnInit {
       business_trip_permission: this.ReportForm.controls.business_trip_permission.value,
       business_trip_factor: this.ReportForm.controls.business_trip_factor.value,
       business_trip_cap: this.ReportForm.controls.business_trip_cap.value,
+      Fix_pay:this.ReportForm.controls.Fix_pay.value.replace(/,/g, ""),
       salary_policy_pk_id: this.id,
       Salary_Type:this.Salary_Type
     }

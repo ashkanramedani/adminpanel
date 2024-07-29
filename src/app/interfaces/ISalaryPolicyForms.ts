@@ -29,4 +29,5 @@ export interface ISalaryPolicyForms {
     business_trip_cap: number
     salary_policy_pk_id:string
     Salary_Type:SalaryTypeEnum
+    Fix_pay:number
 }

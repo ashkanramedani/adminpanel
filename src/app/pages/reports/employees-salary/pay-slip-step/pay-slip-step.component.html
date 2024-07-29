@@ -1,8 +1,13 @@
-<div  class="flex flex-col" id="ContentToPdf">
+<div class="flex flex-col" id="ContentToPdf">
   <div class="flex items-center justify-between border border-gray-300 bg-gray-100 p-3">
-    <div class="flex flex-col gap-y-3 items-center"><b>نام:</b><span>{{response_salary_receipt_report.employee.name}}</span></div>
-    <div class="flex flex-col gap-y-3 items-center"><b>نام خانوادگی:</b><span>{{response_salary_receipt_report.employee.last_name}}</span></div>
-    <div class="flex flex-col gap-y-3 items-center"><b>کدملی:</b><span>{{response_salary_receipt_report.employee.id_card_number}}</span></div>
+    <div class="flex flex-col gap-y-3 items-center">
+      <b>نام:</b><span>{{response_salary_receipt_report.employee!.name}}</span>
+    </div>
+    <div class="flex flex-col gap-y-3 items-center"><b>نام
+        خانوادگی:</b><span>{{response_salary_receipt_report.employee!.last_name}}</span></div>
+    <div class="flex flex-col gap-y-3 items-center">
+      <b>کدملی:</b><span>{{response_salary_receipt_report.employee!.id_card_number}}</span>
+    </div>
     <div class="flex flex-col gap-y-3 items-center"><b>سمت:</b><span>پرسنل</span></div>
     <div class="flex flex-col gap-y-3 items-center"><b>تاریخ صدور فیش:</b><span>-----</span></div>
   </div>
@@ -10,18 +15,24 @@
     <div class="flex justify-center items-center w-full border-l border-gray-300 p-3"><b>سایر</b></div>
     <div class="flex justify-center items-center w-full p-3"><b>کسورات</b></div>
   </div>
-  <div class="flex justify-between border border-gray-300 border-y-0" dir="ltr">    
+  <div class="flex justify-between border border-gray-300 border-y-0" dir="ltr">
     <div class="flex justify-center flex-col gap-y-3 w-full p-4">
       <div class="flex justify-between">
-        <span>{{response_salary_receipt_report.medical_leave_earning | number}} ({{ math.floor(response_salary_receipt_report.medical_leave / 60) | number: '2.'}}:{{response_salary_receipt_report.medical_leave % 60 | number: '2.'}}) </span>
+        <span>{{response_salary_receipt_report.medical_leave_earning | number}} ({{
+          math.floor(response_salary_receipt_report.medical_leave / 60) | number:
+          '2.'}}:{{response_salary_receipt_report.medical_leave % 60 | number: '2.'}}) </span>
         <span>مرخصی استعلاجی</span>
       </div>
       <div class="flex justify-between">
-        <span>{{response_salary_receipt_report.vacation_leave_earning | number}} ({{ math.floor(response_salary_receipt_report.vacation_leave / 60) | number: '2.'}}:{{response_salary_receipt_report.vacation_leave % 60 | number: '2.'}}) </span>
+        <span>{{response_salary_receipt_report.vacation_leave_earning | number}} ({{
+          math.floor(response_salary_receipt_report.vacation_leave / 60) | number:
+          '2.'}}:{{response_salary_receipt_report.vacation_leave % 60 | number: '2.'}}) </span>
         <span>مرخصی استحقاقی</span>
       </div>
       <div class="flex justify-between">
-        <span>{{response_salary_receipt_report.Undertime_deductions | number}} ({{ math.floor(response_salary_receipt_report.Undertime / 60) | number: '2.'}}:{{response_salary_receipt_report.Undertime % 60 | number: '2.'}}) </span>
+        <span>{{response_salary_receipt_report.Undertime_deductions | number}} ({{
+          math.floor(response_salary_receipt_report.Undertime / 60) | number:
+          '2.'}}:{{response_salary_receipt_report.Undertime % 60 | number: '2.'}}) </span>
         <span> تاخیر</span>
       </div>
       <div class="flex justify-between">
@@ -35,31 +46,116 @@
     </div>
     <div class="flex justify-center flex-col gap-y-3 w-full border-l border-gray-300 p-4">
       <div class="flex justify-between">
-        <span>{{response_salary_receipt_report.Overtime_earning | number}} ({{ math.floor(response_salary_receipt_report.Overtime / 60) | number: '2.'}}:{{response_salary_receipt_report.Overtime % 60 | number: '2.'}}) </span>
+        <span>{{response_salary_receipt_report.Overtime_earning | number}} ({{
+          math.floor(response_salary_receipt_report.Overtime / 60) | number:
+          '2.'}}:{{response_salary_receipt_report.Overtime % 60 | number: '2.'}}) </span>
         <span>اضافه کاری</span>
       </div>
       <div class="flex justify-between">
-        <span>{{response_salary_receipt_report.remote_earning | number}} ({{ math.floor(response_salary_receipt_report.remote / 60) | number: '2.'}}:{{response_salary_receipt_report.remote % 60 | number: '2.'}}) </span>
+        <span>{{response_salary_receipt_report.remote_earning | number}} ({{
+          math.floor(response_salary_receipt_report.remote / 60) | number:
+          '2.'}}:{{response_salary_receipt_report.remote % 60 | number: '2.'}}) </span>
         <span>دور کاری</span>
       </div>
       <div class="flex justify-between">
-        <span>{{response_salary_receipt_report.Off_Day_earning | number}} ({{ math.floor(response_salary_receipt_report.Off_Day / 60) | number: '2.'}}:{{response_salary_receipt_report.Off_Day % 60 | number: '2.'}}) </span>
+        <span>{{response_salary_receipt_report.Off_Day_earning | number}} ({{
+          math.floor(response_salary_receipt_report.Off_Day / 60) | number:
+          '2.'}}:{{response_salary_receipt_report.Off_Day % 60 | number: '2.'}}) </span>
         <span>تعطیل کاری</span>
       </div>
       <div class="flex justify-between">
-        <span>{{response_salary_receipt_report.business_trip_earning | number}} ({{ math.floor(response_salary_receipt_report.business_trip / 60) | number: '2.'}}:{{response_salary_receipt_report.business_trip % 60 | number: '2.'}}) </span>
+        <span>{{response_salary_receipt_report.business_trip_earning | number}} ({{
+          math.floor(response_salary_receipt_report.business_trip / 60) | number:
+          '2.'}}:{{response_salary_receipt_report.business_trip % 60 | number: '2.'}}) </span>
         <span> ماموریت</span>
       </div>
       <div class="flex justify-between">
-        <span>{{response_salary_receipt_report.Regular_earning | number}} ({{ math.floor(response_salary_receipt_report.Regular_hours / 60) | number: '2.'}}:{{response_salary_receipt_report.Regular_hours % 60 | number: '2.'}}) </span>
+        <span>{{response_salary_receipt_report.Regular_earning | number}} ({{
+          math.floor(response_salary_receipt_report.Regular_hours / 60) | number:
+          '2.'}}:{{response_salary_receipt_report.Regular_hours % 60 | number: '2.'}}) </span>
         <span> میزان کارکرد کل</span>
       </div>
     </div>
   </div>
   <div class="flex items-center justify-between border border-gray-300 bg-gray-100 py-3 px-6">
-    <div class="flex flex-col gap-y-3 items-center"><b> جمع کسورات:</b><span>{{response_salary_receipt_report.total_deduction | number}}</span></div>
-    <div class="flex flex-col gap-y-3 items-center"><b>مبلغ ناخالص دریافتی:</b><span>{{response_salary_receipt_report.total_income | number}}</span></div>
-    <div class="flex flex-col gap-y-3 items-center"><b> مبلغ قابل پرداخت:</b><span>{{response_salary_receipt_report.total_income | number}}</span></div>
+    <div class="flex flex-col gap-y-3 items-center"><b> جمع
+        کسورات:</b><span>{{response_salary_receipt_report.total_deduction | number}}</span></div>
+    <div class="flex flex-col gap-y-3 items-center"><b>مبلغ ناخالص
+        دریافتی:</b><span>{{response_salary_receipt_report.total_income | number}}</span></div>
+    <div class="flex flex-col gap-y-3 items-center"><b> مبلغ قابل
+        پرداخت:</b><span>{{response_salary_receipt_report.total_income | number}}</span></div>
   </div>
 </div>
 
+<div class="noprint">
+  <form [formGroup]="ReportForm">
+    <div class="grid grid-cols-2 gap-x-3 gap-y-8 w-full py-4">
+      <div class="relative w-full">
+        <ng-persian-datepicker dir="ltr" [dateFormat]="'YYYY-MM-DD'">
+          <input type="text" formControlName="payment_date"
+            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+        </ng-persian-datepicker>
+        <label
+          class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+          تاریخ واریز حقوق </label>
+      </div>
+      <div class="relative">
+        <select formControlName="payment"
+          class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+          <option *ngFor="let item of shabaList" [value]="item.payment_method_pk_id">{{item.shaba}}</option>
+        </select>
+        <label
+          class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+          شماره شبا
+        </label>
+      </div>
+      <div class="relative">
+        <input type="text" InputWithComma formControlName="punishment_deductions"
+          class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+        <label
+          class="absolute text-sm font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+          جریمه مدیریتی
+        </label>
+      </div>
+      <div class="relative">
+        <input type="text" InputWithComma formControlName="rewards_earning"
+          class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+        <label
+          class="absolute text-sm font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+          پاداش مدیریتی
+        </label>
+      </div>
+      <div class="relative">
+        <input type="text" InputWithComma formControlName="loan_installment"
+          class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+        <label
+          class="absolute text-sm font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+          میزان اقساط
+        </label>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="noprint flex items-center justify-between mt-6">
+  <div class="flex items-center gap-x-3">
+    <a [routerLink]="['/reports/employees-salary',this.id]"
+      [queryParams]="{step: (this.step)-1 ,year:this.year,month:this.month}"
+      class="border border-gray-400 px-8 font-semibold py-3 rounded-md bg-gray-300 text-gray-500 text-base gap-x-2 flex items-center"
+      href="">
+      <img src="/assets/images/icon/right-arrow.svg" class="w-8 rotate-180" alt="">
+      <span> مرحله قبل</span>
+    </a>
+    <button (click)="onSubmit()" [disabled]="this.ReportForm.invalid || btnLoading" *ngIf="this.step==5"
+      class="border disabled:bg-cyan-400 disabled:border-cyan-400 border-cyan-600 px-8 font-semibold py-3 rounded-md bg-cyan-600 hover:bg-cyan-700 text-white text-base gap-x-2 flex items-center">
+      <span>صدور فیش حقوقی</span>
+    </button>
+  </div>
+  <div>
+    <a *ngIf="this.step==5" [routerLink]="['/reports/employees-salary']" [queryParams]="{year:this.year,month:this.month}"
+      class="border border-sky-600 px-8 font-semibold py-3 rounded-md bg-sky-600 text-white text-base gap-x-2 flex items-center"
+      href="">
+      <span> بازگشت به لیست پرسنل</span>
+    </a>
+  </div>
+
+</div>

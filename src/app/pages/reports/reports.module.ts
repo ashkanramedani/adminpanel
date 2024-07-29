@@ -42,7 +42,7 @@ import { TeacherSubCourseComponent } from './teachers-salary/teacher-sub-course/
     FingerprintScannerComponent, FingerprintScannerAddComponent, FingerprintScannerBulkComponent, LeaveFormsComponent, LeaveFormAddComponent, RemoteRequestComponent,
     RemoteRequestAddComponent, SalaryPolicyComponent, SalaryPolicyAddComponent, SurveyComponent, SurveyAddComponent, TardeyRequestComponent,
     TardeyRequestAddComponent,TeachersSalaryComponent, TeacherReplacementComponent, TeacherReplacementAddComponent, EmployeesSalaryComponent, OnlyNumberDirective, EmployeesSalaryStepsComponent,
-    BusinessTripStepComponent, FingerPrintStepComponent,TeacherSubCourseComponent , LeaveRequestStepComponent, PaySlipStepComponent, RemoteRequestStepComponent
+    BusinessTripStepComponent, FingerPrintStepComponent,TeacherSubCourseComponent , LeaveRequestStepComponent, PaySlipStepComponent, RemoteRequestStepComponent,
   ],
   imports: [
     CommonModule,
