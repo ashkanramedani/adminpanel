@@ -1,89 +1,175 @@
 <div class="flex flex-col" id="ContentToPdf">
   <div class="flex items-center justify-between border border-gray-300 bg-gray-100 p-3">
-    <div class="flex flex-col gap-y-3 items-center">
-      <b>نام:</b><span>{{response_salary_receipt_report.employee!.name}}</span>
+    <div class="w-2/6 gap-y-3 text-right">
+      <span class="mx-2 font-bold">نام و نام خانوادگی:</span>
+      <span>{{response_salary_receipt_report.employee.name}} {{response_salary_receipt_report.employee.last_name}}</span>
     </div>
-    <div class="flex flex-col gap-y-3 items-center"><b>نام
-        خانوادگی:</b><span>{{response_salary_receipt_report.employee!.last_name}}</span></div>
-    <div class="flex flex-col gap-y-3 items-center">
-      <b>کدملی:</b><span>{{response_salary_receipt_report.employee!.id_card_number}}</span>
+    <div class="w-1/6 gap-y-3 text-right">
+      <span class="mx-2 font-bold">کدملی:</span>
+      <span>{{response_salary_receipt_report.employee.id_card_number}}</span>
     </div>
-    <div class="flex flex-col gap-y-3 items-center"><b>سمت:</b><span>پرسنل</span></div>
-    <div class="flex flex-col gap-y-3 items-center"><b>تاریخ صدور فیش:</b><span>-----</span></div>
+    <div class="w-1/6 gap-y-3 text-right hidden-mobile ">
+      <span class="mx-2 font-bold">سمت:</span>
+      <span>پرسنل</span>
+    </div>
+    <div class="w-2/6 gap-y-3 text-right">
+      <span class="mx-2 md:w-full font-bold">تاریخ صدور فیش:</span>
+      <span>{{currentDate|HijriDate}}</span>
+    </div>
   </div>
   <div class="flex justify-between border border-t-0 border-gray-300 bg-gray-100">
     <div class="flex justify-center items-center w-full border-l border-gray-300 p-3"><b>سایر</b></div>
     <div class="flex justify-center items-center w-full p-3"><b>کسورات</b></div>
   </div>
-  <div class="flex justify-between border border-gray-300 border-y-0" dir="ltr">
-    <div class="flex justify-center flex-col gap-y-3 w-full p-4">
-      <div class="flex justify-between">
-        <span>{{response_salary_receipt_report.medical_leave_earning | number}} ({{
-          math.floor(response_salary_receipt_report.medical_leave / 60) | number:
-          '2.'}}:{{response_salary_receipt_report.medical_leave % 60 | number: '2.'}}) </span>
-        <span>مرخصی استعلاجی</span>
+  <div class="flex justify-between border border-gray-300 border-y-0">
+    <div class="flex justify-center flex-col gap-y-3 w-full border-l border-gray-300 p-4">
+      <div class="flex w-full">
+        <div class="w-2/6 mx-8">اضافه کاری</div>
+        <div class="w-1/6 text-left">
+          <span  class="font-bold" dir="ltr">
+            {{response_salary_receipt_report.Overtime_earning | number: '1.0-0'}}
+          </span>
+        </div>
+        <div class="w-1/6 hidden-mobile">
+          <span  class="text-sm mx-2 hidden-mobile">
+            ({{ math.floor(response_salary_receipt_report.Overtime / 60) | number: '2.'}}:{{response_salary_receipt_report.Overtime % 60 | number: '2.'}})
+          </span>
+        </div>
       </div>
-      <div class="flex justify-between">
-        <span>{{response_salary_receipt_report.vacation_leave_earning | number}} ({{
-          math.floor(response_salary_receipt_report.vacation_leave / 60) | number:
-          '2.'}}:{{response_salary_receipt_report.vacation_leave % 60 | number: '2.'}}) </span>
-        <span>مرخصی استحقاقی</span>
+      <div class="flex w-full">
+        <div class="w-2/6 mx-8">دور کاری</div>
+        <div class="w-1/6 text-left">
+          <span  class="font-bold" dir="ltr">
+            {{response_salary_receipt_report.remote_earning | number: '1.0-0'}}
+          </span>
+        </div>
+        <div class="w-1/6 hidden-mobile">
+          <span  class="text-sm mx-2 hidden-mobile">
+            ({{ math.floor(response_salary_receipt_report.remote / 60) | number: '2.'}}:{{response_salary_receipt_report.remote % 60 | number: '2.'}})
+          </span>
+        </div>
       </div>
-      <div class="flex justify-between">
-        <span>{{response_salary_receipt_report.Undertime_deductions | number}} ({{
-          math.floor(response_salary_receipt_report.Undertime / 60) | number:
-          '2.'}}:{{response_salary_receipt_report.Undertime % 60 | number: '2.'}}) </span>
-        <span> تاخیر</span>
+      <div class="flex w-full">
+        <div class="w-2/6 mx-8">تعطیل کاری</div>
+        <div class="w-1/6 text-left">
+          <span  class="font-bold" dir="ltr">
+            {{response_salary_receipt_report.Off_Day_earning | number: '1.0-0'}}
+          </span>
+        </div>
+        <div class="w-1/6 hidden-mobile">
+          <span  class="text-sm mx-2">
+            ({{ math.floor(response_salary_receipt_report.Off_Day / 60) | number: '2.'}}:{{response_salary_receipt_report.Off_Day % 60 | number: '2.'}})
+          </span>
+        </div>
       </div>
-      <div class="flex justify-between">
-        <span>{{response_salary_receipt_report.insurance_deductions | number}} (در حال حاضر محاسبه نمی گردد) </span>
-        <span> بیمه</span>
+      <div class="flex w-full">
+        <div class="w-2/6 mx-8"> ماموریت</div>
+        <div class="w-1/6 text-left">
+          <span  class="font-bold" dir="ltr">
+            {{response_salary_receipt_report.business_trip_earning | number: '1.0-0'}}
+          </span>
+        </div>
+        <div class="w-1/6 hidden-mobile">
+          <span  class="text-sm mx-2">
+            ({{ math.floor(response_salary_receipt_report.business_trip / 60) | number: '2.'}}:{{response_salary_receipt_report.business_trip % 60 | number: '2.'}})
+          </span>
+        </div>
       </div>
-      <div class="flex justify-between">
-        <span>{{response_salary_receipt_report.tax_deductions | number}} (در حال حاضر محاسبه نمی گردد) </span>
-        <span> مالیات</span>
+      <div class="flex w-full">
+        <div class="w-2/6 mx-8"> میزان کارکرد کل</div>
+        <div class="w-1/6 text-left">
+          <span  class="font-bold" dir="ltr">
+            {{response_salary_receipt_report.Regular_earning | number: '1.0-0'}}
+          </span>
+        </div>
+        <div class="w-1/6 hidden-mobile">
+          <span  class="text-sm mx-2">
+            ({{ math.floor(response_salary_receipt_report.Regular_hours / 60) | number: '2.'}}:{{response_salary_receipt_report.Regular_hours % 60 | number: '2.'}})
+          </span>
+        </div>
       </div>
     </div>
-    <div class="flex justify-center flex-col gap-y-3 w-full border-l border-gray-300 p-4">
-      <div class="flex justify-between">
-        <span>{{response_salary_receipt_report.Overtime_earning | number}} ({{
-          math.floor(response_salary_receipt_report.Overtime / 60) | number:
-          '2.'}}:{{response_salary_receipt_report.Overtime % 60 | number: '2.'}}) </span>
-        <span>اضافه کاری</span>
+    <div class="flex justify-center flex-col gap-y-3 w-full p-4">
+      <div class="flex w-full">
+        <div class="w-2/6 mx-8">مرخصی استعلاجی</div>
+        <div class="w-1/6 text-left">
+          <span  class="font-bold" dir="ltr">
+            {{response_salary_receipt_report.medical_leave_earning | number: '1.0-0'}}
+          </span>
+        </div>
+        <div class="w-1/6 hidden-mobile">
+          <span  class="text-sm mx-2">
+            ({{ math.floor(response_salary_receipt_report.medical_leave / 60) | number: '2.'}}:{{response_salary_receipt_report.medical_leave % 60 | number: '2.'}})
+          </span>
+        </div>
       </div>
-      <div class="flex justify-between">
-        <span>{{response_salary_receipt_report.remote_earning | number}} ({{
-          math.floor(response_salary_receipt_report.remote / 60) | number:
-          '2.'}}:{{response_salary_receipt_report.remote % 60 | number: '2.'}}) </span>
-        <span>دور کاری</span>
+      <div class="flex w-full">
+        <div class="w-2/6 mx-8">مرخصی استحقاقی</div>
+        <div class="w-1/6 text-left">
+          <span class="font-bold" dir="ltr">
+            {{response_salary_receipt_report.vacation_leave_earning | number: '1.0-0'}}
+          </span>
+        </div>
+        <div class="w-1/6 hidden-mobile">
+          <span  class="text-sm mx-2">
+            ({{ math.floor(response_salary_receipt_report.vacation_leave / 60) | number: '2.'}}:{{response_salary_receipt_report.vacation_leave % 60 | number: '2.'}})
+          </span>
+        </div>
       </div>
-      <div class="flex justify-between">
-        <span>{{response_salary_receipt_report.Off_Day_earning | number}} ({{
-          math.floor(response_salary_receipt_report.Off_Day / 60) | number:
-          '2.'}}:{{response_salary_receipt_report.Off_Day % 60 | number: '2.'}}) </span>
-        <span>تعطیل کاری</span>
+      <div class="flex w-full">
+        <div class="w-2/6 mx-8"> تاخیر</div>
+        <div class="w-1/6 text-left">
+          <span class="font-bold" dir="ltr">
+            {{response_salary_receipt_report.Undertime_deductions | number: '1.0-0'}}
+          </span>
+        </div>
+        <div class="w-1/6 hidden-mobile">
+          <span  class="text-sm mx-2">
+            ({{ math.floor(response_salary_receipt_report.Undertime / 60) | number: '2.'}}:{{response_salary_receipt_report.Undertime % 60 | number: '2.'}})
+          </span>
+        </div>
       </div>
-      <div class="flex justify-between">
-        <span>{{response_salary_receipt_report.business_trip_earning | number}} ({{
-          math.floor(response_salary_receipt_report.business_trip / 60) | number:
-          '2.'}}:{{response_salary_receipt_report.business_trip % 60 | number: '2.'}}) </span>
-        <span> ماموریت</span>
+      <div class="flex w-full">
+        <div class="w-2/6 mx-8"> بیمه</div>
+        <div class="w-1/6 text-left">
+          <span class="font-bold" dir="ltr">
+            {{response_salary_receipt_report.insurance_deductions | number: '1.0-0'}}
+          </span>
+        </div>
+        <div class="w-1/6 hidden-mobile">
+          <span  class="text-sm mx-2">
+            (بزودی)
+          </span>
+        </div>
       </div>
-      <div class="flex justify-between">
-        <span>{{response_salary_receipt_report.Regular_earning | number}} ({{
-          math.floor(response_salary_receipt_report.Regular_hours / 60) | number:
-          '2.'}}:{{response_salary_receipt_report.Regular_hours % 60 | number: '2.'}}) </span>
-        <span> میزان کارکرد کل</span>
+      <div class="flex w-full">
+        <div class="w-2/6 mx-8"> مالیات</div>
+        <div class="w-1/6 text-left">
+          <span class="font-bold" dir="ltr">
+            {{response_salary_receipt_report.tax_deductions | number: '1.0-0'}}
+          </span>
+        </div>
+        <div class="w-1/6 hidden-mobile">
+          <span  class="text-sm mx-2">
+            (بزودی)
+          </span>
+        </div>
       </div>
     </div>
   </div>
   <div class="flex items-center justify-between border border-gray-300 bg-gray-100 py-3 px-6">
-    <div class="flex flex-col gap-y-3 items-center"><b> جمع
-        کسورات:</b><span>{{response_salary_receipt_report.total_deduction | number}}</span></div>
-    <div class="flex flex-col gap-y-3 items-center"><b>مبلغ ناخالص
-        دریافتی:</b><span>{{response_salary_receipt_report.total_income | number}}</span></div>
-    <div class="flex flex-col gap-y-3 items-center"><b> مبلغ قابل
-        پرداخت:</b><span>{{response_salary_receipt_report.total_income | number}}</span></div>
+    <div class="w-2/6 gap-y-3 text-center">
+      <span class=" mx-2"> جمع کسورات:</span>
+      <span class="font-bold">{{response_salary_receipt_report.total_deduction | number: '1.0-0'}}</span>
+    </div>
+    <div class="w-2/6 gap-y-3 text-center">
+      <span class=" mx-2">مبلغ ناخالص دریافتی:</span>
+      <span class="font-bold">{{response_salary_receipt_report.total_earning | number: '1.0-0'}}</span>
+    </div>
+    <div class="w-2/6 gap-y-3 text-center">
+      <span class=" mx-2"> مبلغ قابل پرداخت:</span>
+      <span class="font-bold">{{response_salary_receipt_report.total_income | number: '1.0-0'}}</span>
+    </div>
   </div>
 </div>
 

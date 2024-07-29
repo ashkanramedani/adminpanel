@@ -9,10 +9,12 @@ import { ISalaryEmployeeUpdate, ISalaryReceiptReport } from 'src/app/interfaces/
 import { IuserEditForm } from 'src/app/interfaces/IuserEditForm';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-pay-slip-step',
   templateUrl: './pay-slip-step.component.html',
+  providers: [DatePipe]
 })
 export class PaySlipStepComponent implements OnInit {
   math = Math;
@@ -21,6 +23,7 @@ export class PaySlipStepComponent implements OnInit {
   @Input() year: number
   @Input() month: number
   ReportForm: FormGroup
+  currentDate=new Date().toLocaleDateString()
   step: number
   btnLoading: boolean = false
   response_salary_receipt_report = {} as ISalaryReceiptReport

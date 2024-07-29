@@ -185,3 +185,9 @@ tr:hover {
 {
   box-shadow: none !important;
 }
+
+@media (max-width: 768px) {
+  .hidden-mobile {
+    display: none;
+  }
+}
