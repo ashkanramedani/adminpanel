@@ -4,21 +4,26 @@ import { ISalaryReceiptReport } from 'src/app/interfaces/ISalaryReceiptReport';
 import { IuserEditForm } from 'src/app/interfaces/IuserEditForm';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-pay-slip-step',
   templateUrl: './pay-slip-step.component.html',
+  providers: [DatePipe]
 })
 export class PaySlipStepComponent implements OnInit {
   math = Math;
+  currentDate: any;
+  
   @Input() UserInfo={} as IuserEditForm
   @Input() id: any
   @Input() year: number
   @Input() month: number
   response_salary_receipt_report={} as ISalaryReceiptReport
-
-  constructor(private http: HttpService, private alertServices: AlertifyService) { }
-
+  constructor(private http: HttpService, private alertServices: AlertifyService, private datePipe: DatePipe) { 
+    this.currentDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+  }
+ 
   ngOnInit(): void {
    this.GetSalaryEmployee()
   }
