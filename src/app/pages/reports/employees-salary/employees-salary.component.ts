@@ -78,9 +78,9 @@ export class EmployeesSalaryComponent implements OnInit {
       this.alertServices.error("متاسفانه خطایی رخ داده است")
       return
     }
-    this.http.get(Domain.GetSalaryPermision, user_id).subscribe((response) => {
+    this.http.get(Domain.GetSalaryPermision, user_id).subscribe((response) => {      
       if (response.salary_Policy) {
-        this.router.navigate(['/reports/professorsreport/' + user_id], { queryParams: { step: "1", year: this.year, month: this.month } })
+        this.router.navigate(['/reports/employees-salary/' + user_id], { queryParams: { step: "1", year: this.year, month: this.month } })
       }
       else {
         this.alertServices.error(" برای این پرسنل قراردادی ثبت نشده است")

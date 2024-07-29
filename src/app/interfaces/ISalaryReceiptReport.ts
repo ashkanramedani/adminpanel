@@ -97,7 +97,7 @@ export interface ISalaryDays {
   Regular_hours: number,
   Overtime: number,
   Undertime: number,
-  off_Day_Overtime: number,
+  Off_Day: number,
   IsValid: boolean,
   EnterExit: string
   msg: string
