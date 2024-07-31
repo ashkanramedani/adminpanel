@@ -23,6 +23,7 @@ export class RemoteRequestStepComponent implements OnInit {
   RemoteRequestForm: FormGroup
   have_Permission:boolean=false
   math = Math;
+  isLoading:boolean=false
   constructor(private http: HttpService, private alertServices: AlertifyService, private activateRoute: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -45,9 +46,11 @@ export class RemoteRequestStepComponent implements OnInit {
   }
 
   GetRemoteRequestReport() {
+    this.isLoading=true
     this.http.getAll(`${Domain.GetRemoteRequestReport}/${this.id}?year=${this.year}&month=${this.month}`).subscribe((response) => {
       this.response_remote_request_report = response
       console.log("business trip response: ", response)
+      this.isLoading=false
     })
   }
   ChangeStatusRemoteRequest(id: string) {

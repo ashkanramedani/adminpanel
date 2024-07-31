@@ -23,6 +23,7 @@ export class BusinessTripStepComponent implements OnInit {
   BusinessTripForm: FormGroup
   have_Permission:boolean=false
   math = Math;
+  isloading:boolean=false
   constructor(private http: HttpService, private alertServices: AlertifyService, private activateRoute: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -45,9 +46,11 @@ export class BusinessTripStepComponent implements OnInit {
       })
   }
   GetBusinessReport() {
+    this.isloading=true
     this.http.getAll(`${Domain.GetBusinessReport}/${this.id}?year=${this.year}&month=${this.month}`).subscribe((response) => {
       this.response_business_trip_report = response
       console.log("business trip response: ", response)
+      this.isloading=false
     })
   }
 

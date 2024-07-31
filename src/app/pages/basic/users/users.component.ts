@@ -18,7 +18,7 @@ export class UsersComponent implements OnInit {
   SingleData: IUserSigleForm
   form_title = "اطلاعات پایه / پرسنل"
   table_header: string[] = ["ردیف", "نام", "نقش", "عملیات"]
-  field_count:string="User"
+  field_count:string="employee"
   get_all_route:string=Domain.GetUsers
   delete_route:string=Domain.DeleteUsers
   add_url:string="/basic/user/add"

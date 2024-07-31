@@ -1,5 +1,5 @@
 <app-loading *ngIf="isLoading"></app-loading>
-<div role="alert" class="alert" *ngIf="response_leave_request_report.length<1;else otherContent">
+<div role="alert" class="alert" *ngIf="!isLoading && response_leave_request_report.length<1;else otherContent">
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info h-6 w-6 shrink-0">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
       d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -38,7 +38,7 @@
         </td>
         <td class="border-b py-3 border-gray-200  text-center flex flex-col">
           <div >{{ math.floor(item.duration / 60) | number: '2.'}}:{{item.duration % 60 | number: '2.'}}</div>
-            <div class="text-xs">{{item.duration}} دقیقه </div>
+            <div class="text-xs">{{item.duration | number:'1.0':'en-US'}} &nbsp; دقیقه </div>
         </td>
         <td class="border-b py-3 border-gray-200  text-center">
           <input type="checkbox" (change)="ChangeStatusLeaveRequest(item.leave_request_pk_id)"
