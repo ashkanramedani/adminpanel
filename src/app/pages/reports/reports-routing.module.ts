@@ -16,6 +16,8 @@ import { TeacherReplacementComponent } from './teacher-replacement/teacher-repla
 import { TeacherReplacementAddComponent } from './teacher-replacement/teacher-replacement-add/teacher-replacement-add.component';
 import { CourseCancellationComponent } from './course-cancellation/course-cancellation.component';
 import { CourseCancellationAddComponent } from './course-cancellation/course-cancellation-add/course-cancellation-add.component';
+import { SessionCancellationComponent } from './session-cancellation/session-cancellation.component';
+import { SessionCancellationAddComponent } from './session-cancellation/session-cancellation-add/session-cancellation-add.component';
 import { SurveyComponent } from './survey/survey.component';
 import { SurveyAddComponent } from './survey/survey-add/survey-add.component';
 import { FingerprintScannerBulkComponent } from './fingerprint-scanner/fingerprint-scanner-bulk/fingerprint-scanner-bulk.component';
@@ -57,6 +59,10 @@ const routes: Routes = [
 {path:'class_cancellation',component:CourseCancellationComponent},
 {path:'class_cancellation/add',component:CourseCancellationAddComponent},
 {path:'class_cancellation/edit/:id',component:CourseCancellationAddComponent},
+
+{path:'session_cancellation',component:SessionCancellationComponent},
+{path:'session_cancellation/add',component:SessionCancellationAddComponent},
+{path:'session_cancellation/edit/:id',component:SessionCancellationAddComponent},
 
 {path:'survey',component:SurveyComponent},
 {path:'survey/add',component:SurveyAddComponent},

@@ -6,6 +6,8 @@ import { BusinessTripComponent } from './business-trip/business-trip.component';
 import { BusinessTripAddComponent } from './business-trip/business-trip-add/business-trip-add.component';
 import { CourseCancellationComponent } from './course-cancellation/course-cancellation.component';
 import { CourseCancellationAddComponent } from './course-cancellation/course-cancellation-add/course-cancellation-add.component';
+import { SessionCancellationComponent } from './session-cancellation/session-cancellation.component';
+import { SessionCancellationAddComponent } from './session-cancellation/session-cancellation-add/session-cancellation-add.component';
 import { FingerprintScannerComponent } from './fingerprint-scanner/fingerprint-scanner.component';
 import { FingerprintScannerAddComponent } from './fingerprint-scanner/fingerprint-scanner-add/fingerprint-scanner-add.component';
 import { LeaveFormsComponent } from './leave-forms/leave-forms.component';
@@ -38,7 +40,9 @@ import { EmployeesSalaryStepsComponent } from './employees-salary/employees-sala
 import { TeachersSalaryComponent } from './teachers-salary/teachers-salary.component';
 import { TeacherSubCourseComponent } from './teachers-salary/teacher-sub-course/teacher-sub-course.component';
 @NgModule({
-  declarations: [BusinessTripComponent, BusinessTripAddComponent, CourseCancellationComponent, CourseCancellationAddComponent,
+  declarations: [BusinessTripComponent, BusinessTripAddComponent, 
+    CourseCancellationComponent, CourseCancellationAddComponent,
+    SessionCancellationComponent, SessionCancellationAddComponent,
     FingerprintScannerComponent, FingerprintScannerAddComponent, FingerprintScannerBulkComponent, LeaveFormsComponent, LeaveFormAddComponent, RemoteRequestComponent,
     RemoteRequestAddComponent, SalaryPolicyComponent, SalaryPolicyAddComponent, SurveyComponent, SurveyAddComponent, TardeyRequestComponent,
     TardeyRequestAddComponent,TeachersSalaryComponent, TeacherReplacementComponent, TeacherReplacementAddComponent, EmployeesSalaryComponent, OnlyNumberDirective, EmployeesSalaryStepsComponent,

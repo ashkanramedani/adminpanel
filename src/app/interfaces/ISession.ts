@@ -89,3 +89,9 @@ export interface ISessionUpdate{
   sub_request_threshold: number;
   session_pk_id: string;
 }
+
+export interface ISession{
+  days_of_week: number;
+  session_pk_id: string;
+  session_date: string;
+}
