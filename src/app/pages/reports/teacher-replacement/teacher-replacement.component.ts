@@ -1,8 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { ISalaryPolicy } from 'src/app/interfaces/ISalaryPolicy';
-import { ITardeyRequest } from 'src/app/interfaces/ITardeyRequest';
+import { ISalaryPolicy } from 'src/app/interfaces/ISalaryPolicy'; 
 import { ITeacherReplacement } from 'src/app/interfaces/TeacherReplacement';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';

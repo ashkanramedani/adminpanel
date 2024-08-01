@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { ISalaryPolicy } from 'src/app/interfaces/ISalaryPolicy';
-import { ITardeyRequest } from 'src/app/interfaces/ITardeyRequest';
+import { ITardeyRequestAdd, ITardeyRequestAll, ITardeyRequestSingle } from 'src/app/interfaces/ITardeyRequest';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -13,8 +12,8 @@ export class TardeyRequestComponent implements OnInit {
 
 
   //#region change this informaion
-  ResponseDataList: ITardeyRequest[] = []
-  SingleData: ISalaryPolicy
+  ResponseDataList: ITardeyRequestAll[] = []
+  SingleData: ITardeyRequestSingle
   form_title = "گزارشات /  تاخیر اساتید"
   table_header: string[] = ["ردیف", "سازنده", " استاد ", "کلاس ","تاخیر ","وضعیت","عملیات"]
   field_count:string="Teacher_Tardy_report"
@@ -37,9 +36,7 @@ export class TardeyRequestComponent implements OnInit {
   ngOnInit(): void {
     this.GetResponseData(1, 10, this.order)
     this.GetResponseDataLenght()
-
   }
-
   GetResponseDataLenght() {
     this.http.getAll(`${Domain.GetCount}?field=${this.field_count}`).subscribe((response) => {
       this.totalCount = response
@@ -79,7 +76,6 @@ export class TardeyRequestComponent implements OnInit {
     this.order = value.target.value
     this.GetResponseData(1, 10, this.order);
   }
-
   OpenModal(id: string) {
     if (id == null) {
       alert("رکورد وجود ندارد")
