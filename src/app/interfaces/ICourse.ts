@@ -15,7 +15,7 @@ export interface ICourseAll{
   starting_date: string;
   ending_date: string;
   teachers: IUsers[];
-  course_signature: Coursesignature[];
+  session_signature: Coursesignature[];
   available_seat: number;
   tags: any[];
   categories: any[];

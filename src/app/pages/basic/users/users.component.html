@@ -77,12 +77,14 @@
             نام
           </label>
           <span>{{SingleData.name+ " "+SingleData.last_name }}</span>
+          <span *ngIf="isEmpty(SingleData.name)">اطلاعاتی ثبت نشده! </span>
         </div>
         <div>
           <label class="my-3 block text-base font-semibold ">
             ایمیل
           </label>
           <span>{{SingleData.email}}</span>
+          <span *ngIf="isEmpty(SingleData.email)">اطلاعاتی ثبت نشده! </span>
         </div>
 
         <div>
@@ -90,19 +92,51 @@
             آدرس
           </label>
           <span>{{SingleData.address}}</span>
+          <span *ngIf="isEmpty(SingleData.address)">اطلاعاتی ثبت نشده! </span>
         </div>
         <div>
           <label class="my-3 block text-base font-semibold ">
             همراه
           </label>
           <span>{{SingleData.mobile_number}}</span>
+          <span *ngIf="isEmpty(SingleData.mobile_number)">اطلاعاتی ثبت نشده! </span>
+        </div>
+        <div>
+          <label class="my-3 block text-base font-semibold ">
+            کد ملی
+          </label>
+          <span>{{SingleData.id_card_number}}</span>
+          <span *ngIf="isEmpty(SingleData.id_card_number)">اطلاعاتی ثبت نشده! </span>
+        </div>
+        <div>
+          <label class="my-3 block text-base font-semibold ">
+            تاریخ تولد
+          </label>
+          <span>{{SingleData.day_of_birth|HijriDate}}</span>
+          <span *ngIf="isEmpty(SingleData.day_of_birth)">اطلاعاتی ثبت نشده! </span>
+        </div>
+
+
+
+        <div>
+          <label class="my-3 block text-base font-semibold ">
+            سطح
+          </label>
+          <span>{{SingleData.level}}</span>
+          <span *ngIf="isEmpty(SingleData.level)">اطلاعاتی ثبت نشده! </span>
+        </div>
+        <div>
+          <label class="my-3 block text-base font-semibold ">
+            ID اثر انگشت
+          </label>
+          <span>{{SingleData.fingerprint_scanner_user_id}}</span>
         </div>
         <div class="col-span-2 ">
           <label class="my-3 block text-base font-semibold ">
             نقش ها
           </label>
           <div class="flex items-center justify-center gap-x-3">
-            <span *ngIf="SingleData.roles.length<1">ثبت نشده است!</span>
+            <span *ngIf="SingleData.roles.length<1">اطلاعاتی ثبت نشده !</span>
             <span *ngFor="let item of SingleData.roles"
               class="text-black dark:text-white rounded-lg px-3 py-1 bg-gray-200">{{item.name}}</span>
           </div>

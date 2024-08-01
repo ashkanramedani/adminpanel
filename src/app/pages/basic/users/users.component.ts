@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { IUserSigleForm } from 'src/app/interfaces/IUserSigleForm';
+import { IUserSigle, IUserSigleForm } from 'src/app/interfaces/IUserSigleForm';
 import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit {
 
   //#region change this informaion
   ResponseDataList: IUsers[] = []
-  SingleData: IUserSigleForm
+  SingleData: IUserSigle
   form_title = "اطلاعات پایه / پرسنل"
   table_header: string[] = ["ردیف", "نام", "نقش", "عملیات"]
   field_count:string="employee"
@@ -100,4 +100,9 @@ export class UsersComponent implements OnInit {
     this.currentPage=event
     this.GetResponseData(this.currentPage,10,this.order)
     }
+     isEmpty(value:string) {
+      return (value == null  || (typeof value === "string" && value.trim().length === 0));
+    }
+
+
 }
