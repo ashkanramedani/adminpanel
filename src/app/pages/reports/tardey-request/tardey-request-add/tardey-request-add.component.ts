@@ -8,7 +8,6 @@ import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { IClassDetails } from 'src/app/interfaces/IClassDetails';
 import { ISubCourseAll } from 'src/app/interfaces/ISubCourse';
-import { IuserEditForm } from 'src/app/interfaces/IuserEditForm';
 import { ITardeyRequestAdd, ITardeyRequestSingle, ITardeyRequestUpdate } from 'src/app/interfaces/ITardeyRequest';
 import { ISessionAll } from 'src/app/interfaces/ISession';
 
@@ -17,7 +16,6 @@ import { ISessionAll } from 'src/app/interfaces/ISession';
   templateUrl: './tardey-request-add.component.html',
 })
 export class TardeyRequestAddComponent implements OnInit {
-  //#region change this information
   cancle_link: string = '/reports/tardy_request'
   form_title: string = "  تاخیر اساتید"
   AuditForm: ITardeyRequestSingle
@@ -37,7 +35,7 @@ export class TardeyRequestAddComponent implements OnInit {
   RolesData: IRoles[] = []
   ClassData: IClassDetails[] = []
   sub_course_data: ISubCourseAll[] = []
-  session_data:ISessionAll[]=[]
+  session_data: ISessionAll[] = []
   id: any;
   EmployiesData = {} as IUsers | undefined
   btnLoading: boolean = false
@@ -55,6 +53,7 @@ export class TardeyRequestAddComponent implements OnInit {
         description: new FormControl(''),
         delay: new FormControl('', [Validators.required]),
         session_fk_id: new FormControl('', [Validators.required]),
+        sub_course_teacher:new FormControl('',),
       }
     )
     this.ReportFormUpdate = this.formBuilder.group(
@@ -81,24 +80,24 @@ export class TardeyRequestAddComponent implements OnInit {
       });
   }
   FillFormData() {
-    // this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
-    // this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
-    // this.ReportForm.controls["course_fk_id"].patchValue(this.AuditForm.course_fk_id);
-    // this.ReportForm.controls["teacher_fk_id"].patchValue(this.AuditForm.teacher_fk_id);
-    // this.ReportForm.controls["delay"].patchValue(this.AuditForm.delay)
+    this.ReportFormUpdate.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
+    this.ReportFormUpdate.controls["description"].patchValue(this.AuditForm.description);
+    this.ReportFormUpdate.controls["delay"].patchValue(this.AuditForm.delay);
   }
   onSubmit() {
     this.btnLoading = true
     if (this.id != null) {
       if (this.ReportFormUpdate.invalid) {
+        this.alertServices.error("مقادیر اجباری را وارد نمایید")
         this.ReportFormUpdate.markAllAsTouched();
+        this.btnLoading = false
         return;
       }
       let formUpdateValue: ITardeyRequestUpdate =
       {
-        created_fk_by: this.ReportFormAdd.controls.created_fk_by.value,
-        description: this.ReportFormAdd.controls.description.value,
-        delay: this.ReportFormAdd.controls.delay.value,
+        created_fk_by: this.ReportFormUpdate.controls.created_fk_by.value,
+        description: this.ReportFormUpdate.controls.description.value,
+        delay: this.ReportFormUpdate.controls.delay.value,
         teacher_tardy_report_pk_id: this.id
       }
       this.http.put(this.put_route, formUpdateValue, null).subscribe((response) => {
@@ -111,6 +110,8 @@ export class TardeyRequestAddComponent implements OnInit {
     else {
       if (this.ReportFormAdd.invalid) {
         this.ReportFormAdd.markAllAsTouched();
+        this.alertServices.error("مقادیر اجباری را وارد نمایید")
+        this.btnLoading = false
         return;
       }
       let formAddValue: ITardeyRequestAdd =
@@ -141,11 +142,6 @@ export class TardeyRequestAddComponent implements OnInit {
   //     console.log(response)
   //   })
   // }
-  getSessionDate(){
-    this.http.getAll(Domain.GetSession).subscribe((response) => {
-      this.session_data = response;
-    })
-  }
   ChangeCourse(value: any) {
     this.http.get(Domain.GetSubCourseByCourseId, value.target.value).subscribe((response) => {
       console.log("sub is : ", response)
@@ -155,12 +151,15 @@ export class TardeyRequestAddComponent implements OnInit {
 
   }
   ChangeSubCourse(event: any) {
-    this.EmployiesData = this.sub_course_data.find((x) => x.sub_course_pk_id == event.target.value)?.teacher
+    this.http.get(Domain.GetSessionBySubCourseId, event.target.value).subscribe((response) => {
+      this.session_data = response
+    })
+   let sub_course_teacher = this.sub_course_data.find((x) => x.sub_course_pk_id == event.target.value)?.teacher
+    this.ReportFormAdd.controls["sub_course_teacher"].patchValue(sub_course_teacher?.name + "  " +sub_course_teacher?.last_name);
   }
   GetEmployeeData() {
     this.http.getAll(`${Domain.GetDropDowUser}?order=desc&SortKey=name&employee=true`).subscribe((response) => {
       this.Creators = response;
-      console.log(response)
     })
   }
 }

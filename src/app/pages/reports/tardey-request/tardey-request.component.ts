@@ -15,12 +15,12 @@ export class TardeyRequestComponent implements OnInit {
   ResponseDataList: ITardeyRequestAll[] = []
   SingleData: ITardeyRequestSingle
   form_title = "گزارشات /  تاخیر اساتید"
-  table_header: string[] = ["ردیف", "سازنده", " استاد ", "کلاس ","تاخیر ","وضعیت","عملیات"]
-  field_count:string="Teacher_Tardy_report"
-  get_all_route:string=Domain.GetTardeyRequest
-  delete_route:string=Domain.DeleteTardeyRequest
-  add_url:string="/reports/tardy_request/add"
-  edit_url:string="/reports/tardy_request/edit"
+  table_header: string[] = ["ردیف", " دوره ", "درس ", "جلسه", "تاخیر ", "وضعیت", "عملیات"]
+  field_count: string = "Teacher_Tardy_report"
+  get_all_route: string = Domain.GetTardeyRequest
+  delete_route: string = Domain.DeleteTardeyRequest
+  add_url: string = "/reports/tardy_request/add"
+  edit_url: string = "/reports/tardy_request/edit"
   //#endregion
   ResponseDataLenght: number[];
   totalCount: number = 0
@@ -29,8 +29,8 @@ export class TardeyRequestComponent implements OnInit {
   isLoading: boolean = true
   order: string = "desc"
   IsShowenModal: boolean = false
-   page:number=1
-   limit:number=10
+  page: number = 1
+  limit: number = 10
   currentPage: number = 1
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
@@ -44,7 +44,7 @@ export class TardeyRequestComponent implements OnInit {
     })
   }
   GetResponseData(page: number, limit: number, order: string) {
- this.isLoading = true;
+    this.isLoading = true;
     this.http.getAll(`${this.get_all_route}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       this.ResponseDataList = response;
 
@@ -85,15 +85,34 @@ export class TardeyRequestComponent implements OnInit {
       .get(this.get_all_route, id)
       .subscribe((response) => {
         this.SingleData = response;
+        this.http.get(Domain.GetUsers, this.SingleData.created_fk_by).subscribe((emp)=>
+          {
+            console.log("emp: "+emp)
+            this.SingleData.created_fk_by=emp.name + " "+emp.last_name
+          })
+          this.http.get(Domain.GetUsers, this.SingleData.teacher_fk_id).subscribe((emp)=>
+            {
+              console.log("emp: "+emp)
+              this.SingleData.teacher_fk_id=emp.name + " "+emp.last_name
+            })
+          this.http.get(Domain.GetcourseData, this.SingleData.course_fk_id).subscribe((x) => {
+            this.SingleData.course_fk_id = x.course_name
+          })
+          this.http.get(Domain.GetSubCourseData, this.SingleData.sub_course_fk_id).subscribe((x) => {
+            this.SingleData.sub_course_fk_id = x.sub_course_name
+          })
+          this.http.get(Domain.GetSession, this.SingleData.session_fk_id).subscribe((x) => {
+            this.SingleData.session_fk_id = x.session_date
+          })
         this.IsShowenModal = true
       });
   }
   CloseModal() {
     this.IsShowenModal = false
   }
-  changePage(event :number){
-    this.currentPage=event
-    this.GetResponseData(this.currentPage,10,this.order)
-    }
+  changePage(event: number) {
+    this.currentPage = event
+    this.GetResponseData(this.currentPage, 10, this.order)
+  }
 }
 

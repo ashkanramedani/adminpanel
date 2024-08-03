@@ -40,7 +40,7 @@ export class SessionAddComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot?.paramMap.get('id');
     this.GetCourseData()
-    this.GetSubCourseData()
+    //this.GetSubCourseData()
     this.GetEmployeeData()
     this.GetRolesData()
     this.ReportForm = this.formBuilder.group(
@@ -159,12 +159,19 @@ export class SessionAddComponent implements OnInit {
       console.log(response)
     })
   }
-  GetSubCourseData() {
-    this.http.getAll(Domain.GetSubCourseData).subscribe((response) => {
+  // GetSubCourseData() {
+  //   this.http.getAll(Domain.GetSubCourseData).subscribe((response) => {
+  //     this.SubCourseData = response;
+  //     console.log(response)
+  //   })
+  // }
+  ChangeCourse(value: any) {
+    this.http.get(Domain.GetSubCourseByCourseId, value.target.value).subscribe((response) => {
+      console.log("sub is : ", response)
       this.SubCourseData = response;
-      console.log(response)
-    })
-  }
 
+    })
+
+  }
 }
 

@@ -33,7 +33,7 @@ const routes: Routes = [
 
   {path:'tardy_request',component:TardeyRequestComponent},
   {path:'tardy_request/add',component:TardeyRequestAddComponent},
-  {path:'tardy_request/edit/:id',component:TardeyRequestComponent},
+  {path:'tardy_request/edit/:id',component:TardeyRequestAddComponent},
 
   {path:'leave_request',component:LeaveFormsComponent},
   {path:'leave_request/add',component:LeaveFormAddComponent},
@@ -56,9 +56,9 @@ const routes: Routes = [
 {path:'teacher_replacement/add',component:TeacherReplacementAddComponent},
 {path:'teacher_replacement/edit/:id',component:TeacherReplacementAddComponent},
 
-{path:'class_cancellation',component:CourseCancellationComponent},
-{path:'class_cancellation/add',component:CourseCancellationAddComponent},
-{path:'class_cancellation/edit/:id',component:CourseCancellationAddComponent},
+// {path:'class_cancellation',component:CourseCancellationComponent},
+// {path:'class_cancellation/add',component:CourseCancellationAddComponent},
+// {path:'class_cancellation/edit/:id',component:CourseCancellationAddComponent},
 
 {path:'session_cancellation',component:SessionCancellationComponent},
 {path:'session_cancellation/add',component:SessionCancellationAddComponent},

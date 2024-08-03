@@ -79,9 +79,10 @@ export const Domain =
   "CreateSession": `${environment.apiUrl}/api/v1/form/session/add`,
   "DeleteSession": `${environment.apiUrl}/api/v1/form/session/delete`,
   "PutSesssion": `${environment.apiUrl}/api/v1/form/session/update`,
-  
+  "GetSessionBySubCourseId" : `${environment.apiUrl}/api/v1/form/session/subcourse`,
+
   "GetSingleSesssionCancellation": `${environment.apiUrl}/api/v1/form/sesssion_cancellation/search`,
-  "GetSessionCancellation": `${environment.apiUrl}/api/v1/form/session_cancellation/search`,  
+  "GetSessionCancellation": `${environment.apiUrl}/api/v1/form/session_cancellation/search`,
   "DeleteSessionCancellation": `${environment.apiUrl}/api/v1/form/session_cancellation/delete`,
   "CreateSessionCancellation": `${environment.apiUrl}/api/v1/form/session_cancellation/add`,
   "PutSessionCancellation": `${environment.apiUrl}/api/v1/form/session_cancellation/update`,

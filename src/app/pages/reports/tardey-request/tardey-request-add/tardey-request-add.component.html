@@ -7,7 +7,7 @@
     </ol>
   </nav>
   <div class="icon flex items-center gap-x-3 py-2">
-    <button [disabled]="btnLoading"
+    <button [disabled]="btnLoading" (click)="this.onSubmit()"
       class="border border-cyan-600 px-4 py-2 rounded-md bg-cyan-600 text-white disabled:bg-cyan-400 disabled:border-cyan-400">
       ذخیره
     </button>
@@ -31,6 +31,7 @@
         <div class="relative">
           <select (change)="ChangeCourse($event)"
             class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+            <option selected disabled  [value]="-1">----</option>
             <option *ngFor="let item of ClassData" [value]="item.course_pk_id">{{item.course_name}}</option>
           </select>
           <label
@@ -41,6 +42,7 @@
         <div class="relative">
           <select (change)="ChangeSubCourse($event)"
             class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+            <option selected disabled  [value]="-1">----</option>
             <option *ngFor="let item of sub_course_data" [value]="item.sub_course_pk_id">{{item.sub_course_name}}
             </option>
           </select>
@@ -50,9 +52,18 @@
           </label>
         </div>
         <div class="relative">
+          <input type="text" InputWithComma formControlName="sub_course_teacher"
+            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+          <label
+            class="absolute text-sm font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+             استاد درس
+          </label>
+        </div>
+        <div class="relative">
           <select formControlName="session_fk_id"
             class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-            <option *ngFor="let item of session_data" [value]="item.session_pk_id">{{item.session_date}}</option>
+            <option *ngFor="let item of session_data" [value]="item.session_pk_id">
+            روز  {{item.days_of_week|DayOfWeek  }} &nbsp; (  {{item.session_date|HijriDate }})</option>
           </select>
           <label
             class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">نام
@@ -67,7 +78,7 @@
             میزان تاخیر
           </label>
         </div>
-        <div class="relative">
+        <div class="relative col-span-2">
           <input type="text" formControlName="description"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
           <label
@@ -89,40 +100,6 @@
               class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">سازنده
             </label>
           </div>
-
-          <div class="relative">
-            <select formControlName="course_fk_id" (change)="ChangeCourse($event)"
-              class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-              <option *ngFor="let item of ClassData" [value]="item.course_pk_id">{{item.course_name}}</option>
-            </select>
-            <label
-              class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">نام
-              دوره
-            </label>
-          </div>
-          <div class="relative">
-            <select formControlName="sub_course_fk_id" (change)="ChangeSubCourse($event)"
-              class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-              <option *ngFor="let item of sub_course_data" [value]="item.sub_course_pk_id">{{item.sub_course_name}}
-              </option>
-            </select>
-            <label
-              class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">نام
-              درس
-            </label>
-          </div>
-
-          <div class="relative">
-            <select formControlName="teacher_fk_id"
-              class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-              <option *ngIf="(EmployiesData | json) != '{}'" [value]="EmployiesData?.user_pk_id">{{EmployiesData?.name+"
-                "+EmployiesData?.last_name}}</option>
-            </select>
-            <label
-              class="absolute text-sm font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-              استاد کلاس
-            </label>
-          </div>
           <div class="relative">
             <input type="text" InputWithComma formControlName="delay"
               class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
@@ -131,7 +108,7 @@
               میزان تاخیر
             </label>
           </div>
-          <div class="relative">
+          <div class="relative col-span-2">
             <input type="text" formControlName="description"
               class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
             <label

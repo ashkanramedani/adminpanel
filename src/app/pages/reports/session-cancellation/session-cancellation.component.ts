@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { ISessionCancellation } from 'src/app/interfaces/ISessionCancellation';
+import { ISessionCancellationAdd, ISessionCancellationAll, ISessionCancellationSingle } from 'src/app/interfaces/ISessionCancellation';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -10,10 +10,10 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class SessionCancellationComponent implements OnInit {
   //#region change this informaion
-  ResponseDataList: ISessionCancellation[] = []
-  SingleData: ISessionCancellation
+  ResponseDataList:  ISessionCancellationAll[] = []
+  SingleData: ISessionCancellationSingle
   form_title = "گزارشات /  کنسلی جلسه "
-  table_header: string[] = ["ردیف" ,"  کلاس","  استاد", "تاریخ جابجایی","وضعیت","عملیات"]
+  table_header: string[] = ["ردیف" ,"  دوره","  درس", "جلسه ", "استاد", "وضعیت","عملیات"]
   field_count:string="Session_Cancellation"
   get_all_route:string=Domain.GetSessionCancellation
   delete_route:string=Domain.DeleteSessionCancellation
@@ -47,7 +47,6 @@ export class SessionCancellationComponent implements OnInit {
  this.isLoading = true;
     this.http.getAll(`${this.get_all_route}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       this.ResponseDataList = response;
-
       this.isLoading = false
       console.log(response)
     })
@@ -86,11 +85,11 @@ export class SessionCancellationComponent implements OnInit {
       .get(this.get_all_route, id)
       .subscribe((response) => {
         this.SingleData = response;
-        // this.http.get(Domain.GetUsers, this.SingleData.created_fk_by).subscribe((emp)=>
-        //   {
-        //     console.log("emp: "+emp)
-        //     this.SingleData.created_fk_by=emp.name + " "+emp.last_name
-        //   })
+        this.http.get(Domain.GetUsers, this.SingleData.created_fk_by).subscribe((emp)=>
+          {
+            console.log("emp: "+emp)
+            this.SingleData.created_fk_by=emp.name + " "+emp.last_name
+          })
         this.IsShowenModal = true
       });
   }
