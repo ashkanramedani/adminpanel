@@ -18,31 +18,31 @@ import { ISessionCancellationAdd, ISessionCancellationSingle } from 'src/app/int
 export class SessionCancellationAddComponent implements OnInit {
   //#region change this information
   cancle_link: string = '/reports/session_cancellation'
-  form_title:string="   کنسلی جلسه"
+  form_title: string = "   کنسلی جلسه"
   AuditForm: ISessionCancellationSingle
   get_Singel_route: string = Domain.GetSessionCancellation
   put_route: string = Domain.PutSessionCancellation
   create_route: string = Domain.CreateSessionCancellation
-  Creators:IUsers[]=[]
+  Creators: IUsers[] = []
   session_data: ISessionAll[] = []
   //#endregion
   page_title: string = "ایجاد"
-  isOpenTab:number=1
-  OpenTab(value:number){
-    this.isOpenTab=value
+  isOpenTab: number = 1
+  OpenTab(value: number) {
+    this.isOpenTab = value
   }
   ReportFormAdd: FormGroup;
-  ReportFormUpdate:FormGroup
+  ReportFormUpdate: FormGroup
   isOpenSearchRole: boolean = false
   RolesData: IRoles[] = []
-  ClassData: ICourseAll [] = []
-  sub_course_data:ISubCourseAll[]=[]
-  session_sub_course_data: ISession[]=[]
+  ClassData: ICourseAll[] = []
+  sub_course_data: ISubCourseAll[] = []
+  session_sub_course_data: ISession[] = []
   id: any;
   btnLoading: boolean = false
   isLoading: boolean = false
 
-  constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService,private router:Router) {  }
+  constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService, private router: Router) { }
   ngOnInit(): void {
     this.id = this.route.snapshot?.paramMap.get('id');
     this.GetClassData()
@@ -51,18 +51,17 @@ export class SessionCancellationAddComponent implements OnInit {
       {
         created_fk_by: new FormControl('', [Validators.required]),
         description: new FormControl(''),
-        delay: new FormControl('', [Validators.required]),
         session_fk_id: new FormControl('', [Validators.required]),
-        sub_course_teacher:new FormControl('',),
+        sub_course_teacher :new FormControl(''),
       }
     )
-    this.ReportFormUpdate = this.formBuilder.group(
-      {
-        created_fk_by: new FormControl('', [Validators.required]),
-        description: new FormControl(''),
-        delay: new FormControl('', [Validators.required]),
-      }
-    )
+    // this.ReportFormUpdate = this.formBuilder.group(
+    //   {
+    //     created_fk_by: new FormControl('', [Validators.required]),
+    //     description: new FormControl(''),
+    //     delay: new FormControl('', [Validators.required]),
+    //   }
+    // )
     if (this.id != null) {
       this.page_title = 'ویرایش';
       this.get_single_Data();
@@ -90,34 +89,33 @@ export class SessionCancellationAddComponent implements OnInit {
     this.ReportFormUpdate.controls["session_fk_id"].patchValue(this.AuditForm.session_fk_id);
   }
   onSubmit() {
-    // if (this.ReportForm.invalid) {
-    //   this.ReportForm.markAllAsTouched();
-    //   return;
-    // }
-    // this.btnLoading = true
-    // let ReportFormValue: ISessionCancellationAdd = {
-    //   created_fk_by: this.ReportForm.controls.created_fk_by.value,
-    //   description: this.ReportForm.controls.description.value,
-    //   session_fk_id: this.ReportForm.controls.session_fk_id.value
-
-    // }
-    // if (this.id != null) {
-    //   this.http.put(this.put_route, ReportFormValue, null).subscribe((response) => {
-    //     console.log(response)
-    //     this.alertServices.success("با موفقیت ویرایش شد");
-    //     this.router.navigate([this.cancle_link])
-    //   }
-    //   )
-    // }
-    // else {
-    //   this.http.create(this.create_route, ReportFormValue, null).subscribe((response) => {
-    //     console.log(response)
-    //     this.alertServices.success("با موفقیت اضافه شد");
-    //     this.ReportForm.reset();
-    //   }
-    //   )
-    // }
-    // this.btnLoading = false
+    if (this.id != null) {
+      // this.http.put(this.put_route, ReportFormValue, null).subscribe((response) => {
+      //   console.log(response)
+      //   this.alertServices.success("با موفقیت ویرایش شد");
+      //   this.router.navigate([this.cancle_link])
+      // }
+      // )
+    }
+    else {
+      if (this.ReportFormAdd.invalid) {
+        this.ReportFormAdd.markAllAsTouched();
+        return;
+      }
+      this.btnLoading = true
+      let ReportFormValue: ISessionCancellationAdd = {
+        created_fk_by: this.ReportFormAdd.controls.created_fk_by.value,
+        description: this.ReportFormAdd.controls.description.value,
+        session_fk_id: this.ReportFormAdd.controls.session_fk_id.value
+      }
+      this.http.create(this.create_route, ReportFormValue, null).subscribe((response) => {
+        console.log(response)
+        this.alertServices.success("با موفقیت اضافه شد");
+        this.ReportFormAdd.reset();
+      }
+      )
+    }
+    this.btnLoading = false
   }
   GetClassData() {
     this.http.getAll(Domain.GetcourseData).subscribe((response) => {
@@ -125,9 +123,9 @@ export class SessionCancellationAddComponent implements OnInit {
       console.log(response)
     })
   }
-  ChangeCourse(value:any){
-    this.http.get(Domain.GetSubCourseByCourseId,value.target.value).subscribe((response)=>{
-      console.log("sub is : " ,response)
+  ChangeCourse(value: any) {
+    this.http.get(Domain.GetSubCourseByCourseId, value.target.value).subscribe((response) => {
+      console.log("sub is : ", response)
       this.sub_course_data = response;
 
     })
@@ -136,8 +134,8 @@ export class SessionCancellationAddComponent implements OnInit {
     this.http.get(Domain.GetSessionBySubCourseId, event.target.value).subscribe((response) => {
       this.session_data = response
     })
-   let sub_course_teacher = this.sub_course_data.find((x) => x.sub_course_pk_id == event.target.value)?.teacher
-    this.ReportFormAdd.controls["sub_course_teacher"].patchValue(sub_course_teacher?.name + "  " +sub_course_teacher?.last_name);
+    let sub_course_teacher = this.sub_course_data.find((x) => x.sub_course_pk_id == event.target.value)?.teacher
+    this.ReportFormAdd.controls["sub_course_teacher"].patchValue(sub_course_teacher?.name + "  " + sub_course_teacher?.last_name);
   }
 }
 
