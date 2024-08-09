@@ -12,8 +12,6 @@ import { RemoteRequestComponent } from './remote-request/remote-request.componen
 import { FingerprintScannerComponent } from './fingerprint-scanner/fingerprint-scanner.component';
 import { RemoteRequestAddComponent } from './remote-request/remote-request-add/remote-request-add.component';
 import { FingerprintScannerAddComponent } from './fingerprint-scanner/fingerprint-scanner-add/fingerprint-scanner-add.component';
-import { TeacherReplacementComponent } from './teacher-replacement/teacher-replacement.component';
-import { TeacherReplacementAddComponent } from './teacher-replacement/teacher-replacement-add/teacher-replacement-add.component';
 import { CourseCancellationComponent } from './course-cancellation/course-cancellation.component';
 import { CourseCancellationAddComponent } from './course-cancellation/course-cancellation-add/course-cancellation-add.component';
 import { SessionCancellationComponent } from './session-cancellation/session-cancellation.component';
@@ -25,6 +23,8 @@ import { EmployeesSalaryComponent } from './employees-salary/employees-salary.co
 import { EmployeesSalaryStepsComponent } from './employees-salary/employees-salary-steps/employees-salary-steps.component';
 import { TeachersSalaryComponent } from './teachers-salary/teachers-salary.component';
 import { TeacherSubCourseComponent } from './teachers-salary/teacher-sub-course/teacher-sub-course.component';
+import { SubRequestComponent } from './sub-request/sub-request.component';
+import { SubRequestAddComponent } from './sub-request/sub-request-add/sub-request-add.component';
 
 const routes: Routes = [
   {path:'salarypolicy',component:SalaryPolicyComponent},
@@ -52,9 +52,9 @@ const routes: Routes = [
 {path:'finger_scanner/add',component:FingerprintScannerAddComponent},
 {path:'finger_scanner/edit/:id',component:FingerprintScannerAddComponent},
 
-{path:'teacher_replacement',component:TeacherReplacementComponent},
-{path:'teacher_replacement/add',component:TeacherReplacementAddComponent},
-{path:'teacher_replacement/edit/:id',component:TeacherReplacementAddComponent},
+{path:'sub_request',component:SubRequestComponent},
+{path:'sub_request/add',component:SubRequestAddComponent},
+{path:'sub_request/edit/:id',component:SubRequestAddComponent},
 
 // {path:'class_cancellation',component:CourseCancellationComponent},
 // {path:'class_cancellation/add',component:CourseCancellationAddComponent},

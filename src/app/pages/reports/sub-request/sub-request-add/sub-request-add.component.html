@@ -32,7 +32,7 @@
         <div class="relative">
           <select (change)="ChangeCourse($event)"
             class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-            <option selected disabled  [value]="-1">----</option>
+            <option selected disabled [value]="-1">----</option>
             <option *ngFor="let item of ClassData" [value]="item.course_pk_id">{{item.course_name}}</option>
           </select>
           <label
@@ -44,7 +44,7 @@
         <div class="relative">
           <select (change)="ChangeSubCourse($event)"
             class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-            <option selected disabled  [value]="-1">----</option>
+            <option selected disabled [value]="-1">----</option>
             <option *ngFor="let item of sub_course_data" [value]="item.sub_course_pk_id">{{item.sub_course_name}}
             </option>
           </select>
@@ -55,18 +55,19 @@
           </label>
         </div>
         <div class="relative">
-          <input type="text" InputWithComma formControlName="sub_course_teacher"
+          <input type="text" formControlName="sub_course_teacher"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
           <label
             class="absolute text-sm font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-             استاد درس
+            استاد درس
+            <span class="text-red-500 text-lg">*</span>
           </label>
         </div>
         <div class="relative">
           <select formControlName="session_fk_id"
             class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
             <option *ngFor="let item of session_data" [value]="item.session_pk_id">
-            روز  {{item.days_of_week|DayOfWeek  }} &nbsp; (  {{item.session_date|HijriDate }})</option>
+              روز {{item.days_of_week|DayOfWeek }} &nbsp; ( {{item.session_date|HijriDate }})</option>
           </select>
           <label
             class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">نام
@@ -75,11 +76,13 @@
           </label>
         </div>
         <div class="relative">
-          <input type="text" InputWithComma formControlName="delay"
-            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+          <select formControlName="sub_teacher_fk_id"
+            class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+            <option *ngFor="let item of teachers" [value]="item.user_pk_id">{{item.name+" "+item.last_name}}</option>
+          </select>
           <label
-            class="absolute text-sm font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-            میزان تاخیر
+            class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">نام
+            استاد جایگزین
             <span class="text-red-500 text-lg">*</span>
           </label>
         </div>
@@ -105,12 +108,58 @@
               class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">سازنده
             </label>
           </div>
+
           <div class="relative">
-            <input type="text" InputWithComma formControlName="delay"
-              class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+            <select (change)="ChangeCourse($event)"
+              class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+              <option *ngFor="let item of ClassData" [value]="item.course_pk_id">{{item.course_name}}</option>
+            </select>
             <label
-              class="absolute text-sm font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-              میزان تاخیر
+              class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">نام
+              دوره
+            </label>
+          </div>
+          <div class="relative">
+            <select (change)="ChangeSubCourse($event)" formControlName="sub_course_fk_id"
+              class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+              <option *ngFor="let item of sub_course_data" [value]="item.sub_course_pk_id">{{item.sub_course_name}}
+              </option>
+            </select>
+            <label
+              class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">نام
+              درس
+            </label>
+          </div>
+
+
+          <div class="relative">
+            <select formControlName="main_teacher_fk_id"
+              class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+              <option *ngFor="let item of Creators" [value]="item.user_pk_id">{{item.name+" "+item.last_name}}</option>
+            </select>
+            <label
+              class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">سازنده
+            </label>
+          </div>
+          <div class="relative">
+            <select formControlName="session_fk_id"
+              class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+              <option *ngFor="let item of session_data" [value]="item.session_pk_id">
+                روز {{item.days_of_week|DayOfWeek }} &nbsp; ( {{item.session_date|HijriDate }})</option>
+            </select>
+            <label
+              class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">نام
+              جلسه
+            </label>
+          </div>
+          <div class="relative">
+            <select formControlName="sub_teacher_fk_id"
+              class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+              <option *ngFor="let item of teachers" [value]="item.user_pk_id">{{item.name+" "+item.last_name}}</option>
+            </select>
+            <label
+              class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">نام
+              استاد جایگزین
             </label>
           </div>
           <div class="relative col-span-2">

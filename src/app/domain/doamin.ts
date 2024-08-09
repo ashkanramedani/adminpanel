@@ -70,10 +70,10 @@ export const Domain =
   "DeleteRemoteRequest": `${environment.apiUrl}/api/v1/form/remote_request/delete`,
   "GetRemoteRequestReport": `${environment.apiUrl}/api/v1/form/remote_request/report`,
 
-  "GetTeacherReplacement": `${environment.apiUrl}/api/v1/form/sub_request/search`,
-  "CreateTeacherReplacement": `${environment.apiUrl}/api/v1/form/sub_request/add`,
-  "DeleteTeacherReplacement": `${environment.apiUrl}/api/v1/form/sub_request/delete`,
-  "PutTeacherReplacement": `${environment.apiUrl}/api/v1/form/sub_request/update`,
+  "GetSubRequest": `${environment.apiUrl}/api/v1/form/sub_request/search`,
+  "CreateSubRequest": `${environment.apiUrl}/api/v1/form/sub_request/add`,
+  "DeleteSubRequest": `${environment.apiUrl}/api/v1/form/sub_request/delete`,
+  "PutSubRequest": `${environment.apiUrl}/api/v1/form/sub_request/update`,
 
   "GetSession": `${environment.apiUrl}/api/v1/form/session/search`,
   "CreateSession": `${environment.apiUrl}/api/v1/form/session/add`,

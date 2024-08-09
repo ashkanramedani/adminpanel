@@ -5,8 +5,7 @@ import { Domain } from 'src/app/domain/doamin';
 import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
-import { IRoles } from 'src/app/interfaces/IRoles';
-import { IRolesForm } from 'src/app/interfaces/IRolesForm';
+import { IRoles } from 'src/app/interfaces/IRoles'; 
 import { IStudentsForm } from 'src/app/interfaces/IStudentsForm';
 import * as moment from 'jalali-moment';
 

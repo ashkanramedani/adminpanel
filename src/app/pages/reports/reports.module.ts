@@ -19,9 +19,7 @@ import { SalaryPolicyAddComponent } from './salary-policy/salary-policy-add/sala
 import { SurveyComponent } from './survey/survey.component';
 import { SurveyAddComponent } from './survey/survey-add/survey-add.component';
 import { TardeyRequestComponent } from './tardey-request/tardey-request.component';
-import { TardeyRequestAddComponent } from './tardey-request/tardey-request-add/tardey-request-add.component';
-import { TeacherReplacementComponent } from './teacher-replacement/teacher-replacement.component';
-import { TeacherReplacementAddComponent } from './teacher-replacement/teacher-replacement-add/teacher-replacement-add.component';
+import { TardeyRequestAddComponent } from './tardey-request/tardey-request-add/tardey-request-add.component'; 
 import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -39,13 +37,15 @@ import { EmployeesSalaryComponent } from './employees-salary/employees-salary.co
 import { EmployeesSalaryStepsComponent } from './employees-salary/employees-salary-steps/employees-salary-steps.component';
 import { TeachersSalaryComponent } from './teachers-salary/teachers-salary.component';
 import { TeacherSubCourseComponent } from './teachers-salary/teacher-sub-course/teacher-sub-course.component';
+import { SubRequestAddComponent } from './sub-request/sub-request-add/sub-request-add.component';
+import { SubRequestComponent } from './sub-request/sub-request.component';
 @NgModule({
-  declarations: [BusinessTripComponent, BusinessTripAddComponent, 
+  declarations: [BusinessTripComponent, BusinessTripAddComponent,
     CourseCancellationComponent, CourseCancellationAddComponent,
     SessionCancellationComponent, SessionCancellationAddComponent,
     FingerprintScannerComponent, FingerprintScannerAddComponent, FingerprintScannerBulkComponent, LeaveFormsComponent, LeaveFormAddComponent, RemoteRequestComponent,
     RemoteRequestAddComponent, SalaryPolicyComponent, SalaryPolicyAddComponent, SurveyComponent, SurveyAddComponent, TardeyRequestComponent,
-    TardeyRequestAddComponent,TeachersSalaryComponent, TeacherReplacementComponent, TeacherReplacementAddComponent, EmployeesSalaryComponent, OnlyNumberDirective, EmployeesSalaryStepsComponent,
+    TardeyRequestAddComponent,TeachersSalaryComponent, SubRequestAddComponent, SubRequestComponent, EmployeesSalaryComponent, OnlyNumberDirective, EmployeesSalaryStepsComponent,
     BusinessTripStepComponent, FingerPrintStepComponent,TeacherSubCourseComponent , LeaveRequestStepComponent, PaySlipStepComponent, RemoteRequestStepComponent,
   ],
   imports: [

@@ -6,8 +6,7 @@ import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
-import { IRolesForm } from 'src/app/interfaces/IRolesForm';
-import { IRoleCluster } from 'src/app/interfaces/IRoleCluster';
+import { IRolesForm } from 'src/app/interfaces/IRolesForm'; 
 
 @Component({
   selector: 'app-role-add',
