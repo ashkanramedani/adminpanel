@@ -97,7 +97,7 @@ export class SubRequestComponent implements OnInit {
         })
         this.http.get(Domain.GetUsers, this.SingleData.sub_teacher_fk_id).subscribe((emp) => {
           console.log("emp: " + emp)
-          this.SingleData.sub_request_pk_id = emp.name + " " + emp.last_name
+          this.SingleData.sub_teacher_fk_id = emp.name + " " + emp.last_name
         })
         this.http.get(Domain.GetcourseData, this.SingleData.course_fk_id).subscribe((x) => {
           this.SingleData.course_fk_id = x.course_name

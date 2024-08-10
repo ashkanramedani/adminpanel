@@ -1,17 +1,51 @@
-import { IUsers } from "./IUsers"
-
 export interface ITardeyRequestAll
 {
-  created: IUsers;
+  created: Created;
   description: string;
   status: string;
   priority: number;
+  note: Note;
   teacher_tardy_report_pk_id: string;
   delay: number;
-  teacher: IUsers;
+  teacher: Created;
   course: Course;
   sub_course: Subcourse;
   session: Session;
+}
+export interface Session {
+  session_pk_id: string;
+  is_sub: boolean;
+  session_date: string;
+  session_starting_time: string;
+  session_ending_time: string;
+  course: Course;
+  sub_course: Subcourse;
+  teacher: Created;
+}
+export interface Subcourse {
+  sub_course_pk_id: string;
+  sub_course_name: string;
+  number_of_session: number;
+  sub_course_starting_date: string;
+  sub_course_ending_date: string;
+  sub_course_capacity: number;
+  sub_course_available_seat: number;
+  teacher: Created;
+}
+export  interface Course {
+  course_pk_id: string;
+  course_name: string;
+  starting_date: string;
+  ending_date: string;
+  course_level: string;
+}
+export interface Note {
+}
+interface Created {
+  user_pk_id: string;
+  name: string;
+  last_name: string;
+
 }
 export interface ITardeyRequestSingle
 {
@@ -35,8 +69,7 @@ export interface ITardeyRequestSingle
   description: string;
   delay: number;
 }
-interface Note {
-}
+
 export interface ITardeyRequestAdd
 {
   created_fk_by: string;
@@ -53,31 +86,3 @@ export interface ITardeyRequestUpdate
   teacher_tardy_report_pk_id: string;
 }
 
-
-export interface Course {
-  course_pk_id: string;
-  course_name: string;
-  starting_date: string;
-  ending_date: string;
-  course_level: string;
-}
-export interface Subcourse {
-  sub_course_pk_id: string;
-  sub_course_name: string;
-  number_of_session: number;
-  sub_course_starting_date: string;
-  sub_course_ending_date: string;
-  sub_course_capacity: number;
-  sub_course_available_seat: number;
-  teacher: IUsers;
-}
-export interface Session {
-  session_pk_id: string;
-  is_sub: boolean;
-  session_date: string;
-  session_starting_time: string;
-  session_ending_time: string;
-  course: Course;
-  sub_course: Subcourse;
-  teacher: IUsers;
-}
