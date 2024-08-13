@@ -25,6 +25,8 @@ import { TeachersSalaryComponent } from './teachers-salary/teachers-salary.compo
 import { TeacherSubCourseComponent } from './teachers-salary/teacher-sub-course/teacher-sub-course.component';
 import { SubRequestComponent } from './sub-request/sub-request.component';
 import { SubRequestAddComponent } from './sub-request/sub-request-add/sub-request-add.component';
+import { TeacherSessionsComponent } from './teachers-salary/teacher-sessions/teacher-sessions.component';
+import { SalaryStepComponent } from './teachers-salary/salary-step/salary-step.component';
 
 const routes: Routes = [
   {path:'salarypolicy',component:SalaryPolicyComponent},
@@ -73,7 +75,9 @@ const routes: Routes = [
 {path:'employees-salary/:id',component:EmployeesSalaryStepsComponent},
 
 {path:'teachers-salary',component:TeachersSalaryComponent},
-{path:'teachers-salary/sub-course/:id',component:TeacherSubCourseComponent}
+{path:'teachers-salary/sub-course/:id',component:TeacherSubCourseComponent},
+{path:'teachers-salary/session/:id',component:TeacherSessionsComponent},
+{path:'teacher-salary/:id',component:SalaryStepComponent},
 ];
 
 @NgModule({

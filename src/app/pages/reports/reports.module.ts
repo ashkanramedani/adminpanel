@@ -19,7 +19,7 @@ import { SalaryPolicyAddComponent } from './salary-policy/salary-policy-add/sala
 import { SurveyComponent } from './survey/survey.component';
 import { SurveyAddComponent } from './survey/survey-add/survey-add.component';
 import { TardeyRequestComponent } from './tardey-request/tardey-request.component';
-import { TardeyRequestAddComponent } from './tardey-request/tardey-request-add/tardey-request-add.component'; 
+import { TardeyRequestAddComponent } from './tardey-request/tardey-request-add/tardey-request-add.component';
 import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -39,14 +39,23 @@ import { TeachersSalaryComponent } from './teachers-salary/teachers-salary.compo
 import { TeacherSubCourseComponent } from './teachers-salary/teacher-sub-course/teacher-sub-course.component';
 import { SubRequestAddComponent } from './sub-request/sub-request-add/sub-request-add.component';
 import { SubRequestComponent } from './sub-request/sub-request.component';
+import { TeacherSessionsComponent } from './teachers-salary/teacher-sessions/teacher-sessions.component';
+import { SalaryStepComponent } from './teachers-salary/salary-step/salary-step.component';
+import { SecondStageComponent } from './teachers-salary/salary-step/second-stage/second-stage.component';
+import { TeacherAbsentComponent } from './teachers-salary/salary-step/teacher-absent/teacher-absent.component';
+import { TeacherCancellationComponent } from './teachers-salary/salary-step/teacher-cancellation/teacher-cancellation.component';
+import { TeacherClassHolidayComponent } from './teachers-salary/salary-step/teacher-class-holiday/teacher-class-holiday.component';
+import { TeacherPaySlipComponent } from './teachers-salary/salary-step/teacher-pay-slip/teacher-pay-slip.component';
+import { TeacherSubRequestComponent } from './teachers-salary/salary-step/teacher-sub-request/teacher-sub-request.component';
+import { TeacherTardeyComponent } from './teachers-salary/salary-step/teacher-tardey/teacher-tardey.component';
 @NgModule({
-  declarations: [BusinessTripComponent, BusinessTripAddComponent,
-    CourseCancellationComponent, CourseCancellationAddComponent,
-    SessionCancellationComponent, SessionCancellationAddComponent,
+  declarations: [BusinessTripComponent, BusinessTripAddComponent, TeacherSessionsComponent, SecondStageComponent, TeacherAbsentComponent, TeacherCancellationComponent,
+    CourseCancellationComponent, CourseCancellationAddComponent, SalaryStepComponent, TeacherClassHolidayComponent, TeacherPaySlipComponent,
+    SessionCancellationComponent, SessionCancellationAddComponent, TeacherSubRequestComponent, TeacherTardeyComponent,
     FingerprintScannerComponent, FingerprintScannerAddComponent, FingerprintScannerBulkComponent, LeaveFormsComponent, LeaveFormAddComponent, RemoteRequestComponent,
     RemoteRequestAddComponent, SalaryPolicyComponent, SalaryPolicyAddComponent, SurveyComponent, SurveyAddComponent, TardeyRequestComponent,
-    TardeyRequestAddComponent,TeachersSalaryComponent, SubRequestAddComponent, SubRequestComponent, EmployeesSalaryComponent, OnlyNumberDirective, EmployeesSalaryStepsComponent,
-    BusinessTripStepComponent, FingerPrintStepComponent,TeacherSubCourseComponent , LeaveRequestStepComponent, PaySlipStepComponent, RemoteRequestStepComponent,
+    TardeyRequestAddComponent, TeachersSalaryComponent, SubRequestAddComponent, SubRequestComponent, EmployeesSalaryComponent, OnlyNumberDirective, EmployeesSalaryStepsComponent,
+    BusinessTripStepComponent, FingerPrintStepComponent, TeacherSubCourseComponent, LeaveRequestStepComponent, PaySlipStepComponent, RemoteRequestStepComponent,
   ],
   imports: [
     CommonModule,

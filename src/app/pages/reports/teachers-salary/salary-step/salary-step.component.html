@@ -1,0 +1,82 @@
+<div class="noprint breadcrumb flex gap-x-2 justify-between items-center px-5 mb-3 rounded-lg font-semibold text-xs">
+  <div class="flex items-center gap-x-14 w-full">
+    <div class="breadcrumbs text-sm">
+      <ul>
+        <li> گزارشات</li>
+        <li> محاسبات حقوقی اساتید </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<main>
+  <div class="p-6 mb-3 bg-white rounded-lg">
+    <div class="flex flex-col gap-y-2 font-semibold noprint">
+      <img src="/assets/images/user.svg" class="w-20 rounded-full" alt="">
+      <span>{{UserInfo.name + "&nbsp;"+UserInfo.last_name}}</span>
+      <div class="flex items-center gap-x-2"> <span>سطح استاد:</span><span>استاد / سوپروایزر</span></div>
+      <div class="flex items-center gap-x-2"> <span>شماره تماس:</span><span>{{UserInfo.mobile_number}}</span></div>
+    </div>
+
+    <div class="grid grid-cols-4  p-2 bg-gray-100 mt-10 rounded-md">
+      <div><span>سطح کلاس :</span> <span class="pr-1">connect</span></div>
+      <div><span> تعداد زبان آموزان :</span> <span class="pr-1">14 نفر</span></div>
+      <div><span> نوع برگزاری :</span> <span class="pr-1">حضوری</span></div>
+      <div><span> تعداد جلسات :</span> <span class="pr-1">20</span></div>
+    </div>
+    <!--stepper-->
+    <div class="noprint flex items-center my-10 ">
+      <div class="flex items-center text-gray-500 gap-x-2" [ngClass]="{'!text-teal-600': (this.step>=1)}">
+        <div class="text-center  font-medium  text-gray-500" [ngClass]="{'!text-teal-600': (this.step>=1) }"> مرحله اول
+        </div>
+        <div *ngIf="this.step>5"
+          class="rounded-full text-lg transition duration-500 ease-in-out h-10 w-10 py-3 border-2 border-teal-600 bg-teal-500 flex items-center justify-center">
+          <img src="/assets/images/icon/tick.svg" alt="">
+        </div>
+        <div *ngIf="this.step < 6 " [ngClass]="{'!border-teal-600': (this.step>=1) }"
+          class="rounded-full text-lg transition duration-500 ease-in-out h-10 w-10 py-3 border-2 border-gray-500 flex items-center justify-center">
+          <b>1</b>
+        </div>
+      </div>
+      <div class="flex-auto border-t-2 transition duration-500 ease-in-out border-gray-300 mx-3 "
+        [ngClass]="{'!border-teal-600': (this.step>5)}"></div>
+      <div class="flex items-center text-gray-500  gap-x-2" [ngClass]="{'!text-teal-600': (this.step>=6)}">
+        <div class="text-center  font-medium  text-gray-500 " [ngClass]="{'!text-teal-600': (this.step>=6)}"> مرحله دوم
+        </div>
+        <div *ngIf="this.step>6"
+          class="rounded-full text-lg transition duration-500 ease-in-out h-10 w-10 py-3 border-2 border-teal-600 bg-teal-500 flex items-center justify-center">
+          <img src="/assets/images/icon/tick.svg" alt="">
+        </div>
+        <div *ngIf="this.step<7"  [ngClass]="{'!border-teal-600': (this.step>=6)}"
+          class="rounded-full text-lg transition duration-500 ease-in-out h-10 w-10 py-3 border-2 border-gray-500 flex items-center justify-center">
+          <b>2</b>
+        </div>
+      </div>
+      <div class="flex-auto border-t-2 transition duration-500 ease-in-out border-gray-300 mx-3 "
+        [ngClass]="{'!border-teal-600': (this.step>6)}"></div>
+      <div class="flex items-center text-gray-500 gap-x-2" [ngClass]="{'!text-teal-600': (this.step>=7)}">
+        <div class="text-center  font-medium  text-gray-500" [ngClass]="{'!text-teal-600': (this.step>=7)}">صدور فیش
+        </div>
+        <div *ngIf="this.step>7"
+          class="rounded-full text-lg transition duration-500 ease-in-out h-10 w-10 py-3 border-2 border-teal-600 bg-teal-500 flex items-center justify-center">
+          <img src="/assets/images/icon/tick.svg" alt="">
+        </div>
+        <div *ngIf="this.step<8"  [ngClass]="{'!border-teal-600': (this.step>=7)}"
+          class="rounded-full text-lg transition duration-500 ease-in-out h-10 w-10 py-3 border-2 border-gray-500 flex items-center justify-center">
+          <b>3</b>
+        </div>
+      </div>
+    </div>
+    <div>
+      <app-teacher-cancellation *ngIf="this.step==1"></app-teacher-cancellation>
+      <app-teacher-sub-request   *ngIf="this.step==2"></app-teacher-sub-request>
+      <app-teacher-tardey *ngIf="this.step==3"></app-teacher-tardey>
+      <app-teacher-absent *ngIf="this.step==4"></app-teacher-absent>
+      <app-teacher-class-holiday *ngIf="this.step==5"></app-teacher-class-holiday>
+      <app-second-stage *ngIf="this.step==6"></app-second-stage>
+      <app-teacher-pay-slip *ngIf="this.step==7"></app-teacher-pay-slip>
+    </div>
+
+  </div>
+
+
+</main>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
-import { ITardeyRequestAdd, ITardeyRequestAll, ITardeyRequestSingle } from 'src/app/interfaces/ITardeyRequest';
+import {  ITardeyRequestAll, ITardeyRequestSingle } from 'src/app/interfaces/ITardeyRequest';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
