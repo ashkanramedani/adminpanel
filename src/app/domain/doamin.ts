@@ -28,6 +28,7 @@ export const Domain =
 
 
   "GetTardeyRequest": `${environment.apiUrl}/api/v1/form/tardy_request/search`,
+ "GetTardeyReport": `${environment.apiUrl}/api/v1/form/tardy_request/report`,
   "CreateTardeyRequest": `${environment.apiUrl}/api/v1/form/tardy_request/add`,
   "PutTardeyRequest": `${environment.apiUrl}/api/v1/form/tardy_request/update`,
   "DeleteTardeyRequest": `${environment.apiUrl}/api/v1/form/tardy_request/delete`,
@@ -74,6 +75,9 @@ export const Domain =
   "CreateSubRequest": `${environment.apiUrl}/api/v1/form/sub_request/add`,
   "DeleteSubRequest": `${environment.apiUrl}/api/v1/form/sub_request/delete`,
   "PutSubRequest": `${environment.apiUrl}/api/v1/form/sub_request/update`,
+"GetSubRequestReport": `${environment.apiUrl}/api/v1/form/sub_request/report`,
+"PutSubRequestVerify": `${environment.apiUrl}/api/v1/form/sub_request/verify`,
+
 
   "GetSession": `${environment.apiUrl}/api/v1/form/session/search`,
   "CreateSession": `${environment.apiUrl}/api/v1/form/session/add`,
@@ -83,6 +87,7 @@ export const Domain =
 
   "GetSingleSesssionCancellation": `${environment.apiUrl}/api/v1/form/sesssion_cancellation/search`,
   "GetSessionCancellation": `${environment.apiUrl}/api/v1/form/session_cancellation/search`,
+  "GetSessionCancellationReport": `${environment.apiUrl}/api/v1/form/session_cancellation/report`,
   "DeleteSessionCancellation": `${environment.apiUrl}/api/v1/form/session_cancellation/delete`,
   "CreateSessionCancellation": `${environment.apiUrl}/api/v1/form/session_cancellation/add`,
   "PutSessionCancellation": `${environment.apiUrl}/api/v1/form/session_cancellation/update`,
@@ -161,7 +166,7 @@ export const Domain =
 
   "GetTeacherCourse": `${environment.apiUrl}/api/v1/form/salary/teacher/courses`,
   "GetTeacherSubCourse": `${environment.apiUrl}/api/v1/form/salary/teacher/sub_courses`,
-
+  "PostTeacherSummary": `${environment.apiUrl}/api/v1/form/salary/teacher/summary`,
   "Auth":{
     "SingIn": `${environment.IeltsdailyApi}/api/v1/auth/signin`,
     "OTP": `${environment.IeltsdailyApi}/api/v1/auth/otp`,

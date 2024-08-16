@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import * as moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
 import { IPaymentMethodSingle } from 'src/app/interfaces/Ipayment_method';
-import { Ipayment_methodForm } from 'src/app/interfaces/Ipayment_methodForm';
 import { ISalaryEmployeeUpdate, ISalaryReceiptReport } from 'src/app/interfaces/ISalaryReceiptReport';
 import { IuserEditForm } from 'src/app/interfaces/IuserEditForm';
 import { AlertifyService } from 'src/app/services/alertify.service';
@@ -23,7 +22,7 @@ export class PaySlipStepComponent implements OnInit {
   @Input() year: number
   @Input() month: number
   ReportForm: FormGroup
-  currentDate=new Date().toLocaleDateString()
+  currentDate=moment().format('YYYY-MM-D');
   step: number
   btnLoading: boolean = false
   response_salary_receipt_report = {} as ISalaryReceiptReport
@@ -40,6 +39,7 @@ export class PaySlipStepComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.GetSalaryEmployee()
     this.getShabaList()
     this.activateRoute.queryParams.subscribe((res) => {

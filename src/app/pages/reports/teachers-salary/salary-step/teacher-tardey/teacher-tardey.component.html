@@ -7,10 +7,10 @@
    <span>جابجایی استاد</span>
    <span class="px-2 py-1 bg-cyan-600 rounded-lg text-white">4</span>
   </div>
-  <div class="flex items-center justify-between border rounded-md border-cyan-500 p-2 text-xs font-semibold bg-gray-100">
-   <span>تاخیر استاد</span>
-   <span class="px-2 py-1 bg-cyan-600 rounded-lg text-white">4</span>
-  </div>
+  <div class="flex items-center justify-between border rounded-md border-cyan-700 p-2 text-xs font-semibold  bg-cyan-600 text-white">
+    <span>تاخیر استاد</span>
+    <span class="px-2 py-1 bg-cyan-00 rounded-lg bg-white text-cyan-600">4</span>
+   </div>
   <div class="flex items-center justify-between border rounded-md border-cyan-500 p-2 text-xs font-semibold bg-gray-100">
    <span> حضور و غیاب</span>
    <span class="px-2 py-1 bg-cyan-600 rounded-lg text-white">4</span>
@@ -45,16 +45,13 @@
            <span>{{ i+1}}</span>
          </td>
          <td class="border-b py-3 border-gray-200  text-center">
-           <span>{{item.date|HijriDate}}</span>
+           <span>{{item.session.session_date|HijriDate}}</span>
          </td>
          <td class="border-b py-3 border-gray-200  text-center">
-           <span>{{item.start}}</span>
+           <span>{{item.delay}}</span>
          </td>
          <td class="border-b py-3 border-gray-200  text-center">
-           <span>{{item.end}}</span>
-         </td>
-         <td class="border-b py-3 border-gray-200  text-center">
-           <span>{{item.destination}}</span>
+           <span>{{item.status}}</span>
          </td>
        </tr>
      </tbody>

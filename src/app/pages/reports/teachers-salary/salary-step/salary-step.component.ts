@@ -9,13 +9,13 @@ import { HttpService } from 'src/app/services/http.service';
   templateUrl: './salary-step.component.html',
 })
 export class SalaryStepComponent implements OnInit {
-  id: any
+  subcourse_id: any
   UserInfo = {} as IuserEditForm
   step: number
   activateRoute = inject(ActivatedRoute)
   http = inject(HttpService)
   ngOnInit(): void {
-    this.id = this.activateRoute.snapshot?.paramMap.get('id');
+    this.subcourse_id = this.activateRoute.snapshot?.paramMap.get('id');
     //this.GetUserInfo()
     this.activateRoute.queryParams.subscribe((res) => {
       console.log("res:", res)
@@ -23,7 +23,7 @@ export class SalaryStepComponent implements OnInit {
     });
   }
   GetUserInfo() {
-    this.http.get(Domain.GetUsers, this.id).subscribe((response) => {
+    this.http.get(Domain.GetUsers, this.subcourse_id).subscribe((response) => {
       this.UserInfo = response
     })
   }

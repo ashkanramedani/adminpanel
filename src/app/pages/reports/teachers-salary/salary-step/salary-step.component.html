@@ -17,7 +17,7 @@
       <div class="flex items-center gap-x-2"> <span>شماره تماس:</span><span>{{UserInfo.mobile_number}}</span></div>
     </div>
 
-    <div class="grid grid-cols-4  p-4 bg-gray-100 mt-10 rounded-md font-semibold">
+    <div class="grid noprint grid-cols-4  p-4 bg-gray-100 mt-10 rounded-md font-semibold">
       <div><span>سطح کلاس :</span> <span class="pr-1">connect</span></div>
       <div><span> تعداد زبان آموزان :</span> <span class="pr-1">14 نفر</span></div>
       <div><span> نوع برگزاری :</span> <span class="pr-1">حضوری</span></div>
@@ -46,7 +46,7 @@
           class="rounded-full text-lg transition duration-500 ease-in-out h-10 w-10 py-3 border-2 border-teal-600 bg-teal-500 flex items-center justify-center">
           <img src="/assets/images/icon/tick.svg" alt="">
         </div>
-        <div *ngIf="this.step<7"  [ngClass]="{'!border-teal-600': (this.step>=6)}"
+        <div *ngIf="this.step<7" [ngClass]="{'!border-teal-600': (this.step>=6)}"
           class="rounded-full text-lg transition duration-500 ease-in-out h-10 w-10 py-3 border-2 border-gray-500 flex items-center justify-center">
           <b>2</b>
         </div>
@@ -60,23 +60,35 @@
           class="rounded-full text-lg transition duration-500 ease-in-out h-10 w-10 py-3 border-2 border-teal-600 bg-teal-500 flex items-center justify-center">
           <img src="/assets/images/icon/tick.svg" alt="">
         </div>
-        <div *ngIf="this.step<8"  [ngClass]="{'!border-teal-600': (this.step>=7)}"
+        <div *ngIf="this.step<8" [ngClass]="{'!border-teal-600': (this.step>=7)}"
           class="rounded-full text-lg transition duration-500 ease-in-out h-10 w-10 py-3 border-2 border-gray-500 flex items-center justify-center">
           <b>3</b>
         </div>
       </div>
     </div>
     <div>
-      <app-teacher-cancellation *ngIf="this.step==1"></app-teacher-cancellation>
-      <app-teacher-sub-request   *ngIf="this.step==2"></app-teacher-sub-request>
-      <app-teacher-tardey *ngIf="this.step==3"></app-teacher-tardey>
-      <app-teacher-absent *ngIf="this.step==4"></app-teacher-absent>
-      <app-teacher-class-holiday *ngIf="this.step==5"></app-teacher-class-holiday>
-      <app-second-stage *ngIf="this.step==6"></app-second-stage>
-      <app-teacher-pay-slip *ngIf="this.step==7"></app-teacher-pay-slip>
+      <app-teacher-cancellation *ngIf="this.step==1" [subcourse_id]="this.subcourse_id"></app-teacher-cancellation>
+      <app-teacher-sub-request *ngIf="this.step==2" [subcourse_id]="this.subcourse_id"></app-teacher-sub-request>
+      <app-teacher-tardey *ngIf="this.step==3" [subcourse_id]="this.subcourse_id"></app-teacher-tardey>
+      <app-teacher-absent *ngIf="this.step==4" [subcourse_id]="this.subcourse_id"></app-teacher-absent>
+      <app-teacher-class-holiday *ngIf="this.step==5" [subcourse_id]="this.subcourse_id"></app-teacher-class-holiday>
+      <app-second-stage *ngIf="this.step==6" [subcourse_id]="this.subcourse_id"></app-second-stage>
+      <app-teacher-pay-slip *ngIf="this.step==7" [subcourse_id]="this.subcourse_id"></app-teacher-pay-slip>
     </div>
-
+    <div class="noprint flex gap-x-4 mt-16 text-sm" *ngIf="this.step!=6  && this.step!=7">
+      <a *ngIf="this.step>1" [routerLink]="['/reports/teacher-salary',this.subcourse_id]"
+        [queryParams]="{step: (this.step)-1}"
+        class="border border-gray-400 px-6 font-semibold py-2 rounded-md bg-gray-300 text-gray-500  gap-x-2 flex items-center"
+        href="">
+        <img src="/assets/images/icon/right-arrow.svg" class="w-8 rotate-180" alt="">
+        <span> مرحله قبل</span>
+      </a>
+      <a *ngIf="this.step<8" [routerLink]="['/reports/teacher-salary',this.subcourse_id]"
+        [queryParams]="{step: (this.step)+1 }"
+        class="border border-cyan-600 px-6 font-semibold py-2 rounded-md bg-cyan-600 hover:bg-cyan-700 text-white  gap-x-2 flex items-center">
+        <span>تایید و ادامه</span>
+        <img src="/assets/images/icon/left-arrow.svg" class="w-8" alt="">
+      </a>
+    </div>
   </div>
-
-
 </main>
