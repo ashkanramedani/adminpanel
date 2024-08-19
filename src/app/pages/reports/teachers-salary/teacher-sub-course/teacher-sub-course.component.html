@@ -52,10 +52,17 @@
       <span>{{item.sub_course_name }}</span>
       <span>{{((item.sub_teachers.length)+1) }}</span>
       <div class="operation flex items-center justify-center">
-        <a class="bg-cyan-600  text-white px-3 py-2 rounded-lg font-semibold flex items-center justify-between gap-x-4">
-          <span>محاسبه</span>
-          <img src="/assets/images/icon/factor.svg" class="w-6" alt="">
+        <a *ngIf="item.Does_Have_Salary_Record;else other" [routerLink]="['/reports/teacher-salary',item.sub_course_pk_id]"  [state]="{ user_pk_id:item.teacher.user_pk_id}" [queryParams]="{step: 7}" class="border-cyan-600  border text-cyan-600 px-3 py-2 rounded-lg font-semibold flex items-center justify-between gap-x-4">
+          <span> محاسبه شده</span>
+          <img src="/assets/images/icon/pen2.svg" class="w-6" alt="">
         </a>
+        <ng-template #other>
+          <a  [routerLink]="['/reports/teacher-salary',item.sub_course_pk_id]" [queryParams]="{step: 1}" [state]="{ user_pk_id:item.teacher.user_pk_id}" class="bg-cyan-600  text-white px-3 py-2 rounded-lg font-semibold flex items-center justify-between gap-x-4">
+            <span>محاسبه</span>
+            <img src="/assets/images/icon/factor.svg" class="w-6" alt="">
+          </a>
+        </ng-template>
+
       </div>
     </div>
   </div>

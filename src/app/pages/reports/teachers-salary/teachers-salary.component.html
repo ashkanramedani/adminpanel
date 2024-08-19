@@ -52,7 +52,7 @@
       <span>{{(i+1)}}</span>
       <span>{{item.course_name }}</span>
       <span>{{item.language.language_name }}</span>
-      <span>نداریمش</span>
+       <span>{{item.number_of_sub_courses}}</span>
       <span>{{item.ending_date|HijriDate}}</span>
       <div class="operation flex items-center justify-center">
         <a [routerLink]="['/reports/teachers-salary/sub-course',item.course_pk_id]"

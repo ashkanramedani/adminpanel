@@ -13,6 +13,7 @@ export interface ITeachersCourse{
   course_code: string;
   language: Language;
   type: Type;
+  number_of_sub_courses:number
 }
 export interface Type {
   course_type_name: string;
@@ -41,6 +42,7 @@ export interface ITeachersSubCourse{
   sub_teachers: Created[];
   teacher: Created;
   course: Course;
+  Does_Have_Salary_Record:boolean
 }
 interface Course {
   course_pk_id: string;
@@ -114,9 +116,6 @@ export interface ITeacherTardyReport{
 
 
 export interface ITeacherSummeryBody{
-  reward: number;
-  punishment: number;
-  loan: number;
   cancellation_factor: number;
   content_creation: number;
   event_participate: number;
@@ -173,4 +172,11 @@ interface Teacher {
 }
 interface Roles {
   Teachers_Teacher: number;
+}
+export interface ISalaryTeacherUpdate{
+  rewards_earning: number;
+  punishment_deductions: number;
+  loan_installment: number;
+  payment: string;
+  payment_date: string;
 }
