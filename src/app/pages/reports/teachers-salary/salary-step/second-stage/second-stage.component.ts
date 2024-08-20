@@ -49,7 +49,6 @@ export class SecondStageComponent {
       console.log(response)
       this.http.setData(response)
       this.router.navigate(['/reports/teacher-salary/' + this.subcourse_id], { queryParams: { step: "7" } })
-
     }
     )
     this.btnLoading = false

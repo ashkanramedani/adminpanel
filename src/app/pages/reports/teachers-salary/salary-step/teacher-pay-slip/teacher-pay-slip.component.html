@@ -1,185 +1,195 @@
 
-<div *ngFor="let item of this.response" class="w-full border border-gray-300 rounded-md grid grid-cols-4 ">
-  <div class="col-span-4 grid grid-cols-4 items-center bg-gray-100  py-3">
-    <div class="px-4">
-      <b>نام و نام خانوادگی:</b>
-      <span>{{item.name}}</span>
-    </div>
-    <div class="px-4">
-      <b>نام کلاس:</b>
-      <span> ----</span>
-    </div>
-    <div class="px-4">
-      <b>تعداد جلسات:</b>
-      <span>----</span>
-    </div>
-    <div class="px-4">
-      <b>تاریخ صدور فیش:</b>
-      <span>{{currentDate|HijriDate}}</span>
-    </div>
-  </div>
-  <div class="col-span-4 grid grid-cols-4 items-center bg-gray-100  pb-3 pt-2">
-    <div class="px-4"><b>حق التدرس پایه</b></div>
-    <div class="px-4"><b>کسورات</b></div>
-    <div class="px-4"><b>مزایا</b></div>
-    <div class="px-4"><b>وام</b></div>
-  </div>
-
-  <div class="flex flex-col px-4 py-3 gap-y-4 border-l border-gray-300">
-    <div class="flex items-center justify-between">
-      <span>پایه دریافتی حق التدریس</span>
-      <span>---</span>
-    </div>
-    <div class="flex items-center justify-between">
-      <span> سنوات </span>
-      <span>---</span>
-    </div>
-    <div class="flex items-center justify-between">
-      <span> ضریب ساعات نامتعارف </span>
-      <span>---</span>
-    </div>
-    <div class="flex items-center justify-between">
-      <span> پاداش مدیریتی </span>
-      <span>{{item.rewards_earning}}</span>
-    </div>
-    <div class="flex items-center justify-between">
-      <span> رتبه استاد </span>
-      <span>{{item.roles_score}}</span>
-    </div>
-    <div class="flex items-center justify-between">
-      <span> سطح کلاس </span>
-      <span>{{item.course_level_score}}</span>
-    </div>
-    <div class="flex items-center justify-between">
-      <span> ارائه تکالیف وفیدبک به زبان آموزان </span>
-      <span>{{item.student_assign_feedback}}</span>
-    </div>
-    <div class="flex items-center justify-between">
-      <span> ارائه به موقع گزارشات به زبان آموزان </span>
-      <span>{{item.report_to_student}}</span>
-    </div>
-    <div class="flex items-center justify-between">
-      <span> شرکت در جلسات و رویدادها</span>
-      <span>---</span>
-    </div>
-    <div class="flex items-center justify-between">
-      <span> همکاری در فضای مجازی </span>
-      <span>---</span>
-    </div>
-    <div class="flex items-center justify-between">
-      <span>شرکت در CPD </span>
-      <span>{{item.CPD}}</span>
-    </div>
-  </div>
-  <div class="flex flex-col px-4 py-3 gap-y-4 border-l border-gray-300">
-    <div class="flex items-center justify-between">
-      <span>مرخصی</span>
-      <span>---</span>
-    </div>
-    <div class="flex items-center justify-between">
-      <span> تاخیر </span>
-      <span>{{item.tardy}}</span>
-    </div>
-    <div class="flex items-center justify-between">
-      <span> بیمه</span>
-      <span>---</span>
-    </div>
-    <div class="flex items-center justify-between">
-      <span> مالیات</span>
-      <span>---</span>
-    </div>
-    <div class="flex items-center justify-between">
-      <span> کنسلی </span>
-      <span>{{item.cancellation_factor}}</span>
-    </div>
-    <div class="flex items-center justify-between">
-      <span> کسورات انضباطی</span>
-      <span>---</span>
-    </div>
-    <div class="flex items-center justify-between">
-      <span> جریمه مدیریتی </span>
-      <span>---</span>
-    </div>
-  </div>
-  <div class="flex flex-col px-4 py-3 gap-y-4 border-l border-gray-300">
-    <div class="flex items-center justify-between">
-      <span>؟؟؟</span>
-      <span>---</span>
-    </div>
-  </div>
-  <div class="flex flex-col px-4 py-3 gap-y-4">
-    <div class="flex items-center justify-between">
-      <span>مبلغ اصل وام</span>
-      <span>---</span>
-    </div>
-    <div class="flex items-center justify-between">
-      <span> مبلغ هر قسط</span>
-      <span>{{item.loan_installment}}</span>
-    </div>
-  </div>
-  <div class="col-span-4 grid grid-cols-3 items-center bg-gray-100  pb-3 pt-4">
-    <div class="px-4"><span>جمع کسورات:</span></div>
-    <div class="px-4"><span>جمع مزایا:  </span></div>
-    <div class="px-4"><span>جمع اقساط:  </span></div>
-  </div>
-  <div class="col-span-4 grid grid-cols-4 items-center bg-gray-100 pb-3 pt-3">
-    <div class="px-4 col-span-2"><span> میزان مرخصی در ماه:</span></div>
-    <div class="px-4 col-span-2"><span> مبلغ قابل دریافت: </span></div>
-  </div>
+<div role="alert" class="alert" *ngIf="response==null;else other">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info h-6 w-6 shrink-0">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+  </svg>
+  <span class="font-medium">اطلاعاتی ثبت نشده است!</span>
 </div>
-
-
-<div class="flex flex-col mt-4" id="ContentToPdf">
-  <div class="noprint mt-8">
-    <form [formGroup]="ReportForm">
-      <div class="grid grid-cols-2 gap-x-3 gap-y-8 w-full py-4">
-        <div class="relative w-full">
-          <ng-persian-datepicker dir="ltr" [dateFormat]="'YYYY-MM-DD'">
-            <input type="text" formControlName="payment_date"
-              class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-          </ng-persian-datepicker>
-          <label
-            class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-            تاریخ واریز حقوق </label>
-        </div>
-        <div class="relative">
-          <select formControlName="payment" dir="ltr"
-            class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-            <option *ngFor="let item of shabaList" [value]="item.payment_method_pk_id">{{item.shaba}}</option>
-          </select>
-          <label
-            class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-            شماره شبا
-          </label>
-        </div>
-        <div class="relative">
-          <input type="text" InputWithComma formControlName="punishment_deductions" dir="ltr"
-            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
-          <label
-            class="absolute text-sm font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-            جریمه مدیریتی
-          </label>
-        </div>
-        <div class="relative">
-          <input type="text" InputWithComma formControlName="rewards_earning" dir="ltr"
-            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
-          <label
-            class="absolute text-sm font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-            پاداش مدیریتی
-          </label>
-        </div>
-        <div class="relative">
-          <input type="text" InputWithComma formControlName="loan_installment" dir="ltr"
-            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
-          <label
-            class="absolute text-sm font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-            میزان اقساط
-          </label>
-        </div>
+<ng-template #other>
+  <div *ngFor="let item of this.response" class="w-full border border-gray-300 rounded-md grid grid-cols-4 ">
+    <div class="col-span-4 grid grid-cols-4 items-center bg-gray-100  py-3">
+      <div class="px-4">
+        <b>نام و نام خانوادگی:</b>
+        <span>{{item.name}}</span>
       </div>
-    </form>
+      <div class="px-4">
+        <b>نام کلاس:</b>
+        <span> ----</span>
+      </div>
+      <div class="px-4">
+        <b>تعداد جلسات:</b>
+        <span>----</span>
+      </div>
+      <div class="px-4">
+        <b>تاریخ صدور فیش:</b>
+        <span>{{currentDate|HijriDate}}</span>
+      </div>
+    </div>
+    <div class="col-span-4 grid grid-cols-4 items-center bg-gray-100  pb-3 pt-2">
+      <div class="px-4"><b>حق التدرس پایه</b></div>
+      <div class="px-4"><b>کسورات</b></div>
+      <div class="px-4"><b>مزایا</b></div>
+      <div class="px-4"><b>وام</b></div>
+    </div>
+
+    <div class="flex flex-col px-4 py-3 gap-y-4 border-l border-gray-300">
+      <div class="flex items-center justify-between">
+        <span>پایه دریافتی حق التدریس</span>
+        <span>{{item.BaseSalary| number: '1.0-0'}}</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span> سنوات </span>
+        <span>{{item.ID_Experience| number: '1.0-0'}}</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span> ضریب ساعات نامتعارف </span>
+        <span>{{item.Odd_hours}}</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span> پاداش مدیریتی </span>
+        <span>{{item.rewards_earning| number: '1.0-0'}}</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span> رتبه استاد </span>
+        <span>{{item.roles_score}}</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span> سطح کلاس </span>
+        <span>{{item.course_level_score}}</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span> ارائه تکالیف وفیدبک به زبان آموزان </span>
+        <span>{{item.student_assign_feedback}}</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span> ارائه به موقع گزارشات به زبان آموزان </span>
+        <span>{{item.report_to_student}}</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span> شرکت در جلسات و رویدادها</span>
+        <span>{{item.event_participate}}</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span> همکاری در فضای مجازی </span>
+        <span>---</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span>شرکت در CPD </span>
+        <span>{{item.CPD}}</span>
+      </div>
+    </div>
+    <div class="flex flex-col px-4 py-3 gap-y-4 border-l border-gray-300">
+      <div class="flex items-center justify-between">
+        <span>مرخصی</span>
+        <span>---</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span> تاخیر </span>
+        <span>{{item.tardy| number: '1.0-0'}}</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span> بیمه</span>
+        <span>---</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span> مالیات</span>
+        <span>---</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span> کنسلی </span>
+        <span>{{item.cancellation_factor| number: '1.0-0'}}</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span> کسورات انضباطی</span>
+        <span>---</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span> جریمه مدیریتی </span>
+        <span>{{item.punishment_deductions| number: '1.0-0'}}</span>
+      </div>
+    </div>
+    <div class="flex flex-col px-4 py-3 gap-y-4 border-l border-gray-300">
+      <div class="flex items-center justify-between">
+        <span>؟؟؟</span>
+        <span>---</span>
+      </div>
+    </div>
+    <div class="flex flex-col px-4 py-3 gap-y-4">
+      <div class="flex items-center justify-between">
+        <span>مبلغ اصل وام</span>
+        <span>---</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span> مبلغ هر قسط</span>
+        <span>{{item.loan_installment| number: '1.0-0'}}</span>
+      </div>
+    </div>
+    <div class="col-span-4 grid grid-cols-3 items-center bg-gray-100  pb-3 pt-4">
+      <div class="px-4"><span>جمع کسورات:</span><b class="pr-2">---</b></div>
+      <div class="px-4"><span>جمع مزایا:  </span><b class="pr-2">---</b></div>
+      <div class="px-4"><span>جمع اقساط:  </span><b class="pr-2">---</b></div>
+    </div>
+    <div class="col-span-4 grid grid-cols-4 items-center bg-gray-100 pb-3 pt-3">
+      <div class="px-4 col-span-2"><span> میزان مرخصی در ماه:</span><b class="pr-2">----</b></div>
+      <div class="px-4 col-span-2 text-xl"><span> مبلغ قابل دریافت: </span> <b class="pr-2">{{item.earning| number: '1.0-0'}}</b></div>
+    </div>
   </div>
-</div>
+
+
+  <div class="flex flex-col mt-4" id="ContentToPdf">
+    <div class="noprint mt-8">
+      <form [formGroup]="ReportForm">
+        <div class="grid grid-cols-2 gap-x-3 gap-y-8 w-full py-4">
+          <div class="relative w-full">
+            <ng-persian-datepicker dir="ltr" [dateFormat]="'YYYY-MM-DD'">
+              <input type="text" formControlName="payment_date"
+                class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+            </ng-persian-datepicker>
+            <label
+              class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+              تاریخ واریز حقوق </label>
+          </div>
+          <div class="relative">
+            <select formControlName="payment" dir="ltr"
+              class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+              <option *ngFor="let item of shabaList" [value]="item.payment_method_pk_id">{{item.shaba}}</option>
+            </select>
+            <label
+              class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+              شماره شبا
+            </label>
+          </div>
+          <div class="relative">
+            <input type="text" InputWithComma formControlName="punishment_deductions" dir="ltr"
+              class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+            <label
+              class="absolute text-sm font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+              جریمه مدیریتی
+            </label>
+          </div>
+          <div class="relative">
+            <input type="text" InputWithComma formControlName="rewards_earning" dir="ltr"
+              class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+            <label
+              class="absolute text-sm font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+              پاداش مدیریتی
+            </label>
+          </div>
+          <div class="relative">
+            <input type="text" InputWithComma formControlName="loan_installment" dir="ltr"
+              class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+            <label
+              class="absolute text-sm font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+              میزان اقساط
+            </label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</ng-template>
 <div class="noprint flex gap-x-4 mt-16 text-sm">
   <a  [routerLink]="['/reports/teacher-salary',this.subcourse_id]"
   [queryParams]="{step: 6}"
@@ -188,7 +198,7 @@
   <img src="/assets/images/icon/right-arrow.svg" class="w-8 rotate-180" alt="">
   <span> مرحله قبل</span>
 </a>
-  <button (click)="this.onSubmit()"
+  <button *ngIf="response!=null" (click)="this.onSubmit()"
     class="border border-cyan-600 px-6 font-semibold py-2 rounded-md bg-cyan-600 hover:bg-cyan-700 text-white gap-x-2 flex items-center">
     <span> صدور فیش حقوقی</span>
   </button>

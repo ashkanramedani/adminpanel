@@ -21,7 +21,7 @@ export class TeacherPaySlipComponent implements OnInit {
   shabaList: IPaymentMethodSingle[] = []
   ReportForm: FormGroup
   @Input() subcourse_id: string
-  @Input() user_id:string
+   user_id:string|null
   private readonly router=inject(Router)
   private readonly alertServices=inject(AlertifyService)
   constructor(private http:HttpService) {
@@ -36,7 +36,9 @@ export class TeacherPaySlipComponent implements OnInit {
   }
   ngOnInit(): void {
     this.response= this.http.getData()
+    this.user_id=localStorage.getItem("user_pk_id")
     this.getShabaList()
+    
   }
   getShabaList(){
     this.http.getAll(`${Domain.GetPaymentMethodData}/${this.user_id}?user=true`).subscribe((response) => {

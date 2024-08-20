@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
+import { ICourseAll, ICourseSingle } from 'src/app/interfaces/ICourse';
 import { IuserEditForm } from 'src/app/interfaces/IuserEditForm';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -10,25 +11,29 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class SalaryStepComponent implements OnInit {
   subcourse_id: any
-  user_id:string
   UserInfo = {} as IuserEditForm
   step: number
-  test:string=history.state
+  user_pk_id:string|null
+courseResponse:any
+
   activateRoute = inject(ActivatedRoute)
   http = inject(HttpService)
   router=inject (Router)
   ngOnInit(): void {
-    //this.GetUserInfo()
-    this.user_id=history.state.user_pk_id
+
     this.subcourse_id = this.activateRoute.snapshot?.paramMap.get('id');
     this.activateRoute.queryParams.subscribe((res) => {
       console.log("res:", res)
       this.step = Number(res.step);
+      this.user_pk_id=localStorage.getItem("user_pk_id")
     });
+    this.GetUserInfo()
+    this.courseResponse=JSON.parse( localStorage.getItem('course_info')|| '[]');
   }
   GetUserInfo() {
-    this.http.get(Domain.GetUsers, this.user_id).subscribe((response) => {
+    this.http.get(Domain.GetUsers, this.user_pk_id).subscribe((response) => {
       this.UserInfo = response
     })
   }
+
 }
