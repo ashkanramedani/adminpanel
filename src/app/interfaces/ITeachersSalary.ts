@@ -44,14 +44,14 @@ export interface ITeachersSubCourse{
   course: Course;
   Does_Have_Salary_Record:boolean
 }
-interface Course {
+export interface Course {
   course_pk_id: string;
   course_name: string;
   starting_date: string;
   ending_date: string;
   course_level: string;
 }
-interface Note {
+export interface Note {
 }
 
  export interface ITeacherCancellationReport
@@ -130,10 +130,55 @@ export interface ITeacherSummeryBody{
 
 export interface ITeacherSummery{
 
-  teachers: Teacher[];
-  score: Score;
+  deleted: boolean;
+  description: string;
+  punishment_deductions: number;
+  event_participate: number;
+  tardy: number;
+  earning: number;
+  can_update: boolean;
+  note: Note;
+  loan_installment: number;
+  CPD: number;
+  sub_point: number;
+  BaseSalary: number;
+  can_deleted: boolean;
+  teacher_salary_pk_id: string;
+  roles_score: number;
+  Odd_hours: number;
+  ID_Experience: number;
+  cancellation_factor: number;
+  create_date: string;
+  user_fk_id: string;
+  survey_score: number;
+  report_to_student: number;
+  experience_gain: number;
+  update_date?: any;
+  subcourse_fk_id: string;
+  course_level_score: number;
+  LP_submission: number;
+  attended_session: number;
+  visible: boolean;
+  delete_date?: any;
+  payment?: any;
+  tardy_score: number;
+  student_assign_feedback: number;
+  cancelled_session: number;
+  priority: number;
+  expire_date?: any;
+  payment_date?: any;
+  content_creation: number;
+  result_submission_to_FD: number;
+  roles: Roles;
+  status: string;
+  rewards_earning: number;
+  name: string;
+  SUB: boolean;
+  score: number;
 }
-interface Score {
+
+
+export interface Score {
   reward: number;
   punishment: number;
   loan: number;
@@ -152,7 +197,7 @@ interface Score {
   course_level_score: number;
   effect_on_total: number;
 }
-interface Teacher {
+export interface Teacher {
   course_name?: string;
   course_level?: string;
   course_capacity?: number;
@@ -170,7 +215,7 @@ interface Teacher {
   roles?: Roles;
   teacher_id: string;
 }
-interface Roles {
+export interface Roles {
   Teachers_Teacher: number;
 }
 export interface ISalaryTeacherUpdate{

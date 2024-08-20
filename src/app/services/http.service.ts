@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, map, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, catchError, map, throwError } from 'rxjs';
 import { AlertifyService } from './alertify.service';
 declare let alertify: any;
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
+  private data: any;
+  setData(data: any) {
+    this.data = data;
+  }
+  getData(): any {
+    return this.data;
+  }
 
   constructor(private http:HttpClient,public alertServices: AlertifyService) { }
   getToken()
@@ -24,7 +31,7 @@ export class HttpService {
   getAll(url:string,headers?:any ):Observable<any>
   {
     return this.http.get<any>(url,{headers}).pipe(
-  
+
       catchError(this.errorHandler)
     );
   }

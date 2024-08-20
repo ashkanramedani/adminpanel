@@ -47,7 +47,9 @@ export class SecondStageComponent {
     }
     this.http.create(`${Domain.PostTeacherSummary}/${this.subcourse_id}`, myFormValue, null).subscribe((response) => {
       console.log(response)
-      this.router.navigate(['/reports/teacher-salary/' + this.subcourse_id], { queryParams: { step: "7" }, state: response },)
+      this.http.setData(response)
+      this.router.navigate(['/reports/teacher-salary/' + this.subcourse_id], { queryParams: { step: "7" } })
+
     }
     )
     this.btnLoading = false

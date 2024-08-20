@@ -1,17 +1,17 @@
 
-<div class="w-full border border-gray-300 rounded-md grid grid-cols-4 ">
+<div *ngFor="let item of this.response" class="w-full border border-gray-300 rounded-md grid grid-cols-4 ">
   <div class="col-span-4 grid grid-cols-4 items-center bg-gray-100  py-3">
     <div class="px-4">
       <b>نام و نام خانوادگی:</b>
-      <span>{{responseData.teachers[0].name}}</span>
+      <span>{{item.name}}</span>
     </div>
     <div class="px-4">
       <b>نام کلاس:</b>
-      <span> {{responseData.teachers[0].course_name}}</span>
+      <span> ----</span>
     </div>
     <div class="px-4">
       <b>تعداد جلسات:</b>
-      <span>{{responseData.teachers[0].course_capacity}}</span>
+      <span>----</span>
     </div>
     <div class="px-4">
       <b>تاریخ صدور فیش:</b>
@@ -40,23 +40,23 @@
     </div>
     <div class="flex items-center justify-between">
       <span> پاداش مدیریتی </span>
-      <span>{{responseData.score.reward}}</span>
+      <span>{{item.rewards_earning}}</span>
     </div>
     <div class="flex items-center justify-between">
       <span> رتبه استاد </span>
-      <span>---</span>
+      <span>{{item.roles_score}}</span>
     </div>
     <div class="flex items-center justify-between">
       <span> سطح کلاس </span>
-      <span>---</span>
+      <span>{{item.course_level_score}}</span>
     </div>
     <div class="flex items-center justify-between">
       <span> ارائه تکالیف وفیدبک به زبان آموزان </span>
-      <span>{{responseData.score.student_assign_feedback}}</span>
+      <span>{{item.student_assign_feedback}}</span>
     </div>
     <div class="flex items-center justify-between">
       <span> ارائه به موقع گزارشات به زبان آموزان </span>
-      <span>{{responseData.score.report_to_student}}</span>
+      <span>{{item.report_to_student}}</span>
     </div>
     <div class="flex items-center justify-between">
       <span> شرکت در جلسات و رویدادها</span>
@@ -68,7 +68,7 @@
     </div>
     <div class="flex items-center justify-between">
       <span>شرکت در CPD </span>
-      <span>{{responseData.score.CPD}}</span>
+      <span>{{item.CPD}}</span>
     </div>
   </div>
   <div class="flex flex-col px-4 py-3 gap-y-4 border-l border-gray-300">
@@ -78,7 +78,7 @@
     </div>
     <div class="flex items-center justify-between">
       <span> تاخیر </span>
-      <span>---</span>
+      <span>{{item.tardy}}</span>
     </div>
     <div class="flex items-center justify-between">
       <span> بیمه</span>
@@ -90,7 +90,7 @@
     </div>
     <div class="flex items-center justify-between">
       <span> کنسلی </span>
-      <span>---</span>
+      <span>{{item.cancellation_factor}}</span>
     </div>
     <div class="flex items-center justify-between">
       <span> کسورات انضباطی</span>
@@ -110,11 +110,11 @@
   <div class="flex flex-col px-4 py-3 gap-y-4">
     <div class="flex items-center justify-between">
       <span>مبلغ اصل وام</span>
-      <span>{{responseData.score.loan}}</span>
+      <span>---</span>
     </div>
     <div class="flex items-center justify-between">
       <span> مبلغ هر قسط</span>
-      <span>---</span>
+      <span>{{item.loan_installment}}</span>
     </div>
   </div>
   <div class="col-span-4 grid grid-cols-3 items-center bg-gray-100  pb-3 pt-4">
@@ -127,7 +127,6 @@
     <div class="px-4 col-span-2"><span> مبلغ قابل دریافت: </span></div>
   </div>
 </div>
-
 
 
 <div class="flex flex-col mt-4" id="ContentToPdf">

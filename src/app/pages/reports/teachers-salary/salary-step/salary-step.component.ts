@@ -10,6 +10,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class SalaryStepComponent implements OnInit {
   subcourse_id: any
+  user_id:string
   UserInfo = {} as IuserEditForm
   step: number
   test:string=history.state
@@ -17,7 +18,8 @@ export class SalaryStepComponent implements OnInit {
   http = inject(HttpService)
   router=inject (Router)
   ngOnInit(): void {
-    this.GetUserInfo()
+    //this.GetUserInfo()
+    this.user_id=history.state.user_pk_id
     this.subcourse_id = this.activateRoute.snapshot?.paramMap.get('id');
     this.activateRoute.queryParams.subscribe((res) => {
       console.log("res:", res)
@@ -25,7 +27,7 @@ export class SalaryStepComponent implements OnInit {
     });
   }
   GetUserInfo() {
-    this.http.get(Domain.GetUsers, history.state.user_pk_id).subscribe((response) => {
+    this.http.get(Domain.GetUsers, this.user_id).subscribe((response) => {
       this.UserInfo = response
     })
   }

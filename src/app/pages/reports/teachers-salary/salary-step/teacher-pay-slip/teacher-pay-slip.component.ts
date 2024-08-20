@@ -1,7 +1,6 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { json } from 'express';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
 import { IPaymentMethodSingle } from 'src/app/interfaces/Ipayment_method';
@@ -13,8 +12,8 @@ import { HttpService } from 'src/app/services/http.service';
   selector: 'app-teacher-pay-slip',
   templateUrl: './teacher-pay-slip.component.html',
 })
-export class TeacherPaySlipComponent {
-  responseData = {} as ITeacherSummery
+export class TeacherPaySlipComponent implements OnInit {
+  response : ITeacherSummery[]=[]
   math = Math;
   //currentDate= moment(new Date().toLocaleDateString(), 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')
   currentDate = moment().format('YYYY-MM-DD')
@@ -22,10 +21,10 @@ export class TeacherPaySlipComponent {
   shabaList: IPaymentMethodSingle[] = []
   ReportForm: FormGroup
   @Input() subcourse_id: string
-  private readonly http = inject(HttpService)
+  @Input() user_id:string
   private readonly router=inject(Router)
   private readonly alertServices=inject(AlertifyService)
-  constructor() {
+  constructor(private http:HttpService) {
     this.ReportForm = new FormGroup({
       rewards_earning: new FormControl('', [Validators.required]),
       punishment_deductions: new FormControl('', [Validators.required]),
@@ -33,16 +32,18 @@ export class TeacherPaySlipComponent {
       payment: new FormControl('', [Validators.required]),
       payment_date: new FormControl('', [Validators.required])
     })
+
   }
   ngOnInit(): void {
-    console.log("response:"+history.state)
-    if(history.state==null)
-      this.router.navigate(['/notFound'])
-    this.responseData = history.state
+    this.response= this.http.getData()
+    this.getShabaList()
   }
-
+  getShabaList(){
+    this.http.getAll(`${Domain.GetPaymentMethodData}/${this.user_id}?user=true`).subscribe((response) => {
+      this.shabaList=response
+    })
+  }
   onSubmit() {
-    window.print()
     if (this.ReportForm.invalid) {
       this.ReportForm.markAllAsTouched();
       return;
@@ -65,6 +66,9 @@ export class TeacherPaySlipComponent {
     )
     this.btnLoading = false
   }
+  // ngOnDestroy():void {
+  //   this.subscription.unsubscribe();
+  // }
 }
 
 
