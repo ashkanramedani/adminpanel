@@ -19,6 +19,8 @@ export class TeacherPaySlipComponent implements OnInit {
   currentDate = moment().format('YYYY-MM-DD')
   btnLoading: boolean = false
   shabaList: IPaymentMethodSingle[] = []
+  this_sub_course: any
+  this_course: any
   ReportForm: FormGroup
   @Input() subcourse_id: string
    user_id:string|null
@@ -41,6 +43,14 @@ export class TeacherPaySlipComponent implements OnInit {
     
   }
   getShabaList(){
+    this.http.getAll(`${Domain.GetSubCourseData}/${this.subcourse_id}`).subscribe((response) => {
+      this.this_sub_course=response
+      if(response){
+        this.http.getAll(`${Domain.GetcourseData}/${this.this_sub_course.course_fk_id}`).subscribe((response) => {
+          this.this_course=response
+        })
+      }
+    })
     this.http.getAll(`${Domain.GetPaymentMethodData}/${this.user_id}?user=true`).subscribe((response) => {
       this.shabaList=response
     })

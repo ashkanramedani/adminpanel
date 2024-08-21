@@ -1,5 +1,5 @@
 import { Component, inject, Input } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
 import { ITeacherSummeryBody } from 'src/app/interfaces/ITeachersSalary';
@@ -11,6 +11,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class SecondStageComponent {
   myForm: FormGroup
+  data: any[] = []
   btnLoading: boolean = false
   private readonly http = inject(HttpService)
   private readonly router = inject(Router)
@@ -23,14 +24,18 @@ export class SecondStageComponent {
       event_participate: new FormControl<number>(0),
       CPD: new FormControl<number>(0),
       Odd_hours: new FormControl<number>(0),
-      report_to_student: new FormControl<string>('average'),
-      LP_submission: new FormControl<string>('average'),
-      student_assign_feedback: new FormControl<string>('average'),
-      survey_score: new FormControl<string>('average'),
-      result_submission_to_FD: new FormControl<string>('average'),
+      report_to_student: new FormControl('excellent', [Validators.required]),
+      LP_submission: new FormControl('excellent', [Validators.required]),
+      student_assign_feedback: new FormControl('excellent', [Validators.required]),
+      survey_score: new FormControl('excellent', [Validators.required]),
+      result_submission_to_FD: new FormControl('excellent', [Validators.required]),
     })
   }
   onSubmit() {
+    if (this.myForm.invalid) {
+      this.myForm.markAllAsTouched();
+      return;
+    }
     this.btnLoading = true
     let myFormValue: ITeacherSummeryBody =
     {
