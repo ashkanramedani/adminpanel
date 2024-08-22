@@ -40,7 +40,7 @@ export class TeacherPaySlipComponent implements OnInit {
     this.response= this.http.getData()
     this.user_id=localStorage.getItem("user_pk_id")
     this.getShabaList()
-    
+
   }
   getShabaList(){
     this.http.getAll(`${Domain.GetSubCourseData}/${this.subcourse_id}`).subscribe((response) => {
@@ -58,6 +58,7 @@ export class TeacherPaySlipComponent implements OnInit {
   onSubmit() {
     if (this.ReportForm.invalid) {
       this.ReportForm.markAllAsTouched();
+      this.alertServices.error("مقادیر فرم را وارد نمایید")
       return;
     }
     this.btnLoading = true
@@ -73,10 +74,11 @@ export class TeacherPaySlipComponent implements OnInit {
       console.log(response)
       this.alertServices.success("با موفقیت اپدیت شد");
       this.ReportForm.reset();
-      window.print()
+
     }
     )
     this.btnLoading = false
+    window.print()
   }
   // ngOnDestroy():void {
   //   this.subscription.unsubscribe();

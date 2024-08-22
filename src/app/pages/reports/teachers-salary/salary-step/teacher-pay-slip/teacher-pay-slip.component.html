@@ -11,19 +11,19 @@
     <div class="col-span-4 grid grid-cols-4 items-center bg-gray-100  py-3">
       <div class="px-4">
         <b>نام و نام خانوادگی:</b>
-        <span>{{item.name}}</span>
+        <span class="pr-2">{{item.name}}</span>
       </div>
       <div class="px-4">
         <b>نام کلاس:</b>
-        <span>{{this_sub_course.sub_course_name}} - {{this_course.course_name}} {{this_course.course_level}} Code {{this_course.course_code}}</span>
+        <span class="pr-2">{{this_sub_course.sub_course_name}} - {{this_course.course_name}} {{this_course.course_level}} Code {{this_course.course_code}}</span>
       </div>
       <div class="px-4">
         <b>تعداد جلسات:</b>
-        <span> {{item.attended_session}} از {{this_sub_course.number_of_session}}</span>
+        <span class="pr-2"> {{item.attended_session}} از {{this_sub_course.number_of_session}}</span>
       </div>
       <div class="px-4">
         <b>تاریخ صدور فیش:</b>
-        <span>{{currentDate|HijriDate}}</span>
+        <span class="pr-2">{{currentDate|HijriDate}}</span>
       </div>
     </div>
     <div class="col-span-4 grid grid-cols-4 items-center bg-gray-100  p-0 m-0" style="width: 100%; height: 1px; background-color: #dee0e1;"></div>

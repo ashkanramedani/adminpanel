@@ -19,16 +19,16 @@ export class SecondStageComponent {
 
   constructor() {
     this.myForm = new FormGroup({
-      cancellation_factor: new FormControl<number>(0),
-      content_creation: new FormControl<number>(0),
-      event_participate: new FormControl<number>(0),
-      CPD: new FormControl<number>(0),
-      Odd_hours: new FormControl<number>(0),
-      report_to_student: new FormControl('excellent', [Validators.required]),
-      LP_submission: new FormControl('excellent', [Validators.required]),
-      student_assign_feedback: new FormControl('excellent', [Validators.required]),
-      survey_score: new FormControl('excellent', [Validators.required]),
-      result_submission_to_FD: new FormControl('excellent', [Validators.required]),
+      cancellation_factor: new FormControl<number>(2,[Validators.required,Validators.min(2),Validators.max(10),Validators.maxLength(2)]),
+      CPD: new FormControl<number>(0,[Validators.required,Validators.min(0),Validators.max(100)]),
+      Odd_hours: new FormControl<number>(0,[Validators.required,Validators.min(0),Validators.max(100)]),
+      content_creation: new FormControl<number>(0,[Validators.required,Validators.min(0),Validators.max(100)]),
+      event_participate: new FormControl<number>(0,[Validators.required,Validators.min(0),Validators.max(100)]),
+      survey_score: new FormControl('average', [Validators.required]),
+      LP_submission: new FormControl('average', [Validators.required]),
+      report_to_student: new FormControl('average', [Validators.required]),
+      student_assign_feedback: new FormControl('average', [Validators.required]),
+      result_submission_to_FD: new FormControl('average', [Validators.required]),
     })
   }
   onSubmit() {
@@ -39,16 +39,16 @@ export class SecondStageComponent {
     this.btnLoading = true
     let myFormValue: ITeacherSummeryBody =
     {
-      cancellation_factor:  this.myForm.controls.cancellation_factor.value,
-      content_creation:  this.myForm.controls.content_creation.value,
-      event_participate:  this.myForm.controls.event_participate.value,
-      CPD:  this.myForm.controls.CPD.value,
+      cancellation_factor: this.myForm.controls.cancellation_factor.value,
+      CPD: this.myForm.controls.CPD.value,
       Odd_hours: this.myForm.controls.Odd_hours.value,
-      report_to_student:  this.myForm.controls.report_to_student.value,
-      LP_submission:  this.myForm.controls.LP_submission.value,
-      student_assign_feedback:  this.myForm.controls.student_assign_feedback.value,
-      survey_score:  this.myForm.controls.survey_score.value,
-      result_submission_to_FD:  this.myForm.controls.result_submission_to_FD.value,
+      content_creation: this.myForm.controls.content_creation.value,
+      event_participate: this.myForm.controls.event_participate.value,
+      survey_score: this.myForm.controls.survey_score.value,
+      LP_submission: this.myForm.controls.LP_submission.value,
+      report_to_student: this.myForm.controls.report_to_student.value,
+      student_assign_feedback: this.myForm.controls.student_assign_feedback.value,
+      result_submission_to_FD: this.myForm.controls.result_submission_to_FD.value,
     }
     this.http.create(`${Domain.PostTeacherSummary}/${this.subcourse_id}`, myFormValue, null).subscribe((response) => {
       console.log(response)
