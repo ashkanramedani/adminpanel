@@ -268,7 +268,7 @@
 
     <dialog class="modal " [ngClass]="{'modal-open' : (isOpenSubCourseAdd)}">
       <div class="modal-box  w-11/12 max-w-5xl">
-        <app-sub-course-add [course_fk_id]="this.course_fk_id"></app-sub-course-add>
+        <app-sub-course-add *ngIf="isOpenSubCourseAdd" [course_fk_id]="this.course_fk_id"></app-sub-course-add>
         <div class="flex justify-end mt-6 gap-x-6">
           <button (click)="CLoseSubCourseAdd()" class="btn">بستن</button>
         </div>

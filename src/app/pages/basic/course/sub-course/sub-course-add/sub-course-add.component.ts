@@ -51,7 +51,7 @@ export class SubCourseAddComponent implements OnInit {
       {
         created_fk_by: new FormControl('', [Validators.required]),
         description: new FormControl(''),
-        course_fk_id: new FormControl(this.course_id, [Validators.required]),
+        course_fk_id: new FormControl(this.course_fk_id, [Validators.required]),
         sub_course_teacher_fk_id: new FormControl('', [Validators.required]),
         sub_course_name: new FormControl('', [Validators.required]),
         number_of_session: new FormControl('', [Validators.required]),
