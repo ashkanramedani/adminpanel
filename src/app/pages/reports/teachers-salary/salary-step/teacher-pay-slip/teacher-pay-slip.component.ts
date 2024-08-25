@@ -74,7 +74,6 @@ export class TeacherPaySlipComponent implements OnInit {
       console.log(response)
       this.alertServices.success("با موفقیت اپدیت شد");
       this.ReportForm.reset();
-
     }
     )
     this.btnLoading = false
