@@ -71,7 +71,7 @@ export class FingerPrintStepComponent implements OnInit{
       {
         created_fk_by: this.FingerScannerResponse.created_fk_by,
         description: this.FingerScannerResponse.description,
-        Date:this.FingerScannerResponse.Date,
+        //Date:this.FingerScannerResponse.Date,
         Enter: this.FingerprintForm.controls.Enter.value,
         Exit: this.FingerprintForm.controls.Exit.value,
         fingerprint_scanner_pk_id: this.FingerScannerResponse.fingerprint_scanner_pk_id
