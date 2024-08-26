@@ -70,7 +70,7 @@ export class SalaryPolicyAddComponent implements OnInit {
         business_trip_permission: new FormControl<boolean>(true,[Validators.required]),
         business_trip_factor: new FormControl('',[Validators.required]),
         business_trip_cap: new FormControl('',[Validators.required]),
-        Fix_pay:new FormControl<number>(0,[Validators.required])
+        Fix_pay:new FormControl('0',[Validators.required])
       }
     )
     if (this.id != null) {
@@ -129,6 +129,7 @@ export class SalaryPolicyAddComponent implements OnInit {
       this.ReportForm.markAllAsTouched();
       return;
     }
+
     this.btnLoading = true
     let ReportFormValue: ISalaryPolicyForms =
     {
