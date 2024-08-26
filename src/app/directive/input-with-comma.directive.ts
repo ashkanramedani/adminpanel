@@ -13,8 +13,7 @@ export class InputWithCommaDirective  {
   @HostListener('input', ['$event'])
   onInput(event: any) {
     if (this._inputEl.nativeElement.value === '-') return;
-  let commasRemoved = this._inputEl.nativeElement.value.replace(/,/g, '');
-    console.log(commasRemoved)
+  let commasRemoved = this._inputEl.nativeElement.value.replace(/,/g, ''); 
     let toInt: number;
     let toLocale: string;
     if (commasRemoved.split('.').length > 1) {
