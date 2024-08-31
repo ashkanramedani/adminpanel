@@ -23,7 +23,7 @@ export const Domain =
   "GetSingleLibrary": `${environment.apiUrl}/api/v1/form/library/{topic}`,
 
   "GetEmployees": `${environment.apiUrl}/api/v1/user/employees`,
-  "GetDropDowUser": `${environment.apiUrl}/api/v1/deopdown/user`,
+  "GetDropDowUser": `${environment.apiUrl}/dropdown/user`,
   "GroupDeletePost": `${environment.apiUrl}/api/v1/form/post`,
 
 
