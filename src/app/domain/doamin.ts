@@ -106,6 +106,11 @@ export const Domain =
   "PutPaymentMethodData": `${environment.apiUrl}/api/v1/form/payment_method/update`,
   "CreatePaymentMethodData": `${environment.apiUrl}/api/v1/form/payment_method/add`,
 
+  "GetRewardCardData": `${environment.apiUrl}/api/v1/form/reward_card/search`,
+  "DeleteRewardCardData": `${environment.apiUrl}/api/v1/form/reward_card/delete`,
+  "PutRewardCardData": `${environment.apiUrl}/api/v1/form/reward_card/update`,
+  "CreateRewardCardData": `${environment.apiUrl}/api/v1/form/reward_card/add`,
+
   "GetcourseData": `${environment.apiUrl}/api/v1/form/course/search`,
   "DeletecourseData": `${environment.apiUrl}/api/v1/form/course/delete`,
   "PutcourseData": `${environment.apiUrl}/api/v1/form/course/update`,

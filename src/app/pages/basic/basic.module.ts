@@ -33,13 +33,15 @@ import { SubCourseAddComponent } from './course/sub-course/sub-course-add/sub-co
 import { SessionAddComponent } from './course/sessions/session-add/session-add.component';
 import { SessionsComponent } from './course/sessions/sessions.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { RewardCardAddComponent } from './reward-card/reward-card-add/reward-card-add.component';
+import { RewardCardComponent } from './reward-card/reward-card.component';
 
 @NgModule({
   declarations: [CourseComponent, CourseAddComponent, CourseCategoryComponent, CourseCategoryAddComponent, CourseLanguageAddComponent,
     CourseTagAddComponent, CourseTypeAddComponent, CourseLanguageComponent, CourseTagComponent, CourseTypeComponent,
     AnswersComponent, AnswerAddComponent, PaymentsComponent, PaymentAddComponent, QuestionsComponent, QuestionAddComponent,
     SessionAddComponent, SessionsComponent, RolesComponent, RoleAddComponent, StudentsComponent,
-    StudentAddComponent, UsersComponent, UserAddComponent, SubCourseComponent, SubCourseAddComponent,
+    StudentAddComponent, UsersComponent, UserAddComponent, SubCourseComponent, SubCourseAddComponent,RewardCardAddComponent,RewardCardComponent
   ],
   imports: [
     CommonModule,

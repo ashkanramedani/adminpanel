@@ -26,6 +26,8 @@ import { SubCourseComponent } from './course/sub-course/sub-course.component';
 import { SubCourseAddComponent } from './course/sub-course/sub-course-add/sub-course-add.component';
 import { SessionsComponent } from './course/sessions/sessions.component';
 import { SessionAddComponent } from './course/sessions/session-add/session-add.component';
+import { RewardCardComponent } from './reward-card/reward-card.component';
+import { RewardCardAddComponent } from './reward-card/reward-card-add/reward-card-add.component';
 const routes: Routes = [
   { path: 'course', component: CourseComponent },
   { path: 'course/add', component: CourseAddComponent },
@@ -47,6 +49,9 @@ const routes: Routes = [
   { path: 'sub-course/add', component: SubCourseAddComponent },
   { path: 'sub-course/edit/:id', component: SubCourseAddComponent },
 
+  { path: 'reward-card', component: RewardCardComponent },
+  { path: 'reward-card/add', component: RewardCardAddComponent },
+  { path: 'reward-card/edit/:id', component: RewardCardAddComponent },
 
   { path: 'sessions', component: SessionsComponent },
   { path: 'session/add', component: SessionAddComponent },
