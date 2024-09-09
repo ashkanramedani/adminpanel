@@ -48,14 +48,17 @@ import { TeacherClassHolidayComponent } from './teachers-salary/salary-step/teac
 import { TeacherPaySlipComponent } from './teachers-salary/salary-step/teacher-pay-slip/teacher-pay-slip.component';
 import { TeacherSubRequestComponent } from './teachers-salary/salary-step/teacher-sub-request/teacher-sub-request.component';
 import { TeacherTardeyComponent } from './teachers-salary/salary-step/teacher-tardey/teacher-tardey.component';
+import { SupervisorComponent } from './supervisor/supervisor.component';
+import { SupervisorCourseComponent } from './supervisor/supervisor-course/supervisor-course.component';
+import { SupervisorSubCourseComponent } from './supervisor/supervisor-sub-course/supervisor-sub-course.component';
 @NgModule({
   declarations: [BusinessTripComponent, BusinessTripAddComponent, TeacherSessionsComponent, SecondStageComponent, TeacherAbsentComponent, TeacherCancellationComponent,
     CourseCancellationComponent, CourseCancellationAddComponent, SalaryStepComponent, TeacherClassHolidayComponent, TeacherPaySlipComponent,
-    SessionCancellationComponent, SessionCancellationAddComponent, TeacherSubRequestComponent, TeacherTardeyComponent,
+    SessionCancellationComponent, SessionCancellationAddComponent, TeacherSubRequestComponent, TeacherTardeyComponent, SupervisorComponent,
     FingerprintScannerComponent, FingerprintScannerAddComponent, FingerprintScannerBulkComponent, LeaveFormsComponent, LeaveFormAddComponent, RemoteRequestComponent,
     RemoteRequestAddComponent, SalaryPolicyComponent, SalaryPolicyAddComponent, SurveyComponent, SurveyAddComponent, TardeyRequestComponent,
     TardeyRequestAddComponent, TeachersSalaryComponent, SubRequestAddComponent, SubRequestComponent, EmployeesSalaryComponent, OnlyNumberDirective, EmployeesSalaryStepsComponent,
-    BusinessTripStepComponent, FingerPrintStepComponent, TeacherSubCourseComponent, LeaveRequestStepComponent, PaySlipStepComponent, RemoteRequestStepComponent,
+    BusinessTripStepComponent, FingerPrintStepComponent, TeacherSubCourseComponent, LeaveRequestStepComponent, PaySlipStepComponent, RemoteRequestStepComponent, SupervisorCourseComponent, SupervisorSubCourseComponent
   ],
   imports: [
     CommonModule,

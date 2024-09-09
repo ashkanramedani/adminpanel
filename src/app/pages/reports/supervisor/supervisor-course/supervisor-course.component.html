@@ -1,0 +1,68 @@
+<div class="breadcrumb flex justify-between items-center px-5 mb-3 bg-white rounded-lg font-semibold">
+  <div class="flex items-center gap-x-14 w-full">
+    <div class="breadcrumbs text-sm">
+      <ul>
+        <li> گزارشات</li>
+        <li> ارزشیابی اساتید</li>
+        <li>  لیست دروس</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+<app-loading *ngIf="isLoading"></app-loading>
+<main *ngIf="!isLoading">
+  <div class="p-5 my-3 bg-white rounded-lg">
+    <div class="flex items-center gap-x-2 justify-start mb-5">
+      <select class="select select-bordered select-sm ">
+        <option selected value="desc">همه وضعیت ها </option>
+        <option value="asc">محاسبه</option>
+        <option value="asc">محاسبه شده</option>
+      </select>
+      <select class="select select-bordered select-sm ">
+        <option selected value="desc"> زبان </option>
+        <option value="asc">محاسبه</option>
+        <option value="asc">محاسبه شده</option>
+      </select>
+      <label class="input input-bordered flex items-center gap-2 input-sm  max-w-xs">
+        <input type="text" class="grow" placeholder="نام درس" [(ngModel)]="SearchValue" />
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4 opacity-70">
+          <path fill-rule="evenodd"
+            d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+            clip-rule="evenodd" />
+        </svg>
+      </label>
+      <label class="input input-bordered flex items-center gap-2 input-sm  max-w-xs">
+        <input type="text" class="grow" placeholder="تاریخ " [(ngModel)]="SearchValue" />
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4 opacity-70">
+          <path fill-rule="evenodd"
+            d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+            clip-rule="evenodd" />
+        </svg>
+      </label>
+      <button class="p-1 ">
+        <img src="/assets/images/icon/refresh.svg" class="w-6" alt="">
+      </button>
+    </div>
+    <div
+      class="header grid grid-cols-6 text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6">
+      <span *ngFor="let item of table_header">{{item}}</span>
+    </div>
+    <div *ngFor="let item of ResponseDataList | filter: this.SearchValue; let i =index"
+      class="body grid grid-cols-6 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
+      <span>{{(i+1)}}</span>
+      <span>{{item.course_name }}</span>
+      <span>{{item.language.language_name }}</span>
+       <span>{{item.number_of_sub_courses}}</span>
+      <span>{{item.ending_date|HijriDate}}</span>
+      <div class="operation flex items-center justify-center">
+        <a [routerLink]="['/reports/supervisor-subcourse',item.course_pk_id]"
+          class="bg-cyan-600  text-white px-3 py-2 rounded-lg font-semibold flex items-center justify-between gap-x-4">
+          <span>  لیست دوره ها</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+</main>

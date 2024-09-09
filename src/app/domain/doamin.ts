@@ -175,6 +175,8 @@ export const Domain =
   "GetNumberOfSubCourses": `${environment.apiUrl}/api/v1/form/salary/teacher/number_of_sub_courses`,
   "PutSalaryTeachertUpdate" : `${environment.apiUrl}/api/v1/form/salary/teacher/summary`,
 
+  "PostSupervisor": `${environment.apiUrl}/api/v1/form/salary/teacher/supervisor_review`,
+
   "Auth":{
     "SingIn": `${environment.IeltsdailyApi}/api/v1/auth/signin`,
     "OTP": `${environment.IeltsdailyApi}/api/v1/auth/otp`,

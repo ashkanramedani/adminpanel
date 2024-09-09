@@ -27,6 +27,9 @@ import { SubRequestComponent } from './sub-request/sub-request.component';
 import { SubRequestAddComponent } from './sub-request/sub-request-add/sub-request-add.component';
 import { TeacherSessionsComponent } from './teachers-salary/teacher-sessions/teacher-sessions.component';
 import { SalaryStepComponent } from './teachers-salary/salary-step/salary-step.component';
+import { SupervisorCourseComponent } from './supervisor/supervisor-course/supervisor-course.component';
+import { SupervisorSubCourseComponent } from './supervisor/supervisor-sub-course/supervisor-sub-course.component';
+import { SupervisorComponent } from './supervisor/supervisor.component';
 
 const routes: Routes = [
   {path:'salarypolicy',component:SalaryPolicyComponent},
@@ -70,6 +73,9 @@ const routes: Routes = [
 {path:'survey/add',component:SurveyAddComponent},
 {path:'survey/edit/:id',component:SurveyAddComponent},
 
+{path:'supervisor-review/:id',component:SupervisorComponent},
+{path:'supervisor-course',component:SupervisorCourseComponent},
+{path:'supervisor-subcourse/:id',component:SupervisorSubCourseComponent},
 
 {path:'employees-salary',component:EmployeesSalaryComponent},
 {path:'employees-salary/:id',component:EmployeesSalaryStepsComponent},

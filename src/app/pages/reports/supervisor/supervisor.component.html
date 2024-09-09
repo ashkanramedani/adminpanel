@@ -1,0 +1,227 @@
+<div class="breadcrumb flex gap-x-2 justify-between items-center px-5 mb-3 bg-white rounded-lg font-semibold text-xs">
+  <nav>
+    <div class="breadcrumbs text-sm">
+      <ul>
+        <li> گزارشات</li>
+        <li> ارزشیابی اساتید</li>
+        <li> ثبت نظر</li>
+      </ul>
+    </div>
+  </nav>
+
+</div>
+<main>
+  <div class="p-5 mb-3 bg-white rounded-lg">
+    <h3 class="text-xl font-semibold mb-6">  ثبت ارزشیابی برای دوره &nbsp;    {{this.SubCourseData.sub_course_name  }}</h3>
+    <form [formGroup]="this.myForm">
+      <div class="flex flex-col rounded-lg p-3 gap-y-8">
+
+        <div class="item flex items-center gap-x-8">
+          <span class="min-w-[22rem]"> پاداش مدیریتی </span>
+          <div class="flex items-center gap-x-6">
+            <input type="number" formControlName="rewards_earning" dir="rtl" min=2 max=10
+              class="input input-bordered input-sm w-full max-w-sm min-w-[10rem]" />
+          </div>
+        </div>
+        <div class="item flex items-center gap-x-8">
+          <span class="min-w-[22rem]"> شرکت در دوره های CPD</span>
+          <div class="flex items-center gap-x-6">
+            <input type="number" formControlName="CPD" min=0 max=100 dir="rtl"
+              class="input input-bordered input-sm w-full max-w-sm min-w-[10rem]" />
+          </div>
+        </div>
+        <div class="item flex items-center gap-x-8">
+          <span class="min-w-[22rem]">کلاس های 19:45 به بعد</span>
+          <div class="flex items-center gap-x-6">
+            <input type="number" min=0 max=100 formControlName="Odd_hours" dir="rtl"
+              class="input input-bordered input-sm w-full max-w-sm min-w-[10rem]" />
+          </div>
+        </div>
+        <div class="item flex items-center gap-x-8">
+          <span class="min-w-[22rem]"> همکاری در فضای مجازی</span>
+          <div class="flex items-center gap-x-6">
+            <input type="number" min=0 max=100 formControlName="content_creation" dir="rtl"
+              class="input input-bordered input-sm w-full max-w-sm min-w-[10rem]" />
+          </div>
+        </div>
+        <div class="item flex items-center gap-x-8">
+          <span class="min-w-[22rem]">شرکت در جلسات و رویدادها</span>
+          <div class="flex items-center gap-x-6">
+            <input type="number" formControlName="event_participate" dir="rtl" min=0 max=100
+              class="input input-bordered input-sm w-full max-w-sm min-w-[10rem]" />
+          </div>
+        </div>
+        <div class="item flex items-center gap-x-8">
+          <span class="min-w-[22rem]">امتیاز نظرسنجی</span>
+          <div class="flex items-center gap-x-6">
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text pl-2">ضعیف </span>
+                <input type="radio" formControlName="survey_score" class="radio radio-sm checked:bg-cyan-600"
+                  value="weak" />
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text pl-2">متوسط </span>
+                <input type="radio" formControlName="survey_score" class="radio radio-sm checked:bg-cyan-600"
+                  value="average" />
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text pl-2">خوب </span>
+                <input type="radio" formControlName="survey_score" class="radio radio-sm checked:bg-cyan-600"
+                  value="good" />
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text pl-2">عالی </span>
+                <input type="radio" formControlName="survey_score" class="radio radio-sm checked:bg-cyan-600"
+                  value="excellent" checked="checked" />
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="item flex items-center gap-x-8">
+          <span class="min-w-[22rem]"> طرح درس</span>
+          <div class="flex items-center gap-x-6">
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text pl-2">ضعیف </span>
+                <input type="radio" formControlName="LP_submission" class="radio radio-sm checked:bg-cyan-600"
+                  value="weak" />
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text pl-2">متوسط </span>
+                <input type="radio" formControlName="LP_submission" class="radio radio-sm checked:bg-cyan-600"
+                  value="average" />
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text pl-2">خوب </span>
+                <input type="radio" formControlName="LP_submission" class="radio radio-sm checked:bg-cyan-600"
+                  value="good" />
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text pl-2">عالی </span>
+                <input type="radio" formControlName="LP_submission" class="radio radio-sm checked:bg-cyan-600"
+                  value="excellent" checked="checked" />
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="item flex items-center gap-x-8">
+          <span class="min-w-[22rem]">امتیاز ارائه گزارش به زبان آموز</span>
+          <div class="flex items-center gap-x-6">
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text pl-2">ضعیف </span>
+                <input type="radio" formControlName="report_to_student" class="radio radio-sm checked:bg-cyan-600"
+                  value="weak" />
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text pl-2">متوسط </span>
+                <input type="radio" formControlName="report_to_student" class="radio radio-sm checked:bg-cyan-600"
+                  value="average" />
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text pl-2">خوب </span>
+                <input type="radio" formControlName="report_to_student" class="radio radio-sm checked:bg-cyan-600"
+                  value="good" />
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text pl-2">عالی </span>
+                <input type="radio" formControlName="report_to_student" class="radio radio-sm checked:bg-cyan-600"
+                  value="excellent" checked="checked" />
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="item flex items-center gap-x-8">
+          <span class="min-w-[22rem]">امتیاز ارسال به موقع نتیجه تمرینات برای زبان آموزان</span>
+          <div class="flex items-center gap-x-6">
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text pl-2">ضعیف </span>
+                <input type="radio" formControlName="student_assign_feedback" class="radio radio-sm checked:bg-cyan-600"
+                  value="weak" />
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text pl-2">متوسط </span>
+                <input type="radio" formControlName="student_assign_feedback" class="radio radio-sm checked:bg-cyan-600"
+                  value="average" />
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text pl-2">خوب </span>
+                <input type="radio" formControlName="student_assign_feedback" class="radio radio-sm checked:bg-cyan-600"
+                  value="good" />
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text pl-2">عالی </span>
+                <input type="radio" formControlName="student_assign_feedback" class="radio radio-sm checked:bg-cyan-600"
+                  value="excellent" checked="checked" />
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="item flex items-center gap-x-8">
+          <span class="min-w-[22rem]">امتیاز ارائه گزارش به آفیس</span>
+          <div class="flex items-center gap-x-6">
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text pl-2">ضعیف </span>
+                <input type="radio" formControlName="result_submission_to_FD" class="radio radio-sm checked:bg-cyan-600"
+                  value="weak" />
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text pl-2">متوسط </span>
+                <input type="radio" formControlName="result_submission_to_FD" class="radio radio-sm checked:bg-cyan-600"
+                  value="average" />
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text pl-2">خوب </span>
+                <input type="radio" formControlName="result_submission_to_FD" class="radio radio-sm checked:bg-cyan-600"
+                  value="good" />
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="noprint flex gap-x-4 mt-16 text-sm">
+        <a [routerLink]="['/reports/supervisor-course']"
+          class="border border-gray-400 px-6 font-semibold py-2 rounded-md bg-gray-300 text-gray-500  gap-x-2 flex items-center"
+          href="">
+          <img src="/assets/images/icon/right-arrow.svg" class="w-8 rotate-180" alt="">
+          <span>  بازگشت به لیست دروس</span>
+        </a>
+        <button [disabled]="this.myForm.invalid || btnLoading" (click)="onSubmit()"
+          class="border border-cyan-600 px-6 disabled:bg-cyan-400 disabled:border-cyan-400 font-semibold py-2 rounded-md bg-cyan-600 hover:bg-cyan-700 text-white gap-x-2 flex items-center">
+          <span>ذخیره</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</main>
