@@ -140,9 +140,7 @@
               <details >
                 <summary>اطلاعات پایه</summary>
                 <ul>
-                  <li class="py-1"><a [routerLink]="['/basic/users']">پرسنل</a></li>
-                  <li class="py-1"><a [routerLink]="['/basic/roles']">نقش ها</a></li>
-                  <li class="py-1"><a [routerLink]="['/basic/students']">دانشجویان</a></li>
+
                   <li class="py-1"><a [routerLink]="['/basic/course']">دوره ها</a></li>
                   <li class="py-1"><a [routerLink]="['/basic/questions']">سوالات</a></li>
                   <li class="py-1"><a [routerLink]="['/basic/answers']">پاسخ سوالات</a></li>
@@ -168,6 +166,17 @@
                   <li class="py-1"><a [routerLink]="['/libraries']" [queryParams]="{type: 'story'}">داستانی</a></li>
                   <li class="py-1"><a [routerLink]="['/libraries']" [queryParams]="{type: 'magazine'}">مجلات</a></li>
                   <li class="py-1"><a [routerLink]="['/libraries']" [queryParams]="{type: 'educational'}">آموزشی</a></li>
+                </ul>
+              </details>
+            </li>
+            <li class="py-1">
+              <details >
+                <summary> کاربران</summary>
+                <ul>
+                  <li class="py-1"><a [routerLink]="['/basic/users']">پرسنل</a></li>
+                  <li class="py-1"><a [routerLink]="['/basic/users']"> اساتید</a></li>
+                  <li class="py-1"><a [routerLink]="['/basic/students']">زبان آموزان</a></li>
+                  <li class="py-1"><a [routerLink]="['/basic/roles']">نقش ها</a></li>
                 </ul>
               </details>
             </li>
