@@ -6,8 +6,8 @@ declare let alertify: any;
 export class AlertifyService {
 
   constructor() { }
-  alert(title: string, message: string,okCallback: () => any){
-    alertify.alert(title,message, () => { okCallback(); } );
+  alert(title: string, message: string,okCallback: () => any,lableTitle:string){
+    alertify.alert(title,message, () => { okCallback(); } ).set('label', lableTitle); ;
   }
   confirm(title: string, message: string, okCallback: () => any, cancelCallback: () => any) {
     alertify.confirm(title, message, () => { okCallback(); }

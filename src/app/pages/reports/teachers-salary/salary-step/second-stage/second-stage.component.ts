@@ -1,7 +1,8 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
+import { ISupervisorSingle } from 'src/app/interfaces/ISupervisor';
 import { ITeacherSummeryBody } from 'src/app/interfaces/ITeachersSalary';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -9,8 +10,9 @@ import { HttpService } from 'src/app/services/http.service';
   selector: 'app-second-stage',
   templateUrl: './second-stage.component.html',
 })
-export class SecondStageComponent {
+export class SecondStageComponent implements OnInit{
   myForm: FormGroup
+  supervisorReview= {} as ISupervisorSingle
   data: any[] = []
   btnLoading: boolean = false
   private readonly http = inject(HttpService)
@@ -29,6 +31,15 @@ export class SecondStageComponent {
       report_to_student: new FormControl('average', [Validators.required]),
       student_assign_feedback: new FormControl('average', [Validators.required]),
       result_submission_to_FD: new FormControl('average', [Validators.required]),
+    })
+  }
+  ngOnInit(): void {
+    this.getSupervisorReview()
+  }
+  getSupervisorReview(){
+    this.http.get(Domain.GetSupervisor,this.subcourse_id).subscribe((res)=>
+    {
+      this.supervisorReview=res
     })
   }
   onSubmit() {

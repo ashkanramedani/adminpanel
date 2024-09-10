@@ -37,21 +37,32 @@ export class TeacherSubCourseComponent implements OnInit {
     })
   }
   changeRoute(Have_Salary_Record: boolean, course_id: string, sub_course_pk_id: string, user_pk_id: string) {
-    localStorage.setItem("user_pk_id",user_pk_id)
-    //محاسبه شده
-    if (Have_Salary_Record) {
-      this.getCourseInfo(course_id)
 
-      this.router.navigate(['/reports/teacher-salary/' + sub_course_pk_id], { queryParams: { step: 6 } })
-    }
-    else {
-      this.getCourseInfo(course_id)
-      this.router.navigate(['/reports/teacher-salary/' + sub_course_pk_id], { queryParams: { step: 1 } })
-    }
+    this.http.get(Domain.GetSubCourseData, sub_course_pk_id).subscribe((res) => {
+
+      if (res.supervisor_review == null) {
+        //this.alertServices.error("");
+        this.alertServices.alert('متاسفیم!', 'برای این دوره ارزشیابی ثبت نشده است', function(){ },'باشه'); ;
+        return;
+      }
+      else {
+        localStorage.setItem("user_pk_id", user_pk_id)
+        //محاسبه شده
+        if (Have_Salary_Record) {
+          this.getCourseInfo(course_id)
+          this.router.navigate(['/reports/teacher-salary/' + sub_course_pk_id], { queryParams: { step: 6 } })
+        }
+        else {
+          this.getCourseInfo(course_id)
+          this.router.navigate(['/reports/teacher-salary/' + sub_course_pk_id], { queryParams: { step: 1 } })
+        }
+      }
+    })
+
   }
   getCourseInfo(course_id: string) {
     this.http.get(Domain.GetcourseData, course_id).subscribe((response) => {
-      localStorage.setItem("course_info",JSON.stringify( response))
+      localStorage.setItem("course_info", JSON.stringify(response))
     })
 
   }
