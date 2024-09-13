@@ -1,0 +1,81 @@
+<div class="breadcrumb flex justify-between items-center py-1 px-5 mb-3 bg-white rounded-lg font-semibold">
+  <div class="flex items-center gap-x-14 w-full">
+    <div class="breadcrumbs text-sm">
+      <ul>
+        <li> مالی </li>
+        <li> کیف پول ها </li>
+      </ul>
+    </div>
+    <div class="flex items-center gap-x-3">
+      <label class="input input-bordered flex items-center gap-2 input-sm  max-w-xs">
+        <input type="text" class="grow" placeholder="جستجو" [(ngModel)]="SearchValue" />
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4 opacity-70">
+          <path fill-rule="evenodd"
+            d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+            clip-rule="evenodd" />
+        </svg>
+      </label>
+    </div>
+  </div>
+</div>
+<app-loading *ngIf="isLoading"></app-loading>
+<main *ngIf="!isLoading">
+  <div class="p-5 my-3 bg-white rounded-lg">
+    <div class="body flex flex-col gap-y-3">
+      <div class="item flex items-center justify-between bg-gray-50 border border-gray-100 rounded-lg px-6 py-3">
+        <div class="flex flex-col gap-y-4 text-lg">
+          <span class=" font-semibold"> <span>کیف پول: </span> <span>454542</span> </span>
+          <span class="flex items-center text-cyan-700"><span>مالک:</span> &nbsp; <span>علی قاسمی</span></span>
+        </div>
+        <div class="flex items-center gap-x-4">
+          <div
+            class="flex text-lg font-semibold items-center text-cyan-700 bg-cyan-50 px-3 py-2 border border-cyan-100 rounded-lg  gap-x-1">
+            <span class="">موجودی:</span>
+            <span class="font-black text-2xl"> 356800</span>
+            <span class="text-base">تومان</span>
+          </div>
+          <div class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="p-1 hover:bg-gray-200 rounded-md">
+              <img src="/assets/images/icon/show-more.svg" class="w-8" alt="">
+            </div>
+            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-40 w-36 p-2 shadow border">
+              <li><a>مشاهده</a></li>
+              <li><a>حذف</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="item flex items-center justify-between bg-gray-50 border border-gray-100 rounded-lg px-6 py-3">
+        <div class="flex flex-col gap-y-4 text-lg">
+          <span class=" font-semibold"> <span>کیف پول: </span> <span>454542</span> </span>
+          <span class="flex items-center text-cyan-700"><span>مالک:</span> &nbsp; <span>علی قاسمی</span></span>
+        </div>
+        <div class="flex items-center gap-x-4">
+          <div
+            class="flex text-lg font-semibold items-center text-cyan-700 bg-cyan-50 px-3 py-2 border border-cyan-100 rounded-lg  gap-x-1">
+            <span class="">موجودی:</span>
+            <span class="font-black text-2xl"> 356800</span>
+            <span class="text-base">تومان</span>
+          </div>
+          <div class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="p-1 hover:bg-gray-200 rounded-md">
+              <img src="/assets/images/icon/show-more.svg" class="w-8" alt="">
+            </div>
+            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-40 w-36 p-2 shadow border">
+              <li><a>مشاهده</a></li>
+              <li><a>حذف</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="paging flex items-center justify-center mt-16 flex-wrap ">
+      <pagination-controls (pageChange)="changePage($event)" previousLabel="قبلی"
+        nextLabel="بعدی"></pagination-controls>
+    </div>
+  </div>
+
+
+
+</main>

@@ -1,0 +1,40 @@
+<div class="flex flex-col gap-y-3 mt-8">
+  <div class="item rounded-lg border px-3 py-5 flex flex-col">
+    <div class="flex items-center gap-x-8">
+      <div class="flex items-center gap-x-2">
+        <img src="/assets/images/icon/wallet.svg" class="w-5" alt="">
+        <span class="text-xl font-semibold text-cyan-600">چک اول</span>
+      </div>
+      <div class="flex items-center gap-x-4">
+        <p><b> شناسه صیادی:</b> &nbsp; <span>09154542</span></p>
+        <p><b> مبلغ:</b> &nbsp; <span>09154542</span></p>
+        <p><b> تاریخ وصول:</b> &nbsp; <span>09154542</span></p>
+        <p><b> در وجه:</b> &nbsp; <span>09154542</span></p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="form-control  mt-6">
+    <label class="label cursor-pointer justify-start gap-x-2">
+      <input type="checkbox" class="checkbox" />
+      <span class="label-text  text-lg">صحت اطلاعات را تایید می کنم</span>
+    </label>
+  </div>
+  <div class="form-control ">
+    <label class="label cursor-pointer justify-start gap-x-2">
+      <input type="checkbox" class="checkbox" />
+      <span class="label-text text-lg">تاریخ سررسید چک را به من یادآوری کنید</span>
+    </label>
+  </div>
+  <div class="noprint justify-end flex gap-x-4 mt-8">
+    <a [routerLink]="['/finance/check']" [queryParams]="{step:2}" class="border border-gray-400 px-8 font-semibold py-3 rounded-md bg-gray-300 text-gray-500 text-base gap-x-2 flex items-center">
+      <img src="/assets/images/icon/right-arrow.svg" class="w-8 rotate-180" alt="">
+      <span> مرحله قبل</span>
+    </a>
+    <a
+      class="border border-cyan-600 px-12 font-semibold py-3 rounded-md bg-cyan-600 hover:bg-cyan-700 text-white text-base gap-x-2 flex items-center">
+      <span>ثبت نهایی</span>
+    </a>
+  </div>
+</div>

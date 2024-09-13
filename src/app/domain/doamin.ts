@@ -85,6 +85,9 @@ export const Domain =
   "PutSesssion": `${environment.apiUrl}/api/v1/form/session/update`,
   "GetSessionBySubCourseId" : `${environment.apiUrl}/api/v1/form/session/subcourse`,
 
+  "GetWallet": `${environment.apiUrl}/api/v1/form/session/search`,
+
+
   "GetSingleSesssionCancellation": `${environment.apiUrl}/api/v1/form/sesssion_cancellation/search`,
   "GetSessionCancellation": `${environment.apiUrl}/api/v1/form/session_cancellation/search`,
   "GetSessionCancellationReport": `${environment.apiUrl}/api/v1/form/session_cancellation/report`,

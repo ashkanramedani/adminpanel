@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainTemplateComponent } from './main-template.component';
-import { authGuard } from 'src/app/guards/auth.guard';
 
 const routes: Routes = [
 
   {
     path: '',
-   component:MainTemplateComponent,
+    component: MainTemplateComponent,
     children: [
       {
         path: '',
         loadChildren: () =>
           import('../../pages/dashboard/dashboard.module').then((m) => m.DashboardModule)
+      },
+      {
+        path: 'finance',
+        loadChildren: () => import('../../pages/finance/finance.module').then((m) => m.FinanceModule)
       },
       {
         path: 'basic',

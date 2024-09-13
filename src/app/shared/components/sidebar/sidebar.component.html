@@ -26,19 +26,13 @@
         <!-- this hidden checkbox controls the state -->
         <input type="checkbox" />
         <!-- sun icon -->
-        <svg
-          class="swap-on h-8 w-8 fill-current"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24">
+        <svg class="swap-on h-8 w-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path
             d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
         </svg>
 
         <!-- moon icon -->
-        <svg
-          class="swap-off h-8 w-8 fill-current"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24">
+        <svg class="swap-off h-8 w-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path
             d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
         </svg>
@@ -103,8 +97,8 @@
   </div>
 </header>
 
-<aside [ngClass]="{'!translate-x-0': (isOpenHamburgerMenu) }"  class="noprint transition transform ease-in-out duration-700 lg:translate-x-0  translate-x-72  right-0  lg:my-4 lg:mr-4 fixed lg:top-[3.6rem] top-0 bottom-0 w-full max-w-[18rem] p-0 overflow-hidden lg:z-30 z-50 rounded-lg lg:bg-white bg-gray-50 shadow-lg lg:shadow-none "
-  >
+<aside [ngClass]="{'!translate-x-0': (isOpenHamburgerMenu) }"
+  class="noprint transition transform ease-in-out duration-700 lg:translate-x-0  translate-x-72  right-0  lg:my-4 lg:mr-4 fixed lg:top-[3.6rem] top-0 bottom-0 w-full max-w-[18rem] p-0 overflow-hidden lg:z-30 z-50 rounded-lg lg:bg-white bg-gray-50 shadow-lg lg:shadow-none ">
   <!-- SIDEBAR HEADER -->
   <div class="lg:hidden flex items-center justify-between gap-2 px-2 pt-3">
     <img class="w-28" src="/assets/images/logo.webp" alt="Logo" />
@@ -122,7 +116,7 @@
           <div class="flex items-center gap-x-2 ">
             <img src="/assets/images/user.svg" class="w-9" alt="">
             <div class="flex flex-col text-xs  gap-y-1">
-              <span>{{this.loggedInUser.fname  + '&nbsp;' + this.loggedInUser.lname }}</span>
+              <span>{{this.loggedInUser.fname + '&nbsp;' + this.loggedInUser.lname }}</span>
               <span>{{this.loggedInUser.email}}</span>
             </div>
           </div>
@@ -131,74 +125,101 @@
               <img src="/assets/images/logout.svg" class="w-5 fill-gray-700" alt="">
             </button>
           </div>
-
         </div>
         <div class="py-2">
           <ul class="menu bg-white font-medium menu-md ">
-            <li class="py-1"><a [routerLink]="['/']">داشبورد</a></li>
+            <li class="py-1"><a [routerLink]="['/']" routerLinkActive="router-link-active">داشبورد</a></li>
             <li class="py-1">
-              <details >
+              <details>
                 <summary>اطلاعات پایه</summary>
                 <ul>
-
-                  <li class="py-1"><a [routerLink]="['/basic/course']">دوره ها</a></li>
-                  <li class="py-1"><a [routerLink]="['/basic/questions']">سوالات</a></li>
-                  <li class="py-1"><a [routerLink]="['/basic/answers']">پاسخ سوالات</a></li>
-                  <li class="py-1"><a [routerLink]="['/basic/payments']">روش های پرداخت</a></li>
-                  <li class="py-1"><a [routerLink]="['/basic/reward-card']">کارت پاداش اساتید</a></li>
+                  <li class="py-1"><a [routerLink]="['/basic/roles']" routerLinkActive="router-link-active">نقش ها</a>
+                  </li>
+                  <li class="py-1"><a [routerLink]="['/basic/course']" routerLinkActive="router-link-active">دوره ها</a>
+                  </li>
+                  <li class="py-1"><a [routerLink]="['/basic/questions']"
+                      routerLinkActive="router-link-active">سوالات</a></li>
+                  <li class="py-1"><a [routerLink]="['/basic/answers']" routerLinkActive="router-link-active">پاسخ
+                      سوالات</a></li>
+                  <li class="py-1"><a [routerLink]="['/basic/payments']" routerLinkActive="router-link-active">روش های
+                      پرداخت</a></li>
+                  <li class="py-1"><a [routerLink]="['/basic/reward-card']" routerLinkActive="router-link-active">کارت
+                      پاداش اساتید</a></li>
                 </ul>
               </details>
             </li>
             <li class="py-1">
-              <details >
+              <details>
                 <summary> محتوای آموزشی</summary>
                 <ul>
-                  <li class="py-1"><a [routerLink]="['/contents']" [queryParams]="{type: 'blog'}">بلاگ</a></li>
-                  <li class="py-1"><a [routerLink]="['/contents']" [queryParams]="{type: 'podcast'}">پادکست</a></li>
-                  <li class="py-1"><a [routerLink]="['/contents']" [queryParams]="{type: 'news'}">اخبار</a></li>
+                  <li class="py-1"><a [routerLink]="['/contents']" routerLinkActive="router-link-active"
+                      [queryParams]="{type: 'blog'}">بلاگ</a></li>
+                  <li class="py-1"><a [routerLink]="['/contents']" routerLinkActive="router-link-active"
+                      [queryParams]="{type: 'podcast'}">پادکست</a></li>
+                  <li class="py-1"><a [routerLink]="['/contents']" routerLinkActive="router-link-active"
+                      [queryParams]="{type: 'news'}">اخبار</a></li>
                 </ul>
               </details>
             </li>
             <li class="py-1">
-              <details >
+              <details>
                 <summary>کتابخانه</summary>
                 <ul>
                   <li class="py-1"><a [routerLink]="['/libraries']" [queryParams]="{type: 'story'}">داستانی</a></li>
                   <li class="py-1"><a [routerLink]="['/libraries']" [queryParams]="{type: 'magazine'}">مجلات</a></li>
-                  <li class="py-1"><a [routerLink]="['/libraries']" [queryParams]="{type: 'educational'}">آموزشی</a></li>
+                  <li class="py-1"><a [routerLink]="['/libraries']" [queryParams]="{type: 'educational'}">آموزشی</a>
+                  </li>
                 </ul>
               </details>
             </li>
             <li class="py-1">
-              <details >
+              <details>
                 <summary> کاربران</summary>
                 <ul>
-                  <li class="py-1"><a [routerLink]="['/basic/users']">پرسنل</a></li>
-                  <li class="py-1"><a [routerLink]="['/basic/users']"> اساتید</a></li>
-                  <li class="py-1"><a [routerLink]="['/basic/students']">زبان آموزان</a></li>
-                  <li class="py-1"><a [routerLink]="['/basic/roles']">نقش ها</a></li>
+                  <li class="py-1"><a [routerLink]="['/basic/users']" routerLinkActive="router-link-active">پرسنل</a>
+                  </li>
+                  <li class="py-1"><a [routerLink]="['/basic/users']" routerLinkActive="router-link-active"> اساتید</a>
+                  </li>
+                  <li class="py-1"><a [routerLink]="['/basic/students']" routerLinkActive="router-link-active">زبان
+                      آموزان</a></li>
+
                 </ul>
               </details>
             </li>
-             <li class="py-1">
-              <details >
-                <summary>  گزارشات</summary>
+            <li class="py-1">
+              <details>
+                <summary> مالی</summary>
+                <ul>
+                  <li class="py-1"><a [routerLink]="['/finance/wallets']" routerLinkActive="router-link-active">کیف
+                      پول ها</a></li>
+                  <li class="py-1"><a [routerLink]="['/finance/check']" [queryParams]="{step: '1'}" routerLinkActive="router-link-active">چک ها
+                    </a></li>
+                </ul>
+              </details>
+            </li>
+            <li class="py-1">
+              <details>
+                <summary> گزارشات</summary>
                 <ul>
                   <li class="py-1">
-                    <details >
+                    <details>
                       <summary>کادر دفتر</summary>
                       <ul>
-                        <li><a [routerLink]="['/reports/tardy_request']">تاخیر اساتید</a></li>
+                        <li><a [routerLink]="['/reports/tardy_request']" routerLinkActive="router-link-active">تاخیر
+                            اساتید</a></li>
                       </ul>
                     </details>
                   </li>
                   <li class="py-1">
-                    <details >
+                    <details>
                       <summary>عمومی</summary>
                       <ul>
-                        <li class="py-1"><a [routerLink]="['/reports/leave_request']">مرخصی</a></li>
-                        <li class="py-1"><a [routerLink]="['/reports/business_trip']">ماموریت</a></li>
-                        <li class="py-1"><a [routerLink]="['/reports/remote_request']">دورکاری</a></li>
+                        <li class="py-1"><a [routerLink]="['/reports/leave_request']"
+                            routerLinkActive="router-link-active">مرخصی</a></li>
+                        <li class="py-1"><a [routerLink]="['/reports/business_trip']"
+                            routerLinkActive="router-link-active">ماموریت</a></li>
+                        <li class="py-1"><a [routerLink]="['/reports/remote_request']"
+                            routerLinkActive="router-link-active">دورکاری</a></li>
                       </ul>
                     </details>
                   </li>
@@ -206,17 +227,21 @@
                     <details>
                       <summary>حسابداری</summary>
                       <ul>
-                        <li class="py-1"><a [routerLink]="['/reports/finger_scanner']">ورود و خروج کارکنان</a></li>
-                        <li class="py-1"><a [routerLink]="['/reports/salarypolicy']">ضریب محاسبه حقوق</a></li>
+                        <li class="py-1"><a [routerLink]="['/reports/finger_scanner']"
+                            routerLinkActive="router-link-active">ورود و خروج کارکنان</a></li>
+                        <li class="py-1"><a [routerLink]="['/reports/salarypolicy']"
+                            routerLinkActive="router-link-active">ضریب محاسبه حقوق</a></li>
                       </ul>
                     </details>
                   </li>
                   <li class="py-1">
-                    <details >
+                    <details>
                       <summary>آموزش</summary>
                       <ul>
-                        <li class="py-1"><a [routerLink]="['/reports/sub_request']">استاد جایگزین</a></li>
-                        <li class="py-1"><a [routerLink]="['/reports/session_cancellation']">کنسلی جلسات</a></li>
+                        <li class="py-1"><a [routerLink]="['/reports/sub_request']"
+                            routerLinkActive="router-link-active">استاد جایگزین</a></li>
+                        <li class="py-1"><a [routerLink]="['/reports/session_cancellation']"
+                            routerLinkActive="router-link-active">کنسلی جلسات</a></li>
                       </ul>
                     </details>
                   </li>
@@ -224,17 +249,21 @@
                     <details>
                       <summary>مالی</summary>
                       <ul>
-                        <li class="py-1"><a [routerLink]="['/reports/supervisor-course']" routerLinkActive="router-link-active">ارزشیابی اساتید</a></li>
-                        <li class="py-1"><a [routerLink]="['/reports/employees-salary']" routerLinkActive="router-link-active">محاسبات حقوق پرسنل</a></li>
-                        <li class="py-1"><a [routerLink]="['/reports/teachers-salary']" routerLinkActive="router-link-active" >محاسبات حقوق اساتید</a></li>
+                        <li class="py-1"><a [routerLink]="['/reports/supervisor-course']"
+                            routerLinkActive="router-link-active">ارزشیابی اساتید</a></li>
+                        <li class="py-1"><a [routerLink]="['/reports/employees-salary']"
+                            routerLinkActive="router-link-active">محاسبات حقوق پرسنل</a></li>
+                        <li class="py-1"><a [routerLink]="['/reports/teachers-salary']"
+                            routerLinkActive="router-link-active">محاسبات حقوق اساتید</a></li>
                       </ul>
                     </details>
                   </li>
                   <li class="py-1">
-                    <details >
+                    <details>
                       <summary>روابط عمومی</summary>
                       <ul>
-                        <li class="py-1"><a [routerLink]="['/reports/survey']">نظر سنجی</a></li>
+                        <li class="py-1"><a [routerLink]="['/reports/survey']" routerLinkActive="router-link-active">نظر
+                            سنجی</a></li>
                       </ul>
                     </details>
                   </li>

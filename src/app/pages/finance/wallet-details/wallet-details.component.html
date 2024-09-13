@@ -1,0 +1,177 @@
+<div class="breadcrumb flex justify-between items-center py-1 px-5 mb-3 bg-white rounded-lg font-semibold">
+  <div class="flex items-center gap-x-14 w-full">
+    <div class="breadcrumbs text-sm">
+      <ul>
+        <li> مالی </li>
+        <li> کیف پول ها </li>
+      </ul>
+    </div>
+    <div class="flex items-center gap-x-3">
+      <label class="input input-bordered flex items-center gap-2 input-sm  max-w-xs">
+        <input type="text" class="grow" placeholder="جستجو" [(ngModel)]="SearchValue" />
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4 opacity-70">
+          <path fill-rule="evenodd"
+            d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+            clip-rule="evenodd" />
+        </svg>
+      </label>
+    </div>
+  </div>
+</div>
+<app-loading *ngIf="isLoading"></app-loading>
+<main *ngIf="!isLoading">
+  <div class="p-5 my-3 bg-white rounded-lg">
+    <div class="header flex flex-col gap-y-4 bg-cyan-50 p-4 rounded-lg">
+      <div class="flex items-center justify-between">
+        <div class="flex flex-col gap-y-3">
+          <h3 class="text-xl font-semibold"><span>کیف پول:</span> &nbsp; <span>565657</span></h3>
+          <p class="text-lg font-medium"><span>مالک:</span> &nbsp; <span>آرین شهنازی</span></p>
+        </div>
+        <div>
+          <div class="flex items-center gap-x-2">
+            <div
+              class="flex items-center gap-x-2 border border-cyan-600 text-cyan-600 text-lg rounded-lg px-4 py-2 font-black">
+              <img src="/assets/images/icon/wallet.svg" class="w-7" alt="">
+              <span>موجودی:</span>
+              <span class="text-2xl">350000</span>
+              <span class="text-sm">تومان</span>
+            </div>
+            <div class="dropdown dropdown-end">
+              <div tabindex="0" role="button" class="p-1 hover:bg-gray-200 rounded-md">
+                <img src="/assets/images/icon/show-more.svg" class="w-8" alt="">
+              </div>
+              <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-40 w-36 p-2 shadow border">
+                <li><a>مشاهده</a></li>
+                <li><a>حذف</a></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="border-t border-cyan-200 flex items-center gap-x-4 pt-4">
+        <button (click)="openBill()" class="btn bg-white text-cyan-600 font-semibold">
+          <img src="/assets/images/icon/change.svg" class="w-5" alt="">
+          تسویه حساب
+        </button>
+        <button (click)="openCharge()" class="btn bg-white text-cyan-600 font-semibold">
+          <img src="/assets/images/icon/wallet.svg" class="w-5" alt="">
+          شارژ کیف پول
+        </button>
+        <button class="btn bg-white text-cyan-600 font-semibold">
+          <img src="/assets/images/icon/send.svg" class="w-5" alt="">
+          ارسال پیامک برای کد فعال سازی کیف پول
+        </button>
+        <button class="btn bg-white text-rose-500 font-semibold">
+          <img src="/assets/images/icon/lock.svg" class="w-5" alt="">
+          بلاک کردن کیف پول
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-5 my-3 bg-white rounded-lg">
+    <h3 class="text-xl font-semibold mb-6">درخواست ها و تراکنش ها</h3>
+    <div class="flex flex-col gap-y-2">
+      <div class="item border rounded-lg p-4 flex items-center justify-between">
+        <div class="flex items-center gap-x-4 font-semibold">
+          <img src="" alt="">
+          <span class="text-rose-500 text-lg">درخواست برداشت</span>
+          <span>99/08/01 - 16:00 </span>
+        </div>
+        <div class="flex items-center gap-x-2 font-semibold">
+          <span>مبلغ برداشت:</span>
+          <span class="text-xl">800000</span>
+          <span class="text-sm">تومان</span>
+          <button
+            class="border w-36 border-cyan-200 px-8 font-semibold py-3 rounded-md bg-cyan-100  text-cyan-700 text-base gap-x-2 flex justify-center items-center">
+            <span>تایید </span>
+          </button>
+        </div>
+      </div>
+      <div class="item border rounded-lg p-4 flex items-center justify-between">
+        <div class="flex items-center gap-x-4 font-semibold">
+          <img src="" alt="">
+          <span class="text-cyan-600 text-lg"> خرید دوره</span>
+          <span>99/08/01 - 16:00 </span>
+        </div>
+        <div class="flex items-center gap-x-2 font-semibold">
+          <span>مبلغ برداشت:</span>
+          <span class="text-xl">800000</span>
+          <span class="text-sm">تومان</span>
+          <button
+            class="px-8 font-semibold py-3 rounded-md text-base gap-x-2 flex items-center justify-center b w-36">
+            <span>جزئیات </span>
+            <img src="/assets/images/icon/more.svg" class="w-4" alt="">
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<dialog class="modal " [ngClass]="{'modal-open' : (isOpenBill)}">
+  <div class="modal-box  w-8/12 max-w-5xl">
+    <h3 class="text-lg font-bold">تسویه حساب</h3>
+    <div class="flex flex-col gap-y-3 font-semibold my-6">
+      <div class="item flex items-center justify-between border-b py-3">
+        <span>موجودی فعلی:</span>
+        <span> <span class="text-xl">50000</span> &nbsp; <span class="text-sm">تومان</span></span>
+      </div>
+      <div class="item flex items-center justify-between border-b py-3">
+        <span> کل بدهی:</span>
+        <span> <span class="text-xl">50000</span> &nbsp; <span class="text-sm">تومان</span></span>
+      </div>
+      <div class="item flex items-center justify-between border-b py-3">
+        <span> مبلغ دریافت بدهی:</span>
+        <span  class="text-rose-500"> <span class="text-xl">50000</span> &nbsp; <span class="text-sm">تومان</span></span>
+      </div>
+      <div class="item flex items-center justify-between border-b py-3">
+        <span> مبلغ باقیمانده برای واریز به حساب:</span>
+        <span class="text-cyan-600"> <span class="text-xl">50000</span> &nbsp; <span class="text-sm">تومان</span></span>
+      </div>
+      <div class="item flex items-center justify-between border-b py-3">
+        <span> آپلود تصویر فاکتور واریز:</span>
+        <img src="/assets/images/icon/factor2.svg" class="w-28" alt="">
+      </div>
+    </div>
+    <div class="flex justify-end mt-6 gap-x-6">
+      <button  class="btn  border-cyan-600 px-8   bg-cyan-600 hover:bg-cyan-700 text-white ">ثبت و ادامه</button>
+      <button (click)="openBill()" class="btn">بستن</button>
+    </div>
+  </div>
+
+</dialog>
+
+<dialog class="modal " [ngClass]="{'modal-open' : (isOpenCharge)}">
+  <div class="modal-box  w-6/12 max-w-5xl">
+    <h3 class="text-lg font-bold"> شارژ کیف پول</h3>
+    <div class="flex flex-col gap-y-3 font-semibold my-6">
+      <div class="border-b py-3">
+        <div class="relative">
+          <div class="flex items-center justify-between border border-gray-300 rounded-lg ">
+              <input  dir="ltr" type="text"   InputWithComma
+              class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg  appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"/>
+              <label class="bg-gray-200 font-semibold py-3 px-4 text-black-2 rounded-l-lg">تومان</label>
+          </div>
+          <label
+              class="absolute text-lg font-medium text-gray-800 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+               مبلغ شارژ
+              <span class="text-red-500 text-lg">*</span>
+          </label>
+      </div>
+      </div>
+
+      <div class="item flex items-center justify-between border-b py-3">
+        <span> آپلود تصویر فاکتور واریز:</span>
+        <img src="/assets/images/icon/factor2.svg" class="w-28" alt="">
+      </div>
+    </div>
+    <div class="flex justify-end mt-12 gap-x-6">
+      <button  class="btn  border-cyan-600 px-8   bg-cyan-600 hover:bg-cyan-700 text-white ">ثبت و ادامه</button>
+      <button (click)="openCharge()" class="btn">بستن</button>
+    </div>
+  </div>
+
+</dialog>
