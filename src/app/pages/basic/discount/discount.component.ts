@@ -1,27 +1,26 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
+import { IDiscountAll, IDiscountSingle } from 'src/app/interfaces/IDiscount';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
-  selector: 'app-roles',
-  templateUrl: './roles.component.html',
+  selector: 'app-discount',
+  templateUrl: './discount.component.html',
 })
-export class RolesComponent implements OnInit {
-
-
+export class DiscountComponent implements OnInit {
   //#region change this informaion
-  ResponseDataList: IRoles[] = []
-  SingleData: IRoles
+  ResponseDataList: IDiscountAll[] = []
+  SingleData: IDiscountSingle
   form_title = "اطلاعات پایه / نقش ها"
-  table_header: string[] = ["ردیف", "نام", "خوشه", "وضعیت", "عملیات"]
-  field_count: string = "Role"
-  get_all_route: string = Domain.GetRolesData
-  delete_route: string = Domain.DeleteRolesData
-  add_url: string = "/basic/role/add"
-  edit_url: string = "/basic/role/edit"
+  table_header: string[] = ["ردیف", "سازنده", "کد تخفیف", "وضعیت", "عملیات"]
+  field_count: string = "discount_code"
+  get_all_route: string = Domain.GetDiscount
+  delete_route: string = Domain.DeleteDiscount
+  add_url: string = "/basic/discount/add"
+  edit_url: string = "/basic/discount/edit"
   //#endregion
   ResponseDataLenght: number[];
   totalCount: number = 0
@@ -36,7 +35,7 @@ export class RolesComponent implements OnInit {
   constructor(private http: HttpService, private alertServices: AlertifyService) { }
   ngOnInit(): void {
     this.GetResponseData(1, 10, this.order)
-    this.GetResponseDataLenght()
+    //this.GetResponseDataLenght()
 
   }
 

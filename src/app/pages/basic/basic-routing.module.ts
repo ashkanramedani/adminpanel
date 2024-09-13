@@ -28,6 +28,8 @@ import { SessionsComponent } from './course/sessions/sessions.component';
 import { SessionAddComponent } from './course/sessions/session-add/session-add.component';
 import { RewardCardComponent } from './reward-card/reward-card.component';
 import { RewardCardAddComponent } from './reward-card/reward-card-add/reward-card-add.component';
+import { DiscountComponent } from './discount/discount.component';
+import { DiscountAddComponent } from './discount/discount-add/discount-add.component';
 const routes: Routes = [
   { path: 'course', component: CourseComponent },
   { path: 'course/add', component: CourseAddComponent },
@@ -56,6 +58,10 @@ const routes: Routes = [
   { path: 'sessions', component: SessionsComponent },
   { path: 'session/add', component: SessionAddComponent },
   { path: 'session/edit/:id', component: SessionAddComponent },
+
+  { path: 'discount', component: DiscountComponent },
+  { path: 'discount/add', component: DiscountAddComponent },
+  { path: 'discount/edit/:id', component: DiscountAddComponent },
 
   { path: 'course-type', component: CourseTypeComponent },
   { path: 'course-type/add', component: CourseTypeAddComponent },

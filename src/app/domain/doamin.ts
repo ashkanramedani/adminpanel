@@ -104,6 +104,13 @@ export const Domain =
   "PutStudentData": `${environment.apiUrl}/api/v1/form/student/update`,
   "CreateStudentData": `${environment.apiUrl}/api/v1/form/student/add`,
 
+
+  "GetDiscount": `${environment.apiUrl}/api/v1/form/discount_code/search`,
+  "DeleteDiscount": `${environment.apiUrl}/api/v1/form/discount_code/delete`,
+  "PutDiscount": `${environment.apiUrl}/api/v1/form/discount_code/update`,
+  "CreateDiscount": `${environment.apiUrl}/api/v1/form/discount_code/add`,
+
+
   "GetPaymentMethodData": `${environment.apiUrl}/api/v1/form/payment_method/search`,
   "DeletePaymentMethodData": `${environment.apiUrl}/api/v1/form/payment_method/delete`,
   "PutPaymentMethodData": `${environment.apiUrl}/api/v1/form/payment_method/update`,
