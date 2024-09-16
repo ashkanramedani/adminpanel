@@ -23,6 +23,11 @@ const routes: Routes = [
           import('../../pages/basic/basic.module').then((m) => m.BasicModule)
       },
       {
+        path: 'files',
+        loadChildren: () =>
+          import('../../pages/file-manager/file-manager.module').then((m) => m.FileManagerModule)
+      },
+      {
         path: 'support',
         loadChildren: () =>
           import('../../pages/support/support.module').then((m) => m.SupportModule)
