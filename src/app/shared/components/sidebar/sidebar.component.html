@@ -141,20 +141,16 @@
                       routerLinkActive="router-link-active">سوالات</a></li>
                   <li class="py-1"><a [routerLink]="['/basic/answers']" routerLinkActive="router-link-active">پاسخ
                       سوالات</a></li>
-                  <li class="py-1"><a [routerLink]="['/basic/payments']" routerLinkActive="router-link-active">روش های
-                      پرداخت</a></li>
-                  <li class="py-1"><a [routerLink]="['/basic/reward-card']" routerLinkActive="router-link-active">کارت
-                      پاداش اساتید</a></li>
-                      <li class="py-1"><a [routerLink]="['/basic/discount']" routerLinkActive="router-link-active">تحفیفات
-                        </a></li>
+
                 </ul>
               </details>
             </li>
             <li class="py-1">
               <details>
-                <summary>  مدیریت فایل</summary>
+                <summary> مدیریت فایل</summary>
                 <ul>
-                  <li class="py-1"><a [routerLink]="['/files/buckets']" routerLinkActive="router-link-active">فایل ها</a></li>
+                  <li class="py-1"><a [routerLink]="['/files/buckets']" routerLinkActive="router-link-active">فایل
+                      ها</a></li>
                 </ul>
               </details>
             </li>
@@ -202,7 +198,14 @@
                 <ul>
                   <li class="py-1"><a [routerLink]="['/finance/wallets']" routerLinkActive="router-link-active">کیف
                       پول ها</a></li>
-                  <li class="py-1"><a [routerLink]="['/finance/check']" [queryParams]="{step: '1'}" routerLinkActive="router-link-active">چک ها
+                  <li class="py-1"><a [routerLink]="['/finance/check']" [queryParams]="{step: '1'}"
+                      routerLinkActive="router-link-active">چک ها
+                    </a></li>
+                  <li class="py-1"><a [routerLink]="['/basic/payments']" routerLinkActive="router-link-active">روش های
+                      پرداخت</a></li>
+                  <li class="py-1"><a [routerLink]="['/basic/reward-card']" routerLinkActive="router-link-active">کارت
+                      پاداش اساتید</a></li>
+                  <li class="py-1"><a [routerLink]="['/basic/discount']" routerLinkActive="router-link-active">تخفیفات
                     </a></li>
                 </ul>
               </details>
@@ -241,6 +244,11 @@
                             routerLinkActive="router-link-active">ورود و خروج کارکنان</a></li>
                         <li class="py-1"><a [routerLink]="['/reports/salarypolicy']"
                             routerLinkActive="router-link-active">ضریب محاسبه حقوق</a></li>
+
+                        <li class="py-1"><a [routerLink]="['/reports/employees-salary']"
+                            routerLinkActive="router-link-active">محاسبات حقوق پرسنل</a></li>
+                        <li class="py-1"><a [routerLink]="['/reports/teachers-salary']"
+                            routerLinkActive="router-link-active">محاسبات حقوق اساتید</a></li>
                       </ul>
                     </details>
                   </li>
@@ -252,19 +260,8 @@
                             routerLinkActive="router-link-active">استاد جایگزین</a></li>
                         <li class="py-1"><a [routerLink]="['/reports/session_cancellation']"
                             routerLinkActive="router-link-active">کنسلی جلسات</a></li>
-                      </ul>
-                    </details>
-                  </li>
-                  <li class="py-1">
-                    <details>
-                      <summary>مالی</summary>
-                      <ul>
                         <li class="py-1"><a [routerLink]="['/reports/supervisor-course']"
                             routerLinkActive="router-link-active">ارزشیابی اساتید</a></li>
-                        <li class="py-1"><a [routerLink]="['/reports/employees-salary']"
-                            routerLinkActive="router-link-active">محاسبات حقوق پرسنل</a></li>
-                        <li class="py-1"><a [routerLink]="['/reports/teachers-salary']"
-                            routerLinkActive="router-link-active">محاسبات حقوق اساتید</a></li>
                       </ul>
                     </details>
                   </li>
