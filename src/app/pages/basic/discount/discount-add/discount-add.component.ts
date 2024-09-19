@@ -17,11 +17,12 @@ export class DiscountAddComponent implements OnInit {
   //#region change this information
   cancle_link: string = '/basic/discount'
   form_title: string = "کد تخفیف"
-  AuditForm: IDiscountInsert
+  AuditForm: IDiscountUpdate
   get_Singel_route: string = Domain.GetDiscount
   put_route: string = Domain.PutDiscount
   create_route: string = Domain.CreateDiscount
   //#endregion
+  rewardType: string = "percentage"
   page_title: string = "ایجاد"
   RoleClusterData: string[] = []
   UpdateForm: FormGroup;
@@ -44,7 +45,7 @@ export class DiscountAddComponent implements OnInit {
       {
         created_fk_by: new FormControl('', [Validators.required]),
         description: new FormControl('', [Validators.required]),
-        discount_type: new FormControl('', [Validators.required]),
+        discount_type: new FormControl('percentage', [Validators.required]),
         discount_amount: new FormControl('', [Validators.required]),
       }
     )
@@ -60,6 +61,17 @@ export class DiscountAddComponent implements OnInit {
     }
   }
 
+  changeType(event: any) {
+    let type = event.target.value
+    if (type == 'percentage') {
+      this.rewardType = 'percentage'
+    }
+    else if (type == 'fix') {
+      this.rewardType = 'fix'
+    }
+    else
+      alert("متاسفانه خطایی زخ داده است")
+  }
   GetEmployeeData() {
     this.http.getAll(`${Domain.GetDropDowUser}?order=desc&SortKey=name&employee=true`).subscribe((response) => {
       this.EmployiesData = response;
@@ -77,24 +89,15 @@ export class DiscountAddComponent implements OnInit {
       });
   }
   FillFormData() {
-    // this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
-    // this.ReportForm.controls["last_name"].patchValue(this.AuditForm.last_name);
-    // if(this.AuditForm.day_of_birth!=null){
-    //   this.ReportForm.controls["day_of_birth"].patchValue(moment(this.AuditForm.day_of_birth, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
-    //   }
-    // this.ReportForm.controls["email"].patchValue(this.AuditForm.email);
-    // this.ReportForm.controls["mobile_number"].patchValue(this.AuditForm.mobile_number);
-    // this.ReportForm.controls["mobile_number"].patchValue(this.AuditForm.mobile_number);
-    // this.ReportForm.controls["address"].patchValue(this.AuditForm.address);
-    // this.ReportForm.controls["level"].patchValue(this.AuditForm.level);
-    // this.ReportForm.controls["id_card_number"].patchValue(this.AuditForm.id_card_number);
-    // this.ReportForm.controls["user_pk_id"].patchValue(this.id);
+    this.UpdateForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
+    this.UpdateForm.controls["description"].patchValue(this.AuditForm.description);
   }
   onSubmit() {
     this.btnLoading = true
     if (this.id == null) {
       if (this.InsertForm.invalid) {
         this.InsertForm.markAllAsTouched();
+        this.alertServices.error('مقادیر اجباری را وارد نمایید')
         return;
       }
       let InsertFormValue: IDiscountInsert =
@@ -102,7 +105,7 @@ export class DiscountAddComponent implements OnInit {
         created_fk_by: this.InsertForm.controls.created_fk_by.value,
         description: this.InsertForm.controls.description.value,
         discount_type: this.InsertForm.controls.discount_type.value,
-        discount_amount: this.InsertForm.controls.discount_amount.value,
+        discount_amount: this.rewardType=='fix' ? Number(this.InsertForm.controls.discount_amount.value.replace(/,/g, '')): Number(this.InsertForm.controls.discount_amount.value)  ,
       }
       this.http.create(this.create_route, InsertFormValue, null).subscribe((response) => {
         console.log(response)
@@ -115,6 +118,7 @@ export class DiscountAddComponent implements OnInit {
     else {
       if (this.UpdateForm.invalid) {
         this.UpdateForm.markAllAsTouched();
+        this.alertServices.error('مقادیر اجباری را وارد نمایید')
         return;
       }
       let UpdateFormValue: IDiscountUpdate =
@@ -122,7 +126,6 @@ export class DiscountAddComponent implements OnInit {
         created_fk_by: this.UpdateForm.controls.created_fk_by.value,
         description: this.UpdateForm.controls.description.value,
         discount_code_pk_id: this.id
-
       }
       this.http.put(this.put_route, UpdateFormValue, null).subscribe((response) => {
         console.log(response)
