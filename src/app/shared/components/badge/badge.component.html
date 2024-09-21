@@ -1,1 +1,25 @@
-<span class="badge badge-accent badge-outline  pt-1" [ngClass]="this.setColor(this.title)">{{title}}</span>
+<div class="tooltip" data-tip="تغییر وضعیت">
+<span class="badge badge-accent badge-outline  pt-1 cursor-pointer" (click)="this.getStatusData()" [ngClass]="this.setColor(this.title)">{{title}}</span>
+</div>
+<dialog class="modal " [ngClass]="{'modal-open' : (isOpenEdit)}">
+  <div class="modal-box  w-6/12 max-w-5xl">
+    <h3 class="text-lg font-bold mb-8"> تغییر وضعیت</h3>
+    <div class="flex items-center justify-between w-full max-w-xs mx-auto mb-4">
+      <label>وضعیت فعلی</label>
+      <label class="badge badge-accent badge-outline pt-1 cursor-pointer !text-gray-800" >{{title}}</label>
+    </div>
+    <label class="form-control w-full max-w-xs mx-auto">
+      <div class="label">
+        <span class="label-text">وضعیت جدید:</span>
+      </div>
+      <select class="select select-bordered" [(ngModel)]="new_status_id">
+        <option *ngFor="let item of statusData" selected [value]="item.status_pk_id">{{item.status_name}}</option>
+      </select>
+    </label>
+    <div class="flex justify-end mt-12 gap-x-6">
+      <button [disabled]="new_status_id==''  || isLoading" (click)="changeStatus()"  class="btn  border-cyan-600 px-8 disabled:bg-cyan-400 disabled:text-white  bg-cyan-600 hover:bg-cyan-700 text-white ">ذخیره</button>
+      <button (click)="closeEdit()" class="btn">بستن</button>
+    </div>
+  </div>
+
+</dialog>

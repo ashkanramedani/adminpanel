@@ -2,7 +2,7 @@
   <div class="flex items-center gap-x-14 w-full">
     <div class="breadcrumbs text-sm">
       <ul>
-        <li>اطلاعات پایه</li>
+        <li> مالی</li>
         <li>کارت پاداش </li>
       </ul>
     </div>
@@ -41,7 +41,7 @@
       <div *ngIf="item.reward_type =='fix' " class="badge badge-outline mx-auto">ثابت</div>
       <div *ngIf="item.reward_type =='percentage' " class="badge badge-outline mx-auto">درصدی</div>
       <div class="flex items-center justify-center">
-        <n-badge [title]="item.status"></n-badge>
+        <n-badge [title]="item.status" [form_id]="item.reward_card_pk_id" [db]="'reward_card'" ></n-badge>
       </div>
       <div class="operation flex items-center justify-center ">
         <button class="hover:bg-gray-200 p-1 rounded-lg" (click)="OpenModal(item.reward_card_pk_id)" title="نمایش">

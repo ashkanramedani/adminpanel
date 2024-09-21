@@ -191,3 +191,11 @@ tr:hover {
     display: none;
   }
 }
+
+.tooltip {
+  --tooltip-tail: 0.3875rem !important;
+}
+.tooltip:after
+{
+  bottom: 1.15rem !important;
+}

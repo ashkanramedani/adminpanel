@@ -39,7 +39,7 @@
       <span>{{ item.sub_course.sub_course_name}}</span>
       <span>{{item.sub_course.teacher.name + '&nbsp;' +item.sub_course.teacher.last_name }}</span>
       <div class="flex items-center justify-center">
-         <n-badge [title]="item.status"></n-badge>
+         <n-badge [title]="item.status" [form_id]="item.session_pk_id" [db]="'session'" ></n-badge>
       </div>
       <div class="operation flex items-center justify-center ">
         <button class="hover:bg-gray-200 p-1 rounded-lg" (click)="OpenModal(item.session_pk_id)" title="نمایش">

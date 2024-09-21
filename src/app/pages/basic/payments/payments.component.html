@@ -2,7 +2,7 @@
   <div class="flex items-center gap-x-14 w-full">
     <div class="breadcrumbs text-sm">
       <ul>
-        <li>اطلاعات پایه</li>
+        <li> مالی</li>
         <li>روش های پرداخت </li>
       </ul>
     </div>
@@ -40,7 +40,7 @@
             <button title="click to copy"  (click)="CopyValue(item.shaba)" class="cursor-pointer"><span>{{ item.shaba}}</span></button>
 
             <div class="flex items-center justify-center">
-               <n-badge [title]="item.status"></n-badge>
+              <n-badge [title]="item.status" [form_id]="item.payment_method_pk_id" [db]="'payment_method'" ></n-badge>
             </div>
             <div class="operation flex items-center justify-center ">
                 <button class="hover:bg-gray-200 p-1 rounded-lg"  (click)="OpenModal(item.payment_method_pk_id)" title="نمایش">

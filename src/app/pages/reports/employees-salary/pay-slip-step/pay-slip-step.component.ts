@@ -30,9 +30,9 @@ export class PaySlipStepComponent implements OnInit {
   constructor(private http: HttpService, private alertServices: AlertifyService, private activateRoute: ActivatedRoute) {
 
     this.ReportForm = new FormGroup({
-      rewards_earning: new FormControl('', [Validators.required]),
-      punishment_deductions: new FormControl('', [Validators.required]),
-      loan_installment: new FormControl('', [Validators.required]),
+      rewards_earning: new FormControl<number>(0, [Validators.required]),
+      punishment_deductions: new FormControl<number>(0, [Validators.required]),
+      loan_installment: new FormControl<number>(0, [Validators.required]),
       payment: new FormControl('', [Validators.required]),
       payment_date: new FormControl('', [Validators.required])
     })

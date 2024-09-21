@@ -50,7 +50,6 @@ export class SubCourseComponent implements OnInit {
  this.isLoading = true;
     this.http.getAll(`${this.get_all_route}?page=${page}&limit=${limit}&order=${order}`).subscribe((response) => {
       this.ResponseDataList = response;
-
       this.isLoading = false
       console.log(response)
     })

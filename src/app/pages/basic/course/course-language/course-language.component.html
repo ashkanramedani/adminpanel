@@ -36,8 +36,8 @@
             class="body grid grid-cols-4 text-center text-gray-900 font-medium text-sm mb-5">
             <span>{{item.language_name}}</span>
             <span>{{item.created.name + '&nbsp; &nbsp;' +item.created.last_name}}</span>
-            <div class="flex items-center justify-center">
-               <n-badge [title]="item.status"></n-badge>
+            <div class="flex items-center justify-center"> 
+               <n-badge [title]="item.status" [form_id]="item.language_pk_id" [db]="'language'" ></n-badge>
             </div>
             <div class="operation flex items-center justify-center ">
                 <button class="hover:bg-gray-200 p-1 rounded-lg"  (click)="OpenModal(item.language_pk_id)" title="نمایش">

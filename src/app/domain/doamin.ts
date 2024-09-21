@@ -105,6 +105,9 @@ export const Domain =
   "CreateStudentData": `${environment.apiUrl}/api/v1/form/student/add`,
 
 
+  "GetStatus": `${environment.apiUrl}/api/v1/status/search`,
+  "PutStatus": `${environment.apiUrl}/api/v1`,
+
   "GetDiscount": `${environment.apiUrl}/api/v1/form/discount_code/search`,
   "DeleteDiscount": `${environment.apiUrl}/api/v1/form/discount_code/delete`,
   "PutDiscount": `${environment.apiUrl}/api/v1/form/discount_code/update`,
