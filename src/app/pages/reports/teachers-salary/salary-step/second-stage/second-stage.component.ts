@@ -61,7 +61,7 @@ export class SecondStageComponent implements OnInit{
       student_assign_feedback: this.myForm.controls.student_assign_feedback.value,
       result_submission_to_FD: this.myForm.controls.result_submission_to_FD.value,
     }
-    this.http.create(`${Domain.PostTeacherSummary}/${this.subcourse_id}`, null, null).subscribe((response) => {
+    this.http.get(Domain.PostTeacherSummary,this.subcourse_id).subscribe((response) => {
       console.log(response)
       this.http.setData(response)
       this.router.navigate(['/reports/teacher-salary/' + this.subcourse_id], { queryParams: { step: "7" } })

@@ -30,9 +30,9 @@ export class PaySlipStepComponent implements OnInit {
   constructor(private http: HttpService, private alertServices: AlertifyService, private activateRoute: ActivatedRoute) {
 
     this.ReportForm = new FormGroup({
-      rewards_earning: new FormControl<number>(0, [Validators.required]),
-      punishment_deductions: new FormControl<number>(0, [Validators.required]),
-      loan_installment: new FormControl<number>(0, [Validators.required]),
+      rewards_earning: new FormControl('0', [Validators.required]),
+      punishment_deductions: new FormControl('0', [Validators.required]),
+      loan_installment: new FormControl('0', [Validators.required]),
       payment: new FormControl('', [Validators.required]),
       payment_date: new FormControl('', [Validators.required])
     })
@@ -66,13 +66,13 @@ export class PaySlipStepComponent implements OnInit {
     this.btnLoading = true
     let ReportFormValue: ISalaryEmployeeUpdate =
     {
-      rewards_earning: this.ReportForm.controls.rewards_earning.value.replace(/,/g, ""),
-      punishment_deductions: this.ReportForm.controls.punishment_deductions.value.replace(/,/g, ""),
-      loan_installment: this.ReportForm.controls.loan_installment.value.replace(/,/g, ""),
+      rewards_earning:this.ReportForm.controls.rewards_earning.value.includes(',') ?(this.ReportForm.controls.rewards_earning.value.replace(/,/g, "")):(this.ReportForm.controls.rewards_earning.value)  ,
+      punishment_deductions:this.ReportForm.controls.punishment_deductions.value.includes(',') ?(this.ReportForm.controls.punishment_deductions.value.replace(/,/g, "")):(this.ReportForm.controls.punishment_deductions.value)  ,
+      loan_installment:this.ReportForm.controls.loan_installment.value.includes(',') ?(this.ReportForm.controls.loan_installment.value.replace(/,/g, "")):(this.ReportForm.controls.loan_installment.value)  ,
       payment_date: moment.from(this.ReportForm.controls.payment_date.value, 'fa', 'YYYY-MM-DD').format('YYYY-MM-DD'),
       payment: this.ReportForm.controls.payment.value,
     }
-    this.http.put(`${Domain.PutSalaryEmployeeUpdate}/${this.id}`, ReportFormValue, null).subscribe((response) => {
+    this.http.put(`${Domain.PutSalaryEmployeeUpdate}/${this.response_salary_receipt_report.employee_salary_pk_id}`, ReportFormValue, null).subscribe((response) => {
       console.log(response)
       this.alertServices.success("با موفقیت اپدیت شد");
       this.ReportForm.reset();

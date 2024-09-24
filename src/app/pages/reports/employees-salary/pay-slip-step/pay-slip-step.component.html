@@ -2,11 +2,11 @@
   <div class="flex items-center justify-between border border-gray-300 bg-gray-100 p-3">
     <div class="w-2/6 gap-y-3 text-right">
       <span class="mx-2 font-bold">نام و نام خانوادگی:</span>
-      <span>{{response_salary_receipt_report.employee.name}} {{response_salary_receipt_report.employee.last_name}}</span>
+      <span>{{response_salary_receipt_report.employee?.name}} {{response_salary_receipt_report.employee?.last_name}}</span>
     </div>
     <div class="w-1/6 gap-y-3 text-right">
       <span class="mx-2 font-bold">کدملی:</span>
-      <span>{{response_salary_receipt_report.employee.id_card_number}}</span>
+      <span>{{response_salary_receipt_report.employee?.id_card_number}}</span>
     </div>
     <div class="w-1/6 gap-y-3 text-right hidden-mobile ">
       <span class="mx-2 font-bold">سمت:</span>

@@ -6,7 +6,7 @@ export interface ISalaryReceiptReport {
   status: string;
   priority: number;
   employee_salary_pk_id: string;
-  employee: Employee;
+  employee?: Employee;
   fingerprint_scanner_user_id: number;
   present_time: number;
   Regular_hours: number;
@@ -37,11 +37,11 @@ export interface ISalaryReceiptReport {
 }
 interface Employee {
   name?: string;
-  last_name: string;
+  last_name?: string;
   email: string;
   level: string;
   address?: any;
-  id_card_number: string;
+  id_card_number?: string;
   mobile_number: string;
   day_of_birth: string;
   user_pk_id: string;
