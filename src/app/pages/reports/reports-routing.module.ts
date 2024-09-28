@@ -30,6 +30,7 @@ import { SalaryStepComponent } from './teachers-salary/salary-step/salary-step.c
 import { SupervisorCourseComponent } from './supervisor/supervisor-course/supervisor-course.component';
 import { SupervisorSubCourseComponent } from './supervisor/supervisor-sub-course/supervisor-sub-course.component';
 import { SupervisorComponent } from './supervisor/supervisor.component';
+import { DailyPaymentsComponent } from './daily-payments/daily-payments.component';
 
 const routes: Routes = [
   {path:'salarypolicy',component:SalaryPolicyComponent},
@@ -72,6 +73,8 @@ const routes: Routes = [
 {path:'survey',component:SurveyComponent},
 {path:'survey/add',component:SurveyAddComponent},
 {path:'survey/edit/:id',component:SurveyAddComponent},
+
+{path:'daily-payments',component:DailyPaymentsComponent},
 
 {path:'supervisor-review/:id',component:SupervisorComponent},
 {path:'supervisor-course',component:SupervisorCourseComponent},

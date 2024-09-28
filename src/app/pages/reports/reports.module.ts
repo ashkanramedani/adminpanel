@@ -51,8 +51,9 @@ import { TeacherTardeyComponent } from './teachers-salary/salary-step/teacher-ta
 import { SupervisorComponent } from './supervisor/supervisor.component';
 import { SupervisorCourseComponent } from './supervisor/supervisor-course/supervisor-course.component';
 import { SupervisorSubCourseComponent } from './supervisor/supervisor-sub-course/supervisor-sub-course.component';
+import { DailyPaymentsComponent } from './daily-payments/daily-payments.component';
 @NgModule({
-  declarations: [BusinessTripComponent, BusinessTripAddComponent, TeacherSessionsComponent, SecondStageComponent, TeacherAbsentComponent, TeacherCancellationComponent,
+  declarations: [DailyPaymentsComponent,BusinessTripComponent, BusinessTripAddComponent, TeacherSessionsComponent, SecondStageComponent, TeacherAbsentComponent, TeacherCancellationComponent,
     CourseCancellationComponent, CourseCancellationAddComponent, SalaryStepComponent, TeacherClassHolidayComponent, TeacherPaySlipComponent,
     SessionCancellationComponent, SessionCancellationAddComponent, TeacherSubRequestComponent, TeacherTardeyComponent, SupervisorComponent,
     FingerprintScannerComponent, FingerprintScannerAddComponent, FingerprintScannerBulkComponent, LeaveFormsComponent, LeaveFormAddComponent, RemoteRequestComponent,
