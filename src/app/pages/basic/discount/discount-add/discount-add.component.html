@@ -6,11 +6,16 @@
       </li>
     </ol>
   </nav>
+  {{btnLoading}}
   <div class="icon flex items-center gap-x-3 py-2">
-    <button [disabled]="btnLoading" (click)="onSubmit()"
+    <button *ngIf="this.id==null" [disabled]="btnLoading || this.InsertForm.invalid" (click)="onSubmit()"
       class="border border-cyan-600 px-4 py-2 rounded-md bg-cyan-600 text-white disabled:bg-cyan-400 disabled:border-cyan-400">
       ذخیره
     </button>
+    <button *ngIf="this.id!=null"  [disabled]="btnLoading || this.UpdateForm.invalid" (click)="onSubmit()"
+    class="border border-cyan-600 px-4 py-2 rounded-md bg-cyan-600 text-white disabled:bg-cyan-400 disabled:border-cyan-400">
+    به روز رسانی
+  </button>
     <a class="border border-gray-500 px-4 py-2 rounded-md hover:bg-gray-200" [routerLink]="[cancle_link]">انصراف</a>
   </div>
 </div>
@@ -42,7 +47,7 @@
       </div>
       <div class="relative" *ngIf="this.rewardType=='percentage'; else other ">
         <div class="flex items-center justify-between border border-gray-300 rounded-lg ">
-          <input dir="ltr" type="text" formControlName="discount_amount" maxlength="2"
+          <input dir="ltr" type="text" formControlName="discount_amount" maxlength="3" max="100"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg  appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
           <label class="bg-gray-200 font-semibold py-3 px-4 text-black-2 rounded-l-lg">%</label>
         </div>
@@ -51,6 +56,7 @@
           میزان تخفیف
           <span class="text-red-500 text-lg">*</span>
         </label>
+        <span class="text-xs text-red-500" *ngIf="(this.rewardType=='percentage') && ( (this.InsertForm.controls['discount_amount'].value>100) ||  (this.InsertForm.controls['discount_amount'].value<0) ) ">میزان تخفیف باید بین 0 تا 100 درصد باشد</span>
       </div>
       <ng-template #other>
         <div class="relative">

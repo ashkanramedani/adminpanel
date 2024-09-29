@@ -102,4 +102,12 @@ export class DiscountComponent implements OnInit {
     this.currentPage=event
     this.GetResponseData(this.currentPage,10,this.order)
     }
+    copyCode(code :string){
+      navigator.clipboard.writeText(code).then(() => {
+        this.alertServices.success("کد تخفیف در حافظه کپی شد")
+      },() => {
+        console.error('Failed to copy');
+        /* Rejected - text failed to copy to the clipboard */
+      });
+    }
 }

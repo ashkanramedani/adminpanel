@@ -62,6 +62,7 @@ export class DiscountAddComponent implements OnInit {
   }
 
   changeType(event: any) {
+    this.InsertForm.controls['discount_amount'].setValue('')
     let type = event.target.value
     if (type == 'percentage') {
       this.rewardType = 'percentage'
@@ -95,6 +96,12 @@ export class DiscountAddComponent implements OnInit {
   onSubmit() {
     this.btnLoading = true
     if (this.id == null) {
+      if( (this.rewardType=='percentage') && ( (this.InsertForm.controls['discount_amount'].value>100) ||  (this.InsertForm.controls['discount_amount'].value<0)))
+      {
+        this.alertServices.error('مقادیر  را به صورت صحیح وارد نمایید')
+        this.btnLoading = false
+        return;
+      }
       if (this.InsertForm.invalid) {
         this.InsertForm.markAllAsTouched();
         this.alertServices.error('مقادیر اجباری را وارد نمایید')
