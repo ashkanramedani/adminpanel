@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ErrorComponent } from './shared/components/error/error.component';
+// import { authGuard } from './guards/auth.guard';
+
 const routes: Routes = [
   {
     path: '',
-    //canActivate:[authGuard],
+    // canActivate:[authGuard],
     loadChildren: () =>
       import('./templates/main-template/main-template.module').then((m) => m.MainTemplateModule)
   },
