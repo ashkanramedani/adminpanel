@@ -39,6 +39,7 @@ export class CourseAddComponent implements OnInit {
   isLoading:boolean=false
   isOpenSearchTag:boolean=false
   public editor:any = ClassicEditor;
+  isOpenTagAdd:boolean=false
   constructor(private http: HttpService, private route: ActivatedRoute, private formBuilder: FormBuilder, private alertServices: AlertifyService,private router:Router) {
 
   }
@@ -259,6 +260,12 @@ export class CourseAddComponent implements OnInit {
   }
   RemoveImage() {
     this.imageUrl = '';
+  }
+  CLoseTagAdd(){
+    this.isOpenTagAdd=false
+  }
+  OpenTagAdd(){
+    this.isOpenTagAdd=true
   }
 }
 

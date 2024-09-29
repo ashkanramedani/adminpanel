@@ -230,7 +230,7 @@
             <div class="flex items-center justify-end w-1/4">
               <button class="btn rounded-none border-l border-gray-300" (click)="GetCourseTagData()"><img class="w-4" src="/assets/images/icon/refresh.svg"
                 alt=""></button>
-              <a target="_blank" class="btn rounded-r-none" [routerLink]="['/basic/course-tag/add']">افزودن برچسب</a>
+              <a target="_blank" class="btn rounded-r-none" (click)="this.OpenTagAdd()">افزودن برچسب</a>
 
             </div>
           </div>
@@ -304,15 +304,15 @@
           </button>
         </div>
       </div>
-
-
-
-
-
-
-
-
-
     </form>
   </div>
+  <dialog class="modal " [ngClass]="{'modal-open' : (isOpenTagAdd)}">
+    <div class="modal-box  w-11/12 max-w-5xl">
+      <app-course-tag-add *ngIf="isOpenTagAdd"></app-course-tag-add>
+      <div class="flex justify-end mt-6 gap-x-6">
+        <button (click)="CLoseTagAdd()" class="btn">بستن</button>
+      </div>
+    </div>
+
+  </dialog>
 </main>
