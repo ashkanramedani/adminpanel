@@ -30,6 +30,7 @@ import { RewardCardComponent } from './reward-card/reward-card.component';
 import { RewardCardAddComponent } from './reward-card/reward-card-add/reward-card-add.component';
 import { DiscountComponent } from './discount/discount.component';
 import { DiscountAddComponent } from './discount/discount-add/discount-add.component';
+import { UnderConstructionComponent } from 'src/app/shared/components/under-construction/under-construction.component';
 const routes: Routes = [
   { path: 'course', component: CourseComponent },
   { path: 'course/add', component: CourseAddComponent },
@@ -84,7 +85,7 @@ const routes: Routes = [
   { path: 'question/add', component: QuestionAddComponent },
   { path: 'question/edit/:id', component: QuestionAddComponent },
 
-  { path: 'answers', component: AnswersComponent },
+  { path: 'answers', component: UnderConstructionComponent },
   { path: 'answer/add', component: AnswerAddComponent },
   { path: 'answer/edit/:id', component: AnswerAddComponent },
 

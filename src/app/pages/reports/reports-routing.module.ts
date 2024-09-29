@@ -31,6 +31,7 @@ import { SupervisorCourseComponent } from './supervisor/supervisor-course/superv
 import { SupervisorSubCourseComponent } from './supervisor/supervisor-sub-course/supervisor-sub-course.component';
 import { SupervisorComponent } from './supervisor/supervisor.component';
 import { DailyPaymentsComponent } from './daily-payments/daily-payments.component';
+import { UnderConstructionComponent } from 'src/app/shared/components/under-construction/under-construction.component';
 
 const routes: Routes = [
   {path:'salarypolicy',component:SalaryPolicyComponent},
@@ -70,7 +71,7 @@ const routes: Routes = [
 {path:'session_cancellation/add',component:SessionCancellationAddComponent},
 {path:'session_cancellation/edit/:id',component:SessionCancellationAddComponent},
 
-{path:'survey',component:SurveyComponent},
+{path:'survey',component:UnderConstructionComponent},
 {path:'survey/add',component:SurveyAddComponent},
 {path:'survey/edit/:id',component:SurveyAddComponent},
 
