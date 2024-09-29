@@ -6,7 +6,7 @@ import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
-import { IRolesForm } from 'src/app/interfaces/IRolesForm'; 
+import { IRolesForm } from 'src/app/interfaces/IRolesForm';
 
 @Component({
   selector: 'app-role-add',
@@ -79,8 +79,8 @@ export class RoleAddComponent implements OnInit {
     this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
     this.ReportForm.controls["description"].patchValue(this.AuditForm.description);
     this.ReportForm.controls["name"].patchValue(this.AuditForm.name);
-    this.ClusterInput=this.AuditForm.cluster
-    //this.ReportForm.controls["cluster"].patchValue(this.AuditForm.cluster);
+    //this.ClusterInput=this.AuditForm.cluster
+    this.ReportForm.controls["cluster"].patchValue(this.AuditForm.cluster);
     this.ReportForm.controls["role_pk_id"].patchValue(this.id);
   }
   onSubmit() {
@@ -97,7 +97,7 @@ export class RoleAddComponent implements OnInit {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
       description: this.ReportForm.controls.description.value,
       name: this.ReportForm.controls.name.value,
-      cluster: this.ClusterInput
+      cluster:this.ReportForm.controls.cluster.value
     }
     if (this.id != null) {
       this.http.put(this.put_route, ReportFormValue, null).subscribe((response) => {

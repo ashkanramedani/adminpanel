@@ -74,7 +74,7 @@ export class PaySlipStepComponent implements OnInit {
     }
     this.http.put(`${Domain.PutSalaryEmployeeUpdate}/${this.response_salary_receipt_report.employee_salary_pk_id}`, ReportFormValue, null).subscribe((response) => {
       console.log(response)
-      this.alertServices.success("با موفقیت اپدیت شد");
+      //this.alertServices.success("با موفقیت اپدیت شد");
       this.ReportForm.reset();
       window.print()
     }
