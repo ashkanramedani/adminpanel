@@ -44,39 +44,38 @@
           </p>
         </div>
       </div>
-
     </div>
   </div>
-
-
-		<div class="p-5 rounded-lg shadow-sm border border-gray-200">
-			<details class="group">
-				<summary class="flex justify-between items-center font-medium cursor-pointer list-none ">
-          <div class="flex items-center gap-x-2 ">
-            <img src="/assets/images/icon/pen.svg" class="w-6 pb-2" alt="">
-            <span class="text-gray-700 font-semibold text-xl"> پاسخ</span>
-          </div>
-
-					<span class="transition group-open:rotate-180">
-                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path>
-</svg>
-              </span>
-				</summary>
-        <div class="relative mt-14 ">
-          <label class="mb-3 block text-base font-semibold"> پیام:</label>
-          <ckeditor class="w-full mt-2" formControlName="description" [editor]="editor"></ckeditor>
+  <div class="p-5 rounded-lg shadow-sm border border-gray-200">
+    <details class="group">
+      <summary class="flex justify-between items-center font-medium cursor-pointer list-none ">
+        <div class="flex items-center gap-x-2 ">
+          <img src="/assets/images/icon/pen.svg" class="w-6 pb-2" alt="">
+          <span class="text-gray-700 font-semibold text-xl"> پاسخ</span>
         </div>
-        <div class="flex items-center gap-x-4 my-4">
-          <button
+
+        <span class="transition group-open:rotate-180">
+          <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+            stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
+            <path d="M6 9l6 6 6-6"></path>
+          </svg>
+        </span>
+      </summary>
+      <div class="relative mt-14 ">
+        <label class="mb-3 block text-base font-semibold"> پیام:</label>
+        <ckeditor class="w-full mt-2"  [editor]="editor"></ckeditor>
+      </div>
+      <div class="flex items-center gap-x-4 my-4">
+        <button
           class="border border-cyan-600 px-6 py-3 rounded-md font-semibold text-lg bg-cyan-600 text-white disabled:bg-cyan-400 disabled:border-cyan-400">
           ارسال
         </button>
-          <a class="border border-gray-500 px-6 py-3 font-semibold rounded-md text-lg hover:bg-gray-200 "
+        <a class="border border-gray-500 px-6 py-3 font-semibold rounded-md text-lg hover:bg-gray-200 "
           [routerLink]="['/']">انصراف</a>
 
-        </div>
-			</details>
-		</div>
+      </div>
+    </details>
+  </div>
 
 
 

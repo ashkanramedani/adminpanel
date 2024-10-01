@@ -9,21 +9,20 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class TicketsComponent implements OnInit {
   //#region change this informaion
-  // ResponseDataList: IBusinessTrip[] = []
+   ResponseDataList: any[] = []
   // SingleData: IBusinessTrip
   form_title = "پشتیبانی /    تیکت ها"
   table_header: string[] = ["ردیف", "  تاریخ" , "عنوان ","وضعیت","جزئیات"]
   field_count:string=""
   get_all_route:string=Domain.GetBusinessTrip
   delete_route:string=Domain.DeleteBusinessTrip
-  add_url:string="/reports/business_trip/add"
-  edit_url:string="/reports/business_trip/edit"
+  add_url:string="/support/ticket-add"
   //#endregion
   ResponseDataLenght: number[];
   totalCount: number = 0
   SearchValue: string
   isCheckedStatus: number;
-  isLoading: boolean = true
+  isLoading: boolean = false
   order: string = "desc"
   IsShowenModal: boolean = false
    page:number=1

@@ -76,7 +76,7 @@ export class DiscountComponent implements OnInit {
   }
   ChangeSort(value: any) {
     this.order = value.target.value
-    this.GetResponseData(1, 10, this.order);
+    this.GetResponseData(1, 10, this.order)
   }
 
   OpenModal(id: string) {
