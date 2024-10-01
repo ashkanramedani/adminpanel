@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { AlertifyService } from 'src/app/services/alertify.service';
+import { ExcelService } from 'src/app/services/excel.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -33,7 +34,7 @@ export class RolesComponent implements OnInit {
   page: number = 1
   limit: number = 10
   currentPage: number = 1
-  constructor(private http: HttpService, private alertServices: AlertifyService) { }
+  constructor(private http: HttpService, private alertServices: AlertifyService,private excelService: ExcelService) { }
   ngOnInit(): void {
     this.GetResponseData(1, 10, this.order)
     this.GetResponseDataLenght()
@@ -102,5 +103,8 @@ export class RolesComponent implements OnInit {
   changePage(event :number){
     this.currentPage=event
     this.GetResponseData(this.currentPage,10,this.order)
+    }
+    exportToExcel(): void {
+      this.excelService.generateExcel(this.ResponseDataList, 'user_data');
     }
 }
