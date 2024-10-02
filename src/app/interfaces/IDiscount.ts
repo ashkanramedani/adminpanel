@@ -2,39 +2,41 @@ import { IUsers } from "./IUsers";
 
 export interface IDiscountAll
 {
-  created_fk_by: string;
-  description: string;
-  visible: boolean;
-  priority: number;
-  can_update: boolean;
-  can_deleted: boolean;
-  discount_code_pk_id: string;
   created: IUsers;
+  description: string;
   status: string;
+  priority: number;
   note: Note;
+  discount_code_pk_id: string;
   discount_code: string;
+  target_user?: any;
+  target_product?: any;
 }
 export interface Note {
 }
 export interface IDiscountSingle
 {
-  deleted: boolean;
-  visible: boolean;
-  can_deleted: boolean;
-  update_date?: any;
-  expire_date?: any;
-  note: Note;
-  discount_code_pk_id: string;
-  discount_code: string;
-  discount_amount: number;
-  can_update: boolean;
   priority: number;
-  create_date: string;
-  delete_date?: any;
+  expire_date?: any;
+  target_product_fk_id?: any;
+  deleted: boolean;
   description: string;
-  status: string;
-  created_fk_by: string;
+  discount_code: string;
+  can_update: boolean;
+  note: Note;
   discount_type: string;
+  can_deleted: boolean;
+  status: string;
+  discount_amount: number;
+  create_date: string;
+  discount_code_pk_id: string;
+  start_date: string;
+  update_date?: any;
+  created_fk_by: string;
+  end_date: string;
+  delete_date?: any;
+  visible: boolean;
+  target_user_fk_id?: any;
 }
 
 export interface IDiscountInsert
@@ -43,6 +45,10 @@ export interface IDiscountInsert
   description: string;
   discount_type: string;
   discount_amount: number;
+  target_user_fk_id: string;
+  target_product_fk_id: string;
+  start_date: string;
+  end_date: string;
 }
 
 export interface IDiscountUpdate

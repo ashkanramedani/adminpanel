@@ -15,7 +15,7 @@ export class DiscountComponent implements OnInit {
   ResponseDataList: IDiscountAll[] = []
   SingleData: IDiscountSingle
   form_title = "اطلاعات پایه / نقش ها"
-  table_header: string[] = ["ردیف", "سازنده", "کد تخفیف", "وضعیت", "عملیات"]
+  table_header: string[] = ["ردیف", "سازنده", "کاربر","محصول","کد تخفیف","وضعیت", "عملیات"]
   field_count: string = "discount_code"
   get_all_route: string = Domain.GetDiscount
   delete_route: string = Domain.DeleteDiscount

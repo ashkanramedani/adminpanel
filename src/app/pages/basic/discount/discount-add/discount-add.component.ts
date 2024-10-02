@@ -8,6 +8,7 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { IDiscountInsert, IDiscountUpdate } from 'src/app/interfaces/IDiscount';
+import * as moment from 'jalali-moment';
 
 @Component({
   selector: 'app-discount-add',
@@ -47,6 +48,10 @@ export class DiscountAddComponent implements OnInit {
         description: new FormControl('', [Validators.required]),
         discount_type: new FormControl('percentage', [Validators.required]),
         discount_amount: new FormControl('', [Validators.required]),
+        target_user_fk_id: new FormControl(''),
+        target_product_fk_id: new FormControl(''),
+        start_date: new FormControl(''),
+        end_date: new FormControl('')
       }
     )
     this.UpdateForm = this.formBuilder.group(
@@ -96,8 +101,7 @@ export class DiscountAddComponent implements OnInit {
   onSubmit() {
     this.btnLoading = true
     if (this.id == null) {
-      if( (this.rewardType=='percentage') && ( (this.InsertForm.controls['discount_amount'].value>100) ||  (this.InsertForm.controls['discount_amount'].value<0)))
-      {
+      if ((this.rewardType == 'percentage') && ((this.InsertForm.controls['discount_amount'].value > 100) || (this.InsertForm.controls['discount_amount'].value < 0))) {
         this.alertServices.error('مقادیر  را به صورت صحیح وارد نمایید')
         this.btnLoading = false
         return;
@@ -112,7 +116,12 @@ export class DiscountAddComponent implements OnInit {
         created_fk_by: this.InsertForm.controls.created_fk_by.value,
         description: this.InsertForm.controls.description.value,
         discount_type: this.InsertForm.controls.discount_type.value,
-        discount_amount: this.rewardType=='fix' ? Number(this.InsertForm.controls.discount_amount.value.replace(/,/g, '')): Number(this.InsertForm.controls.discount_amount.value)  ,
+        start_date: moment.from(this.InsertForm.controls.start_date.value, 'fa', 'YYYY/MM/DD').format('YYYY-MM-DD'),
+        end_date: moment.from(this.InsertForm.controls.end_date.value, 'fa', 'YYYY/MM/DD').format('YYYY-MM-DD'),
+        //target_product_fk_id:this.InsertForm.controls.target_product_fk_id.value,
+        target_product_fk_id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        target_user_fk_id: this.InsertForm.controls.target_user_fk_id.value,
+        discount_amount: this.rewardType == 'fix' ? Number(this.InsertForm.controls.discount_amount.value.replace(/,/g, '')) : Number(this.InsertForm.controls.discount_amount.value),
       }
       this.http.create(this.create_route, InsertFormValue, null).subscribe((response) => {
         console.log(response)
