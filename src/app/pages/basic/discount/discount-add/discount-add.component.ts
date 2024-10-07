@@ -119,7 +119,7 @@ export class DiscountAddComponent implements OnInit {
         start_date: moment.from(this.InsertForm.controls.start_date.value, 'fa', 'YYYY/MM/DD').format('YYYY-MM-DD'),
         end_date: moment.from(this.InsertForm.controls.end_date.value, 'fa', 'YYYY/MM/DD').format('YYYY-MM-DD'),
         //target_product_fk_id:this.InsertForm.controls.target_product_fk_id.value,
-        target_product_fk_id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        //target_product_fk_id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
         target_user_fk_id: this.InsertForm.controls.target_user_fk_id.value,
         discount_amount: this.rewardType == 'fix' ? Number(this.InsertForm.controls.discount_amount.value.replace(/,/g, '')) : Number(this.InsertForm.controls.discount_amount.value),
       }

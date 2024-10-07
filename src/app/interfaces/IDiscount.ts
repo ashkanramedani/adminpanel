@@ -46,7 +46,7 @@ export interface IDiscountInsert
   discount_type: string;
   discount_amount: number;
   target_user_fk_id: string;
-  target_product_fk_id: string;
+  //target_product_fk_id: string;
   start_date: string;
   end_date: string;
 }
