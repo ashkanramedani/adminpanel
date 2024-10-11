@@ -1,7 +1,7 @@
 import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as moment from 'jalali-moment';
+import  moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
 import { IPaymentMethodSingle } from 'src/app/interfaces/Ipayment_method';
 import {  ISalaryTeacherUpdate, ITeacherSummery } from 'src/app/interfaces/ITeachersSalary';

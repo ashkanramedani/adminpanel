@@ -9,7 +9,7 @@ import { HttpService } from 'src/app/services/http.service';
 import { ISessionSignature } from 'src/app/interfaces/ISessionSignature';
 import { ISubCourseAdd, ISubCourseSingle, ISubCourseUpdate } from 'src/app/interfaces/ISubCourse';
 import { ICourseAll } from 'src/app/interfaces/ICourse';
-import * as moment from 'jalali-moment';
+import  moment from 'jalali-moment';
 
 @Component({
   selector: 'app-sub-course-add',

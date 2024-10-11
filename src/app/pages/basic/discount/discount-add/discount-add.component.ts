@@ -8,7 +8,7 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { IDiscountInsert, IDiscountUpdate } from 'src/app/interfaces/IDiscount';
-import * as moment from 'jalali-moment';
+import  moment from 'jalali-moment';
 
 @Component({
   selector: 'app-discount-add',

@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Pipe, PipeTransform } from '@angular/core';
-import * as moment from 'jalali-moment';
+import  moment from 'jalali-moment';
 
 @Pipe({
   name: 'HijriDate'

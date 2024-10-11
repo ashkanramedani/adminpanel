@@ -7,7 +7,7 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { IClassDetails } from 'src/app/interfaces/IClassDetails';
-import * as moment from 'jalali-moment';
+import  moment from 'jalali-moment';
 import { IFingerScannerAdd, IFingerScannerUpdate } from 'src/app/interfaces/IFingerScannerForm';
 
 @Component({
@@ -86,7 +86,7 @@ export class FingerprintScannerAddComponent implements OnInit {
   }
   FillFormData() {
     this.updateForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
-    this.updateForm.controls["description"].patchValue(this.AuditForm.description); 
+    this.updateForm.controls["description"].patchValue(this.AuditForm.description);
     //this.ReportForm.controls["Date"].patchValue( moment(this.AuditForm.Date, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'));
     this.updateForm.controls["Enter"].patchValue( this.AuditForm.Enter);
     this.updateForm.controls["Exit"].patchValue(this.AuditForm.Exit);

@@ -7,7 +7,7 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { IClassDetails } from 'src/app/interfaces/IClassDetails';
-import * as moment from 'jalali-moment';
+import  moment from 'jalali-moment';
 import { ILeaveRequestSingle } from 'src/app/interfaces/ILeaveRequest';
 import { ILeaveRequestAdd, ILeaveRequestUpdate } from 'src/app/interfaces/ILeaveRequestForm';
 

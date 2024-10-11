@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import * as moment from 'jalali-moment';
+import  moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
 import { ICourseUpdate } from 'src/app/interfaces/ICourse';
 import { ICourseCategoryAll } from 'src/app/interfaces/ICourseCategory';

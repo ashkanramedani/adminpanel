@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as moment from 'jalali-moment';
+import  moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
 import { IBusinessTripReport, IBusinessTripSingle } from 'src/app/interfaces/IBusinessTrip';
 import { IBusinessTripUpdate } from 'src/app/interfaces/IBusinessTripForm';

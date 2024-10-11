@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import * as moment from 'jalali-moment';
+import  moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
 import { IPaymentMethodSingle } from 'src/app/interfaces/Ipayment_method';
 import { ISalaryEmployeeUpdate, ISalaryReceiptReport } from 'src/app/interfaces/ISalaryReceiptReport';

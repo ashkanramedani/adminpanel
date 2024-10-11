@@ -16,7 +16,7 @@ import { SalaryTypeEnum } from 'src/app/enum/SalaryTypeEnum';
 export class SalaryPolicyAddComponent implements OnInit {
   //#region change this information
   cancle_link: string = '/reports/salarypolicy'
-  form_title:string="ضریب محاسبه حقوق"
+  form_title:string="قراردادهای پرسنل  "
   AuditForm: ISalaryPolicyForms
   get_Singel_route: string = Domain.GetSalaryPolicyData
   put_route: string = Domain.PutSalaryPolicyData
@@ -92,13 +92,14 @@ export class SalaryPolicyAddComponent implements OnInit {
       .subscribe((response) => {
         console.log(response)
         this.AuditForm = response;
+        this.Salary_Type=response.Salary_Type
         this.FillFormData()
       });
   }
   FillFormData() {
     this.ReportForm.controls["created_fk_by"].patchValue(this.AuditForm.created_fk_by);
     this.ReportForm.controls["user_fk_id"].patchValue(this.AuditForm.user_fk_id);
-    this.ReportForm.controls["Base_salary"].patchValue(this.AuditForm.Base_salary);
+    this.ReportForm.controls["Base_salary"].patchValue(String( this.AuditForm.Base_salary));
     this.ReportForm.controls["day_starting_time"].patchValue(this.AuditForm.day_starting_time);
     this.ReportForm.controls["day_ending_time"].patchValue(this.AuditForm.day_ending_time);
     this.ReportForm.controls["Regular_hours_factor"].patchValue(this.AuditForm.Regular_hours_factor);
@@ -122,7 +123,7 @@ export class SalaryPolicyAddComponent implements OnInit {
     this.ReportForm.controls["business_trip_permission"].patchValue(this.AuditForm.business_trip_permission);
     this.ReportForm.controls["business_trip_factor"].patchValue(this.AuditForm.business_trip_factor);
     this.ReportForm.controls["business_trip_cap"].patchValue(this.AuditForm.business_trip_cap);
-     this.ReportForm.controls["Fix_pay"].patchValue(this.AuditForm.Fix_pay);
+     this.ReportForm.controls["Fix_pay"].patchValue(String( this.AuditForm.Fix_pay));
   }
   onSubmit() {
     if (this.ReportForm.invalid) {
@@ -134,7 +135,7 @@ export class SalaryPolicyAddComponent implements OnInit {
     let ReportFormValue: ISalaryPolicyForms =
     {
       created_fk_by: this.ReportForm.controls.created_fk_by.value,
-      Base_salary:this.ReportForm.controls.Base_salary.value.includes(',') ?(this.ReportForm.controls.Base_salary.value.replace(/,/g, "")):(this.ReportForm.controls.Base_salary.value)  ,
+      Base_salary:( String( this.ReportForm.controls.Base_salary.value).includes(',') ) ? (this.ReportForm.controls.Base_salary.value.replace(/,/g, "")):(this.ReportForm.controls.Base_salary.value)  ,
       user_fk_id: this.ReportForm.controls.user_fk_id.value,
       day_starting_time: this.ReportForm.controls.day_starting_time.value,
       day_ending_time: this.ReportForm.controls.day_ending_time.value,

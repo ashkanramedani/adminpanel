@@ -8,7 +8,7 @@ import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { IUserFormRoles } from 'src/app/interfaces/IUserFormRoles';
 import { IRewardCardInsert, IRewardCardUpdata } from 'src/app/interfaces/IRewardCard';
-import * as moment from 'jalali-moment';
+import  moment from 'jalali-moment';
 
 @Component({
   selector: 'app-reward-card-add',

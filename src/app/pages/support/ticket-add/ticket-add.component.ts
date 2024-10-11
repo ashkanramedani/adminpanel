@@ -7,7 +7,7 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { IStudentsForm } from 'src/app/interfaces/IStudentsForm';
-import * as moment from 'jalali-moment';
+import  moment from 'jalali-moment';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({

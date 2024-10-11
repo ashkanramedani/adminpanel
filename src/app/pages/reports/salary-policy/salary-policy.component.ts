@@ -15,7 +15,7 @@ export class SalaryPolicyComponent implements OnInit {
   //#region change this informaion
   ResponseDataList: ISalaryPolicy[] = []
   SingleData: ISalaryPolicy
-  form_title = "گزارشات / ضریب محاسبه حقوق"
+  form_title = "گزارشات / قراردادهای پرسنل  "
   table_header: string[] = ["ردیف", "پرسنل", "زمان شروع ", "زمان پایان","ایجاد کننده","وضعیت","عملیات"]
   field_count:string="Salary_Policy"
   get_all_route:string=Domain.GetSalaryPolicyData

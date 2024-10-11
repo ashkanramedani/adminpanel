@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Domain } from 'src/app/domain/doamin';
-import * as moment from 'jalali-moment';
+import  moment from 'jalali-moment';
 import { IUsers } from 'src/app/interfaces/IUsers';
 import { IUsersForm } from 'src/app/interfaces/IUsersForm';
 import { AlertifyService } from 'src/app/services/alertify.service';

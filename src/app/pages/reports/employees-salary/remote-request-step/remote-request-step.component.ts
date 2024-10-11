@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as moment from 'jalali-moment';
+import  moment from 'jalali-moment';
 import { Domain } from 'src/app/domain/doamin';
 import { IRemoteRequestReport, IRemoteRequestSingle } from 'src/app/interfaces/IRemoteRequest';
 import { IRemoteRequestUpdate } from 'src/app/interfaces/IRemoteRequestForm';

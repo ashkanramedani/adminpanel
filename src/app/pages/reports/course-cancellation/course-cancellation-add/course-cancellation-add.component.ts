@@ -6,7 +6,7 @@ import { IUsers } from 'src/app/interfaces/IUsers';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IRoles } from 'src/app/interfaces/IRoles';
-import * as moment from 'jalali-moment';
+import  moment from 'jalali-moment';
 import { IClassCancellationForm } from 'src/app/interfaces/IClassCancellationForm';
 import { ICourseAll } from 'src/app/interfaces/ICourse';
 
