@@ -200,3 +200,15 @@ tr:hover {
 {
   bottom: 1.15rem !important;
 }
+.router-link-active
+{
+  @apply text-cyan-600 font-semibold
+}
+.menu li a:focus
+{
+  @apply text-cyan-600 bg-white
+}
+.menu li a:active
+{
+  @apply !bg-none text-black
+}

@@ -13,10 +13,11 @@ import { CheckComponent } from './check/check.component';
 import { CheckFinalComponent } from './check/check-final/check-final.component';
 import { CheckInfoComponent } from './check/check-info/check-info.component';
 import { CheckTermComponent } from './check/check-term/check-term.component';
+import { CheckListComponent } from './check-list/check-list.component';
 
 
 @NgModule({
-  declarations: [WalletComponent,WalletDetailsComponent,CheckComponent,CheckFinalComponent,CheckInfoComponent,CheckTermComponent],
+  declarations: [CheckListComponent,WalletComponent,WalletDetailsComponent,CheckComponent,CheckFinalComponent,CheckInfoComponent,CheckTermComponent],
   imports: [
     CommonModule,
     FinanceRoutingModule,

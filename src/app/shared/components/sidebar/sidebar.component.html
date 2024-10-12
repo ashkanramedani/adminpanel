@@ -198,15 +198,34 @@
                 <ul>
                   <li class="py-1"><a [routerLink]="['/finance/wallets']" routerLinkActive="router-link-active">کیف
                       پول ها</a></li>
-                  <li class="py-1"><a [routerLink]="['/finance/check']" [queryParams]="{step: '1'}"
+                  <li class="py-1"><a [routerLink]="['/finance/check']" 
                       routerLinkActive="router-link-active">چک ها
                     </a></li>
                   <li class="py-1"><a [routerLink]="['/basic/payments']" routerLinkActive="router-link-active">روش های
                       پرداخت</a></li>
                   <li class="py-1"><a [routerLink]="['/basic/reward-card']" routerLinkActive="router-link-active">کارت
                       پاداش اساتید</a></li>
-                  <li class="py-1"><a [routerLink]="['/basic/discount']" routerLinkActive="router-link-active">تخفیفات
+                  <li class="py-1"><a [routerLink]="['/basic/discount']" routerLinkActive="router-link-active">کدهای
+                      تخفیف
                     </a></li>
+
+                  <li class="py-1">
+                    <details>
+                      <summary>گزارشات مالی</summary>
+                      <ul>
+                        <li class="py-1"><a [routerLink]="['/reports/finger_scanner']"
+                            routerLinkActive="router-link-active">ورود و خروج کارکنان</a></li>
+                        <li class="py-1"><a [routerLink]="['/reports/salarypolicy']"
+                            routerLinkActive="router-link-active">قرارداد های پرسنل</a></li>
+                        <li class="py-1"><a [routerLink]="['/reports/employees-salary']"
+                            routerLinkActive="router-link-active">محاسبات حقوق پرسنل</a></li>
+                        <li class="py-1"><a [routerLink]="['/reports/teachers-salary']"
+                            routerLinkActive="router-link-active">محاسبات حقوق اساتید</a></li>
+                        <li class="py-1"><a [routerLink]="['/reports/daily-payments']"
+                            routerLinkActive="router-link-active">پرداختی های روزانه</a></li>
+                      </ul>
+                    </details>
+                  </li>
                 </ul>
               </details>
             </li>
@@ -233,24 +252,6 @@
                             routerLinkActive="router-link-active">ماموریت</a></li>
                         <li class="py-1"><a [routerLink]="['/reports/remote_request']"
                             routerLinkActive="router-link-active">دورکاری</a></li>
-                      </ul>
-                    </details>
-                  </li>
-                  <li class="py-1">
-                    <details>
-                      <summary>حسابداری</summary>
-                      <ul>
-                        <li class="py-1"><a [routerLink]="['/reports/finger_scanner']"
-                            routerLinkActive="router-link-active">ورود و خروج کارکنان</a></li>
-                        <li class="py-1"><a [routerLink]="['/reports/salarypolicy']"
-                            routerLinkActive="router-link-active">قرارداد های پرسنل</a></li>
-
-                        <li class="py-1"><a [routerLink]="['/reports/employees-salary']"
-                            routerLinkActive="router-link-active">محاسبات حقوق پرسنل</a></li>
-                        <li class="py-1"><a [routerLink]="['/reports/teachers-salary']"
-                            routerLinkActive="router-link-active">محاسبات حقوق اساتید</a></li>
-                            <li class="py-1"><a [routerLink]="['/reports/daily-payments']"
-                              routerLinkActive="router-link-active">پرداختی های روزانه</a></li>
                       </ul>
                     </details>
                   </li>
@@ -283,9 +284,11 @@
               <details>
                 <summary> پشتیبانی</summary>
                 <ul>
-                  <li class="py-1"><a [routerLink]="['/support/ticket-add']" routerLinkActive="router-link-active">تیکت جدید</a>
+                  <li class="py-1"><a [routerLink]="['/support/ticket-add']" routerLinkActive="router-link-active">تیکت
+                      جدید</a>
                   </li>
-                  <li class="py-1"><a [routerLink]="['/support/tickets']" routerLinkActive="router-link-active"> تیکت ها</a>
+                  <li class="py-1"><a [routerLink]="['/support/tickets']" routerLinkActive="router-link-active"> تیکت
+                      ها</a>
                   </li>
                 </ul>
               </details>
