@@ -18,8 +18,11 @@
     </div>
   </div>
 </div>
-<app-loading *ngIf="isLoading"></app-loading>
-<main *ngIf="!isLoading">
+@if (isLoading) {
+<app-loading></app-loading>
+}
+@else{
+<main >
   <div class="p-5 my-3 bg-white rounded-lg">
     <div class="header flex flex-col gap-y-4 bg-cyan-50 p-4 rounded-lg">
       <div class="flex items-center justify-between">
@@ -110,6 +113,7 @@
   </div>
 
 </main>
+}
 
 <dialog class="modal " [ngClass]="{'modal-open' : (isOpenBill)}">
   <div class="modal-box  w-8/12 max-w-5xl">

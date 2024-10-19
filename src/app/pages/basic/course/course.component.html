@@ -1,278 +1,317 @@
 <div class="breadcrumb flex justify-between items-center px-5 mb-3 bg-white rounded-lg font-semibold">
-    <nav>
-        <ol class="flex items-center gap-1 text-sm py-2">
-            <li>
-                <span>دوره ها</span>
-            </li>
-        </ol>
-    </nav>
-    <div class="flex items-center gap-x-7 pt-2">
-        <a *ngFor="let item of CourseTypeData" (click)="GetResponseData(1,10,order,item.course_type_name)"  class="py-3 cursor-pointer   text-gray-600"
-        [ngClass]="{'border-cyan-600  !text-cyan-600 border-b': (is_active_course_type==item.course_type_name) }"
-        >
-          {{item.course_type_name}}</a>
-    </div>
-    <div class="icon flex items-center gap-x-2 py-2">
-        <a [routerLink]="['/basic/course/add']"
-            class="text-cyan-600 border border-cyan-600 px-4 py-2 rounded-md p-2  bg-white  ">افزودن</a>
+  <nav>
+    <ol class="flex items-center gap-1 text-sm py-2">
+      <li>
+        <span>دوره ها</span>
+      </li>
+    </ol>
+  </nav>
+  <div class="flex items-center gap-x-7 pt-2">
+    @for (item of CourseTypeData; track item.course_type_pk_id) {
+    <a (click)="GetResponseData(1,10,order,item.course_type_name)" class="py-3 cursor-pointer   text-gray-600"
+      [ngClass]="{'border-cyan-600  !text-cyan-600 border-b': (is_active_course_type==item.course_type_name) }">
+      {{item.course_type_name}}</a>
+    }
+  </div>
+  <div class="icon flex items-center gap-x-2 py-2">
+    <a [routerLink]="['/basic/course/add']"
+      class="text-cyan-600 border border-cyan-600 px-4 py-2 rounded-md p-2  bg-white  ">افزودن</a>
 
-            <div class="dropdown dropdown-end">
-              <div tabindex="0" role="button" class="btn btn-ghost">
-                <img src="/assets/images/icon/setting.svg" class="w-5" alt="">
-              </div>
-              <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-40 w-40 p-2 shadow border">
-                <li><a [routerLink]="['/basic/course-tag']">برچسب</a></li>
-                <li><a [routerLink]="['/basic/course-category']">دسته بندی</a></li>
-                <li><a [routerLink]="['/basic/course-language']">زبان</a></li>
-                <li><a [routerLink]="['/basic/course-type']">نوع دوره</a></li>
-                <li><a [routerLink]="['/basic/sub-course']">دروس</a></li>
-                <li><a [routerLink]="['/basic/sessions']">جلسات</a></li>
-              </ul>
-            </div>
+    <div class="dropdown dropdown-end">
+      <div tabindex="0" role="button" class="btn btn-ghost">
+        <img src="/assets/images/icon/setting.svg" class="w-5" alt="">
+      </div>
+      <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-40 w-40 p-2 shadow border">
+        <li><a [routerLink]="['/basic/course-tag']">برچسب</a></li>
+        <li><a [routerLink]="['/basic/course-category']">دسته بندی</a></li>
+        <li><a [routerLink]="['/basic/course-language']">زبان</a></li>
+        <li><a [routerLink]="['/basic/course-type']">نوع دوره</a></li>
+        <li><a [routerLink]="['/basic/sub-course']">دروس</a></li>
+        <li><a [routerLink]="['/basic/sessions']">جلسات</a></li>
+      </ul>
     </div>
+  </div>
 </div>
-<app-loading *ngIf="isLoading;else otherContent" ></app-loading>
-<ng-template #otherContent>
+@if (isLoading) {
+<app-loading></app-loading>
+}
+@else {
 <main>
-  <div *ngIf="ResponseDataList.length<1" class="alert flex bg-blue-100 rounded-lg p-4 mb-4 text-sm text-blue-700 gap-x-2" role="alert">
-    <svg class="w-6 h-6 inline mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-        <span class="text-lg font-semibold">در حال حاضر رکوردی ثبت نشده است</span>
-</div>
-    <div class="courses flex flex-col gap-y-4 text-sm">
-        <div *ngFor="let item of ResponseDataList | paginate: { itemsPerPage: 10,currentPage: this.currentPage,totalItems: totalCount }" class="course-item rounded-lg  bg-white px-10 py-1 flex flex-col">
-            <div class="flex items-center justify-between border-b py-4">
-                <div class="flex items-center gap-x-3">
-                    <img src="/assets/images/sample/course.svg" class="w-16" alt="">
-                    <div class="flex flex-col gap-y-1">
-                        <span class="font-semibold">{{item.course_name}}</span>
-                        <span [innerHTML]="item.description" class="text-sm"></span>
-                    </div>
-                </div>
-                <div class="flex items-center gap-x-4">
-                    <span class="bg-gray-200 px-2 py-1 flex items-center gap-x-2 rounded-md">
-                        <span class="pt-1 font-medium">{{item.language.language_name}}</span>
-                         <img src="/assets/images/icon/language.svg" class="w-4" alt="">
-                    </span>
-                    <n-badge [title]="item.status" [form_id]="item.course_pk_id" [db]="'course'" ></n-badge>
-                        <div class="dropdown dropdown-end">
-                          <div tabindex="0" role="button" class="p-1 hover:bg-gray-200 rounded-md">
-                            <img src="/assets/images/icon/show-more.svg" class="w-6" alt="">
-                          </div>
-                          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-40 w-36 p-2 shadow border">
-                            <li><a [routerLink]="['/basic/course/edit',item.course_pk_id]">ویرایش</a></li>
-                            <li><a (click)="OpenModal(item.course_pk_id)">مشاهده</a></li>
-                            <li><a (click)="RemoveItem(item.course_pk_id)">حذف</a></li>
-                            <li><a (click)="OpenSubCourseAdd(item.course_pk_id)">افزودن درس</a></li>
-                          </ul>
-                        </div>
-                </div>
+  @if (ResponseDataList.length<1) {
+  <div
+    class="alert flex bg-blue-100 rounded-lg p-4 mb-4 text-sm text-blue-700 gap-x-2" role="alert">
+    <svg class="w-6 h-6 inline mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd"
+        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+        clip-rule="evenodd"></path>
+    </svg>
+    <span class="text-lg font-semibold">در حال حاضر رکوردی ثبت نشده است</span>
+  </div>
+}
+  <div class="courses flex flex-col gap-y-4 text-sm">
+    @for (item of ResponseDataList | paginate: { itemsPerPage: 10,currentPage: this.currentPage,totalItems: totalCount }
+    | filter: this.SearchValue; track item.course_pk_id;let i=$index) {
+    <div class="course-item rounded-lg  bg-white px-10 py-1 flex flex-col">
+      <div class="flex items-center justify-between border-b py-4">
+        <div class="flex items-center gap-x-3">
+          <img src="/assets/images/sample/course.svg" class="w-16" alt="">
+          <div class="flex flex-col gap-y-1">
+            <span class="font-semibold">{{item.course_name}}</span>
+            <span [innerHTML]="item.description" class="text-sm"></span>
+          </div>
+        </div>
+        <div class="flex items-center gap-x-4">
+          <span class="bg-gray-200 px-2 py-1 flex items-center gap-x-2 rounded-md">
+            <span class="pt-1 font-medium">{{item.language.language_name}}</span>
+            <img src="/assets/images/icon/language.svg" class="w-4" alt="">
+          </span>
+          <n-badge [title]="item.status" [form_id]="item.course_pk_id" [db]="'course'"></n-badge>
+          <div class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="p-1 hover:bg-gray-200 rounded-md">
+              <img src="/assets/images/icon/show-more.svg" class="w-6" alt="">
             </div>
-            <div class="flex items-center justify-between py-4  font-medium  ">
-              <div class="flex items-center  w-full gap-x-8">
-                <div class="flex items-center gap-x-3">
-                    <img src="/assets/images/icon/video.svg" class="w-5 pb-1" alt="">
-                    <span>تعداد جلسات:</span>
-                </div>
-                <span> <span class="font-semibold text-base pl-1">{{item.course_capacity}}</span> جلسه</span>
+            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-40 w-36 p-2 shadow border">
+              <li><a [routerLink]="['/basic/course/edit',item.course_pk_id]">ویرایش</a></li>
+              <li><a (click)="OpenModal(item.course_pk_id)">مشاهده</a></li>
+              <li><a (click)="RemoveItem(item.course_pk_id)">حذف</a></li>
+              <li><a (click)="OpenSubCourseAdd(item.course_pk_id)">افزودن درس</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center justify-between py-4  font-medium  ">
+        <div class="flex items-center  w-full gap-x-8">
+          <div class="flex items-center gap-x-3">
+            <img src="/assets/images/icon/video.svg" class="w-5 pb-1" alt="">
+            <span>تعداد جلسات:</span>
+          </div>
+          <span> <span class="font-semibold text-base pl-1">{{item.course_capacity}}</span> جلسه</span>
+        </div>
+        <div class="flex items-center  w-full gap-x-8 justify-end">
+          <div class="flex items-center gap-x-3">
+            <img src="/assets/images/icon/users.svg" class="w-5 pb-1" alt="">
+            <span> ظرفیت دوره:</span>
+          </div>
+          <span> <span class="font-semibold text-base pl-1">{{item.available_seat}}</span> نفر</span>
+        </div>
+      </div>
+      @if (item.session_signature.length>0) {
+      <div  class="flex items-center justify-between  pb-2 font-medium border-t">
+        <div class="flex items-center gap-x-3">
+          <img src="/assets/images/icon/calendar.svg" class="w-5" alt="">
+          <span> روزهای کلاس</span>
+        </div>
+        <ul class="timeline">
+          @for (item2 of item.session_signature; track $index;let i = $index) {
+          <li>
+            @if (i!=0) {
+            <hr  />
+            }
+            <!-- <div class="timeline-start">{{item2.days_of_week|DayOfWeek}} </div> -->
+            <div class="timeline-middle">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+                <path fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                  clip-rule="evenodd" />
+              </svg>
             </div>
-              <div class="flex items-center  w-full gap-x-8 justify-end">
-                <div class="flex items-center gap-x-3">
-                    <img src="/assets/images/icon/users.svg" class="w-5 pb-1" alt="">
-                    <span> ظرفیت دوره:</span>
-                </div>
-                <span> <span class="font-semibold text-base pl-1">{{item.available_seat}}</span> نفر</span>
-            </div>
-            </div>
-
-            <div *ngIf="item.session_signature.length>0" class="flex items-center justify-between  pb-2 font-medium border-t">
-                <div class="flex items-center gap-x-3">
-                    <img src="/assets/images/icon/calendar.svg" class="w-5" alt="">
-                    <span> روزهای کلاس</span>
-                </div>
-                <ul class="timeline">
-                  <li *ngFor="let item2 of item.session_signature;let i=index">
-                    <hr *ngIf="i!=0" />
-                    <!-- <div class="timeline-start">{{item2.days_of_week|DayOfWeek}} </div> -->
-                    <div class="timeline-middle">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        class="h-5 w-5">
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                          clip-rule="evenodd" />
-                      </svg>
-                    </div>
-                    <div class="timeline-end timeline-box">{{item2|DayOfWeek}}</div>
-                    <hr *ngIf="(i+1)<(item.session_signature.length)" />
-                  </li>
-                </ul>
-                <!-- <div class="flex items-center gap-x-4">
+            <div class="timeline-end timeline-box">{{item2|DayOfWeek}}</div>
+            @if ((i+1)<(item.session_signature.length)) {
+            <hr  />
+            }
+          </li>
+          }
+        </ul>
+        <!-- <div class="flex items-center gap-x-4">
                   <div class="flex items-center gap-x-1" *ngFor="let item2 of item.session_signature">
                     <span>{{item2.days_of_week|DayOfWeek}}</span> : <span>{{item2.session_date}}</span>
                     <img src="/assets/images/icon/line.svg" class="w-[3px]">
                   </div>
                 </div> -->
-            </div>
+      </div>
+    }
 
-        </div>
-        <!-- <a href="/basic/course/add" class="bg-teal-500 p-2 rounded-full w-14 h-14 text-center shadow-md items-center justify-center flex fixed bottom-0 right-4">
+    </div>
+    }
+    <!-- <a href="/basic/course/add" class="bg-teal-500 p-2 rounded-full w-14 h-14 text-center shadow-md items-center justify-center flex fixed bottom-0 right-4">
             <img src="/assets/images/icon/plus.svg" class="w-8 fill-white" alt="">
         </a> -->
-        <div *ngIf="ResponseDataList.length>0" class="paging flex items-center justify-center my-8 flex-wrap">
-          <pagination-controls (pageChange)="changePage($event)" previousLabel="قبلی" nextLabel="بعدی" ></pagination-controls>
-        </div>
+        @if (ResponseDataList.length>0) {
+    <div  class="paging flex items-center justify-center my-8 flex-wrap">
+      <pagination-controls (pageChange)="changePage($event)" previousLabel="قبلی"
+        nextLabel="بعدی"></pagination-controls>
     </div>
-    <div *ngIf="IsShowenModal==true"
-        class="fixed left-0 top-0 z-50 flex h-full min-h-screen w-full items-center justify-center bg-black/60 px-4 py-5 text-graydark dark:text-white">
-        <div class="flex flex-col w-full mx-12 lg:mr-[19rem]  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
-            <div class="header flex items-center justify-between text-lg font-semibold">
+  }
+  </div>
+  @if (IsShowenModal==true) {
+  <div
+    class="fixed left-0 top-0 z-50 flex h-full min-h-screen w-full items-center justify-center bg-black/60 px-4 py-5 text-graydark dark:text-white">
+    <div
+      class="flex flex-col w-full mx-12 lg:mr-[19rem]  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
+      <div class="header flex items-center justify-between text-lg font-semibold">
+        <span>{{SingleData.course_name }}</span>
+        <span class="text-teal-700"> {{SingleData.status}}</span>
+      </div>
+      <div class="main mt-4">
+        <div class="flex items-center justify-between gap-x-2">
+          <div class="w-full bg-rose-100 flex items-center justify-between p-3 rounded-lg">
+            <div class="flex items-center gap-x-4">
+              <img src="/assets/images/icon/course_users.svg" alt="">
+              <div class="flex flex-col gap-y-2">
+                <span class="font-semibold text-rose-600"> <span
+                    class="pl-1">{{SingleData.course_capacity}}</span>نفر</span>
+                <span>ثبت نام کرده ها</span>
+              </div>
+            </div>
+            <div>
+              <svg width="9" height="17" viewBox="0 0 9 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 15.5C8 15.5 1 11.356 1 8.5C1 5.645 8 1.5 8 1.5" stroke="#FD849F" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+          <div class="w-full bg-purple-100 flex items-center justify-between p-3 rounded-lg">
+            <div class="flex items-center gap-x-4">
+              <img src="/assets/images/icon/course_money.svg" alt="">
+              <div class="flex flex-col gap-y-2">
+                <span class="font-semibold text-purple-600"> <span class="pl-1">25000</span>تومان</span>
+                <span>هزینه های پرداخت شده</span>
+              </div>
+            </div>
+            <div>
+              <svg width="9" height="17" viewBox="0 0 9 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 15.5C8 15.5 1 11.356 1 8.5C1 5.645 8 1.5 8 1.5" stroke="#D2A6FF" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+
+            </div>
+          </div>
+
+          <div class="w-full bg-amber-100 flex items-center justify-between p-3 rounded-lg">
+            <div class="flex items-center gap-x-4">
+              <img src="/assets/images/icon/course_calander.svg" alt="">
+              <div class="flex flex-col gap-y-2">
+                <span class="font-semibold text-amber-600"> <span class="pl-1">4/16</span>جلسه</span>
+                <span>میزان پیشرفت</span>
+              </div>
+            </div>
+            <div>
+              <svg width="9" height="17" viewBox="0 0 9 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 15.5C8 15.5 1 11.356 1 8.5C1 5.645 8 1.5 8 1.5" stroke="#FCC179" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+
+            </div>
+          </div>
+
+        </div>
+        <div class="flex items-start justify-between gap-x-2 mt-3">
+          <div class="w-full bg-gray-100 flex p-3 rounded-lg  flex-col gap-y-4">
+            <div class="flex items-start justify-start gap-x-2">
+              <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M21.25 12.5C21.25 19.437 18.937 21.75 12 21.75C5.063 21.75 2.75 19.437 2.75 12.5C2.75 5.563 5.063 3.25 12 3.25C18.937 3.25 21.25 5.563 21.25 12.5Z"
+                  stroke="#696984" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M12 16.3945V12.4995" stroke="#696984" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M12.0045 9H11.9955" stroke="#696984" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span class="font-semibold">معرفی دوره</span>
+            </div>
+            <div>
+              <img src="/assets/images/course_test.svg" alt="">
+            </div>
+            <div class="flex font-semibold">
               <span>{{SingleData.course_name }}</span>
-              <span class="text-teal-700"> {{SingleData.status}}</span>
             </div>
-            <div class="main mt-4">
-              <div class="flex items-center justify-between gap-x-2">
-                <div class="w-full bg-rose-100 flex items-center justify-between p-3 rounded-lg">
-                  <div class="flex items-center gap-x-4">
-                    <img src="/assets/images/icon/course_users.svg" alt="">
-                    <div class="flex flex-col gap-y-2">
-                      <span class="font-semibold text-rose-600"> <span class="pl-1">{{SingleData.course_capacity}}</span>نفر</span>
-                      <span>ثبت نام کرده ها</span>
-                    </div>
-                  </div>
-                  <div>
-                    <svg width="9" height="17" viewBox="0 0 9 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M8 15.5C8 15.5 1 11.356 1 8.5C1 5.645 8 1.5 8 1.5" stroke="#FD849F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                  </div>
-                </div>
-                <div class="w-full bg-purple-100 flex items-center justify-between p-3 rounded-lg">
-                  <div class="flex items-center gap-x-4">
-                    <img src="/assets/images/icon/course_money.svg" alt="">
-                    <div class="flex flex-col gap-y-2">
-                      <span class="font-semibold text-purple-600"> <span class="pl-1">25000</span>تومان</span>
-                      <span>هزینه های پرداخت شده</span>
-                    </div>
-                  </div>
-                  <div>
-                    <svg width="9" height="17" viewBox="0 0 9 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M8 15.5C8 15.5 1 11.356 1 8.5C1 5.645 8 1.5 8 1.5" stroke="#D2A6FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-
-                  </div>
-                </div>
-
-                <div class="w-full bg-amber-100 flex items-center justify-between p-3 rounded-lg">
-                  <div class="flex items-center gap-x-4">
-                    <img src="/assets/images/icon/course_calander.svg" alt="">
-                    <div class="flex flex-col gap-y-2">
-                      <span class="font-semibold text-amber-600"> <span class="pl-1">4/16</span>جلسه</span>
-                      <span>میزان پیشرفت</span>
-                    </div>
-                  </div>
-                  <div>
-                    <svg width="9" height="17" viewBox="0 0 9 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M8 15.5C8 15.5 1 11.356 1 8.5C1 5.645 8 1.5 8 1.5" stroke="#FCC179" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-
-                  </div>
-                </div>
-
+            <div class="flex">
+              <p [innerHTML]="SingleData.description"></p>
+            </div>
+          </div>
+          <div class="w-full bg-gray-100 flex p-3 rounded-lg  flex-col gap-y-4">
+            <div class="flex items-start justify-start gap-x-2">
+              <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M21.25 12.5C21.25 19.437 18.937 21.75 12 21.75C5.063 21.75 2.75 19.437 2.75 12.5C2.75 5.563 5.063 3.25 12 3.25C18.937 3.25 21.25 5.563 21.25 12.5Z"
+                  stroke="#696984" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M12 16.3945V12.4995" stroke="#696984" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M12.0045 9H11.9955" stroke="#696984" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span class="font-semibold">اطلاعات کلی دوره</span>
+            </div>
+            <div class="flex flex-col gap-y-4 mt-3">
+              <div class="flex items-center justify-between border-b pb-3">
+                <span>نوع دوره</span>
+                <span>{{SingleData.course_type}}</span>
               </div>
-              <div class="flex items-start justify-between gap-x-2 mt-3">
-                <div class="w-full bg-gray-100 flex p-3 rounded-lg  flex-col gap-y-4">
-                  <div class="flex items-start justify-start gap-x-2">
-                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M21.25 12.5C21.25 19.437 18.937 21.75 12 21.75C5.063 21.75 2.75 19.437 2.75 12.5C2.75 5.563 5.063 3.25 12 3.25C18.937 3.25 21.25 5.563 21.25 12.5Z" stroke="#696984" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M12 16.3945V12.4995" stroke="#696984" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M12.0045 9H11.9955" stroke="#696984" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                    <span class="font-semibold">معرفی دوره</span>
-                  </div>
-                  <div>
-                    <img src="/assets/images/course_test.svg" alt="">
-                  </div>
-                  <div class="flex font-semibold">
-                    <span>{{SingleData.course_name }}</span>
-                  </div>
-                  <div class="flex">
-                    <p [innerHTML]="SingleData.description"></p>
-                  </div>
-                </div>
-                <div class="w-full bg-gray-100 flex p-3 rounded-lg  flex-col gap-y-4">
-                  <div class="flex items-start justify-start gap-x-2">
-                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M21.25 12.5C21.25 19.437 18.937 21.75 12 21.75C5.063 21.75 2.75 19.437 2.75 12.5C2.75 5.563 5.063 3.25 12 3.25C18.937 3.25 21.25 5.563 21.25 12.5Z" stroke="#696984" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M12 16.3945V12.4995" stroke="#696984" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M12.0045 9H11.9955" stroke="#696984" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                    <span class="font-semibold">اطلاعات کلی دوره</span>
-                  </div>
-                  <div class="flex flex-col gap-y-4 mt-3">
-                    <div class="flex items-center justify-between border-b pb-3">
-                        <span>نوع دوره</span>
-                        <span>{{SingleData.course_type}}</span>
-                    </div>
-                    <div class="flex items-center justify-between border-b pb-3">
-                        <span> زبان</span>
-                        <span>{{SingleData.course_language}}</span>
-                    </div>
-                    <div class="flex items-center justify-between border-b pb-3">
-                        <span> قیمت دوره</span>
-                        <span>{{SingleData.Course_price}} تومان</span>
-                    </div>
-                    <div class="flex items-center justify-between border-b pb-3">
-                        <span>ظرفیت دوره</span>
-                        <span>{{SingleData.course_capacity }} نفر</span>
-                    </div>
-                    <div class="flex items-center justify-between border-b pb-3">
-                        <span> پرداخت اقساطی</span>
-                        <span>6 ماهه</span>
-                    </div>
-                    <div class="flex items-center justify-between border-b pb-3">
-                        <span> قابلیت پرداخت چکی</span>
-                        <span>ندارد</span>
-                    </div>
-                    <div class="flex items-center justify-between ">
-                        <span> مدرسین</span>
-                        <span>{{SingleData.teachers.length}} نفر</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="w-full bg-gray-100 flex p-3 rounded-lg  flex-col gap-y-4">
-                    <div class="flex items-start justify-start gap-x-2">
-                      <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.25 12.5C21.25 19.437 18.937 21.75 12 21.75C5.063 21.75 2.75 19.437 2.75 12.5C2.75 5.563 5.063 3.25 12 3.25C18.937 3.25 21.25 5.563 21.25 12.5Z" stroke="#696984" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M12 16.3945V12.4995" stroke="#696984" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M12.0045 9H11.9955" stroke="#696984" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      <span class="font-semibold"> تقویم</span>
-                    </div>
-                    <div class="flex">
-                      <p [innerHTML]="">یک متن تستی</p>
-                    </div>
-                  </div>
-
+              <div class="flex items-center justify-between border-b pb-3">
+                <span> زبان</span>
+                <span>{{SingleData.course_language}}</span>
+              </div>
+              <div class="flex items-center justify-between border-b pb-3">
+                <span> قیمت دوره</span>
+                <span>{{SingleData.Course_price}} تومان</span>
+              </div>
+              <div class="flex items-center justify-between border-b pb-3">
+                <span>ظرفیت دوره</span>
+                <span>{{SingleData.course_capacity }} نفر</span>
+              </div>
+              <div class="flex items-center justify-between border-b pb-3">
+                <span> پرداخت اقساطی</span>
+                <span>6 ماهه</span>
+              </div>
+              <div class="flex items-center justify-between border-b pb-3">
+                <span> قابلیت پرداخت چکی</span>
+                <span>ندارد</span>
+              </div>
+              <div class="flex items-center justify-between ">
+                <span> مدرسین</span>
+                <span>{{SingleData.teachers.length}} نفر</span>
               </div>
             </div>
-            <div class="footer flex items-end justify-end border-t py-3 border-[#b1b1b1] mt-6">
-                <button (click)="CloseModal()"
-                    class="block  rounded border border-stroke bg-stroke hover:bg-bodydark1 font-semibold px-6 py-3 text-center  text-black-2 transition   dark:border-strokedark dark:bg-meta-4 dark:text-white">
-                    بستن
-                </button>
+          </div>
+          <div class="w-full bg-gray-100 flex p-3 rounded-lg  flex-col gap-y-4">
+            <div class="flex items-start justify-start gap-x-2">
+              <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M21.25 12.5C21.25 19.437 18.937 21.75 12 21.75C5.063 21.75 2.75 19.437 2.75 12.5C2.75 5.563 5.063 3.25 12 3.25C18.937 3.25 21.25 5.563 21.25 12.5Z"
+                  stroke="#696984" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M12 16.3945V12.4995" stroke="#696984" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M12.0045 9H11.9955" stroke="#696984" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span class="font-semibold"> تقویم</span>
             </div>
-        </div>
-    </div>
+            <div class="flex">
+              <p [innerHTML]="">یک متن تستی</p>
+            </div>
+          </div>
 
-    <dialog class="modal " [ngClass]="{'modal-open' : (isOpenSubCourseAdd)}">
-      <div class="modal-box  w-11/12 max-w-5xl">
-        <app-sub-course-add *ngIf="isOpenSubCourseAdd" [course_fk_id]="this.course_fk_id"></app-sub-course-add>
-        <div class="flex justify-end mt-6 gap-x-6">
-          <button (click)="CLoseSubCourseAdd()" class="btn">بستن</button>
         </div>
       </div>
-    </dialog>
+      <div class="footer flex items-end justify-end border-t py-3 border-[#b1b1b1] mt-6">
+        <button (click)="CloseModal()"
+          class="block  rounded border border-stroke bg-stroke hover:bg-bodydark1 font-semibold px-6 py-3 text-center  text-black-2 transition   dark:border-strokedark dark:bg-meta-4 dark:text-white">
+          بستن
+        </button>
+      </div>
+    </div>
+  </div>
+}
+
+  <dialog class="modal " [ngClass]="{'modal-open' : (isOpenSubCourseAdd)}">
+    <div class="modal-box  w-11/12 max-w-5xl">
+      @if (isOpenSubCourseAdd) {
+      <app-sub-course-add  [course_fk_id]="this.course_fk_id"></app-sub-course-add>
+    }
+      <div class="flex justify-end mt-6 gap-x-6">
+        <button (click)="CLoseSubCourseAdd()" class="btn">بستن</button>
+      </div>
+    </div>
+  </dialog>
 </main>
-</ng-template>
+}

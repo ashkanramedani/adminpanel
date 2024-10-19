@@ -11,8 +11,11 @@
     <a [routerLink]="['/finance/check-add']" [queryParams]="{step: '1'}" class="px-8 py-2 rounded-md border-cyan-600 border-dashed border w-fit text-cyan-600 cursor-pointer">افزودن چک جدید</a>
   </div>
 </div>
-<app-loading *ngIf="isLoading"></app-loading>
-<main *ngIf="!isLoading">
+@if (isLoading) {
+<app-loading></app-loading>
+}
+@else{
+<main >
   <div class="p-5 my-3 bg-white rounded-lg">
     <div class="grid grid-cols-5 gap-x-2 mb-8">
       <div class="item flex flex-col gap-y-2 bg-blue-50 rounded-lg p-6 items-center justify-center font-semibold ">
@@ -39,7 +42,9 @@
     </div>
     <div
       class="header grid grid-cols-{{table_header.length}} text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6">
-      <span *ngFor="let item of table_header">{{item}}</span>
+      @for (item of table_header; track $index) {
+      <span>{{item}}</span>
+      }
     </div>
     <div
       class="body grid grid-cols-{{table_header.length}} text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
@@ -218,3 +223,4 @@
     </div>
   </dialog>
 </main>
+}

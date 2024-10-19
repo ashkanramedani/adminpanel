@@ -36,8 +36,9 @@
         <div class="relative">
           <select formControlName="created_fk_by"
             class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-            <option *ngFor="let item of EmployiesData" [value]="item.user_pk_id">{{item.name+" "+item.last_name}}
-            </option>
+            @for (item of EmployiesData; track $index) {
+            <option [value]="item.user_pk_id">{{item.name+" "+item.last_name}}</option>
+            }
           </select>
           <label
             class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">سازنده
@@ -47,8 +48,9 @@
         <div class="relative">
           <select formControlName="user_fk_id"
             class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-            <option *ngFor="let item of EmployiesData" [value]="item.user_pk_id">{{item.name+" "+item.last_name}}
-            </option>
+            @for (item of EmployiesData; track $index) {
+            <option [value]="item.user_pk_id">{{item.name+" "+item.last_name}}</option>
+            }
           </select>
           <label
             class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">نام
@@ -67,7 +69,8 @@
 
           </label>
         </div>
-        <div class="relative" *ngIf="Salary_Type==salary_type_enum.Fixed">
+        @if (Salary_Type==salary_type_enum.Fixed) {
+        <div class="relative">
           <input dir="ltr" type="text"  formControlName="day_ending_time"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
 
@@ -77,6 +80,7 @@
 
           </label>
         </div>
+      }
         <div class="relative">
           <input type="text"  formControlName="Regular_hours_factor"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
@@ -86,7 +90,8 @@
             <span class="text-red-500 text-lg">*</span>
           </label>
         </div>
-        <div class="relative" *ngIf="Salary_Type==salary_type_enum.Split ||Salary_Type==salary_type_enum.Hourly">
+        @if (Salary_Type==salary_type_enum.Split ||Salary_Type==salary_type_enum.Hourly) {
+        <div class="relative" >
           <input type="text"  formControlName="Regular_hours_cap"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
           <label
@@ -95,6 +100,7 @@
 
           </label>
         </div>
+      }
         <div class="relative">
           <select formControlName="overtime_permission"
             class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">

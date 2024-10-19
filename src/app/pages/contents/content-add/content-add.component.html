@@ -38,8 +38,9 @@
         <div class="relative">
           <select formControlName=""
             class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-            <option *ngFor="let item of post_topic_list " [value]="item.topic_name">{{item.label_name}}</option>
-
+            @for (item of post_topic_list; track $index) {
+            <option [value]="item.topic_name">{{item.label_name}}</option>
+            }
           </select>
           <label
             class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">نوع
@@ -77,8 +78,10 @@
         <div class="relative">
           <select formControlName="categoty"
             class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-            <option *ngFor="let item of post_category_list " [value]="item.category_pk_id">{{item.category_name}}
+            @for (item of post_category_list; track $index) {
+            <option [value]="item.category_pk_id">{{item.category_name}}
             </option>
+            }
           </select>
           <label
             class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">دسته
@@ -99,16 +102,21 @@
         <div class="relative">
           <input type="text" formControlName="tag" (click)="OpenSearchTag()" (keyup.enter)="AddTagInputManually()"
             class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-          <div *ngIf="isOpenSearchTag"
+            @if (isOpenSearchTag) {
+          <div
             class="search-tag mt-2 bg-white dark:bg-form-input dark:text-bodydark1 text-black  border border-gray-300 rounded-lg shadow-md max-h-34 overflow-y-auto">
+            @for (item of tag_list | filter: this.ReportForm.controls.tag.value; track $index) {
             <div (click)="AddTagInput(item.tag_pk_id,item.tag_name)"
-              *ngFor="let item of tag_list | filter: this.ReportForm.controls.tag.value"
               class="px-4 py-2 cursor-pointer hover:bg-stroke dark:hover:bg-black text-black dark:text-white">
               {{item.tag_name}}</div>
+            }
           </div>
-          <div *ngIf="tagsInputArray.length>0"
+        }
+        @if (tagsInputArray.length>0) {
+          <div
             class="w-full flex items-center gap-2 mt-4 p-2 flex-wrap max-h-34 overflow-y-auto border-[1.5px] border-stroke dark:border-form-strokedark rounded-md">
-            <div *ngFor="let item of tagsInputArray;let i = index"
+            @for (item of tagsInputArray; track $index;let i = $index) {
+            <div
               class=" flex text-center justify-between text-black dark:text-white rounded-sm px-3 py-1 bg-bodydark1 dark:bg-black ">
               <button>
                 <svg (click)="RemoveTagInput(i)"
@@ -121,7 +129,9 @@
               </button>
               <span>{{item}}</span>
             </div>
+            }
           </div>
+        }
           <label
             class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">برچسب
           </label>
@@ -227,7 +237,8 @@
         <div class="relative">
           <div class="flex items-center gap-x-4 justify-between w-full">
             <div class="w-full">
-              <div *ngIf="imageUrl"
+              @if (imageUrl) {
+              <div
                 class="border p-5 relative  rounded-md border-dashed border-bodydark1   dark:border-strokedark   ">
                 <img [src]="imageUrl" class="max-w-[500px] max-h-[500px] mx-auto">
                 <button (click)="RemoveImage()" class="absolute bg-black rounded-full top-0 left-0">
@@ -238,7 +249,9 @@
                   </svg>
                 </button>
               </div>
-              <div *ngIf="!imageUrl"
+            }
+            @else {
+              <div 
                 class="min-h-[150px] border p-5 relative  cursor-pointer items-center justify-center  rounded-md border-dashed border-bodydark1 bg-gray hover:border-primary dark:border-strokedark dark:bg-graydark dark:hover:border-primary dz-clickable">
                 <input type="file" (change)="UploadImage($event)" accept=".jpg,.svg,.png,.jpeg"
                   formControlName="post_image" class="cursor-pointer relative block opacity-0 w-full h-full p-20 z-50">
@@ -269,6 +282,7 @@
                   </div>
                 </div>
               </div>
+            }
             </div>
             <div *ngIf="photoUploaded!=null" class="photoUploaded">
               <img [src]="photoUploaded" class="w-[320px] rounded-md border border-bodydark">

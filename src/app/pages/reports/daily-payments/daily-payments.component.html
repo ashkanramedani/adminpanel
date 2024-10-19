@@ -28,7 +28,9 @@
           جستجو
         </button>
       </div>
-      <app-loading *ngIf="isLoading"></app-loading>
+      @if (isLoading) {
+<app-loading></app-loading>
+}
       <div *ngIf="isShowenAlert && !isLoading &&ResponseDataList.length<1"
         class="flex bg-blue-100 rounded-lg p-4 my-4 text-md text-blue-700 gap-x-2" role="alert">
         <svg class="w-6 h-6 inline " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +45,9 @@
       <div *ngIf="ResponseDataList.length<1" class="main mt-10">
         <div
           class="header grid grid-cols-5 text-center px-6 text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6">
-          <span *ngFor="let item of table_header">{{item}}</span>
+          @for (item of table_header; track $index) {
+      <span>{{item}}</span>
+      }
         </div>
         <!-- @for (item of ResponseDataList; track item.user_pk_id;let i=$index;let odd=$odd) {
         <div class="body grid grid-cols-5 text-center text-gray-900 font-medium text-sm mb-5 py-3 rounded-md "  [ngClass]="{'bg-gray-100': odd}">

@@ -25,15 +25,20 @@
     <n-link-button [link]="add_url" [title]="'افزودن'"></n-link-button>
   </div>
 </div>
-<app-loading *ngIf="isLoading"></app-loading>
-<main *ngIf="!isLoading">
+@if (isLoading) {
+<app-loading></app-loading>
+}
+@else{
+<main >
   <div class="p-5 my-3 bg-white rounded-lg">
     <div
       class="header grid grid-cols-{{table_header.length}} text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6">
-      <span *ngFor="let item of table_header">{{item}}</span>
+      @for (item of table_header; track $index) {
+      <span>{{item}}</span>}
     </div>
+    @for (item of ResponseDataList | paginate: { itemsPerPage: 10,currentPage: this.currentPage,totalItems: totalCount }
+    | filter: this.SearchValue; track item.discount_code_pk_id ;let i=$index) {
     <div
-      *ngFor="let item of ResponseDataList | paginate: {  itemsPerPage: 10,currentPage: this.currentPage,totalItems: totalCount}| filter: this.SearchValue; let i =index"
       class="body grid grid-cols-{{table_header.length}} text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
       <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
       <span>{{ item.created.name}} &nbsp; {{item.created.last_name}}</span>
@@ -59,13 +64,14 @@
         </button>
       </div>
     </div>
+    }
     <div class="paging flex items-center justify-center mt-16 flex-wrap ">
       <pagination-controls (pageChange)="changePage($event)" previousLabel="قبلی"
         nextLabel="بعدی"></pagination-controls>
     </div>
   </div>
-
-  <div *ngIf="IsShowenModal==true" x-transition=""
+  @if(IsShowenModal==true){
+  <div
     class="fixed   left-0 top-0 z-999999 flex h-full min-h-screen w-full items-center justify-center bg-black/40 px-4 py-5 text-graydark dark:text-white">
     <div
       class="flex flex-col w-full mx-12 lg:mr-[19rem]  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
@@ -87,19 +93,19 @@
         </div>
         <div>
           <label class="my-3 block text-base font-semibold">
-             تاریخ شروع
+            تاریخ شروع
           </label>
           <span>{{SingleData.start_date|HijriDate }}</span>
         </div>
         <div>
           <label class="my-3 block text-base font-semibold">
-             تاریخ اتمام
+            تاریخ اتمام
           </label>
           <span>{{SingleData.end_date|HijriDate }}</span>
         </div>
         <div>
           <label class="my-3 block text-base font-semibold">
-           کاربر
+            کاربر
           </label>
           <span>{{SingleData.target_user_fk_id }}</span>
         </div>
@@ -139,5 +145,6 @@
       </div>
     </div>
   </div>
-
+}
 </main>
+}

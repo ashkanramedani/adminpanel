@@ -10,8 +10,11 @@
   </div>
 
 </div>
-<app-loading *ngIf="isLoading"></app-loading>
-<main *ngIf="!isLoading">
+@if (isLoading) {
+<app-loading></app-loading>
+}
+@else{
+<main >
   <div class="p-5 my-3 bg-white rounded-lg">
     <div class="flex items-center gap-x-2 justify-start mb-5">
       <select class="select select-bordered select-sm ">
@@ -46,9 +49,12 @@
     </div>
     <div
       class="header grid grid-cols-6 text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6">
-      <span *ngFor="let item of table_header">{{item}}</span>
+      @for (item of table_header; track $index) {
+      <span>{{item}}</span>
+      }
     </div>
-    <div *ngFor="let item of ResponseDataList | filter: this.SearchValue; let i =index"
+    @for (item of ResponseDataList| filter: this.SearchValue; let i =$index; track $index) {
+    <div
       class="body grid grid-cols-6 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
       <span>{{(i+1)}}</span>
       <span>{{item.course_name }}</span>
@@ -62,7 +68,9 @@
         </a>
       </div>
     </div>
+  }
   </div>
 
 
 </main>
+}

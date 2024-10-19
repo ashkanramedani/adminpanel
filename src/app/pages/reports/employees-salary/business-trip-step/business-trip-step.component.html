@@ -1,23 +1,30 @@
-<app-loading *ngIf="isloading"></app-loading>
-<div role="alert" class="alert" *ngIf="!isloading &&  response_business_trip_report.length<1;else otherContent">
+@if (isloading) {
+<app-loading></app-loading>
+}
+@if (!isloading &&  response_business_trip_report.length<1) {
+<div role="alert" class="alert" >
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info h-6 w-6 shrink-0">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
       d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
   </svg>
   <span class="font-medium">اطلاعاتی ثبت نشده است!</span>
 </div>
-<ng-template #otherContent>
+}
+@else {
   <table class="min-w-full leading-normal">
     <thead>
       <tr>
-        <th *ngFor="let item of table_header"
+        @for (item of table_header; track $index) {
+        <th
           class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-800 uppercase tracking-wider">
           {{item}}
         </th>
+      }
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of response_business_trip_report; let i =index">
+      @for (item of response_business_trip_report; track $index;let i = $index) {
+      <tr>
         <td class="border-b py-3 border-gray-200  text-center">
           <span>{{ i+1}}</span>
         </td>
@@ -53,6 +60,7 @@
           </button>
         </td>
       </tr>
+    }
     </tbody>
   </table>
   <!-- edit leave request -->
@@ -105,4 +113,4 @@
     </div>
 
   </dialog>
-</ng-template>
+}

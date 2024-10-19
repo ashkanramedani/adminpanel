@@ -2,17 +2,19 @@
     class="w-full dark:text-bodydark1 text-black rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
 <div *ngIf="is_open_employees_list"
     class="search-tag mt-2 bg-white dark:bg-form-input dark:text-bodydark1 text-black  border border-gray-300 rounded-lg shadow-md max-h-59 overflow-y-auto">
+    @for (item of employees_list | filter: this.employe_name; track $index) {
     <div (click)="AddFromList(item.user_pk_id,item.fname,item.lname)"
-        *ngFor="let item of employees_list | filter: this.employe_name"
         class="px-4 py-2 cursor-pointer hover:bg-stroke flex items-center gap-x-2 dark:hover:bg-black text-black dark:text-white">
         <img src="https://ieltsdaily.ir/static/img/users/{{item.image}}"
             class="w-10 rounded-full border border-graydark" alt="">
         <span class="text-sm font-semibold">{{item.fname}} {{item.lname}}</span>
     </div>
+  }
 </div>
 <div *ngIf="added_employee_array.length>0"
     class="w-full flex items-center gap-2 mt-4 p-2 flex-wrap max-h-34 overflow-y-auto border-[1.5px] border-stroke dark:border-form-strokedark rounded-md">
-    <div *ngFor="let item of added_employee_array;let i = index"
+    @for (item of added_employee_array; track $index;let i = $index) {
+    <div
         class=" flex text-center justify-between text-black dark:text-white rounded-sm px-3 py-1 bg-bodydark1 dark:bg-black ">
         <button>
             <svg (click)="RemoveEmployeeArray(i)"
@@ -25,4 +27,5 @@
         </button>
         <span>{{item}}</span>
     </div>
+  }
 </div>

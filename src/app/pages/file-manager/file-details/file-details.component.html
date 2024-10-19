@@ -17,7 +17,7 @@
       </label>
     </div>
   </div>
-  <button 
+  <button
     class="text-white text-sm  px-4 py-3 rounded-md  bg-slate-800   p-2  flex   gap-x-2 items-center justify-center  cursor-pointer">
     <svg xmlns="http://www.w3.org/2000/svg" class="w-4" fill="currentcolor" viewBox="0 0 256 256">
       <defs>
@@ -57,15 +57,17 @@
       <div class="mt-7 bg-white rounded-lg">
         <div
           class="header px-4  grid grid-cols-4 text-right text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6">
-          <input type="checkbox"  class="checkbox checkbox-sm" />
-          <span class="font-semibold" *ngFor="let item of table_header">{{item}}</span>
+          <input type="checkbox" class="checkbox checkbox-sm" />
+          @for (item of table_header; track $index) {
+          <span class="font-semibold">{{item}}</span>
+          }
         </div>
         <div class="body px-4 grid grid-cols-4 text-right text-gray-900 font-medium text-sm mb-5 space-y-3">
-          <input type="checkbox"  class="checkbox checkbox-sm" />
-            <div class="flex items-center gap-x-2">
-              <img src="/assets/images/icon/folder3.svg" class="w-5" alt="">
-              <span> پروفایل کاربران</span>
-            </div>
+          <input type="checkbox" class="checkbox checkbox-sm" />
+          <div class="flex items-center gap-x-2">
+            <img src="/assets/images/icon/folder3.svg" class="w-5" alt="">
+            <span> پروفایل کاربران</span>
+          </div>
 
           <span>1403/05/27</span>
           <span>-</span>

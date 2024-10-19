@@ -22,104 +22,115 @@
     </div>
   </div>
   <div class="icon flex items-center gap-x-2 py-2">
-    <n-link-button [link]="add_url"  [title]="'افزودن'" ></n-link-button>
+    <n-link-button [link]="add_url" [title]="'افزودن'"></n-link-button>
   </div>
 </div>
-<app-loading *ngIf="isLoading;else otherContent"></app-loading>
-<ng-template #otherContent>
-  <main>
-    <div *ngIf="ResponseDataList.length<1"
-      class="alert flex bg-blue-100 rounded-lg p-4 mb-4 text-sm text-blue-700 gap-x-2" role="alert">
-      <svg class="w-6 h-6 inline mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd"
-          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-          clip-rule="evenodd"></path>
-      </svg>
-      <span class="text-lg font-semibold">در حال حاضر رکوردی ثبت نشده است</span>
+@if(isLoading){
+<app-loading></app-loading>
+}
+@else {
+<main>
+  @if (ResponseDataList.length<1) {
+  <div
+    class="alert flex bg-blue-100 rounded-lg p-4 mb-4 text-sm text-blue-700 gap-x-2" role="alert">
+    <svg class="w-6 h-6 inline mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd"
+        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+        clip-rule="evenodd"></path>
+    </svg>
+    <span class="text-lg font-semibold">در حال حاضر رکوردی ثبت نشده است</span>
+  </div>
+}
+  <div class="p-5 my-3 bg-white rounded-lg">
+    <div
+      class="header grid grid-cols-6 text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6">
+      @for (item of table_header; track $index) {
+      <span>{{item}}</span>
+      }
     </div>
-    <div  class="p-5 my-3 bg-white rounded-lg">
-      <div
-        class="header grid grid-cols-6 text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6">
-        <span *ngFor="let item of table_header">{{item}}</span>
-      </div>
-      <div *ngFor="let item of ResponseDataList | paginate: { itemsPerPage: 10,currentPage: this.currentPage,totalItems: totalCount} | filter: this.SearchValue; let i =index"
-        class="body grid grid-cols-6 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
-        <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
-        <span>{{ item.sub_course_name}}</span>
-        <span>{{ item.course.course_name}}</span>
-        <span>{{item.teacher.name + '&nbsp;'+ item.teacher.last_name }}</span>
-        <span>{{item.sub_course_capacity}}</span>
-        <div class="operation flex items-center justify-center ">
-          <button class="hover:bg-gray-200 p-1 rounded-lg"  (click)="OpenModal(item.sub_course_pk_id)" title="نمایش">
-            <img src="/assets/images/icon/see-more.svg" class="w-4" alt="">
-          </button>
-          <a class="hover:bg-gray-200 p-1 rounded-lg"  [routerLink]="[edit_url,item.sub_course_pk_id]" title="ویرایش">
-            <img src="/assets/images/icon/edit.svg" class="w-4" alt="">
-          </a>
-          <button class="hover:bg-gray-200 p-1 rounded-lg"  title="حذف" (click)="RemoveItem(item.sub_course_pk_id,item.course.course_pk_id)">
-            <img src="/assets/images/icon/trash.svg" class="w-4" alt="">
-          </button>
-        </div>
-      </div>
-      <div class="paging flex items-center justify-center mt-16 flex-wrap ">
-        <pagination-controls (pageChange)="changePage($event)" previousLabel="قبلی" nextLabel="بعدی" ></pagination-controls>
-      </div>
-    </div>
-
-    <div *ngIf="IsShowenModal==true" x-transition=""
-      class="fixed   left-0 top-0 z-999999 flex h-full min-h-screen w-full items-center justify-center bg-black/40 px-4 py-5 text-graydark dark:text-white">
-      <div
-        class="flex flex-col w-full mx-12 lg:mr-[19rem]  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
-        <div class="footer flex  justify-start border-b py-3 border-[#b1b1b1]">
-          <h3 class="font-semibold text-lg"> نمایش رکورد  اطلاعات دوره های درس </h3>
-        </div>
-        <div class="grid grid-cols-2 py-3  text-graydark dark:text-white text-base">
-          <div>
-            <label class="my-3 block text-base font-semibold">
-              سازنده
-            </label>
-            <span>{{SingleData.created_fk_by}}</span>
-          </div>
-          <div>
-            <label class="my-3 block text-base font-semibold">
-              نام
-            </label>
-            <span>{{SingleData.sub_course_name }}</span>
-          </div>
-          <div>
-            <label class="my-3 block text-base font-semibold">
-              وضعیت
-            </label>
-            <span>{{SingleData.status}}</span>
-          </div>
-          <div>
-            <label class="my-3 block text-base font-semibold">
-              درس اصلی
-            </label>
-            <span>{{SingleData.course_fk_id }}</span>
-          </div>
-          <div>
-            <label class="my-3 block text-base font-semibold ">
-              تعداد جلسات
-            </label>
-            <span>{{SingleData.number_of_session}}</span>
-          </div>
-          <div>
-            <label class="my-3 block text-base font-semibold ">
-              استاد
-            </label>
-            <span>{{SingleData.sub_course_teacher_fk_id}}</span>
-          </div>
-        </div>
-
-        <div class="footer flex items-end justify-end border-t py-3 border-[#b1b1b1]">
-          <button (click)="CloseModal()"
-            class="block  rounded border border-stroke bg-stroke hover:bg-bodydark1 font-semibold px-6 py-3 text-center  text-black-2 transition   dark:border-strokedark dark:bg-meta-4 dark:text-white">
-            بستن
-          </button>
-        </div>
+    @for (item of ResponseDataList | paginate: { itemsPerPage: 10,currentPage: this.currentPage,totalItems: totalCount
+    }
+    | filter: this.SearchValue; track item.sub_course_pk_id ;let i=$index) {
+    <div class="body grid grid-cols-6 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
+      <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
+      <span>{{ item.sub_course_name}}</span>
+      <span>{{ item.course.course_name}}</span>
+      <span>{{item.teacher.name + '&nbsp;'+ item.teacher.last_name }}</span>
+      <span>{{item.sub_course_capacity}}</span>
+      <div class="operation flex items-center justify-center ">
+        <button class="hover:bg-gray-200 p-1 rounded-lg" (click)="OpenModal(item.sub_course_pk_id)" title="نمایش">
+          <img src="/assets/images/icon/see-more.svg" class="w-4" alt="">
+        </button>
+        <a class="hover:bg-gray-200 p-1 rounded-lg" [routerLink]="[edit_url,item.sub_course_pk_id]" title="ویرایش">
+          <img src="/assets/images/icon/edit.svg" class="w-4" alt="">
+        </a>
+        <button class="hover:bg-gray-200 p-1 rounded-lg" title="حذف"
+          (click)="RemoveItem(item.sub_course_pk_id,item.course.course_pk_id)">
+          <img src="/assets/images/icon/trash.svg" class="w-4" alt="">
+        </button>
       </div>
     </div>
+    }
+    <div class="paging flex items-center justify-center mt-16 flex-wrap ">
+      <pagination-controls (pageChange)="changePage($event)" previousLabel="قبلی"
+        nextLabel="بعدی"></pagination-controls>
+    </div>
+  </div>
+  @if(IsShowenModal==true){
+  <div  x-transition=""
+    class="fixed   left-0 top-0 z-999999 flex h-full min-h-screen w-full items-center justify-center bg-black/40 px-4 py-5 text-graydark dark:text-white">
+    <div
+      class="flex flex-col w-full mx-12 lg:mr-[19rem]  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
+      <div class="footer flex  justify-start border-b py-3 border-[#b1b1b1]">
+        <h3 class="font-semibold text-lg"> نمایش رکورد اطلاعات دوره های درس </h3>
+      </div>
+      <div class="grid grid-cols-2 py-3  text-graydark dark:text-white text-base">
+        <div>
+          <label class="my-3 block text-base font-semibold">
+            سازنده
+          </label>
+          <span>{{SingleData.created_fk_by}}</span>
+        </div>
+        <div>
+          <label class="my-3 block text-base font-semibold">
+            نام
+          </label>
+          <span>{{SingleData.sub_course_name }}</span>
+        </div>
+        <div>
+          <label class="my-3 block text-base font-semibold">
+            وضعیت
+          </label>
+          <span>{{SingleData.status}}</span>
+        </div>
+        <div>
+          <label class="my-3 block text-base font-semibold">
+            درس اصلی
+          </label>
+          <span>{{SingleData.course_fk_id }}</span>
+        </div>
+        <div>
+          <label class="my-3 block text-base font-semibold ">
+            تعداد جلسات
+          </label>
+          <span>{{SingleData.number_of_session}}</span>
+        </div>
+        <div>
+          <label class="my-3 block text-base font-semibold ">
+            استاد
+          </label>
+          <span>{{SingleData.sub_course_teacher_fk_id}}</span>
+        </div>
+      </div>
 
-  </main>
-</ng-template>
+      <div class="footer flex items-end justify-end border-t py-3 border-[#b1b1b1]">
+        <button (click)="CloseModal()"
+          class="block  rounded border border-stroke bg-stroke hover:bg-bodydark1 font-semibold px-6 py-3 text-center  text-black-2 transition   dark:border-strokedark dark:bg-meta-4 dark:text-white">
+          بستن
+        </button>
+      </div>
+    </div>
+  </div>
+}
+</main>
+}

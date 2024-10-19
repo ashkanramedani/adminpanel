@@ -1,43 +1,52 @@
 <div class="breadcrumb flex justify-between items-center px-5 mb-3 bg-white rounded-lg font-semibold">
   <nav>
-      <ol class="flex items-center gap-1 text-sm py-2">
-          <li>
-              <span> {{form_title}} </span>
-          </li>
-      </ol>
+    <ol class="flex items-center gap-1 text-sm py-2">
+      <li>
+        <span> {{form_title}} </span>
+      </li>
+    </ol>
   </nav>
   <div class="icon flex items-center gap-x-2 py-2">
-    <n-link-button [link]="add_url"  [title]="'افزودن'" ></n-link-button>
+    <n-link-button [link]="add_url" [title]="'افزودن'"></n-link-button>
   </div>
 </div>
-<app-loading *ngIf="isLoading"></app-loading>
-<main *ngIf="!isLoading">
+@if (isLoading) {
+<app-loading></app-loading>
+}
+@else{
+<main>
   <div class="p-5 my-3 bg-white rounded-lg">
-      <div
-          class="header grid grid-cols-5 text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6">
-          <span *ngFor="let item of table_header">{{item}}</span>
+    <div
+      class="header grid grid-cols-5 text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6">
+      @for (item of table_header; track $index) {
+      <span>{{item}}</span>
+      }
+    </div>
+    @for (item of ResponseDataList | paginate: { itemsPerPage: 10,currentPage: this.currentPage,totalItems: totalCount }
+    | filter: this.SearchValue; track item.library_pk_id ;let i=$index) {
+    <div class="body grid grid-cols-5 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
+      <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
+      <span>{{item.library_name}}</span>
+      <span>{{item.create_date|date: "YYYY/MM/dd" }}</span>
+      <span [ngClass]="ShowTitleStatus(item.library_status).classStatus">{{ShowTitleStatus(item.library_status).title
+        }}</span>
+      <div class="operation flex items-center justify-center">
+        <button class="hover:bg-gray-200 p-1 rounded-lg" (click)="OpenModal(item.library_pk_id)" title="نمایش">
+          <img src="/assets/images/icon/see-more.svg" class="w-4" alt="">
+        </button>
+        <a class="hover:bg-gray-200 p-1 rounded-lg" [routerLink]="[edit_url,item.library_pk_id]" title="ویرایش">
+          <img src="/assets/images/icon/edit.svg" class="w-4" alt="">
+        </a>
+        <button class="hover:bg-gray-200 p-1 rounded-lg" title="حذف" (click)="RemoveItem(item.library_pk_id)">
+          <img src="/assets/images/icon/trash.svg" class="w-4" alt="">
+        </button>
       </div>
-      <div *ngFor="let item of ResponseDataList | paginate: { itemsPerPage: 10,currentPage: currentPage }| filter: this.SearchValue; let i =index"
-          class="body grid grid-cols-5 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
-          <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
-          <span>{{item.library_name}}</span>
-          <span>{{item.create_date|date: "YYYY/MM/dd" }}</span>
-          <span [ngClass]="ShowTitleStatus(item.library_status).classStatus" >{{ShowTitleStatus(item.library_status).title  }}</span>
-          <div class="operation flex items-center justify-center">
-              <button class="hover:bg-gray-200 p-1 rounded-lg"  (click)="OpenModal(item.library_pk_id)" title="نمایش">
-                  <img src="/assets/images/icon/see-more.svg" class="w-4" alt="">
-              </button>
-              <a  class="hover:bg-gray-200 p-1 rounded-lg"  [routerLink]="[edit_url,item.library_pk_id]" title="ویرایش">
-                  <img src="/assets/images/icon/edit.svg" class="w-4" alt="">
-              </a>
-              <button class="hover:bg-gray-200 p-1 rounded-lg"  title="حذف" (click)="RemoveItem(item.library_pk_id)">
-                  <img src="/assets/images/icon/trash.svg" class="w-4" alt="">
-              </button>
-          </div>
-      </div>
-      <div class="paging flex items-center justify-center mt-16 flex-wrap ">
-        <pagination-controls (pageChange)="currentPage= $event" previousLabel="قبلی" nextLabel="بعدی" ></pagination-controls>
-      </div>
+    </div>
+    }
+    <div class="paging flex items-center justify-center mt-16 flex-wrap ">
+      <pagination-controls (pageChange)="currentPage= $event" previousLabel="قبلی"
+        nextLabel="بعدی"></pagination-controls>
+    </div>
   </div>
 
   <!-- <div *ngIf="IsShowenModal==true" x-transition=""
@@ -113,3 +122,4 @@
   </div> -->
 
 </main>
+}

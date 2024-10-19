@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Domain } from 'src/app/domain/doamin';
 import { IDiscountAll, IDiscountSingle } from 'src/app/interfaces/IDiscount';
-import { IRoles } from 'src/app/interfaces/IRoles';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HttpService } from 'src/app/services/http.service';
+import { MinioService } from '../services/minio.service';
 
 @Component({
   selector: 'app-files',
@@ -35,7 +35,6 @@ export class FilesComponent implements OnInit {
   ngOnInit(): void {
     //this.GetResponseData(1, 10, this.order)
     //this.GetResponseDataLenght()
-
   }
 
   GetResponseDataLenght() {

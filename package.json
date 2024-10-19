@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "^18.2.7",
     "@angular/platform-server": "^18.2.7",
     "@angular/router": "^18.2.7",
+    "@aws-sdk/client-s3": "^3.670.0",
     "@ckeditor/ckeditor5-angular": "^7.0.1",
     "@ckeditor/ckeditor5-build-classic": "^41.0.0",
     "@ckeditor/ckeditor5-core": "^41.0.0",

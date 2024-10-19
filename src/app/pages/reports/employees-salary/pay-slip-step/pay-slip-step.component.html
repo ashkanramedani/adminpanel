@@ -2,7 +2,8 @@
   <div class="flex items-center justify-between border border-gray-300 bg-gray-100 p-3">
     <div class="w-2/6 gap-y-3 text-right">
       <span class="mx-2 font-bold">نام و نام خانوادگی:</span>
-      <span>{{response_salary_receipt_report.employee?.name}} {{response_salary_receipt_report.employee?.last_name}}</span>
+      <span>{{response_salary_receipt_report.employee?.name}}
+        {{response_salary_receipt_report.employee?.last_name}}</span>
     </div>
     <div class="w-1/6 gap-y-3 text-right">
       <span class="mx-2 font-bold">کدملی:</span>
@@ -26,65 +27,70 @@
       <div class="flex w-full">
         <div class="w-2/6 mx-8">اضافه کاری</div>
         <div class="w-1/6 text-left">
-          <span  class="font-bold" dir="ltr">
+          <span class="font-bold" dir="ltr">
             {{response_salary_receipt_report.Overtime_earning | number: '1.0-0'}}
           </span>
         </div>
         <div class="w-1/6 hidden-mobile">
-          <span  class="text-sm mx-2 hidden-mobile">
-            ({{ math.floor(response_salary_receipt_report.Overtime / 60) | number: '2.'}}:{{response_salary_receipt_report.Overtime % 60 | number: '2.'}})
+          <span class="text-sm mx-2 hidden-mobile">
+            ({{ math.floor(response_salary_receipt_report.Overtime / 60) | number:
+            '2.'}}:{{response_salary_receipt_report.Overtime % 60 | number: '2.'}})
           </span>
         </div>
       </div>
       <div class="flex w-full">
         <div class="w-2/6 mx-8">دور کاری</div>
         <div class="w-1/6 text-left">
-          <span  class="font-bold" dir="ltr">
+          <span class="font-bold" dir="ltr">
             {{response_salary_receipt_report.remote_earning | number: '1.0-0'}}
           </span>
         </div>
         <div class="w-1/6 hidden-mobile">
-          <span  class="text-sm mx-2 hidden-mobile">
-            ({{ math.floor(response_salary_receipt_report.remote / 60) | number: '2.'}}:{{response_salary_receipt_report.remote % 60 | number: '2.'}})
+          <span class="text-sm mx-2 hidden-mobile">
+            ({{ math.floor(response_salary_receipt_report.remote / 60) | number:
+            '2.'}}:{{response_salary_receipt_report.remote % 60 | number: '2.'}})
           </span>
         </div>
       </div>
       <div class="flex w-full">
         <div class="w-2/6 mx-8">تعطیل کاری</div>
         <div class="w-1/6 text-left">
-          <span  class="font-bold" dir="ltr">
+          <span class="font-bold" dir="ltr">
             {{response_salary_receipt_report.Off_Day_earning | number: '1.0-0'}}
           </span>
         </div>
         <div class="w-1/6 hidden-mobile">
-          <span  class="text-sm mx-2">
-            ({{ math.floor(response_salary_receipt_report.Off_Day / 60) | number: '2.'}}:{{response_salary_receipt_report.Off_Day % 60 | number: '2.'}})
+          <span class="text-sm mx-2">
+            ({{ math.floor(response_salary_receipt_report.Off_Day / 60) | number:
+            '2.'}}:{{response_salary_receipt_report.Off_Day % 60 | number: '2.'}})
           </span>
         </div>
       </div>
       <div class="flex w-full">
         <div class="w-2/6 mx-8"> ماموریت</div>
         <div class="w-1/6 text-left">
-          <span  class="font-bold" dir="ltr">
+          <span class="font-bold" dir="ltr">
             {{response_salary_receipt_report.business_trip_earning | number: '1.0-0'}}
           </span>
         </div>
         <div class="w-1/6 hidden-mobile">
-          <span  class="text-sm mx-2">
-            ({{ math.floor(response_salary_receipt_report.business_trip / 60) | number: '2.'}}:{{response_salary_receipt_report.business_trip % 60 | number: '2.'}})
+          <span class="text-sm mx-2">
+            ({{ math.floor(response_salary_receipt_report.business_trip / 60) | number:
+            '2.'}}:{{response_salary_receipt_report.business_trip % 60 | number: '2.'}})
           </span>
         </div>
       </div>
       <div class="flex w-full">
         <div class="w-2/6 mx-8"> میزان کارکرد کل</div>
         <div class="w-1/6 text-left">
-          <span  class="font-bold" dir="ltr">
+          <span class="font-bold" dir="ltr">
             {{response_salary_receipt_report.Regular_earning | number: '1.0-0'}}
           </span>
         </div>
         <div class="w-1/6 hidden-mobile">
-          <span  class="text-sm mx-2">
-            ({{ math.floor(response_salary_receipt_report.Regular_hours / 60) | number: '2.'}}:{{response_salary_receipt_report.Regular_hours % 60 | number: '2.'}})
+          <span class="text-sm mx-2">
+            ({{ math.floor(response_salary_receipt_report.Regular_hours / 60) | number:
+            '2.'}}:{{response_salary_receipt_report.Regular_hours % 60 | number: '2.'}})
           </span>
         </div>
       </div>
@@ -93,13 +99,14 @@
       <div class="flex w-full">
         <div class="w-2/6 mx-8">مرخصی استعلاجی</div>
         <div class="w-1/6 text-left">
-          <span  class="font-bold" dir="ltr">
+          <span class="font-bold" dir="ltr">
             {{response_salary_receipt_report.medical_leave_earning | number: '1.0-0'}}
           </span>
         </div>
         <div class="w-1/6 hidden-mobile">
-          <span  class="text-sm mx-2">
-            ({{ math.floor(response_salary_receipt_report.medical_leave / 60) | number: '2.'}}:{{response_salary_receipt_report.medical_leave % 60 | number: '2.'}})
+          <span class="text-sm mx-2">
+            ({{ math.floor(response_salary_receipt_report.medical_leave / 60) | number:
+            '2.'}}:{{response_salary_receipt_report.medical_leave % 60 | number: '2.'}})
           </span>
         </div>
       </div>
@@ -111,8 +118,9 @@
           </span>
         </div>
         <div class="w-1/6 hidden-mobile">
-          <span  class="text-sm mx-2">
-            ({{ math.floor(response_salary_receipt_report.vacation_leave / 60) | number: '2.'}}:{{response_salary_receipt_report.vacation_leave % 60 | number: '2.'}})
+          <span class="text-sm mx-2">
+            ({{ math.floor(response_salary_receipt_report.vacation_leave / 60) | number:
+            '2.'}}:{{response_salary_receipt_report.vacation_leave % 60 | number: '2.'}})
           </span>
         </div>
       </div>
@@ -124,8 +132,9 @@
           </span>
         </div>
         <div class="w-1/6 hidden-mobile">
-          <span  class="text-sm mx-2">
-            ({{ math.floor(response_salary_receipt_report.Undertime / 60) | number: '2.'}}:{{response_salary_receipt_report.Undertime % 60 | number: '2.'}})
+          <span class="text-sm mx-2">
+            ({{ math.floor(response_salary_receipt_report.Undertime / 60) | number:
+            '2.'}}:{{response_salary_receipt_report.Undertime % 60 | number: '2.'}})
           </span>
         </div>
       </div>
@@ -137,7 +146,7 @@
           </span>
         </div>
         <div class="w-1/6 hidden-mobile">
-          <span  class="text-sm mx-2">
+          <span class="text-sm mx-2">
             (بزودی)
           </span>
         </div>
@@ -150,7 +159,7 @@
           </span>
         </div>
         <div class="w-1/6 hidden-mobile">
-          <span  class="text-sm mx-2">
+          <span class="text-sm mx-2">
             (بزودی)
           </span>
         </div>
@@ -188,7 +197,9 @@
       <div class="relative">
         <select formControlName="payment" dir="ltr"
           class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-          <option *ngFor="let item of shabaList" [value]="item.payment_method_pk_id">{{item.shaba}}</option>
+          @for (item of shabaList; track $index) {
+          <option [value]="item.payment_method_pk_id">{{item.shaba}}</option>
+          }
         </select>
         <label
           class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
@@ -237,7 +248,8 @@
     </button>
   </div>
   <div>
-    <a *ngIf="this.step==5" [routerLink]="['/reports/employees-salary']" [queryParams]="{year:this.year,month:this.month}"
+    <a *ngIf="this.step==5" [routerLink]="['/reports/employees-salary']"
+      [queryParams]="{year:this.year,month:this.month}"
       class="border border-sky-600 px-8 font-semibold py-3 rounded-md bg-sky-600 text-white text-base gap-x-2 flex items-center"
       href="">
       <span> بازگشت به لیست پرسنل</span>

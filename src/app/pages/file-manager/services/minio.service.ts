@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import * as AWS from 'aws-sdk';
+import { CreateBucketCommand, ListBucketsCommand, S3Client } from '@aws-sdk/client-s3';
 @Injectable({
   providedIn: 'root'
 })
@@ -29,23 +30,50 @@ export class MinioService {
   }
 
   private getMinioClient() {
-    return new AWS.S3({
-      accessKeyId: this._accessKey,
-      secretAccessKey: this._secretKey,
-      endpoint: `${this._endpoint}:${this._port}`,
-      s3ForcePathStyle: true,
-      signatureVersion: 'v4',
-      s3BucketEndpoint: true
+    return new S3Client({
+      region:"us-west-2",
+      endpoint:this._endpoint,
+      credentials:{
+        accessKeyId: this._accessKey,
+        secretAccessKey: this._secretKey,
+      }
     })
   }
 
-  public getBucketList() {
-    let minioClient = this.getMinioClient();
-    return minioClient.listBuckets((err, data) => {
-      if (err) console.error(err, err.stack);
-      else
-        console.log('bucket list:', data);
-    })
-  }
+  public  async getBucketList() {
+    const client = new S3Client({
+      region:"us-west-2",
+      endpoint:this._endpoint,
+      credentials:{
+        accessKeyId: this._accessKey,
+        secretAccessKey: this._secretKey,
+      }
+    });
+    const bucketName = "testbucket";
+   var test= await client.send(
+      new ListBucketsCommand({
+      })
+    );
+
+    console.log(test)
+
+
+
+}
+
+
+
+
+
+
+    // const input =  {
+    //   "Bucket": "examplebucket",
+    //   "CreateBucketConfiguration": {
+    //     "LocationConstraint": "eu-west-1"
+    //   }
+    // };
+    // const command = new CreateBucketCommand(input);
+    // const response = await getmin .send(command);
+
 
 }

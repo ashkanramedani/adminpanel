@@ -4,9 +4,11 @@
       class="lg:w-3/5 w-full flex flex-col items-center justify-center bg-white rounded-lg shadow px-8 py-14 mx-auto border border-gray-300">
       <div class=" flex items-center justify-center w-full relative">
         <img class="w-32 " src="/assets/images/logo.webp" alt="logo">
-        <button class="absolute left-0 p-2 cursor-pointer" *ngIf="!this.IsSigninStep" (click)="ComingBack()">
+        @if (!this.IsSigninStep) {
+        <button class="absolute left-0 p-2 cursor-pointer" (click)="ComingBack()">
           <img src="/assets/images/icon/right-arrow.svg" class="w-10" alt="">
         </button>
+        }
       </div>
 
       <div class="space-y-4 md:space-y-6 mt-6 w-full">
@@ -14,13 +16,15 @@
           class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-center">
           ورود | ثبت نام
         </h1>
-        <form [formGroup]="ReportForm" *ngIf="IsSigninStep" class="space-y-4 md:space-y-6">
+        @if (IsSigninStep) {
+        <form [formGroup]="ReportForm" class="space-y-4 md:space-y-6">
           <div>
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> لطفا شماره موبایل یا ایمیل خود
               را وارد کنید
-              <span
-                *ngIf="(this.ReportForm.controls.mobile_number.invalid ) && (this.ReportForm.controls.mobile_number.touched || this.ReportForm.controls.mobile_number.dirty)"
-                class="text-red-700 text-xl  self-start ">*</span>
+              @if ((this.ReportForm.controls.mobile_number.invalid ) && (this.ReportForm.controls.mobile_number.touched
+              || this.ReportForm.controls.mobile_number.dirty)) {
+              <span class="text-red-700 text-xl  self-start ">*</span>
+              }
             </label>
             <input type="text" formControlName="mobile_number"
               class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -28,15 +32,21 @@
 
           <button [disabled]="this.ReportForm.invalid || btnLoadingSignIn" (click)="this.onSubmit()"
             class="w-full flex items-center justify-center gap-x-3 text-white  bg-cyan-600 font-semibold hover:bg-cyan-700  rounded-lg text-lg px-5 py-3 text-center ">
-            <span *ngIf="!this.btnLoadingSignIn">ورود</span>
-            <div *ngIf="this.btnLoadingSignIn"
+            @if (!this.btnLoadingSignIn) {
+            <span>ورود</span>
+            }
+            @if (this.btnLoadingSignIn) {
+            <div
               class="animate-spin inline-block w-6 h-6 border-[3px] border-white border-t-transparent text-gray-800 rounded-full ">
             </div>
+            }
           </button>
         </form>
-
-        <form *ngIf="IsTwoStep" [formGroup]="TwoStepForm" class="space-y-4 md:space-y-6">
-          <div *ngIf="IOtpResponse?.has_account" role="alert" class="alert my-3">
+        }
+        @if (IsTwoStep) {
+        <form [formGroup]="TwoStepForm" class="space-y-4 md:space-y-6">
+          @if (IOtpResponse.has_account) {
+          <div role="alert" class="alert my-3">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
               class="stroke-info h-6 w-6 shrink-0">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -44,22 +54,27 @@
             </svg>
             <span>کد تایید برای شماره <b> {{ this.ReportForm.controls.mobile_number.value }} </b> پیامک شد</span>
           </div>
-          <div *ngIf="!IOtpResponse?.has_account" role="alert" class="alert my-3">
+          }
+          @if (!IOtpResponse.has_account) {
+          <div role="alert" class="alert my-3">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
               class="stroke-info h-6 w-6 shrink-0">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
             <span class="text-justify">
-              حساب کاربری با شماره موبایل<b> {{ this.ReportForm.controls.mobile_number.value }} </b> وجود ندارد. برای ساخت حساب
+              حساب کاربری با شماره موبایل<b> {{ this.ReportForm.controls.mobile_number.value }} </b> وجود ندارد. برای
+              ساخت حساب
               جدید، کد تایید برای این شماره ارسال گردید.
             </span>
           </div>
+          }
           <div>
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> لطفا کد تایید را وارد کنید
-              <span
-                *ngIf="(this.TwoStepForm.controls.code.invalid ) && (this.TwoStepForm.controls.code.touched || this.TwoStepForm.controls.code.dirty)"
-                class="text-red-700 text-xl  self-start ">*</span>
+              @if ((this.TwoStepForm.controls.code.invalid ) && (this.TwoStepForm.controls.code.touched ||
+              this.TwoStepForm.controls.code.dirty)) {
+              <span class="text-red-700 text-xl  self-start ">*</span>
+              }
             </label>
             <input (input)="CheckOtpInput($event)" type="text" formControlName="code" placeholder="کد را وارد نمایید"
               class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -67,29 +82,36 @@
 
           <button [disabled]="this.TwoStepForm.invalid || btnLoadingTwostep" (click)="this.TwoStepSubmit()"
             class="w-full flex items-center justify-center gap-x-3 text-white  bg-cyan-600 font-semibold hover:bg-cyan-700  rounded-lg text-lg px-5 py-3 text-center ">
-            <span *ngIf="!this.btnLoadingTwostep">ادامه</span>
-            <div *ngIf="this.btnLoadingTwostep"
+            @if (!this.btnLoadingTwostep) { <span>ادامه</span> }
+            @if (this.btnLoadingTwostep) {
+            <div
               class="animate-spin inline-block w-6 h-6 border-[3px] border-white border-t-transparent text-gray-800 rounded-full ">
             </div>
+            }
           </button>
-          <div *ngIf="!this.counter_end;else EndTimeContent" class="flex items-center justify-center gap-x-4">
+          @if (!this.counter_end) {
+          <div class="flex items-center justify-center gap-x-4">
             <span>زمان باقی‌مانده تا ارسال مجدد رمز</span>
             <div class="text-blue-700 font-semibold flex items-center">
               {{counter | formatTime}}
             </div>
           </div>
-          <ng-template #EndTimeContent>
-            <div class="flex items-center justify-center gap-x-4">
-              <span>رمز را دریافت نکرده‌اید؟</span>
-              <button (click)="ResendPassword()" class="text-blue-600 font-semibold">ارسال مجدد رمز</button>
-            </div>
-          </ng-template>
-          <div *ngIf="IOtpResponse?.has_account"  class="flex items-center justify-center gap-x-4">
+          }
+          @else {
+          <div class="flex items-center justify-center gap-x-4">
+            <span>رمز را دریافت نکرده‌اید؟</span>
+            <button (click)="ResendPassword()" class="text-blue-600 font-semibold">ارسال مجدد رمز</button>
+          </div>
+          }
+          @if (IOtpResponse.has_account) {
+          <div class="flex items-center justify-center gap-x-4">
             <button (click)="SignInWithPassword()" class="text-blue-600 font-semibold"> ورود با رمز عبور</button>
           </div>
+          }
         </form>
-
-        <form [formGroup]="SignInWithPasswordForm" *ngIf="IsSigningWithPassword" class="space-y-4 md:space-y-6">
+        }
+        @if (IsSigningWithPassword) {
+        <form [formGroup]="SignInWithPasswordForm" class="space-y-4 md:space-y-6">
           <div>
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> نام کاربری</label>
             <input type="text" formControlName="username"
@@ -101,12 +123,17 @@
               class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
           </div>
 
-          <button [disabled]="this.SignInWithPasswordForm.invalid || btnLoadingSigninPassword" (click)="this.SubmitWithPassword()"
+          <button [disabled]="this.SignInWithPasswordForm.invalid || btnLoadingSigninPassword"
+            (click)="this.SubmitWithPassword()"
             class="w-full flex items-center justify-center gap-x-3 text-white  bg-cyan-600 font-semibold hover:bg-cyan-700  rounded-lg text-lg px-5 py-3 text-center ">
-            <span *ngIf="!this.btnLoadingSigninPassword">ورود</span>
-            <div *ngIf="this.btnLoadingSigninPassword"
+            @if (!this.btnLoadingSigninPassword) {
+            <span >ورود</span>
+            }
+            @if (this.btnLoadingSigninPassword) {
+            <div
               class="animate-spin inline-block w-6 h-6 border-[3px] border-white border-t-transparent text-gray-800 rounded-full ">
             </div>
+            }
           </button>
           <div class="flex items-center justify-between">
             <div class="flex items-center justify-end">
@@ -118,7 +145,9 @@
 
           </div>
         </form>
-        <form *ngIf="IsSignupStep" [formGroup]="this.SignUpForm" class="space-y-4 md:space-y-6">
+        }
+        @if (IsSignupStep) {
+        <form [formGroup]="this.SignUpForm" class="space-y-4 md:space-y-6">
           <div>
             <h3 class="text-lg font-medium mb-4">اطلاعات تکمیلی زیر را وارد نمایید</h3>
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> شماره همراه </label>
@@ -148,12 +177,17 @@
 
           <button [disabled]="this.SignUpForm.invalid || btnLoadingSignUp" (click)="this.SignupSubmit()"
             class="w-full flex items-center justify-center gap-x-3 text-white  bg-cyan-600 font-semibold hover:bg-cyan-700  rounded-lg text-lg px-5 py-3 text-center ">
-            <span *ngIf="!this.btnLoadingSignUp">ادامه</span>
-            <div *ngIf="this.btnLoadingSignUp"
+            @if (!this.btnLoadingSignUp) {
+            <span>ادامه</span>
+            }
+            @if (this.btnLoadingSignUp) {
+            <div
               class="animate-spin inline-block w-6 h-6 border-[3px] border-white border-t-transparent text-gray-800 rounded-full ">
             </div>
+            }
           </button>
         </form>
+        }
       </div>
     </div>
   </div>

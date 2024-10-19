@@ -8,8 +8,11 @@
     </div>
   </div>
 </div>
-<app-loading *ngIf="isLoading"></app-loading>
-<main *ngIf="!isLoading">
+@if (isLoading) {
+<app-loading></app-loading>
+}
+@else{
+<main>
   <div class="p-5 my-3 bg-white rounded-lg">
     <div class="flex items-center gap-x-2 justify-start mb-5">
       <select class="select select-bordered select-sm ">
@@ -44,28 +47,38 @@
     </div>
     <div
       class="header grid grid-cols-4 text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6">
-      <span *ngFor="let item of table_header">{{item}}</span>
+      @for (item of table_header; track $index) {
+      <span>{{item}}</span>
+      }
     </div>
-    <div *ngFor="let item of ResponseDataList | filter: this.SearchValue; let i =index"
-      class="body grid grid-cols-4 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
+    @for (item of ResponseDataList| filter: this.SearchValue; let i =$index; track $index) {
+    <div class="body grid grid-cols-4 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
       <span>{{(i+1)}}</span>
       <span>{{item.sub_course_name }}</span>
       <span>{{((item.sub_teachers.length)+1) }}</span>
       <div class="operation flex items-center justify-center">
-        <button (click)="changeRoute(item.Does_Have_Salary_Record,this.id,item.sub_course_pk_id,item.teacher.user_pk_id)" *ngIf="item.Does_Have_Salary_Record;else other"  class="border-cyan-600  border text-cyan-600 px-3 py-2 rounded-lg font-semibold flex items-center justify-between gap-x-4">
+        @if (item.Does_Have_Salary_Record) {
+        <button
+          (click)="changeRoute(item.Does_Have_Salary_Record,this.id,item.sub_course_pk_id,item.teacher.user_pk_id)"
+          class="border-cyan-600  border text-cyan-600 px-3 py-2 rounded-lg font-semibold flex items-center justify-between gap-x-4">
           <span> محاسبه شده</span>
           <img src="/assets/images/icon/pen2.svg" class="w-6" alt="">
         </button>
-        <ng-template #other>
-          <button (click)="changeRoute(item.Does_Have_Salary_Record,this.id,item.sub_course_pk_id,item.teacher.user_pk_id)"    class="bg-cyan-600  text-white px-3 py-2 rounded-lg font-semibold flex items-center justify-between gap-x-4">
-            <span>محاسبه</span>
-            <img src="/assets/images/icon/factor.svg" class="w-6" alt="">
-          </button>
-        </ng-template>
+        }
+        @else {
+        <button
+          (click)="changeRoute(item.Does_Have_Salary_Record,this.id,item.sub_course_pk_id,item.teacher.user_pk_id)"
+          class="bg-cyan-600  text-white px-3 py-2 rounded-lg font-semibold flex items-center justify-between gap-x-4">
+          <span>محاسبه</span>
+          <img src="/assets/images/icon/factor.svg" class="w-6" alt="">
+        </button>
+        }
 
       </div>
     </div>
+    }
   </div>
 
 
 </main>
+}

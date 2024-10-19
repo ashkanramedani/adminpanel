@@ -4,7 +4,7 @@ export const environment = {
   //apiUrl: "http://localhost:6695",
   IeltsdailyApi: "https://api.ieltsdaily.ir",
   minio: {
-    minio_s3_endpoint: 'https://minio.ieltsdaily.ir',
+    minio_s3_endpoint: 'http://minio.ieltsdaily.ir',
     minio_s3_port: '',
     minio_s3_use_ssl: true,
     minio_s3_access_key: 'yRvRRyY6bYqybOdj',

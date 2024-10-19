@@ -1,13 +1,15 @@
-
-<div role="alert" class="alert" *ngIf="response==null;else other">
+@if (response==null) {
+<div role="alert" class="alert">
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info h-6 w-6 shrink-0">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
       d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
   </svg>
   <span class="font-medium">اطلاعاتی ثبت نشده است!</span>
 </div>
-<ng-template #other>
-  <div *ngFor="let item of this.response" class="w-full border border-gray-300 rounded-md grid grid-cols-4 ">
+}
+@else {
+  @for (item of this.response; track $index) {
+  <div class="w-full border border-gray-300 rounded-md grid grid-cols-4 ">
     <div class="col-span-4 grid grid-cols-4 items-center bg-gray-100  py-3">
       <div class="px-4">
         <b>نام و نام خانوادگی:</b>
@@ -15,7 +17,8 @@
       </div>
       <div class="px-4">
         <b>نام کلاس:</b>
-        <span class="pr-2">{{this_sub_course.sub_course_name}} - {{this_course.course_name}} {{this_course.course_level}} Code {{this_course.course_code}}</span>
+        <span class="pr-2">{{this_sub_course.sub_course_name}} - {{this_course.course_name}}
+          {{this_course.course_level}} Code {{this_course.course_code}}</span>
       </div>
       <div class="px-4">
         <b>تعداد جلسات:</b>
@@ -26,14 +29,16 @@
         <span class="pr-2">{{currentDate|HijriDate}}</span>
       </div>
     </div>
-    <div class="col-span-4 grid grid-cols-4 items-center bg-gray-100  p-0 m-0" style="width: 100%; height: 1px; background-color: #dee0e1;"></div>
+    <div class="col-span-4 grid grid-cols-4 items-center bg-gray-100  p-0 m-0"
+      style="width: 100%; height: 1px; background-color: #dee0e1;"></div>
     <div class="col-span-4 grid grid-cols-4 items-center bg-gray-100  pb-3 pt-2">
       <div class="px-4"><b>حق التدرس پایه</b></div>
       <div class="px-4"><b>کسورات</b></div>
       <div class="px-4"><b>مزایا</b></div>
       <div class="px-4"><b>وام</b></div>
     </div>
-    <div class="col-span-4 grid grid-cols-4 items-center bg-gray-100  p-0 m-0" style="width: 100%; height: 1px; background-color: #dee0e1;"></div>
+    <div class="col-span-4 grid grid-cols-4 items-center bg-gray-100  p-0 m-0"
+      style="width: 100%; height: 1px; background-color: #dee0e1;"></div>
     <div class="flex flex-col px-4 py-3 gap-y-4 border-l border-gray-300">
       <div class="flex items-center justify-between">
         <span>پایه دریافتی حق التدریس</span>
@@ -126,19 +131,20 @@
         <span>{{item.loan_installment| number: '1.0-0'}}</span>
       </div>
     </div>
-    <div class="col-span-4 grid grid-cols-4 items-center bg-gray-100  p-0 m-0" style="width: 100%; height: 1px; background-color: #dee0e1;"></div>
+    <div class="col-span-4 grid grid-cols-4 items-center bg-gray-100  p-0 m-0"
+      style="width: 100%; height: 1px; background-color: #dee0e1;"></div>
     <div class="col-span-4 grid grid-cols-3 items-center bg-gray-100  pb-3 pt-4">
       <div class="px-4"><span>جمع کسورات:</span><b class="pr-2">---</b></div>
-      <div class="px-4"><span>جمع مزایا:  </span><b class="pr-2">---</b></div>
-      <div class="px-4"><span>جمع اقساط:  </span><b class="pr-2">---</b></div>
+      <div class="px-4"><span>جمع مزایا: </span><b class="pr-2">---</b></div>
+      <div class="px-4"><span>جمع اقساط: </span><b class="pr-2">---</b></div>
     </div>
     <div class="col-span-4 grid grid-cols-4 items-center bg-gray-100 pb-3 pt-3">
       <div class="px-4 col-span-2"><span> میزان مرخصی در ماه:</span><b class="pr-2">----</b></div>
-      <div class="px-4 col-span-2 text-xl"><span> مبلغ قابل دریافت: </span> <b class="pr-2">{{item.earning*10000| number: '1.0-0'}}</b></div>
+      <div class="px-4 col-span-2 text-xl"><span> مبلغ قابل دریافت: </span> <b class="pr-2">{{item.earning*10000|
+          number: '1.0-0'}}</b></div>
     </div>
   </div>
-
-
+  }
   <div class="flex flex-col mt-4" id="ContentToPdf">
     <div class="noprint mt-8">
       <form [formGroup]="ReportForm">
@@ -155,7 +161,9 @@
           <div class="relative">
             <select formControlName="payment" dir="ltr"
               class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-              <option *ngFor="let item of shabaList" [value]="item.payment_method_pk_id">{{item.shaba}}</option>
+              @for (item of shabaList; track $index) {
+              <option  [value]="item.payment_method_pk_id">{{item.shaba}}</option>
+            }
             </select>
             <label
               class="absolute font-medium text-gray-800  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
@@ -190,16 +198,14 @@
       </form>
     </div>
   </div>
-
-</ng-template>
+}
 <div class="noprint flex gap-x-4 mt-16 text-sm">
-  <a  [routerLink]="['/reports/teacher-salary',this.subcourse_id]"
-  [queryParams]="{step: 6}"
-  class="border border-gray-400 px-6 font-semibold py-2 rounded-md bg-gray-300 text-gray-500  gap-x-2 flex items-center"
-  href="">
-  <img src="/assets/images/icon/right-arrow.svg" class="w-8 rotate-180" alt="">
-  <span> مرحله قبل</span>
-</a>
+  <a [routerLink]="['/reports/teacher-salary',this.subcourse_id]" [queryParams]="{step: 6}"
+    class="border border-gray-400 px-6 font-semibold py-2 rounded-md bg-gray-300 text-gray-500  gap-x-2 flex items-center"
+    href="">
+    <img src="/assets/images/icon/right-arrow.svg" class="w-8 rotate-180" alt="">
+    <span> مرحله قبل</span>
+  </a>
   <button *ngIf="response!=null" (click)="this.onSubmit()"
     class="border border-cyan-600 px-6 font-semibold py-2 rounded-md bg-cyan-600 hover:bg-cyan-700 text-white gap-x-2 flex items-center">
     <span> صدور فیش حقوقی</span>

@@ -21,84 +21,95 @@
       </label>
     </div>
   </div>
-    <div class="icon flex items-center gap-x-2 py-2">
-      <n-link-button [link]="add_url"  [title]="'افزودن'" ></n-link-button>
-    </div>
+  <div class="icon flex items-center gap-x-2 py-2">
+    <n-link-button [link]="add_url" [title]="'افزودن'"></n-link-button>
+  </div>
 </div>
-<app-loading *ngIf="isLoading"></app-loading>
-<main *ngIf="!isLoading">
-    <div class="p-5 my-3 bg-white rounded-lg">
-        <div
-            class="header grid grid-cols-7 text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6">
-            <span *ngFor="let item of table_header">{{item}}</span>
-        </div>
-        <div *ngFor="let item of ResponseDataList | paginate: {itemsPerPage: 10,currentPage: this.currentPage,totalItems: totalCount }| filter: this.SearchValue; let i =index"
-            class="body grid grid-cols-7 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
-            <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
-            <span>{{item.course.course_name}}</span>
-            <span>{{item.sub_course.sub_course_name}}</span>
-            <span>{{item.session.session_date|HijriDate}}</span>
-            <span>{{item.session.teacher.name+ " " + item.session.teacher.last_name}}</span>
-            <div class="flex items-center justify-center">
-              <n-badge [title]="item.status" [form_id]="item.session_cancellation_pk_id" [db]="'session_cancellation'" ></n-badge>
-            </div>
-            <div class="operation flex items-center justify-center">
-                <button class="hover:bg-gray-200 p-1 rounded-lg"  (click)="OpenModal(item.session_cancellation_pk_id)" title="نمایش">
-                    <img src="/assets/images/icon/see-more.svg" class="w-4" alt="">
-                </button>
-                <!-- <a class="hover:bg-gray-200 p-1 rounded-lg"  [routerLink]="[edit_url,item.session_cancellation_pk_id]" title="ویرایش">
+@if (isLoading) {
+<app-loading></app-loading>
+}
+@else{
+<main >
+  <div class="p-5 my-3 bg-white rounded-lg">
+    <div
+      class="header grid grid-cols-7 text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6">
+      @for (item of table_header; track $index) {
+      <span>{{item}}</span>
+      }
+    </div>
+    @for (item of ResponseDataList | paginate: { itemsPerPage: 10,currentPage: this.currentPage,totalItems: totalCount }
+    | filter: this.SearchValue; track item.session_cancellation_pk_id ;let i=$index) {
+    <div class="body grid grid-cols-7 text-center text-gray-900 font-medium text-sm mb-5 space-y-3">
+      <span>{{ ((this.currentPage -(1))*10) +(i+1)}}</span>
+      <span>{{item.course.course_name}}</span>
+      <span>{{item.sub_course.sub_course_name}}</span>
+      <span>{{item.session.session_date|HijriDate}}</span>
+      <span>{{item.session.teacher.name+ " " + item.session.teacher.last_name}}</span>
+      <div class="flex items-center justify-center">
+        <n-badge [title]="item.status" [form_id]="item.session_cancellation_pk_id"
+          [db]="'session_cancellation'"></n-badge>
+      </div>
+      <div class="operation flex items-center justify-center">
+        <button class="hover:bg-gray-200 p-1 rounded-lg" (click)="OpenModal(item.session_cancellation_pk_id)"
+          title="نمایش">
+          <img src="/assets/images/icon/see-more.svg" class="w-4" alt="">
+        </button>
+        <!-- <a class="hover:bg-gray-200 p-1 rounded-lg"  [routerLink]="[edit_url,item.session_cancellation_pk_id]" title="ویرایش">
                     <img src="/assets/images/icon/edit.svg" class="w-4" alt="">
                 </a> -->
-                <!-- <button class="hover:bg-gray-200 p-1 rounded-lg"  title="حذف" (click)="RemoveItem(item.session_cancellation_pk_id)">
+        <!-- <button class="hover:bg-gray-200 p-1 rounded-lg"  title="حذف" (click)="RemoveItem(item.session_cancellation_pk_id)">
                     <img src="/assets/images/icon/trash.svg" class="w-4" alt="">
                 </button> -->
-            </div>
-        </div>
-        <div class="paging flex items-center justify-center mt-16 flex-wrap ">
-          <pagination-controls (pageChange)="changePage($event)" previousLabel="قبلی" nextLabel="بعدی" ></pagination-controls>
-        </div>
+      </div>
     </div>
-
-    <div *ngIf="IsShowenModal==true" x-transition=""
-        class="fixed   left-0 top-0 z-999999 flex h-full min-h-screen w-full items-center justify-center bg-black/40 px-4 py-5 text-graydark dark:text-white">
-        <div
-            class="flex flex-col w-full mx-12 lg:mr-[19rem]  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
-            <div class="footer flex  justify-start border-b py-3 border-[#b1b1b1]">
-                <h3 class="font-semibold text-lg"> نمایش رکورد  اطلاعات کنسلی جلسه </h3>
-            </div>
-            <div class="grid lg:grid-cols-2 py-3 grid-cols-1 gap-6.5 p-6.5 text-graydark text-base">
-                <div>
-                    <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
-                        ثبت کننده
-                    </label>
-                     <span>{{SingleData.created_fk_by}}</span>
-                </div>
-                <div>
-                    <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
-                        وضعیت
-                    </label>
-                    <span class="badge badge-accent badge-outline !text-cyan-600 pt-1">{{SingleData.status}}</span>
-                </div>
-                <div>
-                    <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
-                       تاریخ ایجاد
-                    </label>
-                    <span>{{SingleData.create_date|HijriDate}} </span>
-                </div>
-                <div>
-                    <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
-                        توضیحات
-                    </label>
-                    <span>{{SingleData.description}} </span>
-                </div>
-            </div>
-            <div class="footer flex items-end justify-end border-t py-3 border-[#b1b1b1]">
-                <button (click)="CloseModal()"
-                    class="block  rounded border border-stroke bg-stroke hover:bg-bodydark1 font-semibold px-6 py-3 text-center  text-black-2 transition   dark:border-strokedark dark:bg-meta-4 dark:text-white">
-                    بستن
-                </button>
-            </div>
-        </div>
+    }
+    <div class="paging flex items-center justify-center mt-16 flex-wrap ">
+      <pagination-controls (pageChange)="changePage($event)" previousLabel="قبلی"
+        nextLabel="بعدی"></pagination-controls>
     </div>
-
+  </div>
+  @if(IsShowenModal==true){
+  <div  x-transition=""
+    class="fixed   left-0 top-0 z-999999 flex h-full min-h-screen w-full items-center justify-center bg-black/40 px-4 py-5 text-graydark dark:text-white">
+    <div
+      class="flex flex-col w-full mx-12 lg:mr-[19rem]  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
+      <div class="footer flex  justify-start border-b py-3 border-[#b1b1b1]">
+        <h3 class="font-semibold text-lg"> نمایش رکورد اطلاعات کنسلی جلسه </h3>
+      </div>
+      <div class="grid lg:grid-cols-2 py-3 grid-cols-1 gap-6.5 p-6.5 text-graydark text-base">
+        <div>
+          <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
+            ثبت کننده
+          </label>
+          <span>{{SingleData.created_fk_by}}</span>
+        </div>
+        <div>
+          <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
+            وضعیت
+          </label>
+          <span class="badge badge-accent badge-outline !text-cyan-600 pt-1">{{SingleData.status}}</span>
+        </div>
+        <div>
+          <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
+            تاریخ ایجاد
+          </label>
+          <span>{{SingleData.create_date|HijriDate}} </span>
+        </div>
+        <div>
+          <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
+            توضیحات
+          </label>
+          <span>{{SingleData.description}} </span>
+        </div>
+      </div>
+      <div class="footer flex items-end justify-end border-t py-3 border-[#b1b1b1]">
+        <button (click)="CloseModal()"
+          class="block  rounded border border-stroke bg-stroke hover:bg-bodydark1 font-semibold px-6 py-3 text-center  text-black-2 transition   dark:border-strokedark dark:bg-meta-4 dark:text-white">
+          بستن
+        </button>
+      </div>
+    </div>
+  </div>
+}
 </main>
+}

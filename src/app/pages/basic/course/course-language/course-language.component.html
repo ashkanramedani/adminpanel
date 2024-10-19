@@ -3,7 +3,7 @@
     <div class="breadcrumbs text-sm">
       <ul>
         <li>اطلاعات پایه</li>
-        <li>زبان  های دوره </li>
+        <li>زبان های دوره </li>
       </ul>
     </div>
     <div class="flex items-center gap-x-3">
@@ -21,83 +21,91 @@
       </label>
     </div>
   </div>
-    <div class="icon flex items-center gap-x-2 py-2">
-      <n-link-button [link]="'/basic/course-language/add'"  [title]="'افزودن'" ></n-link-button>
-    </div>
+  <div class="icon flex items-center gap-x-2 py-2">
+    <n-link-button [link]="'/basic/course-language/add'" [title]="'افزودن'"></n-link-button>
+  </div>
 </div>
-<app-loading *ngIf="isLoading"></app-loading>
+@if (isLoading) {
+<app-loading></app-loading>
+}
 <main>
-    <div class="p-5 my-3 bg-white rounded-lg">
-        <div
-            class="header grid grid-cols-4 text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6">
-            <span *ngFor="let item of table_header">{{item}}</span>
-        </div>
-        <div *ngFor="let item of ResponseDataList | paginate: { itemsPerPage: 10,currentPage: this.currentPage,totalItems: totalCount} | filter: this.SearchValue"
-            class="body grid grid-cols-4 text-center text-gray-900 font-medium text-sm mb-5">
-            <span>{{item.language_name}}</span>
-            <span>{{item.created.name + '&nbsp; &nbsp;' +item.created.last_name}}</span>
-            <div class="flex items-center justify-center"> 
-               <n-badge [title]="item.status" [form_id]="item.language_pk_id" [db]="'language'" ></n-badge>
-            </div>
-            <div class="operation flex items-center justify-center ">
-                <button class="hover:bg-gray-200 p-1 rounded-lg"  (click)="OpenModal(item.language_pk_id)" title="نمایش">
-                    <img src="/assets/images/icon/see-more.svg" class="w-4" alt="">
-                </button>
-                <a class="hover:bg-gray-200 p-1 rounded-lg"  [routerLink]="['/basic/course-language/edit',item.language_pk_id]" title="ویرایش">
-                    <img src="/assets/images/icon/edit.svg" class="w-4" alt="">
-                </a>
-                <button class="hover:bg-gray-200 p-1 rounded-lg"  title="حذف" (click)="RemoveItem(item.language_pk_id)">
-                    <img src="/assets/images/icon/trash.svg" class="w-4" alt="">
-                </button>
-            </div>
-        </div>
-        <div class="paging flex items-center justify-center mt-16 flex-wrap ">
-          <pagination-controls (pageChange)="changePage($event)" previousLabel="قبلی" nextLabel="بعدی" ></pagination-controls>
-        </div>
+  <div class="p-5 my-3 bg-white rounded-lg">
+    <div
+      class="header grid grid-cols-4 text-center text-gray-900 font-medium bg-gray-100 py-2 rounded-lg shadow-md mb-6">
+      @for (item of table_header; track $index) {
+      <span>{{item}}</span>
+      }
     </div>
-
-    <div *ngIf="IsShowenModal==true"
+    @for (item of ResponseDataList | paginate: { itemsPerPage: 10,currentPage: this.currentPage,totalItems: totalCount }
+    | filter: this.SearchValue; track item.language_pk_id;let i=$index) {
+    <div class="body grid grid-cols-4 text-center text-gray-900 font-medium text-sm mb-5">
+      <span>{{item.language_name}}</span>
+      <span>{{item.created.name + '&nbsp; &nbsp;' +item.created.last_name}}</span>
+      <div class="flex items-center justify-center">
+        <n-badge [title]="item.status" [form_id]="item.language_pk_id" [db]="'language'"></n-badge>
+      </div>
+      <div class="operation flex items-center justify-center ">
+        <button class="hover:bg-gray-200 p-1 rounded-lg" (click)="OpenModal(item.language_pk_id)" title="نمایش">
+          <img src="/assets/images/icon/see-more.svg" class="w-4" alt="">
+        </button>
+        <a class="hover:bg-gray-200 p-1 rounded-lg" [routerLink]="['/basic/course-language/edit',item.language_pk_id]"
+          title="ویرایش">
+          <img src="/assets/images/icon/edit.svg" class="w-4" alt="">
+        </a>
+        <button class="hover:bg-gray-200 p-1 rounded-lg" title="حذف" (click)="RemoveItem(item.language_pk_id)">
+          <img src="/assets/images/icon/trash.svg" class="w-4" alt="">
+        </button>
+      </div>
+    </div>
+    }
+    <div class="paging flex items-center justify-center mt-16 flex-wrap ">
+      <pagination-controls (pageChange)="changePage($event)" previousLabel="قبلی"
+        nextLabel="بعدی"></pagination-controls>
+    </div>
+  </div>
+  @if(IsShowenModal==true){
+  <div
     class="fixed left-0 top-0 z-999999 flex h-full min-h-screen w-full items-center justify-center bg-black/60 px-4 py-5 text-graydark dark:text-white">
     <div
-        class="flex flex-col w-full mx-12 lg:mr-[19rem]  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
-        <div class="footer flex  justify-start border-b py-3 border-[#b1b1b1]">
-            <h3 class="font-semibold text-lg"> نمایش رکورد  اطلاعات زبان </h3>
-        </div>
-        <div class="grid lg:grid-cols-2 grid-cols-1 gap-6.5 p-6.5 text-graydark dark:text-white text-base py-4">
+      class="flex flex-col w-full mx-12 lg:mr-[19rem]  rounded-lg bg-white px-8 py-12 text-center dark:bg-boxdark text-graydark dark:text-white">
+      <div class="footer flex  justify-start border-b py-3 border-[#b1b1b1]">
+        <h3 class="font-semibold text-lg"> نمایش رکورد اطلاعات زبان </h3>
+      </div>
+      <div class="grid lg:grid-cols-2 grid-cols-1 gap-6.5 p-6.5 text-graydark dark:text-white text-base py-4">
 
-            <div>
-                <label class="my-3 block text-base font-semibold">
-                    عنوان
-                </label>
-                <span>{{SingleData.language_name }}</span>
-            </div>
-            <div>
-                <label class="my-3 block text-base font-semibold">
-                     سازنده
-                </label>
-                <span>{{SingleData.created_fk_by }}</span>
-            </div>
-            <div>
-                <label class="my-3 block text-base font-semibold">
-                     توضیحات
-                </label>
-                <span>{{SingleData.description}}</span>
-            </div>
-            <div>
-              <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
-               وضعیت
-              </label>
-              <span>{{SingleData.status}}</span>
-            </div>
+        <div>
+          <label class="my-3 block text-base font-semibold">
+            عنوان
+          </label>
+          <span>{{SingleData.language_name }}</span>
         </div>
+        <div>
+          <label class="my-3 block text-base font-semibold">
+            سازنده
+          </label>
+          <span>{{SingleData.created_fk_by }}</span>
+        </div>
+        <div>
+          <label class="my-3 block text-base font-semibold">
+            توضیحات
+          </label>
+          <span>{{SingleData.description}}</span>
+        </div>
+        <div>
+          <label class="my-3 block text-base font-semibold  text-graydark dark:text-white">
+            وضعیت
+          </label>
+          <span>{{SingleData.status}}</span>
+        </div>
+      </div>
 
-        <div class="footer flex items-end justify-end border-t py-3 border-[#b1b1b1]">
-            <button (click)="CloseModal()"
-                class="block  rounded border border-stroke bg-stroke hover:bg-bodydark1 font-semibold px-6 py-3 text-center  text-black-2 transition   dark:border-strokedark dark:bg-meta-4 dark:text-white">
-                بستن
-            </button>
-        </div>
+      <div class="footer flex items-end justify-end border-t py-3 border-[#b1b1b1]">
+        <button (click)="CloseModal()"
+          class="block  rounded border border-stroke bg-stroke hover:bg-bodydark1 font-semibold px-6 py-3 text-center  text-black-2 transition   dark:border-strokedark dark:bg-meta-4 dark:text-white">
+          بستن
+        </button>
+      </div>
     </div>
-</div>
-
+  </div>
+  }
 </main>
