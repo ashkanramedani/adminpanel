@@ -18,7 +18,7 @@
   <div class="p-5 mb-3 bg-white rounded-lg">
     @if (this.id==null) {
     <form [formGroup]="ReportForm">
-      <div class="grid grid-cols-2 gap-x-3 gap-y-8 w-full py-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-3 gap-y-8 w-full py-4">
         <div class="relative">
           <select formControlName="created_fk_by"
             class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
@@ -79,7 +79,7 @@
             <span class="text-red-500 text-lg">*</span>
           </label>
         </div>
-        <div class="relative">
+        <div class="relative xl:col-span-3">
           <input type="text" formControlName="description"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
           <label
@@ -92,7 +92,7 @@
     }
     @else {
     <form [formGroup]="this.EditForm">
-      <div class="grid grid-cols-2 gap-x-3 gap-y-8 w-full py-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-3 gap-y-8 w-full py-4">
         <div class="relative">
           <select formControlName="created_fk_by"
             class="w-full dark:text-bodydark1 text-black rounded-lg border border-gray-300 bg-transparent py-[0.68rem] px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
